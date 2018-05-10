@@ -14,7 +14,6 @@
     patterns: '*prometheus*'
     file_type: directory
   register: dir_name
-- debug: var=dir_name.files[0].path 
 - set_fact: 
     prometheus_path: "{{ dir_name.files[0].path }}"
 - name: Create systemd service for prometheus

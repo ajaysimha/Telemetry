@@ -28,10 +28,9 @@ scrape_configs:
     # scheme defaults to 'http'.
 
     static_configs:
-{% for i in groups["prometheus"] %}
-{% if hostvars[inventory_hostname]['ansible_default_ipv4']['address'] == groups["prometheus"][loop.index - 1] %}
-{% for j in groups["collectd_exporters"] %}
-      - targets: ['{{ groups["collectd_exporters"][loop.index - 1] }}:{{ collectd_exporter_http_port }}']
-{% endfor %}
+{% if hostvars[inventory_hostname]['ansible_default_ipv4']['address'] == groups["prometheus"][0] %}
+      - targets: ['{{ groups["collectd_exporters"][0] }}:{{ collectd_exporter_http_port }}']
 {% endif %}
-{% endfor %}
+{% if hostvars[inventory_hostname]['ansible_default_ipv4']['address'] == groups["prometheus"][1] %}
+      - targets: ['{{ groups["collectd_exporters"][1] }}:{{ collectd_exporter_http_port }}']
+{% endif %}

@@ -1,0 +1,19 @@
+- name: Copy collectd rpm /tmp
+  copy:
+    src: /home/ansible/ansible_deploy_collectd_prometheus/collectd-5.8.0-5.el7ost.x86_64.rpm
+    dest: /tmp/collectd-5.8.0-5.el7ost.x86_64.rpm
+
+- name: Install collectd package
+  yum:
+    disablerepo: '*'
+    name: /tmp/collectd-5.8.0-5.el7ost.x86_64.rpm
+    state: present
+
+- name: Configure collectd client to send metrics to colelctd exporter
+  template:
+    src: collectd_conf.j2
+    dest: /etc/collectd.conf
+- name: Start collectd client
+  service:
+    name: collectd
+    state: started

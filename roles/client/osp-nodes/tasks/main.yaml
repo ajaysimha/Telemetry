@@ -1,0 +1,23 @@
+- name: Copy collectd rpm /tmp
+  copy:
+    src: "{{ package_dirs.src }}/{{ item }}"
+    dest: "{{ package_dirs.dst }}/{{ item }}"
+  with_items:
+    - "{{ collectd_packages_all }}"
+
+- name: Install collectd package
+  yum:
+    disablerepo: '*'
+    name: "/tmp/{{ item }}"
+    state: present
+  with_items:
+    - "{{ collectd_packages_all }}"
+    
+- name: Configure collectd client to send metrics to collectd exporter
+  template:
+    src: collectd_conf.j2
+    dest: /etc/collectd.conf
+- name: Start collectd client
+  service:
+    name: collectd
+    state: started

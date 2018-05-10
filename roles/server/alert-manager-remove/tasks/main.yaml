@@ -2,6 +2,7 @@
   service:
     name: alert_manager
     state: stopped
+  ignore_errors: true
 - name: Find the name of the alert manager unarchived directory
   find:
     path: /opt
