@@ -1,10 +1,9 @@
-# ansible_deploy_collectd_prometheus
-Deploy collectd , collectd exporter and Prometheus for performance monitoring with ansible
+# ansible_deploy_telemetry
+Deploy telemetry/monitoring server and client components and configure them with ansible
 # Deploying Performance monitoring and metrics gathering with Collectd and Prometheus
 Ansible playbooks to deploy collectd and prometheus based monitoring solution
 
-# Prerequisites
-See above list for Sensu
+
 # Package versions
 
 |Package                  |Version      |Ports                                       |
@@ -17,13 +16,23 @@ See above list for Sensu
 |Prometheus Alert Manager |0.12.0       |TCP 6783                                    |
 
 ## How to run
-To run playbooks first update the group_vars/all with environment specific parameters.
-Then run the playbooks in the playbooks folder to deploy individual components or all
-at the same time. Each components can be deployed on their own. There are playbooks to
-deploy as well as remove as this will help in testing. All ansible-playbook commands
-should be run from the ansbile-install-telmetry directory.
+To run playbooks first update the group_vars/all with environment specific parameters. The all file looks like this:
+```
+[ansible@se-nfv-srv12 ansible_deploy_telemetry{master}]$ cat group_vars/all
+collectd_exporter_download_url: https://github.com/prometheus/collectd_exporter/releases/download/0.3.1/collectd_exporter-0.3.1.linux-386.tar.gz
+collectd_exporter_port: 25826
+collectd_exporter_http_port: 9103
+prometheus_download_url: https://github.com/prometheus/prometheus/releases/download/v2.0.0/prometheus-2.0.0.linux-amd64.tar.gz
+prometheus_web_port: 9090
+alert_manager_download_url: https://github.com/prometheus/alertmanager/releases/download/v0.12.0/alertmanager-0.12.0.linux-amd64.tar.gz
+alert_manager_mesh_port: 6783
+alert_manager_port: 9093
+grafana_download_url: https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana-4.6.3-1.x86_64.rpm
+grafana_port: 3000
+```
+If you want to make changes to port numbers for individual components you would make it in the all file.
 
-First step is to update the /home/ansible/ansible_deploy_telemetry/telemetry_hosts entries. They look like this:
+Next step is to update the /home/ansible/ansible_deploy_telemetry/telemetry_hosts entries. They look like this:
 ```
 [osp-controllers]
 10.19.109.12
@@ -45,7 +54,12 @@ First step is to update the /home/ansible/ansible_deploy_telemetry/telemetry_hos
 10.19.109.225
 10.19.109.229
 ```
-Note: Two servers 10.19.109.225 and 10.19.109.229 are listed under server side components - collectd_exporters, prometheus, alert_managers, grafana. This assumes full HA deployment. If you are trying this with only one servers (in the lab) you should have only one entry under each server component. 
+Note: Two servers 10.19.109.225 and 10.19.109.229 are listed under server side components - collectd_exporters, prometheus, alert_managers, grafana. This assumes full HA deployment. If you are trying this with only one servers (in the lab) you should have only one entry under each server component.
+
+Then run the playbooks in the playbooks folder to deploy individual components or all
+at the same time. Each components can be deployed on their own. There are playbooks to
+deploy as well as remove as this will help in testing. All ansible-playbook commands
+should be run from the ansbile-install-telmetry directory.
 
 Following shows deploying just grafana
 ```
@@ -116,4 +130,7 @@ ansible-playbook playbook/install_ceph_nodes.yaml
 
 ## To Do
 * Remove keepalived if it confirmed that it is not in use in the solution
+* Include exec plugin and it's configuration
+* Include updated collect.conf for performance optimization
+* Include exec plugin description
 
