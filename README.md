@@ -60,7 +60,7 @@ They look like this:
 10.19.109.225
 10.19.109.229
 ```
-Note: Two servers 10.19.109.225 and 10.19.109.229 are listed under server side components - collectd_exporters, prometheus, alert_managers, grafana. This assumes full HA deployment. If you are trying this with only one servers (in the lab) you should have only one entry under each server component.
+**Note:** Two servers 10.19.109.225 and 10.19.109.229 are listed under server side components - collectd_exporters, prometheus, alert_managers, grafana. This assumes full HA deployment. If you are trying this with only one servers (in the lab) you should have only one entry under each server component.
 
 Then run the playbooks in the playbooks folder to deploy individual components or all
 at the same time. Each components can be deployed on their own. There are playbooks to
