@@ -31,7 +31,10 @@ grafana_port: 3000
 ```
 If you want to make changes to port numbers for individual components you would make it in the all file.
 
-Next step is to update the /home/ansible/ansible_deploy_telemetry/telemetry_hosts entries. They look like this:
+Next step is to update the /home/ansible/ansible_deploy_telemetry/telemetry_hosts entries. This files defines the target hosts where the telemetry components are installed.
+* osp-controllers: OpenStack controller and compute nodes where collectd and collectd plugins will be installed
+* ceph-nodes: Ceph Mon and OSD nodes where collectd and collectd plugins will be installed. This should ceph node pkgs
+They look like this:
 ```
 [osp-controllers]
 10.19.109.12
