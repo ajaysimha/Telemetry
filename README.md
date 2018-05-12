@@ -115,5 +115,5 @@ ansible-playbook playbook/install_ceph_nodes.yaml
 ```
 
 ## To Do
-* 
+* Remove keepalived if it confirmed that it is not in use in the solution
 
