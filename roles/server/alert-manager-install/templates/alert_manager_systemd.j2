@@ -3,11 +3,14 @@ Description=Prometheus alert manager
 After=network.target
 
 [Service]
-{% if hostvars[inventory_hostname]['ansible_default_ipv4']['address'] == groups["alert_managers"][0] %}
-ExecStart={{ alert_manager_path }}/alertmanager -config.file simple.yml -mesh.peer={{ groups["alert_managers"][1] }}:{{ alert_manager_mesh_port }}
+{% if groups["alert_managers"]|length == 2 %}
+{% for host in groups["alert_managers"] %}
+{% if hostvars[inventory_hostname]['ansible_default_ipv4']['address'] == hostvars[host]['ansible_default_ipv4']['address'] %}
+ExecStart={{ alert_manager_path }}/alertmanager -config.file simple.yml -mesh.peer={{ groups["alert_managers"][loop.length - loop.index] }}:{{ alert_manager_mesh_port }}
 {% endif %}
-{% if hostvars[inventory_hostname]['ansible_default_ipv4']['address'] == groups["alert_managers"][1] %}
-ExecStart={{ alert_manager_path }}/alertmanager -config.file simple.yml -mesh.peer={{ groups["alert_managers"][0] }}:{{ alert_manager_mesh_port }}
+{% endfor %}
+{% else %}
+ExecStart={{ alert_manager_path }}/alertmanager -config.file simple.yml
 {% endif %}
 WorkingDirectory={{ alert_manager_path }}/
 
