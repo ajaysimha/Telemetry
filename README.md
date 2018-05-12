@@ -32,12 +32,12 @@ grafana_port: 3000
 If you want to make changes to port numbers for individual components you would make it in the all file.
 
 Next step is to update the /home/ansible/ansible_deploy_telemetry/telemetry_hosts entries. This files defines the target hosts where the telemetry components are installed.
-* osp-controllers: OpenStack controller and compute nodes where collectd and collectd plugins will be installed
-* ceph-nodes: Ceph Mon and OSD nodes where collectd and collectd plugins will be installed. This should ceph node pkgs
-* collectd_exporters: Receives binary or JSON formatted collectd data from each of the osp and ceph nodes and provides to the prometheus server over http
-* prometheus: Time-series database used to store all the collectd data. Rules can be written against data to create alerts
-* alert_managers: Receives alerts from prometheus. Responsible for deduplication and filtering
-* grafana: Used for visualization of data from prometheus
+* **osp-controllers:** OpenStack controller and compute nodes where collectd and collectd plugins will be installed
+* **ceph-nodes:** Ceph Mon and OSD nodes where collectd and collectd plugins will be installed. This should ceph node pkgs
+* **collectd_exporters:** Receives binary or JSON formatted collectd data from each of the osp and ceph nodes and provides to the prometheus server over http
+* **prometheus:** Time-series database used to store all the collectd data. Rules can be written against data to create alerts
+* **alert_managers:** Receives alerts from prometheus. Responsible for deduplication and filtering
+* **grafana:** Used for visualization of data from prometheus <br />
 They look like this:
 ```
 [osp-controllers]
