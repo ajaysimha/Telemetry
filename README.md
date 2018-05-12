@@ -23,6 +23,30 @@ at the same time. Each components can be deployed on their own. There are playbo
 deploy as well as remove as this will help in testing. All ansible-playbook commands
 should be run from the ansbile-install-telmetry directory.
 
+First step is to update the /home/ansible/ansible_deploy_telemetry/telemetry_hosts entries. They look like this:
+```
+[osp-controllers]
+10.19.109.12
+[osp-computes]
+10.19.109.230
+10.19.109.231
+[ceph-nodes]
+10.19.109.232
+[collectd_exporters]
+10.19.109.225
+10.19.109.229
+[prometheus]
+10.19.109.225
+10.19.109.229
+[alert_managers]
+10.19.109.225
+10.19.109.229
+[grafana]
+10.19.109.225
+10.19.109.229
+```
+Note: Two servers 10.19.109.225 and 10.19.109.229 are listed under server side components - collectd_exporters, prometheus, alert_managers, grafana. This assumes full HA deployment. If you are trying this with only one servers (in the lab) you should have only one entry under each server component. 
+
 Following shows deploying just grafana
 ```
 ansible-playbook playbooks/install_grafana.yaml
@@ -39,7 +63,7 @@ To install all server components and configure them (Grafana excluded)
 ansible-playbook playbooks/install_server_all.yaml
 ```
 To configure collectd client,
-Download packages from Red Hat Repo (OSP12 Repo in this example)
+Download packages from Red Hat Repo:
 https://access.redhat.com/downloads/content/package-browser
 and place them into directory: 
 
