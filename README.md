@@ -1,6 +1,6 @@
 # ansible_deploy_telemetry
 Deploy telemetry/monitoring server and client components and configure them with ansible
-# Deploying Performance monitoring and metrics gathering with Collectd and Prometheus
+# Deploying performance, fault and availability monitoring and metrics gathering with Collectd and Prometheus
 Ansible playbooks to deploy collectd and prometheus based monitoring solution
 
 
