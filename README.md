@@ -70,9 +70,6 @@ should be run from the ansbile-install-telmetry directory.
 Following shows deploying just grafana
 ```
 ansible-playbook playbooks/install_grafana.yaml
-```
-To install all the components one at a time,
-```
 ansible-playbook playbooks/install_collectd_exporter.yaml
 ansible-playbook playbooks/install_prometheus.yaml
 ansible-playbook playbooks/install_alert_manager.yaml
