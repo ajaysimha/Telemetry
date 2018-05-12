@@ -11,7 +11,6 @@ Ansible playbooks to deploy collectd and prometheus based monitoring solution
 |Prometheus               |2.0.0        |TCP 9090                                    |
 |Collectd                 |5.8.0.1      |                                            |
 |Collectd exporter        |0.3.1        |TCP 25826, 9103                             |
-|Keepalived               |1.3.9        |                                            |
 |Grafana                  |4.6.3.1      |TCP 3000                                    |
 |Prometheus Alert Manager |0.12.0       |TCP 6783                                    |
 
@@ -133,4 +132,6 @@ ansible-playbook playbook/install_ceph_nodes.yaml
 * Include exec plugin and it's configuration
 * Include updated collect.conf for performance optimization
 * Include exec plugin description
+* Add OSP exporter
+* Add SNMP webhook
 
