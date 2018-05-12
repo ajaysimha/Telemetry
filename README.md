@@ -130,6 +130,7 @@ Once the packages are downloaded and entries in the main.yaml under vars is upda
 ansible-playbook playbooks/install_osp_nodes.yaml
 ansible-playbook playbook/install_ceph_nodes.yaml
 ```
+**Note:** There is no uninstall for client side. You will have to uninstall manaully using yum remove collectd (and other installed packages. 
 
 ## To Do
 * Remove keepalived if it confirmed that it is not in use in the solution
