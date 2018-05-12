@@ -17,7 +17,7 @@ Ansible playbooks to deploy collectd and prometheus based monitoring solution
 ## How to run
 To run playbooks first update the group_vars/all with environment specific parameters. The all file looks like this:
 ```
-[ansible@se-nfv-srv12 ansible_deploy_telemetry{master}]$ cat group_vars/all
+[ansible@se-nfv-srv12 ansible_deploy_telemetry{master}]$ cat /home/ansible/ansible_deploy_telemetry/group_vars/all
 collectd_exporter_download_url: https://github.com/prometheus/collectd_exporter/releases/download/0.3.1/collectd_exporter-0.3.1.linux-386.tar.gz
 collectd_exporter_port: 25826
 collectd_exporter_http_port: 9103
