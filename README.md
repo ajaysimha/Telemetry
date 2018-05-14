@@ -73,7 +73,6 @@ ansible-playbook playbooks/install_grafana.yaml
 ansible-playbook playbooks/install_collectd_exporter.yaml
 ansible-playbook playbooks/install_prometheus.yaml
 ansible-playbook playbooks/install_alert_manager.yaml
-ansible-playbook playbooks/install_grafana.yaml
 ```
 To install all server components and configure them (Grafana excluded)
 ```
