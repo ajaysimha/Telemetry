@@ -14,6 +14,10 @@ Ansible playbooks to deploy collectd and prometheus based monitoring solution
 |Grafana                  |4.6.3.1      |TCP 3000                                    |
 |Prometheus Alert Manager |0.12.0       |TCP 6783                                    |
 
+## Assumption
+* Firewalld is running telemetry servers
+* Collectd running on OpenStack and Ceph nodes are able to communicate outside to the Telemetry Servers
+
 ## How to run
 To run playbooks first update the group_vars/all with environment specific parameters. The all file looks like this:
 ```
