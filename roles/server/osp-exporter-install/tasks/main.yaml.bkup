@@ -1,0 +1,59 @@
+- name: Install Python PIP 
+  package:
+    name: python2-pip
+    state: present
+
+- name: Install required python modules using PIP
+  action: "{{ ansible_pkg_mgr }} name={{ item }} state=present"
+  with_items:
+    - python-nose
+    - python-sphinx
+    - python-dateutil
+    - python-simplejson
+    - python-yaml
+
+
+- name: Install Python Prometheus Client
+  pip:
+    name: prometheus_client
+    state: present
+    version: 0.2.0
+
+- name: Install requests version 2.14.2
+  pip:
+    name: requests
+    state: present
+    version: 2.14.2
+
+- name: Copy OSP exporter python files to target 
+  copy:
+    src: /home/ansible/ansible_deploy_telemetry/roles/server/osp-exporter-install/prometheus-exporter
+    dest: /opt
+
+- name: Find the name of the prometheus exporter directory
+  find:
+    path: /opt
+    patterns: '*prometheus-exporter*'
+    file_type: directory
+  register: dir_name
+
+- debug: var=dir_name.files[0].path
+
+- set_fact:
+    prometheus_exporter_path: "{{ dir_name.files[0].path }}"
+
+- name: Create config file env.yaml
+  template:
+    src: env.yaml.j2
+    dest: "{{ prometheus_exporter_path }}/env.yaml"
+
+- name: Create systemd service for prometheus exporter
+  template:
+    src: prometheus_exporter_systemd.j2
+    dest: /etc/systemd/system/prometheus_exporter.service
+
+- name: Start prometheus exporter service
+  service:
+    name: prometheus_exporter
+    state: started
+    daemon_reload: yes

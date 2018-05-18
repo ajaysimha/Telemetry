@@ -1,0 +1,9 @@
+[Unit]
+Description=OSP exporter
+After=network.target
+
+[Service]
+ExecStart={{ osp_exporter_path }}/main.py --config-file {{ osp_exporter_path }}/env.yaml
+
+[Install]
+WantedBy=default.target

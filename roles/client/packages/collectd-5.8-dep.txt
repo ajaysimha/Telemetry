@@ -1,0 +1,56 @@
+Loaded plugins: langpacks, product-id, rhnplugin, search-disabled-repos,
+              : subscription-manager
+package: collectd.x86_64 5.8.0-5.el7ost
+  dependency: /bin/sh
+   provider: bash.x86_64 4.2.46-30.el7
+  dependency: config(collectd) = 5.8.0-5.el7ost
+   Unsatisfied dependency
+  dependency: libc.so.6()(64bit)
+   provider: glibc.x86_64 2.17-222.el7
+  dependency: libc.so.6(GLIBC_2.14)(64bit)
+   provider: glibc.x86_64 2.17-222.el7
+  dependency: libc.so.6(GLIBC_2.15)(64bit)
+   provider: glibc.x86_64 2.17-222.el7
+  dependency: libc.so.6(GLIBC_2.17)(64bit)
+   provider: glibc.x86_64 2.17-222.el7
+  dependency: libc.so.6(GLIBC_2.2.5)(64bit)
+   provider: glibc.x86_64 2.17-222.el7
+  dependency: libc.so.6(GLIBC_2.3)(64bit)
+   provider: glibc.x86_64 2.17-222.el7
+  dependency: libc.so.6(GLIBC_2.3.2)(64bit)
+   provider: glibc.x86_64 2.17-222.el7
+  dependency: libc.so.6(GLIBC_2.3.4)(64bit)
+   provider: glibc.x86_64 2.17-222.el7
+  dependency: libc.so.6(GLIBC_2.4)(64bit)
+   provider: glibc.x86_64 2.17-222.el7
+  dependency: libcap.so.2()(64bit)
+   provider: libcap.x86_64 2.22-9.el7
+  dependency: libdl.so.2()(64bit)
+   provider: glibc.x86_64 2.17-222.el7
+  dependency: libdl.so.2(GLIBC_2.2.5)(64bit)
+   provider: glibc.x86_64 2.17-222.el7
+  dependency: libgcrypt.so.11()(64bit)
+   provider: libgcrypt.x86_64 1.5.3-14.el7
+  dependency: libgcrypt.so.11(GCRYPT_1.2)(64bit)
+   provider: libgcrypt.x86_64 1.5.3-14.el7
+  dependency: libgpg-error.so.0()(64bit)
+   provider: libgpg-error.x86_64 1.12-3.el7
+  dependency: libm.so.6()(64bit)
+   provider: glibc.x86_64 2.17-222.el7
+  dependency: libm.so.6(GLIBC_2.2.5)(64bit)
+   provider: glibc.x86_64 2.17-222.el7
+  dependency: libpthread.so.0()(64bit)
+   provider: glibc.x86_64 2.17-222.el7
+  dependency: libpthread.so.0(GLIBC_2.12)(64bit)
+   provider: glibc.x86_64 2.17-222.el7
+  dependency: libpthread.so.0(GLIBC_2.2.5)(64bit)
+   provider: glibc.x86_64 2.17-222.el7
+  dependency: libpthread.so.0(GLIBC_2.3.2)(64bit)
+   provider: glibc.x86_64 2.17-222.el7
+  dependency: libyajl.so.2()(64bit)
+   provider: yajl.x86_64 2.0.4-4.el7
+  dependency: rtld(GNU_HASH)
+   provider: glibc.x86_64 2.17-222.el7
+   provider: glibc.i686 2.17-222.el7
+  dependency: systemd
+   provider: systemd.x86_64 219-57.el7

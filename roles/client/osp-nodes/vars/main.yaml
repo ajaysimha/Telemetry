@@ -3,15 +3,13 @@ collect_plugins:
   - disk
 
 package_dirs:
- src: /home/ansible/ansible_deploy_collectd_prometheus/roles/client/packages
+ src: /home/ansible/ansible_deploy_telemetry/roles/client/packages
  dst: /tmp
 
 collectd_packages_all:
   - collectd-5.8.0-5.el7ost.x86_64.rpm 
   - collectd-disk-5.8.0-5.el7ost.x86_64.rpm
 
-collectd_packages_ceph:
-  - collectd-ceph-5.8.0-5.el7ost.x86_64.rpm
 
 
 
