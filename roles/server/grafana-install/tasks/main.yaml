@@ -1,17 +1,23 @@
-- name: Update yum and install grafana
+- name: Copy grafana package over to telemetry server /tmp
+  copy:
+    src: "{{ telemetry_home }}/packages/{{ grafana_pkg }}"
+    dest: /tmp
+
+- name: Install grafana package 
   yum:
-    name: "{{ grafana_download_url }}"
+    name: "/tmp/{{ grafana_pkg }}"
     state: present
-    update_cache: true
+
 - name: Start grafana service
   service:
     name: grafana-server
     state: started
-    daemon_reload: yes
+
 - name: Check if firewalld is installed
   yum:
     list: firewalld
   register: firewalld_op
+
 - name: Open tcp port {{ grafana_port }}
   firewalld:
     port: "{{ grafana_port }}/tcp"
@@ -19,6 +25,7 @@
     state: enabled
     immediate: true
   when: firewalld_op.results|selectattr("yumstate", "match", "installed")|list|length != 0
+
 - name: Verify if grafana is is listening on TCP port {{ grafana_port }}
   get_url:
     url: "http://{{ ansible_default_ipv4.address }}:{{ grafana_port }}/login"

@@ -17954,3 +17954,837 @@ The offending line appears to be:
 2018-05-19 14:11:59,764 p=28138 u=ansible |  PLAY RECAP *********************************************************************************************************************************************
 2018-05-19 14:11:59,764 p=28138 u=ansible |  10.19.109.225              : ok=6    changed=3    unreachable=0    failed=0   
 2018-05-19 14:11:59,764 p=28138 u=ansible |  10.19.109.229              : ok=6    changed=3    unreachable=0    failed=0   
+2018-05-19 19:19:38,611 p=35627 u=ansible |  PLAY [collectd_exporters] ******************************************************************************************************************************
+2018-05-19 19:19:38,626 p=35627 u=ansible |  TASK [Gathering Facts] *********************************************************************************************************************************
+2018-05-19 19:19:39,736 p=35627 u=ansible |  ok: [10.19.109.225]
+2018-05-19 19:19:39,743 p=35627 u=ansible |  ok: [10.19.109.229]
+2018-05-19 19:19:39,755 p=35627 u=ansible |  TASK [server/collectd-exporter-install : Download collectd exporter tarball] ***************************************************************************
+2018-05-19 19:19:40,872 p=35627 u=ansible |  ok: [10.19.109.229]
+2018-05-19 19:19:41,039 p=35627 u=ansible |  ok: [10.19.109.225]
+2018-05-19 19:19:41,052 p=35627 u=ansible |  TASK [server/collectd-exporter-install : Find the name of the collectd exporter unarchived directory] **************************************************
+2018-05-19 19:19:41,434 p=35627 u=ansible |  ok: [10.19.109.225]
+2018-05-19 19:19:41,437 p=35627 u=ansible |  ok: [10.19.109.229]
+2018-05-19 19:19:41,450 p=35627 u=ansible |  TASK [server/collectd-exporter-install : debug] ********************************************************************************************************
+2018-05-19 19:19:41,497 p=35627 u=ansible |  ok: [10.19.109.225] => {
+    "dir_name.files[0].path": "/opt/collectd_exporter-0.3.1.linux-386"
+}
+2018-05-19 19:19:41,509 p=35627 u=ansible |  ok: [10.19.109.229] => {
+    "dir_name.files[0].path": "/opt/collectd_exporter-0.3.1.linux-386"
+}
+2018-05-19 19:19:41,521 p=35627 u=ansible |  TASK [server/collectd-exporter-install : set_fact] *****************************************************************************************************
+2018-05-19 19:19:41,568 p=35627 u=ansible |  ok: [10.19.109.225]
+2018-05-19 19:19:41,582 p=35627 u=ansible |  ok: [10.19.109.229]
+2018-05-19 19:19:41,595 p=35627 u=ansible |  TASK [server/collectd-exporter-install : Create systemd service for collectd exporter] *****************************************************************
+2018-05-19 19:19:42,190 p=35627 u=ansible |  ok: [10.19.109.225]
+2018-05-19 19:19:42,214 p=35627 u=ansible |  ok: [10.19.109.229]
+2018-05-19 19:19:42,227 p=35627 u=ansible |  TASK [server/collectd-exporter-install : Start collectd exporter service] ******************************************************************************
+2018-05-19 19:19:42,688 p=35627 u=ansible |  ok: [10.19.109.229]
+2018-05-19 19:19:42,700 p=35627 u=ansible |  ok: [10.19.109.225]
+2018-05-19 19:19:42,713 p=35627 u=ansible |  TASK [server/collectd-exporter-install : Check if firewalld is installed] ******************************************************************************
+2018-05-19 19:19:45,341 p=35627 u=ansible |  ok: [10.19.109.225]
+2018-05-19 19:19:45,633 p=35627 u=ansible |  ok: [10.19.109.229]
+2018-05-19 19:19:45,648 p=35627 u=ansible |  TASK [server/collectd-exporter-install : Open udp port 25826 and tcp port 9103] ************************************************************************
+2018-05-19 19:19:45,673 p=35627 u=ansible |  skipping: [10.19.109.225] => (item=25826/udp) 
+2018-05-19 19:19:45,678 p=35627 u=ansible |  skipping: [10.19.109.225] => (item=9103/tcp) 
+2018-05-19 19:19:45,689 p=35627 u=ansible |  skipping: [10.19.109.229] => (item=25826/udp) 
+2018-05-19 19:19:45,694 p=35627 u=ansible |  skipping: [10.19.109.229] => (item=9103/tcp) 
+2018-05-19 19:19:45,696 p=35627 u=ansible |  PLAY RECAP *********************************************************************************************************************************************
+2018-05-19 19:19:45,696 p=35627 u=ansible |  10.19.109.225              : ok=8    changed=0    unreachable=0    failed=0   
+2018-05-19 19:19:45,697 p=35627 u=ansible |  10.19.109.229              : ok=8    changed=0    unreachable=0    failed=0   
+2018-05-19 19:26:13,534 p=36064 u=ansible |  ansible-playbook 2.5.0
+  config file = /home/ansible/telemetry-local-pkgs/ansible.cfg
+  configured module search path = [u'/home/ansible/.ansible/plugins/modules', u'/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/lib/python2.7/site-packages/ansible
+  executable location = /bin/ansible-playbook
+  python version = 2.7.5 (default, Feb 20 2018, 09:19:12) [GCC 4.8.5 20150623 (Red Hat 4.8.5-28)]
+2018-05-19 19:26:13,534 p=36064 u=ansible |  Using /home/ansible/telemetry-local-pkgs/ansible.cfg as config file
+2018-05-19 19:26:13,548 p=36064 u=ansible |  Parsed /home/ansible/telemetry-local-pkgs/telemetry_hosts inventory source with ini plugin
+2018-05-19 19:26:13,802 p=36064 u=ansible |  PLAYBOOK: install_grafana.yaml *************************************************************************************************************************
+2018-05-19 19:26:13,803 p=36064 u=ansible |  1 plays in playbooks/install_grafana.yaml
+2018-05-19 19:26:13,832 p=36064 u=ansible |  PLAY [grafana] *****************************************************************************************************************************************
+2018-05-19 19:26:13,845 p=36064 u=ansible |  TASK [Gathering Facts] *********************************************************************************************************************************
+2018-05-19 19:26:13,845 p=36064 u=ansible |  task path: /home/ansible/telemetry-local-pkgs/playbooks/install_grafana.yaml:1
+2018-05-19 19:26:14,208 p=36064 u=ansible |  Using module file /usr/lib/python2.7/site-packages/ansible/modules/system/setup.py
+2018-05-19 19:26:15,925 p=36064 u=ansible |  ok: [10.19.109.225]
+2018-05-19 19:26:15,926 p=36064 u=ansible |  META: ran handlers
+2018-05-19 19:26:15,939 p=36064 u=ansible |  TASK [server/grafana-install : Download prometheus alert manager tarball] ******************************************************************************
+2018-05-19 19:26:15,939 p=36064 u=ansible |  task path: /home/ansible/telemetry-local-pkgs/roles/server/grafana-install/tasks/main.yaml:1
+2018-05-19 19:26:16,208 p=36064 u=ansible |  Using module file /usr/lib/python2.7/site-packages/ansible/modules/files/stat.py
+2018-05-19 19:26:18,594 p=36064 u=ansible |  Using module file /usr/lib/python2.7/site-packages/ansible/modules/files/unarchive.py
+2018-05-19 19:26:19,031 p=36064 u=ansible |  The full traceback is:
+  File "/tmp/ansible_E7h1NF/ansible_module_unarchive.py", line 140, in <module>
+    from shlex import quote
+
+2018-05-19 19:26:19,032 p=36064 u=ansible |  fatal: [10.19.109.225]: FAILED! => {
+    "changed": false, 
+    "invocation": {
+        "module_args": {
+            "attributes": null, 
+            "backup": null, 
+            "content": null, 
+            "creates": null, 
+            "delimiter": null, 
+            "dest": "/opt/", 
+            "directory_mode": null, 
+            "exclude": [], 
+            "extra_opts": [], 
+            "follow": false, 
+            "force": null, 
+            "group": null, 
+            "keep_newer": false, 
+            "list_files": false, 
+            "mode": null, 
+            "original_basename": "grafana-4.6.3-1.x86_64.rpm", 
+            "owner": null, 
+            "regexp": null, 
+            "remote_src": false, 
+            "selevel": null, 
+            "serole": null, 
+            "setype": null, 
+            "seuser": null, 
+            "src": "/root/.ansible/tmp/ansible-tmp-1526772375.99-226921526953144/source", 
+            "unsafe_writes": null, 
+            "validate_certs": true
+        }
+    }
+}
+
+MSG:
+
+Failed to find handler for "/root/.ansible/tmp/ansible-tmp-1526772375.99-226921526953144/source". Make sure the required command to extract the file is installed. Command "unzip" not found. Command "/usr/bin/gtar" could not handle archive.
+
+2018-05-19 19:26:19,033 p=36064 u=ansible |  PLAY RECAP *********************************************************************************************************************************************
+2018-05-19 19:26:19,033 p=36064 u=ansible |  10.19.109.225              : ok=1    changed=0    unreachable=0    failed=1   
+2018-05-19 19:29:59,534 p=36257 u=ansible |  ansible-playbook 2.5.0
+  config file = /home/ansible/telemetry-local-pkgs/ansible.cfg
+  configured module search path = [u'/home/ansible/.ansible/plugins/modules', u'/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/lib/python2.7/site-packages/ansible
+  executable location = /bin/ansible-playbook
+  python version = 2.7.5 (default, Feb 20 2018, 09:19:12) [GCC 4.8.5 20150623 (Red Hat 4.8.5-28)]
+2018-05-19 19:29:59,534 p=36257 u=ansible |  Using /home/ansible/telemetry-local-pkgs/ansible.cfg as config file
+2018-05-19 19:29:59,550 p=36257 u=ansible |  Parsed /home/ansible/telemetry-local-pkgs/telemetry_hosts inventory source with ini plugin
+2018-05-19 19:29:59,566 p=36257 u=ansible |  ERROR! Syntax Error while loading YAML.
+  did not find expected '-' indicator
+
+The error appears to have been in '/home/ansible/telemetry-local-pkgs/roles/server/grafana-install/tasks/main.yaml': line 2, column 2, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+- name: Download prometheus alert manager tarball
+ yum:
+ ^ here
+
+2018-05-19 19:30:35,357 p=36287 u=ansible |  ERROR! Syntax Error while loading YAML.
+  did not find expected '-' indicator
+
+The error appears to have been in '/home/ansible/telemetry-local-pkgs/roles/server/grafana-install/tasks/main.yaml': line 2, column 2, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+- name: Download prometheus alert manager tarball
+ yum:
+ ^ here
+
+2018-05-19 19:30:55,798 p=36315 u=ansible |  playbook: playbooks/install_grafana.yaml
+2018-05-19 19:31:03,221 p=36329 u=ansible |  ansible-playbook 2.5.0
+  config file = /home/ansible/telemetry-local-pkgs/ansible.cfg
+  configured module search path = [u'/home/ansible/.ansible/plugins/modules', u'/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/lib/python2.7/site-packages/ansible
+  executable location = /bin/ansible-playbook
+  python version = 2.7.5 (default, Feb 20 2018, 09:19:12) [GCC 4.8.5 20150623 (Red Hat 4.8.5-28)]
+2018-05-19 19:31:03,221 p=36329 u=ansible |  Using /home/ansible/telemetry-local-pkgs/ansible.cfg as config file
+2018-05-19 19:31:03,236 p=36329 u=ansible |  Parsed /home/ansible/telemetry-local-pkgs/telemetry_hosts inventory source with ini plugin
+2018-05-19 19:31:03,462 p=36329 u=ansible |  PLAYBOOK: install_grafana.yaml *************************************************************************************************************************
+2018-05-19 19:31:03,462 p=36329 u=ansible |  1 plays in playbooks/install_grafana.yaml
+2018-05-19 19:31:03,489 p=36329 u=ansible |  PLAY [grafana] *****************************************************************************************************************************************
+2018-05-19 19:31:03,502 p=36329 u=ansible |  TASK [Gathering Facts] *********************************************************************************************************************************
+2018-05-19 19:31:03,502 p=36329 u=ansible |  task path: /home/ansible/telemetry-local-pkgs/playbooks/install_grafana.yaml:1
+2018-05-19 19:31:03,863 p=36329 u=ansible |  Using module file /usr/lib/python2.7/site-packages/ansible/modules/system/setup.py
+2018-05-19 19:31:04,570 p=36329 u=ansible |  ok: [10.19.109.225]
+2018-05-19 19:31:04,571 p=36329 u=ansible |  META: ran handlers
+2018-05-19 19:31:04,582 p=36329 u=ansible |  TASK [server/grafana-install : Download prometheus alert manager tarball] ******************************************************************************
+2018-05-19 19:31:04,582 p=36329 u=ansible |  task path: /home/ansible/telemetry-local-pkgs/roles/server/grafana-install/tasks/main.yaml:1
+2018-05-19 19:31:04,855 p=36329 u=ansible |  Using module file /usr/lib/python2.7/site-packages/ansible/modules/packaging/os/yum.py
+2018-05-19 19:31:05,339 p=36329 u=ansible |  fatal: [10.19.109.225]: FAILED! => {
+    "changed": false, 
+    "invocation": {
+        "module_args": {
+            "dest": "/opt/", 
+            "name": "/home/ansible/telemetry-local-pkgs/packages/grafana-4.6.3-1.x86_64.rpm"
+        }
+    }
+}
+
+MSG:
+
+Unsupported parameters for (yum) module: dest Supported parameters include: allow_downgrade, conf_file, disable_gpg_check, disable_plugin, disablerepo, enable_plugin, enablerepo, exclude, install_repoquery, installroot, list, name, security, skip_broken, state, update_cache, update_only, validate_certs
+
+2018-05-19 19:31:05,340 p=36329 u=ansible |  PLAY RECAP *********************************************************************************************************************************************
+2018-05-19 19:31:05,341 p=36329 u=ansible |  10.19.109.225              : ok=1    changed=0    unreachable=0    failed=1   
+2018-05-19 19:32:54,869 p=36399 u=ansible |  ansible-playbook 2.5.0
+  config file = /home/ansible/telemetry-local-pkgs/ansible.cfg
+  configured module search path = [u'/home/ansible/.ansible/plugins/modules', u'/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/lib/python2.7/site-packages/ansible
+  executable location = /bin/ansible-playbook
+  python version = 2.7.5 (default, Feb 20 2018, 09:19:12) [GCC 4.8.5 20150623 (Red Hat 4.8.5-28)]
+2018-05-19 19:32:54,869 p=36399 u=ansible |  Using /home/ansible/telemetry-local-pkgs/ansible.cfg as config file
+2018-05-19 19:32:54,885 p=36399 u=ansible |  Parsed /home/ansible/telemetry-local-pkgs/telemetry_hosts inventory source with ini plugin
+2018-05-19 19:32:55,129 p=36399 u=ansible |  PLAYBOOK: install_grafana.yaml *************************************************************************************************************************
+2018-05-19 19:32:55,130 p=36399 u=ansible |  1 plays in playbooks/install_grafana.yaml
+2018-05-19 19:32:55,158 p=36399 u=ansible |  PLAY [grafana] *****************************************************************************************************************************************
+2018-05-19 19:32:55,171 p=36399 u=ansible |  TASK [Gathering Facts] *********************************************************************************************************************************
+2018-05-19 19:32:55,171 p=36399 u=ansible |  task path: /home/ansible/telemetry-local-pkgs/playbooks/install_grafana.yaml:1
+2018-05-19 19:32:55,550 p=36399 u=ansible |  Using module file /usr/lib/python2.7/site-packages/ansible/modules/system/setup.py
+2018-05-19 19:32:56,254 p=36399 u=ansible |  ok: [10.19.109.225]
+2018-05-19 19:32:56,254 p=36399 u=ansible |  META: ran handlers
+2018-05-19 19:32:56,266 p=36399 u=ansible |  TASK [server/grafana-install : Download prometheus alert manager tarball] ******************************************************************************
+2018-05-19 19:32:56,266 p=36399 u=ansible |  task path: /home/ansible/telemetry-local-pkgs/roles/server/grafana-install/tasks/main.yaml:1
+2018-05-19 19:32:56,542 p=36399 u=ansible |  Using module file /usr/lib/python2.7/site-packages/ansible/modules/packaging/os/yum.py
+2018-05-19 19:32:57,056 p=36399 u=ansible |  fatal: [10.19.109.225]: FAILED! => {
+    "changed": false, 
+    "invocation": {
+        "module_args": {
+            "allow_downgrade": false, 
+            "conf_file": null, 
+            "disable_gpg_check": false, 
+            "disable_plugin": [], 
+            "disablerepo": null, 
+            "enable_plugin": [], 
+            "enablerepo": null, 
+            "exclude": null, 
+            "install_repoquery": true, 
+            "installroot": "/", 
+            "list": null, 
+            "name": [
+                "/home/ansible/telemetry-local-pkgs/packages/grafana-4.6.3-1.x86_64.rpm"
+            ], 
+            "security": false, 
+            "skip_broken": false, 
+            "state": "present", 
+            "update_cache": false, 
+            "update_only": false, 
+            "validate_certs": true
+        }
+    }, 
+    "rc": 127, 
+    "results": [
+        "No RPM file matching '/home/ansible/telemetry-local-pkgs/packages/grafana-4.6.3-1.x86_64.rpm' found on system"
+    ]
+}
+
+MSG:
+
+No RPM file matching '/home/ansible/telemetry-local-pkgs/packages/grafana-4.6.3-1.x86_64.rpm' found on system
+
+2018-05-19 19:32:57,057 p=36399 u=ansible |  PLAY RECAP *********************************************************************************************************************************************
+2018-05-19 19:32:57,057 p=36399 u=ansible |  10.19.109.225              : ok=1    changed=0    unreachable=0    failed=1   
+2018-05-19 19:36:35,775 p=36566 u=ansible |  ansible-playbook 2.5.0
+  config file = /home/ansible/telemetry-local-pkgs/ansible.cfg
+  configured module search path = [u'/home/ansible/.ansible/plugins/modules', u'/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/lib/python2.7/site-packages/ansible
+  executable location = /bin/ansible-playbook
+  python version = 2.7.5 (default, Feb 20 2018, 09:19:12) [GCC 4.8.5 20150623 (Red Hat 4.8.5-28)]
+2018-05-19 19:36:35,775 p=36566 u=ansible |  Using /home/ansible/telemetry-local-pkgs/ansible.cfg as config file
+2018-05-19 19:36:35,790 p=36566 u=ansible |  Parsed /home/ansible/telemetry-local-pkgs/telemetry_hosts inventory source with ini plugin
+2018-05-19 19:36:36,017 p=36566 u=ansible |  PLAYBOOK: install_grafana.yaml *************************************************************************************************************************
+2018-05-19 19:36:36,017 p=36566 u=ansible |  1 plays in playbooks/install_grafana.yaml
+2018-05-19 19:36:36,044 p=36566 u=ansible |  PLAY [grafana] *****************************************************************************************************************************************
+2018-05-19 19:36:36,056 p=36566 u=ansible |  TASK [Gathering Facts] *********************************************************************************************************************************
+2018-05-19 19:36:36,056 p=36566 u=ansible |  task path: /home/ansible/telemetry-local-pkgs/playbooks/install_grafana.yaml:1
+2018-05-19 19:36:36,397 p=36566 u=ansible |  Using module file /usr/lib/python2.7/site-packages/ansible/modules/system/setup.py
+2018-05-19 19:36:37,067 p=36566 u=ansible |  ok: [10.19.109.225]
+2018-05-19 19:36:37,068 p=36566 u=ansible |  META: ran handlers
+2018-05-19 19:36:37,080 p=36566 u=ansible |  TASK [server/grafana-install : Copy grafana package over to telemetry server /tmp] *********************************************************************
+2018-05-19 19:36:37,080 p=36566 u=ansible |  task path: /home/ansible/telemetry-local-pkgs/roles/server/grafana-install/tasks/main.yaml:1
+2018-05-19 19:36:37,285 p=36566 u=ansible |  Using module file /usr/lib/python2.7/site-packages/ansible/modules/files/stat.py
+2018-05-19 19:36:37,435 p=36566 u=ansible |  Using module file /usr/lib/python2.7/site-packages/ansible/modules/files/stat.py
+2018-05-19 19:36:39,851 p=36566 u=ansible |  Using module file /usr/lib/python2.7/site-packages/ansible/modules/files/copy.py
+2018-05-19 19:36:40,251 p=36566 u=ansible |  changed: [10.19.109.225] => {
+    "changed": true, 
+    "checksum": "cb64006a77f50c922921cebaf9d3d7808d12625e", 
+    "dest": "/tmp/grafana-4.6.3-1.x86_64.rpm", 
+    "diff": [], 
+    "gid": 0, 
+    "group": "root", 
+    "invocation": {
+        "module_args": {
+            "attributes": null, 
+            "backup": false, 
+            "checksum": "cb64006a77f50c922921cebaf9d3d7808d12625e", 
+            "content": null, 
+            "delimiter": null, 
+            "dest": "/tmp/grafana-4.6.3-1.x86_64.rpm", 
+            "directory_mode": null, 
+            "follow": false, 
+            "force": true, 
+            "group": null, 
+            "local_follow": null, 
+            "mode": null, 
+            "original_basename": "grafana-4.6.3-1.x86_64.rpm", 
+            "owner": null, 
+            "regexp": null, 
+            "remote_src": null, 
+            "selevel": null, 
+            "serole": null, 
+            "setype": null, 
+            "seuser": null, 
+            "src": "/root/.ansible/tmp/ansible-tmp-1526772997.12-4617995695528/source", 
+            "unsafe_writes": null, 
+            "validate": null
+        }
+    }, 
+    "md5sum": "4846c80624ff178cfaf5ff9f1ebe9c54", 
+    "mode": "0644", 
+    "owner": "root", 
+    "secontext": "unconfined_u:object_r:admin_home_t:s0", 
+    "size": 46967397, 
+    "src": "/root/.ansible/tmp/ansible-tmp-1526772997.12-4617995695528/source", 
+    "state": "file", 
+    "uid": 0
+}
+2018-05-19 19:36:40,264 p=36566 u=ansible |  TASK [server/grafana-install : Install grafana package] ************************************************************************************************
+2018-05-19 19:36:40,264 p=36566 u=ansible |  task path: /home/ansible/telemetry-local-pkgs/roles/server/grafana-install/tasks/main.yaml:6
+2018-05-19 19:36:40,283 p=36566 u=ansible |  fatal: [10.19.109.225]: FAILED! => {}
+
+MSG:
+
+template error while templating string: expected token ':', got '}'. String: {{ tmp/{{ grafana_pkg }}
+
+2018-05-19 19:36:40,284 p=36566 u=ansible |  PLAY RECAP *********************************************************************************************************************************************
+2018-05-19 19:36:40,284 p=36566 u=ansible |  10.19.109.225              : ok=2    changed=1    unreachable=0    failed=1   
+2018-05-19 19:37:57,385 p=36685 u=ansible |  ansible-playbook 2.5.0
+  config file = /home/ansible/telemetry-local-pkgs/ansible.cfg
+  configured module search path = [u'/home/ansible/.ansible/plugins/modules', u'/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/lib/python2.7/site-packages/ansible
+  executable location = /bin/ansible-playbook
+  python version = 2.7.5 (default, Feb 20 2018, 09:19:12) [GCC 4.8.5 20150623 (Red Hat 4.8.5-28)]
+2018-05-19 19:37:57,385 p=36685 u=ansible |  Using /home/ansible/telemetry-local-pkgs/ansible.cfg as config file
+2018-05-19 19:37:57,401 p=36685 u=ansible |  Parsed /home/ansible/telemetry-local-pkgs/telemetry_hosts inventory source with ini plugin
+2018-05-19 19:37:57,661 p=36685 u=ansible |  PLAYBOOK: install_grafana.yaml *************************************************************************************************************************
+2018-05-19 19:37:57,661 p=36685 u=ansible |  1 plays in playbooks/install_grafana.yaml
+2018-05-19 19:37:57,689 p=36685 u=ansible |  PLAY [grafana] *****************************************************************************************************************************************
+2018-05-19 19:37:57,702 p=36685 u=ansible |  TASK [Gathering Facts] *********************************************************************************************************************************
+2018-05-19 19:37:57,702 p=36685 u=ansible |  task path: /home/ansible/telemetry-local-pkgs/playbooks/install_grafana.yaml:1
+2018-05-19 19:37:58,071 p=36685 u=ansible |  Using module file /usr/lib/python2.7/site-packages/ansible/modules/system/setup.py
+2018-05-19 19:37:58,724 p=36685 u=ansible |  ok: [10.19.109.225]
+2018-05-19 19:37:58,725 p=36685 u=ansible |  META: ran handlers
+2018-05-19 19:37:58,737 p=36685 u=ansible |  TASK [server/grafana-install : Copy grafana package over to telemetry server /tmp] *********************************************************************
+2018-05-19 19:37:58,737 p=36685 u=ansible |  task path: /home/ansible/telemetry-local-pkgs/roles/server/grafana-install/tasks/main.yaml:1
+2018-05-19 19:37:58,932 p=36685 u=ansible |  Using module file /usr/lib/python2.7/site-packages/ansible/modules/files/stat.py
+2018-05-19 19:37:59,073 p=36685 u=ansible |  Using module file /usr/lib/python2.7/site-packages/ansible/modules/files/stat.py
+2018-05-19 19:37:59,561 p=36685 u=ansible |  Using module file /usr/lib/python2.7/site-packages/ansible/modules/files/file.py
+2018-05-19 19:37:59,734 p=36685 u=ansible |  ok: [10.19.109.225] => {
+    "changed": false, 
+    "checksum": "cb64006a77f50c922921cebaf9d3d7808d12625e", 
+    "dest": "/tmp/grafana-4.6.3-1.x86_64.rpm", 
+    "diff": {
+        "after": {
+            "path": "/tmp/grafana-4.6.3-1.x86_64.rpm"
+        }, 
+        "before": {
+            "path": "/tmp/grafana-4.6.3-1.x86_64.rpm"
+        }
+    }, 
+    "gid": 0, 
+    "group": "root", 
+    "invocation": {
+        "module_args": {
+            "attributes": null, 
+            "backup": null, 
+            "content": null, 
+            "delimiter": null, 
+            "dest": "/tmp", 
+            "diff_peek": null, 
+            "directory_mode": null, 
+            "follow": false, 
+            "force": false, 
+            "group": null, 
+            "mode": null, 
+            "original_basename": "grafana-4.6.3-1.x86_64.rpm", 
+            "owner": null, 
+            "path": "/tmp/grafana-4.6.3-1.x86_64.rpm", 
+            "recurse": false, 
+            "regexp": null, 
+            "remote_src": null, 
+            "selevel": null, 
+            "serole": null, 
+            "setype": null, 
+            "seuser": null, 
+            "src": "grafana-4.6.3-1.x86_64.rpm", 
+            "state": "file", 
+            "unsafe_writes": null, 
+            "validate": null
+        }
+    }, 
+    "mode": "0644", 
+    "owner": "root", 
+    "path": "/tmp/grafana-4.6.3-1.x86_64.rpm", 
+    "secontext": "unconfined_u:object_r:admin_home_t:s0", 
+    "size": 46967397, 
+    "state": "file", 
+    "uid": 0
+}
+2018-05-19 19:37:59,746 p=36685 u=ansible |  TASK [server/grafana-install : Install grafana package] ************************************************************************************************
+2018-05-19 19:37:59,746 p=36685 u=ansible |  task path: /home/ansible/telemetry-local-pkgs/roles/server/grafana-install/tasks/main.yaml:6
+2018-05-19 19:38:00,030 p=36685 u=ansible |  Using module file /usr/lib/python2.7/site-packages/ansible/modules/packaging/os/yum.py
+2018-05-19 19:38:00,721 p=36685 u=ansible |  ok: [10.19.109.225] => {
+    "changed": false, 
+    "invocation": {
+        "module_args": {
+            "allow_downgrade": false, 
+            "conf_file": null, 
+            "disable_gpg_check": false, 
+            "disable_plugin": [], 
+            "disablerepo": null, 
+            "enable_plugin": [], 
+            "enablerepo": null, 
+            "exclude": null, 
+            "install_repoquery": true, 
+            "installroot": "/", 
+            "list": null, 
+            "name": [
+                "/tmp/grafana-4.6.3-1.x86_64.rpm"
+            ], 
+            "security": false, 
+            "skip_broken": false, 
+            "state": "present", 
+            "update_cache": false, 
+            "update_only": false, 
+            "validate_certs": true
+        }
+    }, 
+    "rc": 0, 
+    "results": [
+        "grafana-4.6.3-1.x86_64 providing /tmp/grafana-4.6.3-1.x86_64.rpm is already installed"
+    ]
+}
+2018-05-19 19:38:00,722 p=36685 u=ansible |  META: ran handlers
+2018-05-19 19:38:00,722 p=36685 u=ansible |  META: ran handlers
+2018-05-19 19:38:00,724 p=36685 u=ansible |  PLAY RECAP *********************************************************************************************************************************************
+2018-05-19 19:38:00,724 p=36685 u=ansible |  10.19.109.225              : ok=3    changed=0    unreachable=0    failed=0   
+2018-05-19 19:40:12,771 p=36805 u=ansible |  ansible-playbook 2.5.0
+  config file = /home/ansible/telemetry-local-pkgs/ansible.cfg
+  configured module search path = [u'/home/ansible/.ansible/plugins/modules', u'/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/lib/python2.7/site-packages/ansible
+  executable location = /bin/ansible-playbook
+  python version = 2.7.5 (default, Feb 20 2018, 09:19:12) [GCC 4.8.5 20150623 (Red Hat 4.8.5-28)]
+2018-05-19 19:40:12,772 p=36805 u=ansible |  Using /home/ansible/telemetry-local-pkgs/ansible.cfg as config file
+2018-05-19 19:40:12,786 p=36805 u=ansible |  Parsed /home/ansible/telemetry-local-pkgs/telemetry_hosts inventory source with ini plugin
+2018-05-19 19:40:13,017 p=36805 u=ansible |  PLAYBOOK: install_grafana.yaml *************************************************************************************************************************
+2018-05-19 19:40:13,017 p=36805 u=ansible |  1 plays in playbooks/install_grafana.yaml
+2018-05-19 19:40:13,044 p=36805 u=ansible |  PLAY [grafana] *****************************************************************************************************************************************
+2018-05-19 19:40:13,056 p=36805 u=ansible |  TASK [Gathering Facts] *********************************************************************************************************************************
+2018-05-19 19:40:13,056 p=36805 u=ansible |  task path: /home/ansible/telemetry-local-pkgs/playbooks/install_grafana.yaml:1
+2018-05-19 19:40:13,425 p=36805 u=ansible |  Using module file /usr/lib/python2.7/site-packages/ansible/modules/system/setup.py
+2018-05-19 19:40:14,110 p=36805 u=ansible |  ok: [10.19.109.225]
+2018-05-19 19:40:14,110 p=36805 u=ansible |  META: ran handlers
+2018-05-19 19:40:14,122 p=36805 u=ansible |  TASK [server/grafana-install : Copy grafana package over to telemetry server /tmp] *********************************************************************
+2018-05-19 19:40:14,123 p=36805 u=ansible |  task path: /home/ansible/telemetry-local-pkgs/roles/server/grafana-install/tasks/main.yaml:1
+2018-05-19 19:40:14,330 p=36805 u=ansible |  Using module file /usr/lib/python2.7/site-packages/ansible/modules/files/stat.py
+2018-05-19 19:40:14,482 p=36805 u=ansible |  Using module file /usr/lib/python2.7/site-packages/ansible/modules/files/stat.py
+2018-05-19 19:40:16,912 p=36805 u=ansible |  Using module file /usr/lib/python2.7/site-packages/ansible/modules/files/copy.py
+2018-05-19 19:40:17,278 p=36805 u=ansible |  changed: [10.19.109.225] => {
+    "changed": true, 
+    "checksum": "cb64006a77f50c922921cebaf9d3d7808d12625e", 
+    "dest": "/tmp/grafana-4.6.3-1.x86_64.rpm", 
+    "diff": [], 
+    "gid": 0, 
+    "group": "root", 
+    "invocation": {
+        "module_args": {
+            "attributes": null, 
+            "backup": false, 
+            "checksum": "cb64006a77f50c922921cebaf9d3d7808d12625e", 
+            "content": null, 
+            "delimiter": null, 
+            "dest": "/tmp/grafana-4.6.3-1.x86_64.rpm", 
+            "directory_mode": null, 
+            "follow": false, 
+            "force": true, 
+            "group": null, 
+            "local_follow": null, 
+            "mode": null, 
+            "original_basename": "grafana-4.6.3-1.x86_64.rpm", 
+            "owner": null, 
+            "regexp": null, 
+            "remote_src": null, 
+            "selevel": null, 
+            "serole": null, 
+            "setype": null, 
+            "seuser": null, 
+            "src": "/root/.ansible/tmp/ansible-tmp-1526773214.17-38694784900127/source", 
+            "unsafe_writes": null, 
+            "validate": null
+        }
+    }, 
+    "md5sum": "4846c80624ff178cfaf5ff9f1ebe9c54", 
+    "mode": "0644", 
+    "owner": "root", 
+    "secontext": "unconfined_u:object_r:admin_home_t:s0", 
+    "size": 46967397, 
+    "src": "/root/.ansible/tmp/ansible-tmp-1526773214.17-38694784900127/source", 
+    "state": "file", 
+    "uid": 0
+}
+2018-05-19 19:40:17,292 p=36805 u=ansible |  TASK [server/grafana-install : Install grafana package] ************************************************************************************************
+2018-05-19 19:40:17,292 p=36805 u=ansible |  task path: /home/ansible/telemetry-local-pkgs/roles/server/grafana-install/tasks/main.yaml:6
+2018-05-19 19:40:17,570 p=36805 u=ansible |  Using module file /usr/lib/python2.7/site-packages/ansible/modules/packaging/os/yum.py
+2018-05-19 19:40:21,464 p=36805 u=ansible |  changed: [10.19.109.225] => {
+    "changed": true, 
+    "invocation": {
+        "module_args": {
+            "allow_downgrade": false, 
+            "conf_file": null, 
+            "disable_gpg_check": false, 
+            "disable_plugin": [], 
+            "disablerepo": null, 
+            "enable_plugin": [], 
+            "enablerepo": null, 
+            "exclude": null, 
+            "install_repoquery": true, 
+            "installroot": "/", 
+            "list": null, 
+            "name": [
+                "/tmp/grafana-4.6.3-1.x86_64.rpm"
+            ], 
+            "security": false, 
+            "skip_broken": false, 
+            "state": "present", 
+            "update_cache": false, 
+            "update_only": false, 
+            "validate_certs": true
+        }
+    }, 
+    "rc": 0, 
+    "results": [
+        "Loaded plugins: fastestmirror\nExamining /tmp/grafana-4.6.3-1.x86_64.rpm: grafana-4.6.3-1.x86_64\nMarking /tmp/grafana-4.6.3-1.x86_64.rpm to be installed\nResolving Dependencies\n--> Running transaction check\n---> Package grafana.x86_64 0:4.6.3-1 will be installed\n--> Finished Dependency Resolution\n\nDependencies Resolved\n\n================================================================================\n Package       Arch         Version         Repository                     Size\n================================================================================\nInstalling:\n grafana       x86_64       4.6.3-1         /grafana-4.6.3-1.x86_64       133 M\n\nTransaction Summary\n================================================================================\nInstall  1 Package\n\nTotal size: 133 M\nInstalled size: 133 M\nDownloading packages:\nRunning transaction check\nRunning transaction test\nTransaction test succeeded\nRunning transaction\n  Installing : grafana-4.6.3-1.x86_64                                       1/1 \n### NOT starting on installation, please execute the following statements to configure grafana to start automatically using systemd\n sudo /bin/systemctl daemon-reload\n sudo /bin/systemctl enable grafana-server.service\n### You can start grafana-server by executing\n sudo /bin/systemctl start grafana-server.service\nPOSTTRANS: Running script\n  Verifying  : grafana-4.6.3-1.x86_64                                       1/1 \n\nInstalled:\n  grafana.x86_64 0:4.6.3-1                                                      \n\nComplete!\n"
+    ]
+}
+2018-05-19 19:40:21,479 p=36805 u=ansible |  TASK [server/grafana-install : Start grafana service] **************************************************************************************************
+2018-05-19 19:40:21,479 p=36805 u=ansible |  task path: /home/ansible/telemetry-local-pkgs/roles/server/grafana-install/tasks/main.yaml:11
+2018-05-19 19:40:21,722 p=36805 u=ansible |  Using module file /usr/lib/python2.7/site-packages/ansible/modules/system/systemd.py
+2018-05-19 19:40:21,880 p=36805 u=ansible |  ok: [10.19.109.225] => {
+    "changed": false, 
+    "invocation": {
+        "module_args": {
+            "daemon_reload": false, 
+            "enabled": null, 
+            "masked": null, 
+            "name": "grafana-server", 
+            "no_block": false, 
+            "state": "started", 
+            "user": false
+        }
+    }, 
+    "name": "grafana-server", 
+    "state": "started", 
+    "status": {
+        "ActiveEnterTimestamp": "Fri 2018-05-04 22:05:13 UTC", 
+        "ActiveEnterTimestampMonotonic": "93455172280", 
+        "ActiveExitTimestampMonotonic": "0", 
+        "ActiveState": "active", 
+        "After": "mariadb.service basic.target -.mount postgresql.service system.slice network-online.target systemd-journald.socket mysql.service", 
+        "AllowIsolate": "no", 
+        "AmbientCapabilities": "0", 
+        "AssertResult": "yes", 
+        "AssertTimestamp": "Fri 2018-05-04 22:05:13 UTC", 
+        "AssertTimestampMonotonic": "93455171074", 
+        "Before": "shutdown.target", 
+        "BlockIOAccounting": "no", 
+        "BlockIOWeight": "18446744073709551615", 
+        "CPUAccounting": "no", 
+        "CPUQuotaPerSecUSec": "infinity", 
+        "CPUSchedulingPolicy": "0", 
+        "CPUSchedulingPriority": "0", 
+        "CPUSchedulingResetOnFork": "no", 
+        "CPUShares": "18446744073709551615", 
+        "CanIsolate": "no", 
+        "CanReload": "no", 
+        "CanStart": "yes", 
+        "CanStop": "yes", 
+        "CapabilityBoundingSet": "18446744073709551615", 
+        "ConditionResult": "yes", 
+        "ConditionTimestamp": "Fri 2018-05-04 22:05:13 UTC", 
+        "ConditionTimestampMonotonic": "93455171073", 
+        "Conflicts": "shutdown.target", 
+        "ControlGroup": "/system.slice/grafana-server.service", 
+        "ControlPID": "0", 
+        "DefaultDependencies": "yes", 
+        "Delegate": "no", 
+        "Description": "Grafana instance", 
+        "DevicePolicy": "auto", 
+        "Documentation": "http://docs.grafana.org", 
+        "EnvironmentFile": "/etc/sysconfig/grafana-server (ignore_errors=no)", 
+        "ExecMainCode": "0", 
+        "ExecMainExitTimestampMonotonic": "0", 
+        "ExecMainPID": "14711", 
+        "ExecMainStartTimestamp": "Fri 2018-05-04 22:05:13 UTC", 
+        "ExecMainStartTimestampMonotonic": "93455172200", 
+        "ExecMainStatus": "0", 
+        "ExecStart": "{ path=/usr/sbin/grafana-server ; argv[]=/usr/sbin/grafana-server --config=${CONF_FILE} --pidfile=${PID_FILE_DIR}/grafana-server.pid cfg:default.paths.logs=${LOG_DIR} cfg:default.paths.data=${DATA_DIR} cfg:default.paths.plugins=${PLUGINS_DIR} ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }", 
+        "FailureAction": "none", 
+        "FileDescriptorStoreMax": "0", 
+        "FragmentPath": "/usr/lib/systemd/system/grafana-server.service", 
+        "Group": "grafana", 
+        "GuessMainPID": "yes", 
+        "IOScheduling": "0", 
+        "Id": "grafana-server.service", 
+        "IgnoreOnIsolate": "no", 
+        "IgnoreOnSnapshot": "no", 
+        "IgnoreSIGPIPE": "yes", 
+        "InactiveEnterTimestampMonotonic": "0", 
+        "InactiveExitTimestamp": "Fri 2018-05-04 22:05:13 UTC", 
+        "InactiveExitTimestampMonotonic": "93455172280", 
+        "JobTimeoutAction": "none", 
+        "JobTimeoutUSec": "0", 
+        "KillMode": "control-group", 
+        "KillSignal": "15", 
+        "LimitAS": "18446744073709551615", 
+        "LimitCORE": "18446744073709551615", 
+        "LimitCPU": "18446744073709551615", 
+        "LimitDATA": "18446744073709551615", 
+        "LimitFSIZE": "18446744073709551615", 
+        "LimitLOCKS": "18446744073709551615", 
+        "LimitMEMLOCK": "65536", 
+        "LimitMSGQUEUE": "819200", 
+        "LimitNICE": "0", 
+        "LimitNOFILE": "10000", 
+        "LimitNPROC": "31122", 
+        "LimitRSS": "18446744073709551615", 
+        "LimitRTPRIO": "0", 
+        "LimitRTTIME": "18446744073709551615", 
+        "LimitSIGPENDING": "31122", 
+        "LimitSTACK": "18446744073709551615", 
+        "LoadState": "loaded", 
+        "MainPID": "14711", 
+        "MemoryAccounting": "no", 
+        "MemoryCurrent": "18446744073709551615", 
+        "MemoryLimit": "18446744073709551615", 
+        "MountFlags": "0", 
+        "Names": "grafana-server.service", 
+        "NeedDaemonReload": "no", 
+        "Nice": "0", 
+        "NoNewPrivileges": "no", 
+        "NonBlocking": "no", 
+        "NotifyAccess": "none", 
+        "OOMScoreAdjust": "0", 
+        "OnFailureJobMode": "replace", 
+        "PermissionsStartOnly": "no", 
+        "PrivateDevices": "no", 
+        "PrivateNetwork": "no", 
+        "PrivateTmp": "no", 
+        "ProtectHome": "no", 
+        "ProtectSystem": "no", 
+        "RefuseManualStart": "no", 
+        "RefuseManualStop": "no", 
+        "RemainAfterExit": "no", 
+        "Requires": "-.mount basic.target", 
+        "RequiresMountsFor": "/usr/share/grafana", 
+        "Restart": "on-failure", 
+        "RestartUSec": "100ms", 
+        "Result": "success", 
+        "RootDirectoryStartOnly": "no", 
+        "RuntimeDirectory": "grafana", 
+        "RuntimeDirectoryMode": "0750", 
+        "SameProcessGroup": "no", 
+        "SecureBits": "0", 
+        "SendSIGHUP": "no", 
+        "SendSIGKILL": "yes", 
+        "Slice": "system.slice", 
+        "StandardError": "inherit", 
+        "StandardInput": "null", 
+        "StandardOutput": "journal", 
+        "StartLimitAction": "none", 
+        "StartLimitBurst": "5", 
+        "StartLimitInterval": "10000000", 
+        "StartupBlockIOWeight": "18446744073709551615", 
+        "StartupCPUShares": "18446744073709551615", 
+        "StatusErrno": "0", 
+        "StopWhenUnneeded": "no", 
+        "SubState": "running", 
+        "SyslogLevelPrefix": "yes", 
+        "SyslogPriority": "30", 
+        "SystemCallErrorNumber": "0", 
+        "TTYReset": "no", 
+        "TTYVHangup": "no", 
+        "TTYVTDisallocate": "no", 
+        "TasksAccounting": "no", 
+        "TasksCurrent": "18446744073709551615", 
+        "TasksMax": "18446744073709551615", 
+        "TimeoutStartUSec": "1min 30s", 
+        "TimeoutStopUSec": "20s", 
+        "TimerSlackNSec": "50000", 
+        "Transient": "no", 
+        "Type": "simple", 
+        "UMask": "0022", 
+        "UnitFilePreset": "disabled", 
+        "UnitFileState": "disabled", 
+        "User": "grafana", 
+        "Wants": "system.slice network-online.target", 
+        "WatchdogTimestamp": "Fri 2018-05-04 22:05:13 UTC", 
+        "WatchdogTimestampMonotonic": "93455172253", 
+        "WatchdogUSec": "0", 
+        "WorkingDirectory": "/usr/share/grafana"
+    }
+}
+2018-05-19 19:40:21,892 p=36805 u=ansible |  TASK [server/grafana-install : Check if firewalld is installed] ****************************************************************************************
+2018-05-19 19:40:21,892 p=36805 u=ansible |  task path: /home/ansible/telemetry-local-pkgs/roles/server/grafana-install/tasks/main.yaml:16
+2018-05-19 19:40:21,935 p=36805 u=ansible |  Using module file /usr/lib/python2.7/site-packages/ansible/modules/packaging/os/yum.py
+2018-05-19 19:40:23,102 p=36805 u=ansible |  ok: [10.19.109.225] => {
+    "changed": false, 
+    "invocation": {
+        "module_args": {
+            "allow_downgrade": false, 
+            "conf_file": null, 
+            "disable_gpg_check": false, 
+            "disable_plugin": [], 
+            "disablerepo": null, 
+            "enable_plugin": [], 
+            "enablerepo": null, 
+            "exclude": null, 
+            "install_repoquery": true, 
+            "installroot": "/", 
+            "list": "firewalld", 
+            "name": null, 
+            "security": false, 
+            "skip_broken": false, 
+            "state": "installed", 
+            "update_cache": false, 
+            "update_only": false, 
+            "validate_certs": true
+        }
+    }, 
+    "results": [
+        {
+            "arch": "noarch", 
+            "envra": "0:firewalld-0.4.4.4-14.el7.noarch", 
+            "epoch": "0", 
+            "name": "firewalld", 
+            "release": "14.el7", 
+            "repo": "base", 
+            "version": "0.4.4.4", 
+            "yumstate": "available"
+        }
+    ]
+}
+2018-05-19 19:40:23,116 p=36805 u=ansible |  TASK [server/grafana-install : Open tcp port 3000] *****************************************************************************************************
+2018-05-19 19:40:23,116 p=36805 u=ansible |  task path: /home/ansible/telemetry-local-pkgs/roles/server/grafana-install/tasks/main.yaml:21
+2018-05-19 19:40:23,135 p=36805 u=ansible |  skipping: [10.19.109.225] => {
+    "changed": false, 
+    "skip_reason": "Conditional result was False"
+}
+2018-05-19 19:40:23,149 p=36805 u=ansible |  TASK [server/grafana-install : Verify if grafana is is listening on TCP port 3000] *********************************************************************
+2018-05-19 19:40:23,149 p=36805 u=ansible |  task path: /home/ansible/telemetry-local-pkgs/roles/server/grafana-install/tasks/main.yaml:29
+2018-05-19 19:40:23,412 p=36805 u=ansible |  Using module file /usr/lib/python2.7/site-packages/ansible/modules/net_tools/basics/get_url.py
+2018-05-19 19:40:23,743 p=36805 u=ansible |  changed: [10.19.109.225] => {
+    "changed": true, 
+    "checksum_dest": null, 
+    "checksum_src": "af451c29852baf181cf7162149cca4b55080fc6d", 
+    "dest": "/tmp/login", 
+    "gid": 0, 
+    "group": "root", 
+    "invocation": {
+        "module_args": {
+            "attributes": null, 
+            "backup": null, 
+            "checksum": "", 
+            "client_cert": null, 
+            "client_key": null, 
+            "content": null, 
+            "delimiter": null, 
+            "dest": "/tmp", 
+            "directory_mode": null, 
+            "follow": false, 
+            "force": false, 
+            "force_basic_auth": false, 
+            "group": null, 
+            "headers": null, 
+            "http_agent": "ansible-httpget", 
+            "mode": null, 
+            "owner": null, 
+            "path": "/tmp/login", 
+            "regexp": null, 
+            "remote_src": null, 
+            "selevel": null, 
+            "serole": null, 
+            "setype": null, 
+            "seuser": null, 
+            "sha256sum": "", 
+            "src": null, 
+            "timeout": 10, 
+            "tmp_dest": null, 
+            "unsafe_writes": null, 
+            "url": "http://10.19.109.225:3000/login", 
+            "url_password": null, 
+            "url_username": null, 
+            "use_proxy": true, 
+            "validate_certs": true
+        }
+    }, 
+    "md5sum": "9cd514d17b6036b13cb486ced2960aed", 
+    "mode": "0644", 
+    "owner": "root", 
+    "secontext": "unconfined_u:object_r:user_tmp_t:s0", 
+    "size": 8840, 
+    "src": "/tmp/tmpHOG0Zj", 
+    "state": "file", 
+    "status_code": 200, 
+    "uid": 0, 
+    "url": "http://10.19.109.225:3000/login"
+}
+
+MSG:
+
+OK (unknown bytes)
+
+2018-05-19 19:40:23,762 p=36805 u=ansible |  TASK [server/grafana-install : fail] *******************************************************************************************************************
+2018-05-19 19:40:23,762 p=36805 u=ansible |  task path: /home/ansible/telemetry-local-pkgs/roles/server/grafana-install/tasks/main.yaml:34
+2018-05-19 19:40:23,782 p=36805 u=ansible |  skipping: [10.19.109.225] => {
+    "changed": false, 
+    "skip_reason": "Conditional result was False"
+}
+2018-05-19 19:40:23,783 p=36805 u=ansible |  META: ran handlers
+2018-05-19 19:40:23,783 p=36805 u=ansible |  META: ran handlers
+2018-05-19 19:40:23,784 p=36805 u=ansible |  PLAY RECAP *********************************************************************************************************************************************
+2018-05-19 19:40:23,784 p=36805 u=ansible |  10.19.109.225              : ok=6    changed=3    unreachable=0    failed=0   
+2018-05-19 19:43:33,936 p=37115 u=ansible |  PLAY [grafana] *****************************************************************************************************************************************
+2018-05-19 19:43:33,949 p=37115 u=ansible |  TASK [Gathering Facts] *********************************************************************************************************************************
+2018-05-19 19:43:35,046 p=37115 u=ansible |  ok: [10.19.109.225]
+2018-05-19 19:43:35,058 p=37115 u=ansible |  TASK [server/grafana-remove : Remove grafana] **********************************************************************************************************
+2018-05-19 19:43:36,895 p=37115 u=ansible |  changed: [10.19.109.225]
+2018-05-19 19:43:36,907 p=37115 u=ansible |  TASK [server/grafana-remove : Check if firewalld is installed] *****************************************************************************************
+2018-05-19 19:43:39,219 p=37115 u=ansible |  ok: [10.19.109.225]
+2018-05-19 19:43:39,233 p=37115 u=ansible |  TASK [server/grafana-remove : Close tcp port 3000] *****************************************************************************************************
+2018-05-19 19:43:39,248 p=37115 u=ansible |  skipping: [10.19.109.225]
+2018-05-19 19:43:39,250 p=37115 u=ansible |  PLAY RECAP *********************************************************************************************************************************************
+2018-05-19 19:43:39,250 p=37115 u=ansible |  10.19.109.225              : ok=3    changed=1    unreachable=0    failed=0   
+2018-05-19 19:44:55,255 p=37189 u=ansible |  PLAY [grafana] *****************************************************************************************************************************************
+2018-05-19 19:44:55,268 p=37189 u=ansible |  TASK [Gathering Facts] *********************************************************************************************************************************
+2018-05-19 19:44:56,305 p=37189 u=ansible |  ok: [10.19.109.225]
+2018-05-19 19:44:56,329 p=37189 u=ansible |  ok: [10.19.109.229]
+2018-05-19 19:44:56,343 p=37189 u=ansible |  TASK [server/grafana-install : Copy grafana package over to telemetry server /tmp] *********************************************************************
+2018-05-19 19:44:57,343 p=37189 u=ansible |  ok: [10.19.109.225]
+2018-05-19 19:44:59,493 p=37189 u=ansible |  changed: [10.19.109.229]
+2018-05-19 19:44:59,507 p=37189 u=ansible |  TASK [server/grafana-install : Install grafana package] ************************************************************************************************
+2018-05-19 19:45:00,244 p=37189 u=ansible |  ok: [10.19.109.229]
+2018-05-19 19:45:03,578 p=37189 u=ansible |  changed: [10.19.109.225]
+2018-05-19 19:45:03,595 p=37189 u=ansible |  TASK [server/grafana-install : Start grafana service] **************************************************************************************************
+2018-05-19 19:45:03,978 p=37189 u=ansible |  ok: [10.19.109.225]
+2018-05-19 19:45:03,979 p=37189 u=ansible |  changed: [10.19.109.229]
+2018-05-19 19:45:03,993 p=37189 u=ansible |  TASK [server/grafana-install : Check if firewalld is installed] ****************************************************************************************
+2018-05-19 19:45:05,876 p=37189 u=ansible |  ok: [10.19.109.225]
+2018-05-19 19:45:05,919 p=37189 u=ansible |  ok: [10.19.109.229]
+2018-05-19 19:45:05,935 p=37189 u=ansible |  TASK [server/grafana-install : Open tcp port 3000] *****************************************************************************************************
+2018-05-19 19:45:05,956 p=37189 u=ansible |  skipping: [10.19.109.225]
+2018-05-19 19:45:05,968 p=37189 u=ansible |  skipping: [10.19.109.229]
+2018-05-19 19:45:05,982 p=37189 u=ansible |  TASK [server/grafana-install : Verify if grafana is is listening on TCP port 3000] *********************************************************************
+2018-05-19 19:45:06,405 p=37189 u=ansible |  changed: [10.19.109.229]
+2018-05-19 19:45:06,555 p=37189 u=ansible |  ok: [10.19.109.225]
+2018-05-19 19:45:06,569 p=37189 u=ansible |  TASK [server/grafana-install : fail] *******************************************************************************************************************
+2018-05-19 19:45:06,591 p=37189 u=ansible |  skipping: [10.19.109.225]
+2018-05-19 19:45:06,602 p=37189 u=ansible |  skipping: [10.19.109.229]
+2018-05-19 19:45:06,605 p=37189 u=ansible |  PLAY RECAP *********************************************************************************************************************************************
+2018-05-19 19:45:06,605 p=37189 u=ansible |  10.19.109.225              : ok=6    changed=1    unreachable=0    failed=0   
+2018-05-19 19:45:06,605 p=37189 u=ansible |  10.19.109.229              : ok=6    changed=3    unreachable=0    failed=0   

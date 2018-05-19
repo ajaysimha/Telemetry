@@ -10,5 +10,6 @@ alert_manager_port: 9093
 alert_manager_pkg: alertmanager-0.12.0.linux-amd64.tar.gz
 grafana_download_url: https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana-4.6.3-1.x86_64.rpm
 grafana_port: 3000
+grafana_pkg: grafana-4.6.3-1.x86_64.rpm
 telemetry_home: /home/ansible/telemetry-local-pkgs
 
