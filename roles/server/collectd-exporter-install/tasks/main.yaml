@@ -1,6 +1,6 @@
 - name: Download collectd exporter tarball
   unarchive:
-    src: "{{ telemetry_home }}/packages/{{ collectd_pkg }}"
+    src: "{{ telemetry_home }}/packages/{{ collectd_exporter_pkg }}"
     dest: /opt/
 - name: Find the name of the collectd exporter unarchived directory
   find:

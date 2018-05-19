@@ -1,13 +1,7 @@
-- name: Update yum
-  yum:
-    name: '*'
-    state: latest
-    update_cache: true
 - name: Download prometheus alert manager tarball
   unarchive:
-    src: "{{ alert_manager_download_url }}"
+    src: "{{ telemetry_home }}/packages/{{ alert_manager_pkg }}"
     dest: /opt/
-    remote_src: yes
 - name: Find the name of the alert manager unarchived directory
   find:
     path: /opt
