@@ -7,7 +7,6 @@
 
 - name: Install collectd package
   yum:
-    disablerepo: '*'
     name: "/tmp/{{ item }}"
     state: present
   with_items:
