@@ -1,13 +1,7 @@
-- name: Update yum
-  yum:
-    name: '*'
-    state: latest
-    update_cache: true
-- name: Download prometheus tarball
+- name: Install prometheus tarball
   unarchive:
-    src: "{{ prometheus_download_url }}"
+    src: "{{ telemetry_home }}/packages/{{ prometheus_pkg }}"
     dest: /opt/
-    remote_src: yes
 - name: Find the name of the prometheus unarchived directory
   find:
     path: /opt
