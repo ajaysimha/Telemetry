@@ -1,21 +1,21 @@
 - name: Stop prometheus exporter service
   service:
-    name: prometheus_exporter
+    name: osp_exporter
     state: stopped
 - name: Find the name of the prometheus exporter unarchived directory
   find:
     path: /opt
-    patterns: '*prometheus-exporter*'
+    patterns: '*osp-exporter*'
     file_type: directory
   register: dir_name
 
 - debug: var=dir_name.files[0].path 
 
-- name: Delete /opt/prometheus-exporter directory
+- name: Delete /opt/osp-exporter directory
   file:
     path: "{{ dir_name.files[0].path }}"
     state: absent
-- name: Delete /etc/systemd/system/prometheus_exporter.service
+- name: Delete /etc/systemd/system/osp_exporter.service
   file:
-    path: /etc/systemd/system/prometheus_exporter.service
+    path: /etc/systemd/system/osp_exporter.service
     state: absent

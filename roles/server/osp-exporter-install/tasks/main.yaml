@@ -27,7 +27,7 @@
 
 - name: Copy OSP exporter python files to target 
   copy:
-    src: /home/ansible/ansible_deploy_telemetry/roles/server/osp-exporter-install/osp-exporter
+    src: osp-exporter
     dest: /opt
 
 - name: Find the name of the prometheus exporter directory
