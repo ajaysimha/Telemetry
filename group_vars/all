@@ -17,4 +17,26 @@ telemetry_home: /home/ansible/telemetry-local-pkgs
 snmp_trap_receiver: 10.19.109.216
 snmp_trap_receiver_port: 162
 snmp_community: public
-python2_pip_pkg: python2-pip-8.1.2-6.el7.noarch.rpm
+prometheus_client: prometheus_client-0.2.0.tar.gz
+python2_pip_pkg: python2-pip-8.1.2-6.el7.noarch.rpm 
+
+
+osp_exporter_packages:
+  -  python2-pip-8.1.2-6.el7.noarch.rpm
+  -  prometheus_client-0.2.0.tar.gz
+
+
+# Client vars
+
+
+collect_plugins:
+  - collectd
+  - disk
+
+
+collectd_packages_all:
+  - collectd-5.8.0-5.el7ost.x86_64.rpm
+  - collectd-disk-5.8.0-5.el7ost.x86_64.rpm
+
+collectd_packages_ceph:
+  - collectd-ceph-5.8.0-5.el7ost.x86_64.rpm

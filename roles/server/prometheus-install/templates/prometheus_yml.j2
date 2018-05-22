@@ -6,6 +6,11 @@ global:
 
 # Alertmanager configuration
 alerting:
+  
+  alert_relabel_configs:
+    - action: labeldrop
+      regex: exported_instance
+
   alertmanagers:
   - static_configs:
     - targets:
@@ -23,6 +28,13 @@ rule_files:
 scrape_configs:
   # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
   - job_name: 'collectd'
+    honor_labels: true
+    relabel_configs:
+      - source_labels: [exported_instance]
+        target_label: instance
+
+      - source_labels: [__address__]
+        target_label: exported_instance
 
     metric_relabel_configs:
       - source_labels: [type]
@@ -30,12 +42,6 @@ scrape_configs:
 
       - regex: 'type'
         action: labeldrop
-
-      - source_labels: [exported_instance]
-        target_label: instance
-  
-      - source_labels: [__address__]
-        target_label: exported_instance
 
     # metrics_path defaults to '/metrics'
     # scheme defaults to 'http'.

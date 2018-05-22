@@ -4,10 +4,12 @@
 #    state: present
 
 
-- name: Copy phython2-pip package over to telemetry server /tmp
+- name: Copy packages required for osp-exporter /tmp
   copy:
-    src: "{{ telemetry_home }}/packages/{{ python2_pip_pkg }}"
+    src: "{{ telemetry_home }}/packages/{{ item }}"
     dest: /tmp
+  with_items:
+    - "{{ osp_exporter_packages }}"
 
 - name: Install python2 package
   yum:
@@ -26,9 +28,7 @@
 
 - name: Install Python Prometheus Client
   pip:
-    name: prometheus_client
-    state: present
-    version: 0.2.0
+    name: "/tmp/{{ prometheus_client }}"
 
 - name: Install requests version 2.14.2
   pip:

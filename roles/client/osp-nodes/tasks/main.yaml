@@ -1,7 +1,7 @@
 - name: Copy collectd rpm /tmp
   copy:
-    src: "{{ package_dirs.src }}/{{ item }}"
-    dest: "{{ package_dirs.dst }}/{{ item }}"
+    src: "{{ telemetry_home }}/packages/{{ item }}"
+    dest: /tmp
   with_items:
     - "{{ collectd_packages_all }}"
 
@@ -17,10 +17,10 @@
     src: collectd_conf.j2
     dest: /etc/collectd.conf
 
-- name: Copy mavenir-nfvi.sh to /etc/collectd.d directory
+- name: Copy nfvi-services.sh to /etc/collectd.d directory
   copy:
-    src: mavenir-nfvi.sh
-    dest: /etc/collectd.d/mavenir-nfvi.sh
+    src: nfvi-services.sh
+    dest: /etc/collectd.d/nfvi-services.sh
     mode: 0755
 
 - name: Start collectd client
