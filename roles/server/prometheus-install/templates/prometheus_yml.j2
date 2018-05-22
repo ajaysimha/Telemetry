@@ -6,14 +6,6 @@ global:
 
 # Alertmanager configuration
 alerting:
-  alert_relabel_configs:
-
-    - source_labels: [exported_instance]
-      target_label: instance
-
-    - regex: 'exported_instance'
-      action: labeldrop
-
   alertmanagers:
   - static_configs:
     - targets:
@@ -38,6 +30,12 @@ scrape_configs:
 
       - regex: 'type'
         action: labeldrop
+
+      - source_labels: [exported_instance]
+        target_label: instance
+  
+      - source_labels: [__address__]
+        target_label: exported_instance
 
     # metrics_path defaults to '/metrics'
     # scheme defaults to 'http'.

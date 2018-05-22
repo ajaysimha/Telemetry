@@ -1,6 +1,17 @@
-- name: Install Python PIP 
-  package:
-    name: python2-pip
+#- name: Install Python PIP 
+#  package:
+#    name: python2-pip
+#    state: present
+
+
+- name: Copy phython2-pip package over to telemetry server /tmp
+  copy:
+    src: "{{ telemetry_home }}/packages/{{ python2_pip_pkg }}"
+    dest: /tmp
+
+- name: Install python2 package
+  yum:
+    name: "/tmp/{{ python2_pip_pkg }}"
     state: present
 
 - name: Install required python modules using PIP
