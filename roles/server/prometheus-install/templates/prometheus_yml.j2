@@ -6,6 +6,14 @@ global:
 
 # Alertmanager configuration
 alerting:
+  alert_relabel_configs:
+
+    - source_labels: [exported_instance]
+      target_label: instance
+
+    - regex: 'exported_instance'
+      action: labeldrop
+
   alertmanagers:
   - static_configs:
     - targets:
