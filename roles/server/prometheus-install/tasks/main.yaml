@@ -18,12 +18,16 @@
   template:
     src: prometheus_yml.j2
     dest: "{{ prometheus_path }}/prometheus.yml"
+- name: Create prometheus_rules.yml
+  template:
+    src: prometheus_rules_yml.j2
+    dest: "{{ prometheus_path }}/prometheus_rules.yml"
 - name: just force systemd to reread configs (2.4 and above)
   systemd: daemon_reload=yes
 - name: Start prometheus service
   service:
     name: prometheus
-    state: started
+    state: restarted
 - name: Check if firewalld is installed
   yum:
     list: firewalld

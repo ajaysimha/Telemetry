@@ -1,0 +1,32 @@
+- name: Copy prometheus snmptrapper files to target 
+  copy:
+    src: prometheus-snmptrapper
+    dest: /opt
+
+- name: Find the name of the prometheus snmptrapper directory
+  find:
+    path: /opt
+    patterns: '*prometheus-snmptrapper*'
+    file_type: directory
+  register: dir_name
+
+- debug: var=dir_name.files[0].path
+
+- set_fact:
+    prometheus_snmptrapper_path: "{{ dir_name.files[0].path }}"
+
+- name: Set prometheus_snmptrapper to be executable
+  file:
+    path: "{{ prometheus_snmptrapper_path }}/prometheus_snmptrapper"
+    mode: 0755
+
+- name: Create systemd service for prometheus snmptrapper
+  template:
+    src: prometheus_snmptrapper_systemd.j2
+    dest: /etc/systemd/system/prometheus_snmptrapper.service
+
+- name: Start prometheus snmptrapper service
+  systemd:
+    name: prometheus_snmptrapper
+    state: started
+    daemon_reload: yes

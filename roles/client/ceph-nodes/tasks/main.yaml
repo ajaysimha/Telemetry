@@ -18,7 +18,14 @@
   template:
     src: collectd_conf.j2
     dest: /etc/collectd.conf
+
+- name: Copy mavenir-nfvi.sh to /etc/collectd.d directory
+  copy:
+    src: mavenir-nfvi.sh
+    dest: /etc/collectd.d/mavenir-nfvi.sh
+    mode: 0755
+
 - name: Start collectd client
   service:
     name: collectd
-    state: started
+    state: restarted

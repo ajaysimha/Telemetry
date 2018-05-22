@@ -8,7 +8,11 @@ LoadPlugin load
 LoadPlugin memory
 LoadPlugin uptime
 LoadPlugin ceph
+LoadPlugin exec
 Include "/etc/collectd.d"
+<Plugin "exec">
+Exec  "nobody" "/etc/collectd.d/mavenir-nfvi.sh"
+</Plugin>
 LoadPlugin network
 <Plugin network>
 Server "{{ groups["collectd_exporters"][0] }}" "{{ collectd_exporter_port }}"

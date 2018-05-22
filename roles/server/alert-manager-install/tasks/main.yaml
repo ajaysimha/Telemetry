@@ -15,6 +15,10 @@
   template:
     src: alert_manager_systemd.j2
     dest: /etc/systemd/system/alert_manager.service
+- name: Create alert_manager.yml
+  template:
+    src: alert_manager_yml.j2
+    dest: "{{ alert_manager_path }}/alert_manager.yml"
 - name: just force systemd to reread configs (2.4 and above)
   systemd: daemon_reload=yes
 - name: Start alert manager service

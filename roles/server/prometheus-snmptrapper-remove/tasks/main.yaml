@@ -1,0 +1,21 @@
+- name: Stop prometheus snmptrapper service
+  service:
+    name: prometheus_snmptrapper
+    state: stopped
+- name: Find the name of the prometheus snmptrapper unarchived directory
+  find:
+    path: /opt
+    patterns: '*prometheus-snmptrapper*'
+    file_type: directory
+  register: dir_name
+
+- debug: var=dir_name.files[0].path 
+
+- name: Delete /opt/prometheus-snmptrapper directory
+  file:
+    path: "{{ dir_name.files[0].path }}"
+    state: absent
+- name: Delete /etc/systemd/system/prometheus_snmptrapper.service
+  file:
+    path: /etc/systemd/system/prometheus_snmptrapper.service
+    state: absent

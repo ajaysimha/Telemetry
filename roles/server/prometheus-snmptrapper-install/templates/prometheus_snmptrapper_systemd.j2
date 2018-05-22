@@ -1,0 +1,9 @@
+[Unit]
+Description=Prometheus SNMP trapper
+After=network.target
+
+[Service]
+ExecStart={{ prometheus_snmptrapper_path }}/prometheus_snmptrapper -snmpcommunity {{ snmp_community }} -snmptrapaddress {{ snmp_trap_receiver }}:{{ snmp_trap_receiver_port }}
+
+[Install]
+WantedBy=default.target

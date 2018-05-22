@@ -3,7 +3,7 @@ collect_plugins:
   - disk
 
 package_dirs:
- src: /home/ansible/ansible_deploy_collectd_prometheus/roles/client/packages
+ src: {{ telemetry_home }}/roles/client/packages
  dst: /tmp
 
 collectd_packages_all:
