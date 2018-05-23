@@ -26,13 +26,11 @@
     - python-yaml
 
 
-- name: Install Python Prometheus Client
+- name: Install Python required packages 
   pip:
-    name: "/tmp/{{ prometheus_client }}"
-
-- name: Install requests packages
-  pip:
-    name: "/tmp/{{ requests_pkg }}"
+    name: "/tmp/{{ item }}"
+  with_items:
+    - "{{ osp_exporter_python_packages }}"
 
 #- name: Install requests version 2.14.2
 #  pip:

@@ -25,8 +25,19 @@ requests_pkg: requests-2.18.4.tar.gz
 osp_exporter_packages:
   - python2-pip-8.1.2-6.el7.noarch.rpm
   - prometheus_client-0.2.0.tar.gz
+  - chardet-3.0.4.tar.gz
+  - idna-2.6.tar.gz
+  - urllib3-1.22.tar.gz
+  - certifi-2018.4.16.tar.gz
   - requests-2.18.4.tar.gz
 
+osp_exporter_python_packages:
+  - prometheus_client-0.2.0.tar.gz
+  - chardet-3.0.4.tar.gz
+  - idna-2.6.tar.gz
+  - urllib3-1.22.tar.gz
+  - certifi-2018.4.16.tar.gz
+  - requests-2.18.4.tar.gz
 
 # Client vars
 
