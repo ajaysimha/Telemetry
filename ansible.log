@@ -22528,3 +22528,38 @@ The offending line appears to be:
 2018-05-22 17:45:12,138 p=17905 u=ansible |  changed: [10.19.109.225]
 2018-05-22 17:45:12,140 p=17905 u=ansible |  PLAY RECAP *********************************************************************************************************************************************
 2018-05-22 17:45:12,140 p=17905 u=ansible |  10.19.109.225              : ok=14   changed=6    unreachable=0    failed=0   
+2018-05-22 20:05:46,054 p=22863 u=ansible |  PLAY [osp_exporters] ***********************************************************************************************************************************
+2018-05-22 20:05:46,070 p=22863 u=ansible |  TASK [Gathering Facts] *********************************************************************************************************************************
+2018-05-22 20:05:47,155 p=22863 u=ansible |  ok: [10.19.109.225]
+2018-05-22 20:05:47,168 p=22863 u=ansible |  TASK [server/osp-exporter-install : Copy packages required for osp-exporter /tmp] **********************************************************************
+2018-05-22 20:05:48,043 p=22863 u=ansible |  ok: [10.19.109.225] => (item=python2-pip-8.1.2-6.el7.noarch.rpm)
+2018-05-22 20:05:48,577 p=22863 u=ansible |  ok: [10.19.109.225] => (item=prometheus_client-0.2.0.tar.gz)
+2018-05-22 20:05:49,273 p=22863 u=ansible |  changed: [10.19.109.225] => (item=requests-2.18.4.tar.gz)
+2018-05-22 20:05:49,291 p=22863 u=ansible |  TASK [server/osp-exporter-install : Install python2 package] *******************************************************************************************
+2018-05-22 20:05:50,216 p=22863 u=ansible |  ok: [10.19.109.225]
+2018-05-22 20:05:50,230 p=22863 u=ansible |  TASK [server/osp-exporter-install : Install required python modules using PIP] *************************************************************************
+2018-05-22 20:05:58,296 p=22863 u=ansible |  ok: [10.19.109.225] => (item=[u'python-nose', u'python-sphinx', u'python-dateutil', u'python-simplejson', u'python-yaml'])
+2018-05-22 20:05:58,309 p=22863 u=ansible |  TASK [server/osp-exporter-install : Install Python Prometheus Client] **********************************************************************************
+2018-05-22 20:05:59,933 p=22863 u=ansible |  changed: [10.19.109.225]
+2018-05-22 20:05:59,946 p=22863 u=ansible |  TASK [server/osp-exporter-install : Install requests packages] *****************************************************************************************
+2018-05-22 20:06:02,123 p=22863 u=ansible |  changed: [10.19.109.225]
+2018-05-22 20:06:02,135 p=22863 u=ansible |  TASK [server/osp-exporter-install : Copy OSP exporter python files to target] **************************************************************************
+2018-05-22 20:06:05,494 p=22863 u=ansible |  changed: [10.19.109.225]
+2018-05-22 20:06:05,509 p=22863 u=ansible |  TASK [server/osp-exporter-install : Find the name of the prometheus exporter directory] ****************************************************************
+2018-05-22 20:06:05,827 p=22863 u=ansible |  ok: [10.19.109.225]
+2018-05-22 20:06:05,841 p=22863 u=ansible |  TASK [server/osp-exporter-install : debug] *************************************************************************************************************
+2018-05-22 20:06:05,890 p=22863 u=ansible |  ok: [10.19.109.225] => {
+    "dir_name.files[0].path": "/opt/osp-exporter"
+}
+2018-05-22 20:06:05,904 p=22863 u=ansible |  TASK [server/osp-exporter-install : set_fact] **********************************************************************************************************
+2018-05-22 20:06:05,954 p=22863 u=ansible |  ok: [10.19.109.225]
+2018-05-22 20:06:05,967 p=22863 u=ansible |  TASK [server/osp-exporter-install : Set main.py to be executable] **************************************************************************************
+2018-05-22 20:06:06,161 p=22863 u=ansible |  ok: [10.19.109.225]
+2018-05-22 20:06:06,175 p=22863 u=ansible |  TASK [server/osp-exporter-install : Create config file env.yaml] ***************************************************************************************
+2018-05-22 20:06:06,650 p=22863 u=ansible |  changed: [10.19.109.225]
+2018-05-22 20:06:06,664 p=22863 u=ansible |  TASK [server/osp-exporter-install : Create systemd service for prometheus exporter] ********************************************************************
+2018-05-22 20:06:07,081 p=22863 u=ansible |  ok: [10.19.109.225]
+2018-05-22 20:06:07,094 p=22863 u=ansible |  TASK [server/osp-exporter-install : Start prometheus exporter service] *********************************************************************************
+2018-05-22 20:06:07,486 p=22863 u=ansible |  ok: [10.19.109.225]
+2018-05-22 20:06:07,488 p=22863 u=ansible |  PLAY RECAP *********************************************************************************************************************************************
+2018-05-22 20:06:07,488 p=22863 u=ansible |  10.19.109.225              : ok=14   changed=5    unreachable=0    failed=0   

@@ -19,11 +19,13 @@ snmp_trap_receiver_port: 162
 snmp_community: public
 prometheus_client: prometheus_client-0.2.0.tar.gz
 python2_pip_pkg: python2-pip-8.1.2-6.el7.noarch.rpm 
+requests_pkg: requests-2.18.4.tar.gz
 
 
 osp_exporter_packages:
-  -  python2-pip-8.1.2-6.el7.noarch.rpm
-  -  prometheus_client-0.2.0.tar.gz
+  - python2-pip-8.1.2-6.el7.noarch.rpm
+  - prometheus_client-0.2.0.tar.gz
+  - requests-2.18.4.tar.gz
 
 
 # Client vars

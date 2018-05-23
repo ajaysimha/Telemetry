@@ -30,11 +30,15 @@
   pip:
     name: "/tmp/{{ prometheus_client }}"
 
-- name: Install requests version 2.14.2
+- name: Install requests packages
   pip:
-    name: requests
-    state: present
-    version: 2.14.2
+    name: "/tmp/{{ requests_pkg }}"
+
+#- name: Install requests version 2.14.2
+#  pip:
+#    name: requests
+#    state: present
+#    version: 2.14.2
 
 - name: Copy OSP exporter python files to target 
   copy:
