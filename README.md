@@ -43,5 +43,5 @@ ansible-playbook playbooks/configure_collectd_targets.yaml
 ```
 
 ## To Do
-* Add https support and LDAP or similar authentication
+* 
 
