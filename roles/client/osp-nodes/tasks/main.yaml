@@ -19,9 +19,53 @@
 
 - name: Copy nfvi-services.sh to /etc/collectd.d directory
   copy:
-    src: nfvi-services.sh
+    src: compute-nfvi-services.sh
     dest: /etc/collectd.d/nfvi-services.sh
     mode: 0755
+  when: "'osp-computes' in group_names"
+
+- name: Copy nfvi-services.sh to /etc/collectd.d directory
+  copy:
+    src: controller-nfvi-services.sh
+    dest: /etc/collectd.d/nfvi-services.sh
+    mode: 0755
+  when: "'osp-controllers' in group_names"
+
+- name: Copy discover-disks.sh to /usr/local/sbin directory
+  copy:
+    src: discover_disk.sh
+    dest: /usr/local/sbin/
+    mode: 0755
+
+- name: Copy netif_discovery.sh to /usr/local/sbin directory
+  copy:
+    src: netif_discovery.sh
+    dest: /usr/local/sbin/
+    mode: 0755
+
+- name: Ensure netif_discovery.sh.log file is owned by nobody
+  file: 
+    path: /var/log/netif_discovery.sh.log
+    owner: nobody
+    group: nobody
+    state: touch
+
+- name: Copy smart-health.sh to /usr/local/sbin directory
+  copy:
+    src: smart-health.sh
+    dest: /usr/local/sbin/
+    mode: 0755
+
+- name: Copy smart-temp.sh to /usr/local/sbin directory
+  copy:
+    src: smart-temp.sh
+    dest: /usr/local/sbin/
+    mode: 0755
+
+- name: Copy types.db.custom to /usr/share/collectd directory
+  copy:
+    src: types.db.custom
+    dest: /usr/share/collectd/
 
 - name: Start collectd client
   service:

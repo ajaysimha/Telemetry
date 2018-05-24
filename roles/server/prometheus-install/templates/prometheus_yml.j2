@@ -4,12 +4,16 @@ global:
   evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
   # scrape_timeout is set to the global default (10s).
 
+  external_labels: 
+    exporter_node: prometheus-{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}
+
 # Alertmanager configuration
 alerting:
   
   alert_relabel_configs:
-    - action: labeldrop
-      regex: exported_instance
+  - source_labels: [exporter_node]
+    regex: (prometheus).+
+    target_label: exporter_node
 
   alertmanagers:
   - static_configs:
@@ -29,12 +33,12 @@ scrape_configs:
   # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
   - job_name: 'collectd'
     honor_labels: true
-    relabel_configs:
-      - source_labels: [exported_instance]
-        target_label: instance
-
-      - source_labels: [__address__]
-        target_label: exported_instance
+#    relabel_configs:
+#      - source_labels: [exported_instance]
+#        target_label: instance
+#
+#      - source_labels: [__address__]
+#        target_label: exported_instance
 
     metric_relabel_configs:
       - source_labels: [type]
