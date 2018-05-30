@@ -25,10 +25,10 @@
     - python-simplejson
     - python-yaml
 
-
 - name: Install Python required packages 
   pip:
     name: "/tmp/{{ item }}"
+    state: forcereinstall
   with_items:
     - "{{ osp_exporter_python_packages }}"
 

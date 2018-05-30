@@ -132,23 +132,32 @@ while sleep "$INTERVAL" ; do
   val=$(ps aux | awk '{ print $8 " " $2 }' | grep -w Z | wc -l)
   echo "PUTVAL \"$HOSTNAME/nfvi-services/service-zombieprocess-process\" interval=$INTERVAL N:$val"
 
-  val=$(/usr/local/sbin/netif_discovery.sh)
-  val=$(if [$val -z ]; then echo 0; else echo $val; fi)
-  echo "PUTVAL \"$HOSTNAME/nfvi-services/service-net-phys-if-discovery\" interval=$INTERVAL N:$val"
+  #val=$(/usr/local/sbin/netif_discovery.sh)
+  #val=$(if [$val -z ]; then echo 0; else echo $val; fi)
+  #echo "PUTVAL \"$HOSTNAME/nfvi-services/service-net-phys-if-discovery\" interval=$INTERVAL N:$val"
 
-  val=$(if [ $(cat /sys/class/net/$1/operstate)= "up" ]; then cat /sys/class/net/$1/carrier; else echo "0"; fi;)
-  val=$(if [$val -z ]; then echo 0; else echo $val; fi)
-  echo "PUTVAL \"$HOSTNAME/nfvi-services/service-net-if-carrier-status \" interval=$INTERVAL N:$val"
+  #val=$(if [ $(cat /sys/class/net/$1/operstate)= "up" ]; then cat /sys/class/net/$1/carrier; else echo "0"; fi;)
+  #val=$(if [$val -z ]; then echo 0; else echo $val; fi)
+  #echo "PUTVAL \"$HOSTNAME/nfvi-services/service-net-if-carrier-status \" interval=$INTERVAL N:$val"
 
-  val=$(/usr/local/sbin/discover_disk.sh)
-  val=$(if [$val -z ]; then echo 0; else echo $val; fi)
-  echo "PUTVAL \"$HOSTNAME/nfvi-services/service-disk-discovery\" interval=$INTERVAL N:$val"
+  #val=$(/usr/local/sbin/discover_disk.sh)
+  #val=$(if [$val -z ]; then echo 0; else echo $val; fi)
+  #echo "PUTVAL \"$HOSTNAME/nfvi-services/service-disk-discovery\" interval=$INTERVAL N:$val"
 
-  val= $(/usr/local/sbin/smart-temp.sh /dev/$1 Temperature_Celsius)
-  val=$(if [$val -z ]; then echo 0; else echo $val; fi)
-  echo "PUTVAL \"$HOSTNAME/nfvi-services/service-smart-temp\" interval=$INTERVAL N:$val"
+  #val= $(/usr/local/sbin/smart-temp.sh /dev/$1 Temperature_Celsius)
+  #val=$(if [$val -z ]; then echo 0; else echo $val; fi)
+  #echo "PUTVAL \"$HOSTNAME/nfvi-services/service-smart-temp\" interval=$INTERVAL N:$val"
 
-  val=$(/usr/local/sbin/smart-health.sh /dev/$1)
-  val=$(if [$val -z ]; then echo 0; else echo $val; fi)
-  echo "PUTVAL \"$HOSTNAME/nfvi-services/service-smart-health\" interval=$INTERVAL N:$val"
+  #val=$(/usr/local/sbin/smart-health.sh /dev/$1)
+  #val=$(if [$val -z ]; then echo 0; else echo $val; fi)
+  #echo "PUTVAL \"$HOSTNAME/nfvi-services/service-smart-health\" interval=$INTERVAL N:$val"
+
+  val=$(systemctl is-active corosync >/dev/null 2>&1 && echo 1 || echo 0)
+  echo "PUTVAL \"$HOSTNAME/nfvi-services/service-corosync\" interval=$INTERVAL N:$val"
+
+  val=$(systemctl is-active pcsd >/dev/null 2>&1 && echo 1 || echo 0)
+  echo "PUTVAL \"$HOSTNAME/nfvi-services/service-pcsd\" interval=$INTERVAL N:$val"
+
+  val=$(systemctl is-active pacemaker >/dev/null 2>&1 && echo 1 || echo 0)
+  echo "PUTVAL \"$HOSTNAME/nfvi-services/service-pacemaker\" interval=$INTERVAL N:$val"
 done

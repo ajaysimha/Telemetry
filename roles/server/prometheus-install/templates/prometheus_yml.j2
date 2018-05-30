@@ -59,6 +59,12 @@ scrape_configs:
 {% endif %}
 {% endfor %}
   - job_name: 'openstack'
+    honor_labels: true
+    metric_relabel_configs:
+    - source_labels: [url]
+      target_label: instance
+      regex: https?://(.+):.+
+      replacement: $1
 
     # metrics_path defaults to '/metrics'
     # scheme defaults to 'http'.

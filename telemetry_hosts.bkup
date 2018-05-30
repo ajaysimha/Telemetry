@@ -1,16 +1,10 @@
-[pod1-controllers]
+[osp-controllers]
 10.19.109.12
-[pod1-computes]
+[osp-computes]
 10.19.109.230
 10.19.109.231
-[pod1-ceph-nodes]
+[ceph-nodes]
 10.19.109.232
-[osp-controllers:children]
-pod1-controllers
-[osp-computes:children]
-pod1-computes
-[ceph-nodes:children]
-pod1-ceph-nodes
 [collectd_exporters]
 10.19.109.225
 10.19.109.229
@@ -25,6 +19,5 @@ pod1-ceph-nodes
 10.19.109.229
 [osp_exporters]
 10.19.109.225
-10.19.109.229
 [snmptrapper_hosts]
 10.19.109.225

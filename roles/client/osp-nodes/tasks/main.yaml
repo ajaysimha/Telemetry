@@ -17,17 +17,23 @@
     src: collectd_conf.j2
     dest: /etc/collectd.conf
 
+- name: Create /usr/share/collectd/exec directory
+  file:
+    path: /usr/share/collectd/exec
+    state: directory
+    mode: 0755
+
 - name: Copy nfvi-services.sh to /etc/collectd.d directory
   copy:
     src: compute-nfvi-services.sh
-    dest: /etc/collectd.d/nfvi-services.sh
+    dest: /usr/share/collectd/exec/nfvi-services.sh
     mode: 0755
   when: "'osp-computes' in group_names"
 
 - name: Copy nfvi-services.sh to /etc/collectd.d directory
   copy:
     src: controller-nfvi-services.sh
-    dest: /etc/collectd.d/nfvi-services.sh
+    dest: /usr/share/collectd/exec/nfvi-services.sh
     mode: 0755
   when: "'osp-controllers' in group_names"
 
