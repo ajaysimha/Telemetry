@@ -37,5 +37,5 @@
     immediate: true
   with_items:
     - "{{ alert_manager_port }}"
-    - "{{ alert_manager_mesh_port }} "
+    - "{{ alert_manager_mesh_port }}"
   when: firewalld_op.results|selectattr("yumstate", "match", "installed")|list|length != 0
