@@ -12,7 +12,7 @@
 - name: Find the name of the prometheus unarchived directory
   find:
     path: /opt
-    patterns: '*prometheus*'
+    patterns: '*prometheus-2.0.0*'
     file_type: directory
   register: dir_name
 - name: Delete prometheus directory
