@@ -1,2 +1,9 @@
 <Plugin ceph>
+  LongRunAvgLatency false
+  ConvertSpecialMetricTypes true
+{% for filename in daemons.files %}
+  <Daemon "osd.{{ filename.path.split('.')[-2] }}">
+    SocketPath "{{ filename.path }}"
+  </Daemon>
+{% endfor %}
 </Plugin>

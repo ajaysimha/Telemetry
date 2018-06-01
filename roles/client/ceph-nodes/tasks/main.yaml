@@ -83,12 +83,17 @@
     path: /var/run/ceph/
     pattern: "*.asok"
     file_type: any
-  register: daemon
+  register: daemons
 
 - name: Copy 90-ceph-plugin configuration
   template:
     src: 90-ceph-plugin-conf.j2
     dest: /etc/collectd.d/90-ceph-plugin.conf
+
+- name: Create sudoers file for nobody
+  copy:
+    src: nobody
+    dest: /etc/sudoers.d/nobody
 
 - name: Start collectd client
   service:
