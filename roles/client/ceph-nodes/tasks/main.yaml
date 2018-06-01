@@ -19,10 +19,16 @@
     src: collectd_conf.j2
     dest: /etc/collectd.conf
 
-- name: Copy nfvi-services.sh to /etc/collectd.d directory
+- name: Create /usr/share/collectd/exec directory
+  file:
+    path: /usr/share/collectd/exec
+    state: directory
+    mode: 0755
+
+- name: Copy nfvi-services.sh to /usr/share/collectd/exec directory
   copy:
-    src: nfvi-services.sh
-    dest: /etc/collectd.d/nfvi-services.sh
+    src: ceph-nfvi-services.sh
+    dest: /usr/share/collectd/exec/nfvi-services.sh
     mode: 0755
 
 - name: Copy discover-disks.sh to /usr/local/sbin directory
@@ -71,6 +77,18 @@
   copy:
     src: types.db.custom
     dest: /usr/share/collectd/
+
+- name: Find all *asok files of OSDs
+  find:
+    path: /var/run/ceph/
+    pattern: "*.asok"
+    file_type: any
+  register: daemon
+
+- name: Copy 90-ceph-plugin configuration
+  template:
+    src: 90-ceph-plugin-conf.j2
+    dest: /etc/collectd.d/90-ceph-plugin.conf
 
 - name: Start collectd client
   service:

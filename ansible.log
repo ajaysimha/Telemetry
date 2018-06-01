@@ -27379,3 +27379,2581 @@ Request failed: <urlopen error [Errno 111] Connection refused>
 2018-05-29 16:13:25,023 p=38379 u=ansible |  PLAY RECAP ***********************************************************************************************************************************************************************************
 2018-05-29 16:13:25,023 p=38379 u=ansible |  10.19.109.225              : ok=13   changed=3    unreachable=0    failed=0   
 2018-05-29 16:13:25,023 p=38379 u=ansible |  10.19.109.229              : ok=13   changed=3    unreachable=0    failed=0   
+2018-05-30 16:55:12,013 p=33681 u=ansible |  PLAY [ceph-nodes] ************************************************************************************************************************************
+2018-05-30 16:55:12,043 p=33681 u=ansible |  TASK [Gathering Facts] *******************************************************************************************************************************
+2018-05-30 16:55:14,564 p=33681 u=ansible |  ok: [10.19.109.232]
+2018-05-30 16:55:14,602 p=33681 u=ansible |  TASK [client/ceph-nodes : Copy collectd rpm /tmp] ****************************************************************************************************
+2018-05-30 16:55:15,403 p=33681 u=ansible |  ok: [10.19.109.232] => (item=collectd-5.8.0-5.el7ost.x86_64.rpm)
+2018-05-30 16:55:15,874 p=33681 u=ansible |  ok: [10.19.109.232] => (item=collectd-disk-5.8.0-5.el7ost.x86_64.rpm)
+2018-05-30 16:55:16,331 p=33681 u=ansible |  ok: [10.19.109.232] => (item=collectd-ceph-5.8.0-5.el7ost.x86_64.rpm)
+2018-05-30 16:55:16,375 p=33681 u=ansible |  TASK [client/ceph-nodes : Install collectd package] **************************************************************************************************
+2018-05-30 16:55:17,299 p=33681 u=ansible |  ok: [10.19.109.232] => (item=[u'/tmp/collectd-5.8.0-5.el7ost.x86_64.rpm', u'/tmp/collectd-disk-5.8.0-5.el7ost.x86_64.rpm', u'/tmp/collectd-ceph-5.8.0-5.el7ost.x86_64.rpm'])
+2018-05-30 16:55:17,339 p=33681 u=ansible |  TASK [client/ceph-nodes : Configure collectd client to send metrics to collectd exporter] ************************************************************
+2018-05-30 16:55:17,705 p=33681 u=ansible |  ok: [10.19.109.232]
+2018-05-30 16:55:17,746 p=33681 u=ansible |  TASK [client/ceph-nodes : Copy nfvi-services.sh to /etc/collectd.d directory] ************************************************************************
+2018-05-30 16:55:18,106 p=33681 u=ansible |  ok: [10.19.109.232]
+2018-05-30 16:55:18,146 p=33681 u=ansible |  TASK [client/ceph-nodes : Copy discover-disks.sh to /usr/local/sbin directory] ***********************************************************************
+2018-05-30 16:55:18,371 p=33681 u=ansible |  ok: [10.19.109.232]
+2018-05-30 16:55:18,411 p=33681 u=ansible |  TASK [client/ceph-nodes : Copy netif_discovery.sh to /usr/local/sbin directory] **********************************************************************
+2018-05-30 16:55:18,680 p=33681 u=ansible |  ok: [10.19.109.232]
+2018-05-30 16:55:18,721 p=33681 u=ansible |  TASK [client/ceph-nodes : Ensure netif_discovery.sh.log file is owned by nobody] *********************************************************************
+2018-05-30 16:55:18,935 p=33681 u=ansible |  changed: [10.19.109.232]
+2018-05-30 16:55:18,975 p=33681 u=ansible |  TASK [client/ceph-nodes : Copy smart-health.sh to /usr/local/sbin directory] *************************************************************************
+2018-05-30 16:55:19,244 p=33681 u=ansible |  ok: [10.19.109.232]
+2018-05-30 16:55:19,284 p=33681 u=ansible |  TASK [client/ceph-nodes : Copy smart-temp.sh to /usr/local/sbin directory] ***************************************************************************
+2018-05-30 16:55:19,554 p=33681 u=ansible |  ok: [10.19.109.232]
+2018-05-30 16:55:19,636 p=33681 u=ansible |  TASK [client/ceph-nodes : Copy ceph-status.sh to /usr/local/sbin directory] **************************************************************************
+2018-05-30 16:55:19,865 p=33681 u=ansible |  ok: [10.19.109.232]
+2018-05-30 16:55:19,905 p=33681 u=ansible |  TASK [client/ceph-nodes : Copy types.db.custom to /usr/share/collectd directory] *********************************************************************
+2018-05-30 16:55:20,258 p=33681 u=ansible |  ok: [10.19.109.232]
+2018-05-30 16:55:20,308 p=33681 u=ansible |  TASK [client/ceph-nodes : Start collectd client] *****************************************************************************************************
+2018-05-30 16:55:20,638 p=33681 u=ansible |  changed: [10.19.109.232]
+2018-05-30 16:55:20,639 p=33681 u=ansible |  PLAY RECAP *******************************************************************************************************************************************
+2018-05-30 16:55:20,640 p=33681 u=ansible |  10.19.109.232              : ok=13   changed=2    unreachable=0    failed=0   
+2018-05-30 17:12:01,219 p=34257 u=ansible |  PLAY [ceph-nodes] ************************************************************************************************************************************
+2018-05-30 17:12:01,233 p=34257 u=ansible |  TASK [Gathering Facts] *******************************************************************************************************************************
+2018-05-30 17:12:03,810 p=34257 u=ansible |  ok: [10.19.109.232]
+2018-05-30 17:12:03,848 p=34257 u=ansible |  TASK [client/ceph-nodes : Copy collectd rpm /tmp] ****************************************************************************************************
+2018-05-30 17:12:04,612 p=34257 u=ansible |  ok: [10.19.109.232] => (item=collectd-5.8.0-5.el7ost.x86_64.rpm)
+2018-05-30 17:12:05,069 p=34257 u=ansible |  ok: [10.19.109.232] => (item=collectd-disk-5.8.0-5.el7ost.x86_64.rpm)
+2018-05-30 17:12:05,530 p=34257 u=ansible |  ok: [10.19.109.232] => (item=collectd-ceph-5.8.0-5.el7ost.x86_64.rpm)
+2018-05-30 17:12:05,572 p=34257 u=ansible |  TASK [client/ceph-nodes : Install collectd package] **************************************************************************************************
+2018-05-30 17:12:06,452 p=34257 u=ansible |  ok: [10.19.109.232] => (item=[u'/tmp/collectd-5.8.0-5.el7ost.x86_64.rpm', u'/tmp/collectd-disk-5.8.0-5.el7ost.x86_64.rpm', u'/tmp/collectd-ceph-5.8.0-5.el7ost.x86_64.rpm'])
+2018-05-30 17:12:06,495 p=34257 u=ansible |  TASK [client/ceph-nodes : Configure collectd client to send metrics to collectd exporter] ************************************************************
+2018-05-30 17:12:06,889 p=34257 u=ansible |  ok: [10.19.109.232]
+2018-05-30 17:12:06,933 p=34257 u=ansible |  TASK [client/ceph-nodes : Copy nfvi-services.sh to /usr/share/collectd/exec directory] ***************************************************************
+2018-05-30 17:12:07,483 p=34257 u=ansible |  fatal: [10.19.109.232]: FAILED! => {
+    "changed": false, 
+    "checksum": "2535ae86241c10ab8c5fa0037353b704622c130d"
+}
+
+MSG:
+
+Destination directory /usr/share/collectd/exec does not exist
+
+2018-05-30 17:12:07,485 p=34257 u=ansible |  PLAY RECAP *******************************************************************************************************************************************
+2018-05-30 17:12:07,485 p=34257 u=ansible |  10.19.109.232              : ok=4    changed=0    unreachable=0    failed=1   
+2018-05-30 17:13:39,906 p=34374 u=ansible |  PLAY [ceph-nodes] ************************************************************************************************************************************
+2018-05-30 17:13:39,920 p=34374 u=ansible |  TASK [Gathering Facts] *******************************************************************************************************************************
+2018-05-30 17:13:42,380 p=34374 u=ansible |  ok: [10.19.109.232]
+2018-05-30 17:13:42,418 p=34374 u=ansible |  TASK [client/ceph-nodes : Copy collectd rpm /tmp] ****************************************************************************************************
+2018-05-30 17:13:43,228 p=34374 u=ansible |  ok: [10.19.109.232] => (item=collectd-5.8.0-5.el7ost.x86_64.rpm)
+2018-05-30 17:13:43,707 p=34374 u=ansible |  ok: [10.19.109.232] => (item=collectd-disk-5.8.0-5.el7ost.x86_64.rpm)
+2018-05-30 17:13:44,193 p=34374 u=ansible |  ok: [10.19.109.232] => (item=collectd-ceph-5.8.0-5.el7ost.x86_64.rpm)
+2018-05-30 17:13:44,235 p=34374 u=ansible |  TASK [client/ceph-nodes : Install collectd package] **************************************************************************************************
+2018-05-30 17:13:45,157 p=34374 u=ansible |  ok: [10.19.109.232] => (item=[u'/tmp/collectd-5.8.0-5.el7ost.x86_64.rpm', u'/tmp/collectd-disk-5.8.0-5.el7ost.x86_64.rpm', u'/tmp/collectd-ceph-5.8.0-5.el7ost.x86_64.rpm'])
+2018-05-30 17:13:45,198 p=34374 u=ansible |  TASK [client/ceph-nodes : Configure collectd client to send metrics to collectd exporter] ************************************************************
+2018-05-30 17:13:45,596 p=34374 u=ansible |  ok: [10.19.109.232]
+2018-05-30 17:13:45,636 p=34374 u=ansible |  TASK [client/ceph-nodes : Create /usr/share/collectd/exec directory] *********************************************************************************
+2018-05-30 17:13:45,814 p=34374 u=ansible |  changed: [10.19.109.232]
+2018-05-30 17:13:45,854 p=34374 u=ansible |  TASK [client/ceph-nodes : Copy nfvi-services.sh to /usr/share/collectd/exec directory] ***************************************************************
+2018-05-30 17:13:46,433 p=34374 u=ansible |  changed: [10.19.109.232]
+2018-05-30 17:13:46,473 p=34374 u=ansible |  TASK [client/ceph-nodes : Copy discover-disks.sh to /usr/local/sbin directory] ***********************************************************************
+2018-05-30 17:13:46,764 p=34374 u=ansible |  ok: [10.19.109.232]
+2018-05-30 17:13:46,802 p=34374 u=ansible |  TASK [client/ceph-nodes : Copy netif_discovery.sh to /usr/local/sbin directory] **********************************************************************
+2018-05-30 17:13:47,078 p=34374 u=ansible |  ok: [10.19.109.232]
+2018-05-30 17:13:47,117 p=34374 u=ansible |  TASK [client/ceph-nodes : Ensure netif_discovery.sh.log file is owned by nobody] *********************************************************************
+2018-05-30 17:13:47,334 p=34374 u=ansible |  changed: [10.19.109.232]
+2018-05-30 17:13:47,374 p=34374 u=ansible |  TASK [client/ceph-nodes : Copy smart-health.sh to /usr/local/sbin directory] *************************************************************************
+2018-05-30 17:13:47,678 p=34374 u=ansible |  ok: [10.19.109.232]
+2018-05-30 17:13:47,716 p=34374 u=ansible |  TASK [client/ceph-nodes : Copy smart-temp.sh to /usr/local/sbin directory] ***************************************************************************
+2018-05-30 17:13:47,957 p=34374 u=ansible |  ok: [10.19.109.232]
+2018-05-30 17:13:47,997 p=34374 u=ansible |  TASK [client/ceph-nodes : Copy ceph-status.sh to /usr/local/sbin directory] **************************************************************************
+2018-05-30 17:13:48,247 p=34374 u=ansible |  ok: [10.19.109.232]
+2018-05-30 17:13:48,288 p=34374 u=ansible |  TASK [client/ceph-nodes : Copy types.db.custom to /usr/share/collectd directory] *********************************************************************
+2018-05-30 17:13:48,653 p=34374 u=ansible |  ok: [10.19.109.232]
+2018-05-30 17:13:48,693 p=34374 u=ansible |  TASK [client/ceph-nodes : Start collectd client] *****************************************************************************************************
+2018-05-30 17:13:49,020 p=34374 u=ansible |  changed: [10.19.109.232]
+2018-05-30 17:13:49,022 p=34374 u=ansible |  PLAY RECAP *******************************************************************************************************************************************
+2018-05-30 17:13:49,022 p=34374 u=ansible |  10.19.109.232              : ok=14   changed=4    unreachable=0    failed=0   
+2018-05-30 17:15:21,380 p=34534 u=ansible |  PLAY [ceph-nodes] ************************************************************************************************************************************
+2018-05-30 17:15:21,394 p=34534 u=ansible |  TASK [Gathering Facts] *******************************************************************************************************************************
+2018-05-30 17:15:23,874 p=34534 u=ansible |  ok: [10.19.109.232]
+2018-05-30 17:15:23,913 p=34534 u=ansible |  TASK [client/ceph-nodes : Copy collectd rpm /tmp] ****************************************************************************************************
+2018-05-30 17:15:24,699 p=34534 u=ansible |  ok: [10.19.109.232] => (item=collectd-5.8.0-5.el7ost.x86_64.rpm)
+2018-05-30 17:15:25,162 p=34534 u=ansible |  ok: [10.19.109.232] => (item=collectd-disk-5.8.0-5.el7ost.x86_64.rpm)
+2018-05-30 17:15:25,626 p=34534 u=ansible |  ok: [10.19.109.232] => (item=collectd-ceph-5.8.0-5.el7ost.x86_64.rpm)
+2018-05-30 17:15:25,670 p=34534 u=ansible |  TASK [client/ceph-nodes : Install collectd package] **************************************************************************************************
+2018-05-30 17:15:26,590 p=34534 u=ansible |  ok: [10.19.109.232] => (item=[u'/tmp/collectd-5.8.0-5.el7ost.x86_64.rpm', u'/tmp/collectd-disk-5.8.0-5.el7ost.x86_64.rpm', u'/tmp/collectd-ceph-5.8.0-5.el7ost.x86_64.rpm'])
+2018-05-30 17:15:26,635 p=34534 u=ansible |  TASK [client/ceph-nodes : Configure collectd client to send metrics to collectd exporter] ************************************************************
+2018-05-30 17:15:27,220 p=34534 u=ansible |  changed: [10.19.109.232]
+2018-05-30 17:15:27,261 p=34534 u=ansible |  TASK [client/ceph-nodes : Create /usr/share/collectd/exec directory] *********************************************************************************
+2018-05-30 17:15:27,432 p=34534 u=ansible |  ok: [10.19.109.232]
+2018-05-30 17:15:27,473 p=34534 u=ansible |  TASK [client/ceph-nodes : Copy nfvi-services.sh to /usr/share/collectd/exec directory] ***************************************************************
+2018-05-30 17:15:27,839 p=34534 u=ansible |  ok: [10.19.109.232]
+2018-05-30 17:15:27,880 p=34534 u=ansible |  TASK [client/ceph-nodes : Copy discover-disks.sh to /usr/local/sbin directory] ***********************************************************************
+2018-05-30 17:15:28,164 p=34534 u=ansible |  ok: [10.19.109.232]
+2018-05-30 17:15:28,206 p=34534 u=ansible |  TASK [client/ceph-nodes : Copy netif_discovery.sh to /usr/local/sbin directory] **********************************************************************
+2018-05-30 17:15:28,480 p=34534 u=ansible |  ok: [10.19.109.232]
+2018-05-30 17:15:28,521 p=34534 u=ansible |  TASK [client/ceph-nodes : Ensure netif_discovery.sh.log file is owned by nobody] *********************************************************************
+2018-05-30 17:15:28,738 p=34534 u=ansible |  changed: [10.19.109.232]
+2018-05-30 17:15:28,777 p=34534 u=ansible |  TASK [client/ceph-nodes : Copy smart-health.sh to /usr/local/sbin directory] *************************************************************************
+2018-05-30 17:15:29,057 p=34534 u=ansible |  ok: [10.19.109.232]
+2018-05-30 17:15:29,138 p=34534 u=ansible |  TASK [client/ceph-nodes : Copy smart-temp.sh to /usr/local/sbin directory] ***************************************************************************
+2018-05-30 17:15:29,369 p=34534 u=ansible |  ok: [10.19.109.232]
+2018-05-30 17:15:29,409 p=34534 u=ansible |  TASK [client/ceph-nodes : Copy ceph-status.sh to /usr/local/sbin directory] **************************************************************************
+2018-05-30 17:15:29,649 p=34534 u=ansible |  ok: [10.19.109.232]
+2018-05-30 17:15:29,689 p=34534 u=ansible |  TASK [client/ceph-nodes : Copy types.db.custom to /usr/share/collectd directory] *********************************************************************
+2018-05-30 17:15:30,039 p=34534 u=ansible |  ok: [10.19.109.232]
+2018-05-30 17:15:30,078 p=34534 u=ansible |  TASK [client/ceph-nodes : Start collectd client] *****************************************************************************************************
+2018-05-30 17:15:30,409 p=34534 u=ansible |  changed: [10.19.109.232]
+2018-05-30 17:15:30,411 p=34534 u=ansible |  PLAY RECAP *******************************************************************************************************************************************
+2018-05-30 17:15:30,411 p=34534 u=ansible |  10.19.109.232              : ok=14   changed=3    unreachable=0    failed=0   
+2018-05-30 17:18:21,589 p=34717 u=ansible |  PLAY [ceph-nodes] ************************************************************************************************************************************
+2018-05-30 17:18:21,603 p=34717 u=ansible |  TASK [Gathering Facts] *******************************************************************************************************************************
+2018-05-30 17:18:24,062 p=34717 u=ansible |  ok: [10.19.109.232]
+2018-05-30 17:18:24,101 p=34717 u=ansible |  TASK [client/ceph-nodes : Copy collectd rpm /tmp] ****************************************************************************************************
+2018-05-30 17:18:24,887 p=34717 u=ansible |  ok: [10.19.109.232] => (item=collectd-5.8.0-5.el7ost.x86_64.rpm)
+2018-05-30 17:18:25,361 p=34717 u=ansible |  ok: [10.19.109.232] => (item=collectd-disk-5.8.0-5.el7ost.x86_64.rpm)
+2018-05-30 17:18:25,819 p=34717 u=ansible |  ok: [10.19.109.232] => (item=collectd-ceph-5.8.0-5.el7ost.x86_64.rpm)
+2018-05-30 17:18:25,864 p=34717 u=ansible |  TASK [client/ceph-nodes : Install collectd package] **************************************************************************************************
+2018-05-30 17:18:26,808 p=34717 u=ansible |  ok: [10.19.109.232] => (item=[u'/tmp/collectd-5.8.0-5.el7ost.x86_64.rpm', u'/tmp/collectd-disk-5.8.0-5.el7ost.x86_64.rpm', u'/tmp/collectd-ceph-5.8.0-5.el7ost.x86_64.rpm'])
+2018-05-30 17:18:26,850 p=34717 u=ansible |  TASK [client/ceph-nodes : Configure collectd client to send metrics to collectd exporter] ************************************************************
+2018-05-30 17:18:27,423 p=34717 u=ansible |  changed: [10.19.109.232]
+2018-05-30 17:18:27,465 p=34717 u=ansible |  TASK [client/ceph-nodes : Create /usr/share/collectd/exec directory] *********************************************************************************
+2018-05-30 17:18:27,647 p=34717 u=ansible |  ok: [10.19.109.232]
+2018-05-30 17:18:27,688 p=34717 u=ansible |  TASK [client/ceph-nodes : Copy nfvi-services.sh to /usr/share/collectd/exec directory] ***************************************************************
+2018-05-30 17:18:28,045 p=34717 u=ansible |  ok: [10.19.109.232]
+2018-05-30 17:18:28,086 p=34717 u=ansible |  TASK [client/ceph-nodes : Copy discover-disks.sh to /usr/local/sbin directory] ***********************************************************************
+2018-05-30 17:18:28,356 p=34717 u=ansible |  ok: [10.19.109.232]
+2018-05-30 17:18:28,398 p=34717 u=ansible |  TASK [client/ceph-nodes : Copy netif_discovery.sh to /usr/local/sbin directory] **********************************************************************
+2018-05-30 17:18:28,675 p=34717 u=ansible |  ok: [10.19.109.232]
+2018-05-30 17:18:28,715 p=34717 u=ansible |  TASK [client/ceph-nodes : Ensure netif_discovery.sh.log file is owned by nobody] *********************************************************************
+2018-05-30 17:18:28,928 p=34717 u=ansible |  changed: [10.19.109.232]
+2018-05-30 17:18:28,968 p=34717 u=ansible |  TASK [client/ceph-nodes : Copy smart-health.sh to /usr/local/sbin directory] *************************************************************************
+2018-05-30 17:18:29,239 p=34717 u=ansible |  ok: [10.19.109.232]
+2018-05-30 17:18:29,317 p=34717 u=ansible |  TASK [client/ceph-nodes : Copy smart-temp.sh to /usr/local/sbin directory] ***************************************************************************
+2018-05-30 17:18:29,545 p=34717 u=ansible |  ok: [10.19.109.232]
+2018-05-30 17:18:29,586 p=34717 u=ansible |  TASK [client/ceph-nodes : Copy ceph-status.sh to /usr/local/sbin directory] **************************************************************************
+2018-05-30 17:18:29,818 p=34717 u=ansible |  ok: [10.19.109.232]
+2018-05-30 17:18:29,859 p=34717 u=ansible |  TASK [client/ceph-nodes : Copy types.db.custom to /usr/share/collectd directory] *********************************************************************
+2018-05-30 17:18:30,213 p=34717 u=ansible |  ok: [10.19.109.232]
+2018-05-30 17:18:30,253 p=34717 u=ansible |  TASK [client/ceph-nodes : Start collectd client] *****************************************************************************************************
+2018-05-30 17:18:30,593 p=34717 u=ansible |  changed: [10.19.109.232]
+2018-05-30 17:18:30,595 p=34717 u=ansible |  PLAY RECAP *******************************************************************************************************************************************
+2018-05-30 17:18:30,595 p=34717 u=ansible |  10.19.109.232              : ok=14   changed=3    unreachable=0    failed=0   
+2018-05-31 10:12:17,070 p=9275 u=ansible |  playbook: playbooks/remove_prometheus_snmptrapper.yaml
+2018-05-31 10:14:57,879 p=9376 u=ansible |  playbook: playbooks/remove_prometheus_snmptrapper.yaml
+2018-05-31 10:15:28,681 p=9413 u=ansible |  PLAY [snmptrapper_hosts] *****************************************************************************************************************************
+2018-05-31 10:15:28,695 p=9413 u=ansible |  TASK [Gathering Facts] *******************************************************************************************************************************
+2018-05-31 10:15:29,766 p=9413 u=ansible |  ok: [10.19.109.225]
+2018-05-31 10:15:29,779 p=9413 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Stop prometheus snmptrapper service] ********************************************************************
+2018-05-31 10:15:30,122 p=9413 u=ansible |  changed: [10.19.109.225]
+2018-05-31 10:15:30,135 p=9413 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Find the name of the prometheus snmptrapper unarchived directory] ***************************************
+2018-05-31 10:15:30,519 p=9413 u=ansible |  ok: [10.19.109.225]
+2018-05-31 10:15:30,533 p=9413 u=ansible |  TASK [server/prometheus-snmptrapper-remove : debug] **************************************************************************************************
+2018-05-31 10:15:30,581 p=9413 u=ansible |  ok: [10.19.109.225] => {
+    "dir_name.files[0].path": "/opt/prometheus-snmptrapper"
+}
+2018-05-31 10:15:30,594 p=9413 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Delete /opt/prometheus-snmptrapper directory] ***********************************************************
+2018-05-31 10:15:30,980 p=9413 u=ansible |  changed: [10.19.109.225]
+2018-05-31 10:15:30,993 p=9413 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Delete /etc/systemd/system/prometheus_snmptrapper.service] **********************************************
+2018-05-31 10:15:31,185 p=9413 u=ansible |  changed: [10.19.109.225]
+2018-05-31 10:15:31,186 p=9413 u=ansible |  PLAY RECAP *******************************************************************************************************************************************
+2018-05-31 10:15:31,187 p=9413 u=ansible |  10.19.109.225              : ok=6    changed=3    unreachable=0    failed=0   
+2018-05-31 10:15:40,518 p=9447 u=ansible |  PLAY [snmptrapper_hosts] *****************************************************************************************************************************
+2018-05-31 10:15:40,533 p=9447 u=ansible |  TASK [Gathering Facts] *******************************************************************************************************************************
+2018-05-31 10:15:41,258 p=9447 u=ansible |  ok: [10.19.109.225]
+2018-05-31 10:15:41,272 p=9447 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Stop prometheus snmptrapper service] ********************************************************************
+2018-05-31 10:15:41,603 p=9447 u=ansible |  fatal: [10.19.109.225]: FAILED! => {
+    "changed": false
+}
+
+MSG:
+
+Could not find the requested service prometheus_snmptrapper: host
+
+2018-05-31 10:15:41,604 p=9447 u=ansible |  PLAY RECAP *******************************************************************************************************************************************
+2018-05-31 10:15:41,605 p=9447 u=ansible |  10.19.109.225              : ok=1    changed=0    unreachable=0    failed=1   
+2018-05-31 10:16:34,871 p=9494 u=ansible |  PLAY [snmptrapper_hosts] *****************************************************************************************************************************
+2018-05-31 10:16:34,885 p=9494 u=ansible |  TASK [Gathering Facts] *******************************************************************************************************************************
+2018-05-31 10:16:35,578 p=9494 u=ansible |  ok: [10.19.109.225]
+2018-05-31 10:16:35,591 p=9494 u=ansible |  TASK [server/prometheus-snmptrapper-install : Copy prometheus snmptrapper files to target] ***********************************************************
+2018-05-31 10:16:37,051 p=9494 u=ansible |  changed: [10.19.109.225]
+2018-05-31 10:16:37,063 p=9494 u=ansible |  TASK [server/prometheus-snmptrapper-install : Find the name of the prometheus snmptrapper directory] *************************************************
+2018-05-31 10:16:37,407 p=9494 u=ansible |  ok: [10.19.109.225]
+2018-05-31 10:16:37,421 p=9494 u=ansible |  TASK [server/prometheus-snmptrapper-install : debug] *************************************************************************************************
+2018-05-31 10:16:37,465 p=9494 u=ansible |  ok: [10.19.109.225] => {
+    "dir_name.files[0].path": "/opt/prometheus-snmptrapper"
+}
+2018-05-31 10:16:37,478 p=9494 u=ansible |  TASK [server/prometheus-snmptrapper-install : set_fact] **********************************************************************************************
+2018-05-31 10:16:37,524 p=9494 u=ansible |  ok: [10.19.109.225]
+2018-05-31 10:16:37,537 p=9494 u=ansible |  TASK [server/prometheus-snmptrapper-install : Set prometheus_snmptrapper to be executable] ***********************************************************
+2018-05-31 10:16:37,899 p=9494 u=ansible |  changed: [10.19.109.225]
+2018-05-31 10:16:37,913 p=9494 u=ansible |  TASK [server/prometheus-snmptrapper-install : Create systemd service for prometheus snmptrapper] *****************************************************
+2018-05-31 10:16:38,366 p=9494 u=ansible |  changed: [10.19.109.225]
+2018-05-31 10:16:38,379 p=9494 u=ansible |  TASK [server/prometheus-snmptrapper-install : Start prometheus snmptrapper service] ******************************************************************
+2018-05-31 10:16:38,818 p=9494 u=ansible |  changed: [10.19.109.225]
+2018-05-31 10:16:38,820 p=9494 u=ansible |  PLAY RECAP *******************************************************************************************************************************************
+2018-05-31 10:16:38,820 p=9494 u=ansible |  10.19.109.225              : ok=8    changed=4    unreachable=0    failed=0   
+2018-05-31 10:39:52,467 p=10013 u=ansible |  playbook: playbooks/remove_prometheus_snmptrapper.yaml
+2018-05-31 10:39:59,344 p=10026 u=ansible |  PLAY [snmptrapper_hosts] *****************************************************************************************************************************
+2018-05-31 10:39:59,358 p=10026 u=ansible |  TASK [Gathering Facts] *******************************************************************************************************************************
+2018-05-31 10:40:00,397 p=10026 u=ansible |  ok: [10.19.109.225]
+2018-05-31 10:40:00,409 p=10026 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Find prometheus_snmptrapper systemd service] ************************************************************
+2018-05-31 10:40:00,707 p=10026 u=ansible |  ok: [10.19.109.225]
+2018-05-31 10:40:00,720 p=10026 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Stop prometheus snmptrapper service] ********************************************************************
+2018-05-31 10:40:01,120 p=10026 u=ansible |  changed: [10.19.109.225]
+2018-05-31 10:40:01,134 p=10026 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Find the name of the prometheus snmptrapper unarchived directory] ***************************************
+2018-05-31 10:40:01,330 p=10026 u=ansible |  ok: [10.19.109.225]
+2018-05-31 10:40:01,344 p=10026 u=ansible |  TASK [server/prometheus-snmptrapper-remove : debug] **************************************************************************************************
+2018-05-31 10:40:01,394 p=10026 u=ansible |  ok: [10.19.109.225] => {
+    "dir_name.files[0].path": "/opt/prometheus-snmptrapper"
+}
+2018-05-31 10:40:01,406 p=10026 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Delete /opt/prometheus-snmptrapper directory] ***********************************************************
+2018-05-31 10:40:01,773 p=10026 u=ansible |  changed: [10.19.109.225]
+2018-05-31 10:40:01,786 p=10026 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Delete /etc/systemd/system/prometheus_snmptrapper.service] **********************************************
+2018-05-31 10:40:01,985 p=10026 u=ansible |  changed: [10.19.109.225]
+2018-05-31 10:40:01,987 p=10026 u=ansible |  PLAY RECAP *******************************************************************************************************************************************
+2018-05-31 10:40:01,987 p=10026 u=ansible |  10.19.109.225              : ok=7    changed=3    unreachable=0    failed=0   
+2018-05-31 10:40:16,648 p=10102 u=ansible |  PLAY [snmptrapper_hosts] *****************************************************************************************************************************
+2018-05-31 10:40:16,661 p=10102 u=ansible |  TASK [Gathering Facts] *******************************************************************************************************************************
+2018-05-31 10:40:17,358 p=10102 u=ansible |  ok: [10.19.109.225]
+2018-05-31 10:40:17,370 p=10102 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Find prometheus_snmptrapper systemd service] ************************************************************
+2018-05-31 10:40:17,665 p=10102 u=ansible |  ok: [10.19.109.225]
+2018-05-31 10:40:17,680 p=10102 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Stop prometheus snmptrapper service] ********************************************************************
+2018-05-31 10:40:18,004 p=10102 u=ansible |  fatal: [10.19.109.225]: FAILED! => {
+    "changed": false
+}
+
+MSG:
+
+Could not find the requested service prometheus_snmptrapper: host
+
+2018-05-31 10:40:18,005 p=10102 u=ansible |  PLAY RECAP *******************************************************************************************************************************************
+2018-05-31 10:40:18,006 p=10102 u=ansible |  10.19.109.225              : ok=2    changed=0    unreachable=0    failed=1   
+2018-05-31 10:41:38,740 p=10146 u=ansible |  playbook: playbooks/remove_prometheus_snmptrapper.yaml
+2018-05-31 10:41:44,775 p=10159 u=ansible |  PLAY [snmptrapper_hosts] *****************************************************************************************************************************
+2018-05-31 10:41:44,789 p=10159 u=ansible |  TASK [Gathering Facts] *******************************************************************************************************************************
+2018-05-31 10:41:45,807 p=10159 u=ansible |  ok: [10.19.109.225]
+2018-05-31 10:41:45,820 p=10159 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Find prometheus_snmptrapper systemd service] ************************************************************
+2018-05-31 10:41:46,118 p=10159 u=ansible |  ok: [10.19.109.225]
+2018-05-31 10:41:46,131 p=10159 u=ansible |  TASK [server/prometheus-snmptrapper-remove : debug] **************************************************************************************************
+2018-05-31 10:41:46,177 p=10159 u=ansible |  ok: [10.19.109.225] => {
+    "service_filename.files[0].path": "VARIABLE IS NOT DEFINED!"
+}
+2018-05-31 10:41:46,190 p=10159 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Stop prometheus snmptrapper service] ********************************************************************
+2018-05-31 10:41:46,555 p=10159 u=ansible |  fatal: [10.19.109.225]: FAILED! => {
+    "changed": false
+}
+
+MSG:
+
+Could not find the requested service prometheus_snmptrapper: host
+
+2018-05-31 10:41:46,556 p=10159 u=ansible |  PLAY RECAP *******************************************************************************************************************************************
+2018-05-31 10:41:46,557 p=10159 u=ansible |  10.19.109.225              : ok=3    changed=0    unreachable=0    failed=1   
+2018-05-31 10:44:02,847 p=10257 u=ansible |   [WARNING]: Ignoring invalid attribute: ignore_error
+
+2018-05-31 10:44:02,879 p=10257 u=ansible |  playbook: playbooks/remove_prometheus_snmptrapper.yaml
+2018-05-31 10:44:54,292 p=10298 u=ansible |  playbook: playbooks/remove_prometheus_snmptrapper.yaml
+2018-05-31 10:45:02,009 p=10313 u=ansible |  playbook: playbooks/remove_prometheus_snmptrapper.yaml
+2018-05-31 10:45:16,465 p=10346 u=ansible |  PLAY [snmptrapper_hosts] *****************************************************************************************************************************
+2018-05-31 10:45:16,479 p=10346 u=ansible |  TASK [Gathering Facts] *******************************************************************************************************************************
+2018-05-31 10:45:17,544 p=10346 u=ansible |  ok: [10.19.109.225]
+2018-05-31 10:45:17,557 p=10346 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Find prometheus_snmptrapper systemd service] ************************************************************
+2018-05-31 10:45:17,852 p=10346 u=ansible |  ok: [10.19.109.225]
+2018-05-31 10:45:17,865 p=10346 u=ansible |  TASK [server/prometheus-snmptrapper-remove : debug] **************************************************************************************************
+2018-05-31 10:45:17,911 p=10346 u=ansible |  ok: [10.19.109.225] => {
+    "service_filename.files[0].path": "VARIABLE IS NOT DEFINED!"
+}
+2018-05-31 10:45:17,924 p=10346 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Stop prometheus snmptrapper service] ********************************************************************
+2018-05-31 10:45:18,288 p=10346 u=ansible |  fatal: [10.19.109.225]: FAILED! => {
+    "changed": false
+}
+
+MSG:
+
+Could not find the requested service prometheus_snmptrapper: host
+
+2018-05-31 10:45:18,288 p=10346 u=ansible |  ...ignoring
+2018-05-31 10:45:18,300 p=10346 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Find the name of the prometheus snmptrapper unarchived directory] ***************************************
+2018-05-31 10:45:18,498 p=10346 u=ansible |  ok: [10.19.109.225]
+2018-05-31 10:45:18,510 p=10346 u=ansible |  TASK [server/prometheus-snmptrapper-remove : debug] **************************************************************************************************
+2018-05-31 10:45:18,562 p=10346 u=ansible |  ok: [10.19.109.225] => {
+    "dir_name.files[0].path": "VARIABLE IS NOT DEFINED!"
+}
+2018-05-31 10:45:18,574 p=10346 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Delete /opt/prometheus-snmptrapper directory] ***********************************************************
+2018-05-31 10:45:18,594 p=10346 u=ansible |  fatal: [10.19.109.225]: FAILED! => {}
+
+MSG:
+
+The task includes an option with an undefined variable. The error was: list object has no element 0
+
+The error appears to have been in '/home/ansible/telemetry-local-pkgs/roles/server/prometheus-snmptrapper-remove/tasks/main.yaml': line 26, column 3, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+
+- name: Delete /opt/prometheus-snmptrapper directory
+  ^ here
+
+
+2018-05-31 10:45:18,595 p=10346 u=ansible |  PLAY RECAP *******************************************************************************************************************************************
+2018-05-31 10:45:18,595 p=10346 u=ansible |  10.19.109.225              : ok=6    changed=0    unreachable=0    failed=1   
+2018-05-31 10:49:34,396 p=10506 u=ansible |  playbook: playbooks/remove_prometheus_snmptrapper.yaml
+2018-05-31 10:49:44,146 p=10521 u=ansible |  PLAY [snmptrapper_hosts] *****************************************************************************************************************************
+2018-05-31 10:49:44,159 p=10521 u=ansible |  TASK [Gathering Facts] *******************************************************************************************************************************
+2018-05-31 10:49:45,217 p=10521 u=ansible |  ok: [10.19.109.225]
+2018-05-31 10:49:45,230 p=10521 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Find prometheus_snmptrapper systemd service] ************************************************************
+2018-05-31 10:49:45,528 p=10521 u=ansible |  ok: [10.19.109.225]
+2018-05-31 10:49:45,541 p=10521 u=ansible |  TASK [server/prometheus-snmptrapper-remove : debug] **************************************************************************************************
+2018-05-31 10:49:45,588 p=10521 u=ansible |  ok: [10.19.109.225] => {
+    "service_filename.files[0].path": "VARIABLE IS NOT DEFINED!"
+}
+2018-05-31 10:49:45,602 p=10521 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Stop prometheus snmptrapper service] ********************************************************************
+2018-05-31 10:49:45,951 p=10521 u=ansible |  fatal: [10.19.109.225]: FAILED! => {
+    "changed": false
+}
+
+MSG:
+
+Unsupported parameters for (systemd) module: when Supported parameters include: daemon_reload, enabled, masked, name, no_block, state, user
+
+2018-05-31 10:49:45,952 p=10521 u=ansible |  PLAY RECAP *******************************************************************************************************************************************
+2018-05-31 10:49:45,953 p=10521 u=ansible |  10.19.109.225              : ok=3    changed=0    unreachable=0    failed=1   
+2018-05-31 10:50:26,966 p=10580 u=ansible |  PLAY [snmptrapper_hosts] *****************************************************************************************************************************
+2018-05-31 10:50:26,979 p=10580 u=ansible |  TASK [Gathering Facts] *******************************************************************************************************************************
+2018-05-31 10:50:27,666 p=10580 u=ansible |  ok: [10.19.109.225]
+2018-05-31 10:50:27,679 p=10580 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Find prometheus_snmptrapper systemd service] ************************************************************
+2018-05-31 10:50:27,983 p=10580 u=ansible |  ok: [10.19.109.225]
+2018-05-31 10:50:27,996 p=10580 u=ansible |  TASK [server/prometheus-snmptrapper-remove : debug] **************************************************************************************************
+2018-05-31 10:50:28,042 p=10580 u=ansible |  ok: [10.19.109.225] => {
+    "service_filename.files[0].path": "VARIABLE IS NOT DEFINED!"
+}
+2018-05-31 10:50:28,055 p=10580 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Stop prometheus snmptrapper service] ********************************************************************
+2018-05-31 10:50:28,407 p=10580 u=ansible |  fatal: [10.19.109.225]: FAILED! => {
+    "changed": false
+}
+
+MSG:
+
+Could not find the requested service prometheus_snmptrapper: host
+
+2018-05-31 10:50:28,408 p=10580 u=ansible |  PLAY RECAP *******************************************************************************************************************************************
+2018-05-31 10:50:28,408 p=10580 u=ansible |  10.19.109.225              : ok=3    changed=0    unreachable=0    failed=1   
+2018-05-31 10:53:47,321 p=10708 u=ansible |  ERROR! Syntax Error while loading YAML.
+  mapping values are not allowed in this context
+
+The error appears to have been in '/home/ansible/telemetry-local-pkgs/roles/server/prometheus-snmptrapper-remove/tasks/main.yaml': line 13, column 9, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+  when: service_filename is defined
+    name: prometheus_snmptrapper
+        ^ here
+
+2018-05-31 10:54:13,324 p=10737 u=ansible |  playbook: playbooks/remove_prometheus_snmptrapper.yaml
+2018-05-31 10:54:19,698 p=10749 u=ansible |  PLAY [snmptrapper_hosts] *****************************************************************************************************************************
+2018-05-31 10:54:19,712 p=10749 u=ansible |  TASK [Gathering Facts] *******************************************************************************************************************************
+2018-05-31 10:54:20,758 p=10749 u=ansible |  ok: [10.19.109.225]
+2018-05-31 10:54:20,771 p=10749 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Find prometheus_snmptrapper systemd service] ************************************************************
+2018-05-31 10:54:21,067 p=10749 u=ansible |  ok: [10.19.109.225]
+2018-05-31 10:54:21,081 p=10749 u=ansible |  TASK [server/prometheus-snmptrapper-remove : debug] **************************************************************************************************
+2018-05-31 10:54:21,126 p=10749 u=ansible |  ok: [10.19.109.225] => {
+    "service_filename.files[0].path": "VARIABLE IS NOT DEFINED!"
+}
+2018-05-31 10:54:21,139 p=10749 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Stop prometheus snmptrapper service] ********************************************************************
+2018-05-31 10:54:21,524 p=10749 u=ansible |  fatal: [10.19.109.225]: FAILED! => {
+    "changed": false
+}
+
+MSG:
+
+Could not find the requested service prometheus_snmptrapper: host
+
+2018-05-31 10:54:21,526 p=10749 u=ansible |  PLAY RECAP *******************************************************************************************************************************************
+2018-05-31 10:54:21,526 p=10749 u=ansible |  10.19.109.225              : ok=3    changed=0    unreachable=0    failed=1   
+2018-05-31 10:54:31,033 p=10780 u=ansible |  ansible-playbook 2.5.0
+  config file = /home/ansible/telemetry-local-pkgs/ansible.cfg
+  configured module search path = [u'/home/ansible/.ansible/plugins/modules', u'/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/lib/python2.7/site-packages/ansible
+  executable location = /bin/ansible-playbook
+  python version = 2.7.5 (default, Feb 20 2018, 09:19:12) [GCC 4.8.5 20150623 (Red Hat 4.8.5-28)]
+2018-05-31 10:54:31,034 p=10780 u=ansible |  Using /home/ansible/telemetry-local-pkgs/ansible.cfg as config file
+2018-05-31 10:54:31,050 p=10780 u=ansible |  Parsed /home/ansible/telemetry-local-pkgs/telemetry_hosts inventory source with ini plugin
+2018-05-31 10:54:31,289 p=10780 u=ansible |  PLAYBOOK: remove_prometheus_snmptrapper.yaml *********************************************************************************************************
+2018-05-31 10:54:31,290 p=10780 u=ansible |  1 plays in playbooks/remove_prometheus_snmptrapper.yaml
+2018-05-31 10:54:31,317 p=10780 u=ansible |  PLAY [snmptrapper_hosts] *****************************************************************************************************************************
+2018-05-31 10:54:31,331 p=10780 u=ansible |  TASK [Gathering Facts] *******************************************************************************************************************************
+2018-05-31 10:54:31,331 p=10780 u=ansible |  task path: /home/ansible/telemetry-local-pkgs/playbooks/remove_prometheus_snmptrapper.yaml:1
+2018-05-31 10:54:31,689 p=10780 u=ansible |  Using module file /usr/lib/python2.7/site-packages/ansible/modules/system/setup.py
+2018-05-31 10:54:32,022 p=10780 u=ansible |  ok: [10.19.109.225]
+2018-05-31 10:54:32,023 p=10780 u=ansible |  META: ran handlers
+2018-05-31 10:54:32,035 p=10780 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Find prometheus_snmptrapper systemd service] ************************************************************
+2018-05-31 10:54:32,035 p=10780 u=ansible |  task path: /home/ansible/telemetry-local-pkgs/roles/server/prometheus-snmptrapper-remove/tasks/main.yaml:1
+2018-05-31 10:54:32,198 p=10780 u=ansible |  Using module file /usr/lib/python2.7/site-packages/ansible/modules/files/find.py
+2018-05-31 10:54:32,334 p=10780 u=ansible |  ok: [10.19.109.225] => {
+    "changed": false, 
+    "examined": 16, 
+    "files": [], 
+    "invocation": {
+        "module_args": {
+            "age": null, 
+            "age_stamp": "mtime", 
+            "contains": null, 
+            "excludes": null, 
+            "file_type": "file", 
+            "follow": false, 
+            "get_checksum": false, 
+            "hidden": false, 
+            "path": "/etc/systemd/system/", 
+            "paths": [
+                "/etc/systemd/system/"
+            ], 
+            "pattern": "prometheus_snmptrapper.service", 
+            "patterns": [
+                "prometheus_snmptrapper.service"
+            ], 
+            "recurse": false, 
+            "size": null, 
+            "use_regex": false
+        }
+    }, 
+    "matched": 0
+}
+2018-05-31 10:54:32,347 p=10780 u=ansible |  TASK [server/prometheus-snmptrapper-remove : debug] **************************************************************************************************
+2018-05-31 10:54:32,347 p=10780 u=ansible |  task path: /home/ansible/telemetry-local-pkgs/roles/server/prometheus-snmptrapper-remove/tasks/main.yaml:8
+2018-05-31 10:54:32,393 p=10780 u=ansible |  ok: [10.19.109.225] => {
+    "service_filename.files[0].path": "VARIABLE IS NOT DEFINED!: list object has no element 0"
+}
+2018-05-31 10:54:32,405 p=10780 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Stop prometheus snmptrapper service] ********************************************************************
+2018-05-31 10:54:32,405 p=10780 u=ansible |  task path: /home/ansible/telemetry-local-pkgs/roles/server/prometheus-snmptrapper-remove/tasks/main.yaml:10
+2018-05-31 10:54:32,643 p=10780 u=ansible |  Using module file /usr/lib/python2.7/site-packages/ansible/modules/system/systemd.py
+2018-05-31 10:54:32,787 p=10780 u=ansible |  fatal: [10.19.109.225]: FAILED! => {
+    "changed": false, 
+    "invocation": {
+        "module_args": {
+            "daemon_reload": false, 
+            "enabled": null, 
+            "masked": null, 
+            "name": "prometheus_snmptrapper", 
+            "no_block": false, 
+            "state": "stopped", 
+            "user": false
+        }
+    }
+}
+
+MSG:
+
+Could not find the requested service prometheus_snmptrapper: host
+
+2018-05-31 10:54:32,788 p=10780 u=ansible |  PLAY RECAP *******************************************************************************************************************************************
+2018-05-31 10:54:32,789 p=10780 u=ansible |  10.19.109.225              : ok=3    changed=0    unreachable=0    failed=1   
+2018-05-31 10:55:54,091 p=10851 u=ansible |  playbook: playbooks/remove_prometheus_snmptrapper.yaml
+2018-05-31 10:55:59,707 p=10866 u=ansible |  PLAY [snmptrapper_hosts] *****************************************************************************************************************************
+2018-05-31 10:55:59,721 p=10866 u=ansible |  TASK [Gathering Facts] *******************************************************************************************************************************
+2018-05-31 10:56:00,738 p=10866 u=ansible |  ok: [10.19.109.225]
+2018-05-31 10:56:00,751 p=10866 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Find prometheus_snmptrapper systemd service] ************************************************************
+2018-05-31 10:56:01,035 p=10866 u=ansible |  ok: [10.19.109.225]
+2018-05-31 10:56:01,048 p=10866 u=ansible |  TASK [server/prometheus-snmptrapper-remove : debug] **************************************************************************************************
+2018-05-31 10:56:01,092 p=10866 u=ansible |  ok: [10.19.109.225] => {
+    "service_filename.files[0].path": "VARIABLE IS NOT DEFINED!"
+}
+2018-05-31 10:56:01,104 p=10866 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Stop prometheus snmptrapper service] ********************************************************************
+2018-05-31 10:56:01,470 p=10866 u=ansible |  fatal: [10.19.109.225]: FAILED! => {
+    "changed": false
+}
+
+MSG:
+
+Could not find the requested service prometheus_snmptrapper: host
+
+2018-05-31 10:56:01,470 p=10866 u=ansible |  ...ignoring
+2018-05-31 10:56:01,483 p=10866 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Find the name of the prometheus snmptrapper unarchived directory] ***************************************
+2018-05-31 10:56:01,669 p=10866 u=ansible |  ok: [10.19.109.225]
+2018-05-31 10:56:01,682 p=10866 u=ansible |  TASK [server/prometheus-snmptrapper-remove : debug] **************************************************************************************************
+2018-05-31 10:56:01,729 p=10866 u=ansible |  ok: [10.19.109.225] => {
+    "dir_name.files[0].path": "VARIABLE IS NOT DEFINED!"
+}
+2018-05-31 10:56:01,741 p=10866 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Delete /opt/prometheus-snmptrapper directory] ***********************************************************
+2018-05-31 10:56:01,759 p=10866 u=ansible |  fatal: [10.19.109.225]: FAILED! => {}
+
+MSG:
+
+The task includes an option with an undefined variable. The error was: list object has no element 0
+
+The error appears to have been in '/home/ansible/telemetry-local-pkgs/roles/server/prometheus-snmptrapper-remove/tasks/main.yaml': line 26, column 3, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+
+- name: Delete /opt/prometheus-snmptrapper directory
+  ^ here
+
+
+2018-05-31 10:56:01,759 p=10866 u=ansible |  ...ignoring
+2018-05-31 10:56:01,773 p=10866 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Delete /etc/systemd/system/prometheus_snmptrapper.service] **********************************************
+2018-05-31 10:56:01,789 p=10866 u=ansible |  fatal: [10.19.109.225]: FAILED! => {}
+
+MSG:
+
+The task includes an option with an undefined variable. The error was: list object has no element 0
+
+The error appears to have been in '/home/ansible/telemetry-local-pkgs/roles/server/prometheus-snmptrapper-remove/tasks/main.yaml': line 33, column 3, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+
+- name: Delete /etc/systemd/system/prometheus_snmptrapper.service
+  ^ here
+
+
+2018-05-31 10:56:01,790 p=10866 u=ansible |  PLAY RECAP *******************************************************************************************************************************************
+2018-05-31 10:56:01,790 p=10866 u=ansible |  10.19.109.225              : ok=7    changed=0    unreachable=0    failed=1   
+2018-05-31 10:56:30,437 p=10932 u=ansible |  PLAY [snmptrapper_hosts] *****************************************************************************************************************************
+2018-05-31 10:56:30,451 p=10932 u=ansible |  TASK [Gathering Facts] *******************************************************************************************************************************
+2018-05-31 10:56:31,141 p=10932 u=ansible |  ok: [10.19.109.225]
+2018-05-31 10:56:31,153 p=10932 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Find prometheus_snmptrapper systemd service] ************************************************************
+2018-05-31 10:56:31,465 p=10932 u=ansible |  ok: [10.19.109.225]
+2018-05-31 10:56:31,478 p=10932 u=ansible |  TASK [server/prometheus-snmptrapper-remove : debug] **************************************************************************************************
+2018-05-31 10:56:31,523 p=10932 u=ansible |  ok: [10.19.109.225] => {
+    "service_filename.files[0].path": "VARIABLE IS NOT DEFINED!"
+}
+2018-05-31 10:56:31,536 p=10932 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Stop prometheus snmptrapper service] ********************************************************************
+2018-05-31 10:56:31,891 p=10932 u=ansible |  fatal: [10.19.109.225]: FAILED! => {
+    "changed": false
+}
+
+MSG:
+
+Could not find the requested service prometheus_snmptrapper: host
+
+2018-05-31 10:56:31,891 p=10932 u=ansible |  ...ignoring
+2018-05-31 10:56:31,904 p=10932 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Find the name of the prometheus snmptrapper unarchived directory] ***************************************
+2018-05-31 10:56:32,101 p=10932 u=ansible |  ok: [10.19.109.225]
+2018-05-31 10:56:32,114 p=10932 u=ansible |  TASK [server/prometheus-snmptrapper-remove : debug] **************************************************************************************************
+2018-05-31 10:56:32,162 p=10932 u=ansible |  ok: [10.19.109.225] => {
+    "dir_name.files[0].path": "VARIABLE IS NOT DEFINED!"
+}
+2018-05-31 10:56:32,175 p=10932 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Delete /opt/prometheus-snmptrapper directory] ***********************************************************
+2018-05-31 10:56:32,193 p=10932 u=ansible |  fatal: [10.19.109.225]: FAILED! => {}
+
+MSG:
+
+The task includes an option with an undefined variable. The error was: list object has no element 0
+
+The error appears to have been in '/home/ansible/telemetry-local-pkgs/roles/server/prometheus-snmptrapper-remove/tasks/main.yaml': line 26, column 3, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+
+- name: Delete /opt/prometheus-snmptrapper directory
+  ^ here
+
+
+2018-05-31 10:56:32,193 p=10932 u=ansible |  ...ignoring
+2018-05-31 10:56:32,206 p=10932 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Delete /etc/systemd/system/prometheus_snmptrapper.service] **********************************************
+2018-05-31 10:56:32,223 p=10932 u=ansible |  fatal: [10.19.109.225]: FAILED! => {}
+
+MSG:
+
+The task includes an option with an undefined variable. The error was: list object has no element 0
+
+The error appears to have been in '/home/ansible/telemetry-local-pkgs/roles/server/prometheus-snmptrapper-remove/tasks/main.yaml': line 33, column 3, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+
+- name: Delete /etc/systemd/system/prometheus_snmptrapper.service
+  ^ here
+
+
+2018-05-31 10:56:32,224 p=10932 u=ansible |  ...ignoring
+2018-05-31 10:56:32,225 p=10932 u=ansible |  PLAY RECAP *******************************************************************************************************************************************
+2018-05-31 10:56:32,225 p=10932 u=ansible |  10.19.109.225              : ok=8    changed=0    unreachable=0    failed=0   
+2018-05-31 11:06:37,851 p=11310 u=ansible |  playbook: playbooks/remove_prometheus_snmptrapper.yaml
+2018-05-31 11:06:44,001 p=11323 u=ansible |  PLAY [snmptrapper_hosts] *****************************************************************************************************************************
+2018-05-31 11:06:44,015 p=11323 u=ansible |  TASK [Gathering Facts] *******************************************************************************************************************************
+2018-05-31 11:06:45,070 p=11323 u=ansible |  ok: [10.19.109.225]
+2018-05-31 11:06:45,082 p=11323 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Find prometheus_snmptrapper systemd service] ************************************************************
+2018-05-31 11:06:45,373 p=11323 u=ansible |  fatal: [10.19.109.225]: FAILED! => {
+    "changed": false
+}
+
+MSG:
+
+Unsupported parameters for (stat) module: pattern Supported parameters include: checksum_algorithm, follow, get_attributes, get_checksum, get_md5, get_mime, path
+
+2018-05-31 11:06:45,374 p=11323 u=ansible |  PLAY RECAP *******************************************************************************************************************************************
+2018-05-31 11:06:45,375 p=11323 u=ansible |  10.19.109.225              : ok=1    changed=0    unreachable=0    failed=1   
+2018-05-31 11:07:11,767 p=11367 u=ansible |  PLAY [snmptrapper_hosts] *****************************************************************************************************************************
+2018-05-31 11:07:11,781 p=11367 u=ansible |  TASK [Gathering Facts] *******************************************************************************************************************************
+2018-05-31 11:07:12,499 p=11367 u=ansible |  ok: [10.19.109.225]
+2018-05-31 11:07:12,512 p=11367 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Find prometheus_snmptrapper systemd service] ************************************************************
+2018-05-31 11:07:12,816 p=11367 u=ansible |  ok: [10.19.109.225]
+2018-05-31 11:07:12,830 p=11367 u=ansible |  TASK [server/prometheus-snmptrapper-remove : debug] **************************************************************************************************
+2018-05-31 11:07:12,878 p=11367 u=ansible |  ok: [10.19.109.225] => {
+    "service_filename.files[0].path": "VARIABLE IS NOT DEFINED!"
+}
+2018-05-31 11:07:12,891 p=11367 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Stop prometheus snmptrapper service] ********************************************************************
+2018-05-31 11:07:12,905 p=11367 u=ansible |  skipping: [10.19.109.225]
+2018-05-31 11:07:12,918 p=11367 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Find the name of the prometheus snmptrapper unarchived directory] ***************************************
+2018-05-31 11:07:13,267 p=11367 u=ansible |  ok: [10.19.109.225]
+2018-05-31 11:07:13,281 p=11367 u=ansible |  TASK [server/prometheus-snmptrapper-remove : debug] **************************************************************************************************
+2018-05-31 11:07:13,333 p=11367 u=ansible |  ok: [10.19.109.225] => {
+    "dir_name.files[0].path": "VARIABLE IS NOT DEFINED!"
+}
+2018-05-31 11:07:13,345 p=11367 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Delete /opt/prometheus-snmptrapper directory] ***********************************************************
+2018-05-31 11:07:13,362 p=11367 u=ansible |  fatal: [10.19.109.225]: FAILED! => {}
+
+MSG:
+
+The task includes an option with an undefined variable. The error was: list object has no element 0
+
+The error appears to have been in '/home/ansible/telemetry-local-pkgs/roles/server/prometheus-snmptrapper-remove/tasks/main.yaml': line 23, column 3, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+
+- name: Delete /opt/prometheus-snmptrapper directory
+  ^ here
+
+
+2018-05-31 11:07:13,363 p=11367 u=ansible |  ...ignoring
+2018-05-31 11:07:13,375 p=11367 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Delete /etc/systemd/system/prometheus_snmptrapper.service] **********************************************
+2018-05-31 11:07:13,392 p=11367 u=ansible |  fatal: [10.19.109.225]: FAILED! => {}
+
+MSG:
+
+The task includes an option with an undefined variable. The error was: 'dict object' has no attribute 'files'
+
+The error appears to have been in '/home/ansible/telemetry-local-pkgs/roles/server/prometheus-snmptrapper-remove/tasks/main.yaml': line 30, column 3, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+
+- name: Delete /etc/systemd/system/prometheus_snmptrapper.service
+  ^ here
+
+
+2018-05-31 11:07:13,392 p=11367 u=ansible |  ...ignoring
+2018-05-31 11:07:13,393 p=11367 u=ansible |  PLAY RECAP *******************************************************************************************************************************************
+2018-05-31 11:07:13,394 p=11367 u=ansible |  10.19.109.225              : ok=7    changed=0    unreachable=0    failed=0   
+2018-05-31 11:09:27,216 p=11472 u=ansible |  PLAY [snmptrapper_hosts] *****************************************************************************************************************************
+2018-05-31 11:09:27,230 p=11472 u=ansible |  TASK [Gathering Facts] *******************************************************************************************************************************
+2018-05-31 11:09:28,272 p=11472 u=ansible |  ok: [10.19.109.225]
+2018-05-31 11:09:28,284 p=11472 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Find prometheus_snmptrapper systemd service] ************************************************************
+2018-05-31 11:09:28,577 p=11472 u=ansible |  ok: [10.19.109.225]
+2018-05-31 11:09:28,591 p=11472 u=ansible |  TASK [server/prometheus-snmptrapper-remove : debug] **************************************************************************************************
+2018-05-31 11:09:28,637 p=11472 u=ansible |  ok: [10.19.109.225] => {
+    "service_filename.files[0].path": "VARIABLE IS NOT DEFINED!"
+}
+2018-05-31 11:09:28,650 p=11472 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Stop prometheus snmptrapper service] ********************************************************************
+2018-05-31 11:09:28,666 p=11472 u=ansible |  skipping: [10.19.109.225]
+2018-05-31 11:09:28,679 p=11472 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Find the name of the prometheus snmptrapper unarchived directory] ***************************************
+2018-05-31 11:09:28,866 p=11472 u=ansible |  ok: [10.19.109.225]
+2018-05-31 11:09:28,879 p=11472 u=ansible |  TASK [server/prometheus-snmptrapper-remove : debug] **************************************************************************************************
+2018-05-31 11:09:28,928 p=11472 u=ansible |  ok: [10.19.109.225] => {
+    "dir_name.files[0].path": "VARIABLE IS NOT DEFINED!"
+}
+2018-05-31 11:09:28,941 p=11472 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Delete /opt/prometheus-snmptrapper directory] ***********************************************************
+2018-05-31 11:09:28,956 p=11472 u=ansible |  skipping: [10.19.109.225]
+2018-05-31 11:09:28,969 p=11472 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Delete /etc/systemd/system/prometheus_snmptrapper.service] **********************************************
+2018-05-31 11:09:28,989 p=11472 u=ansible |  skipping: [10.19.109.225]
+2018-05-31 11:09:28,990 p=11472 u=ansible |  PLAY RECAP *******************************************************************************************************************************************
+2018-05-31 11:09:28,990 p=11472 u=ansible |  10.19.109.225              : ok=5    changed=0    unreachable=0    failed=0   
+2018-05-31 11:09:43,153 p=11528 u=ansible |  PLAY [snmptrapper_hosts] *****************************************************************************************************************************
+2018-05-31 11:09:43,167 p=11528 u=ansible |  TASK [Gathering Facts] *******************************************************************************************************************************
+2018-05-31 11:09:43,855 p=11528 u=ansible |  ok: [10.19.109.225]
+2018-05-31 11:09:43,868 p=11528 u=ansible |  TASK [server/prometheus-snmptrapper-install : Copy prometheus snmptrapper files to target] ***********************************************************
+2018-05-31 11:09:45,380 p=11528 u=ansible |  changed: [10.19.109.225]
+2018-05-31 11:09:45,393 p=11528 u=ansible |  TASK [server/prometheus-snmptrapper-install : Find the name of the prometheus snmptrapper directory] *************************************************
+2018-05-31 11:09:45,739 p=11528 u=ansible |  ok: [10.19.109.225]
+2018-05-31 11:09:45,752 p=11528 u=ansible |  TASK [server/prometheus-snmptrapper-install : debug] *************************************************************************************************
+2018-05-31 11:09:45,798 p=11528 u=ansible |  ok: [10.19.109.225] => {
+    "dir_name.files[0].path": "/opt/prometheus-snmptrapper"
+}
+2018-05-31 11:09:45,811 p=11528 u=ansible |  TASK [server/prometheus-snmptrapper-install : set_fact] **********************************************************************************************
+2018-05-31 11:09:45,857 p=11528 u=ansible |  ok: [10.19.109.225]
+2018-05-31 11:09:45,870 p=11528 u=ansible |  TASK [server/prometheus-snmptrapper-install : Set prometheus_snmptrapper to be executable] ***********************************************************
+2018-05-31 11:09:46,224 p=11528 u=ansible |  changed: [10.19.109.225]
+2018-05-31 11:09:46,237 p=11528 u=ansible |  TASK [server/prometheus-snmptrapper-install : Create systemd service for prometheus snmptrapper] *****************************************************
+2018-05-31 11:09:46,683 p=11528 u=ansible |  changed: [10.19.109.225]
+2018-05-31 11:09:46,696 p=11528 u=ansible |  TASK [server/prometheus-snmptrapper-install : Start prometheus snmptrapper service] ******************************************************************
+2018-05-31 11:09:47,149 p=11528 u=ansible |  changed: [10.19.109.225]
+2018-05-31 11:09:47,152 p=11528 u=ansible |  PLAY RECAP *******************************************************************************************************************************************
+2018-05-31 11:09:47,152 p=11528 u=ansible |  10.19.109.225              : ok=8    changed=4    unreachable=0    failed=0   
+2018-05-31 11:09:53,065 p=11579 u=ansible |  PLAY [snmptrapper_hosts] *****************************************************************************************************************************
+2018-05-31 11:09:53,079 p=11579 u=ansible |  TASK [Gathering Facts] *******************************************************************************************************************************
+2018-05-31 11:09:53,790 p=11579 u=ansible |  ok: [10.19.109.225]
+2018-05-31 11:09:53,803 p=11579 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Find prometheus_snmptrapper systemd service] ************************************************************
+2018-05-31 11:09:54,105 p=11579 u=ansible |  ok: [10.19.109.225]
+2018-05-31 11:09:54,118 p=11579 u=ansible |  TASK [server/prometheus-snmptrapper-remove : debug] **************************************************************************************************
+2018-05-31 11:09:54,165 p=11579 u=ansible |  ok: [10.19.109.225] => {
+    "service_filename.files[0].path": "VARIABLE IS NOT DEFINED!"
+}
+2018-05-31 11:09:54,179 p=11579 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Stop prometheus snmptrapper service] ********************************************************************
+2018-05-31 11:09:54,545 p=11579 u=ansible |  changed: [10.19.109.225]
+2018-05-31 11:09:54,558 p=11579 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Find the name of the prometheus snmptrapper unarchived directory] ***************************************
+2018-05-31 11:09:54,749 p=11579 u=ansible |  ok: [10.19.109.225]
+2018-05-31 11:09:54,762 p=11579 u=ansible |  TASK [server/prometheus-snmptrapper-remove : debug] **************************************************************************************************
+2018-05-31 11:09:54,809 p=11579 u=ansible |  ok: [10.19.109.225] => {
+    "dir_name.files[0].path": "VARIABLE IS NOT DEFINED!"
+}
+2018-05-31 11:09:54,822 p=11579 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Delete /opt/prometheus-snmptrapper directory] ***********************************************************
+2018-05-31 11:09:54,839 p=11579 u=ansible |  fatal: [10.19.109.225]: FAILED! => {}
+
+MSG:
+
+The task includes an option with an undefined variable. The error was: 'dict object' has no attribute 'files'
+
+The error appears to have been in '/home/ansible/telemetry-local-pkgs/roles/server/prometheus-snmptrapper-remove/tasks/main.yaml': line 21, column 3, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+
+- name: Delete /opt/prometheus-snmptrapper directory
+  ^ here
+
+
+2018-05-31 11:09:54,841 p=11579 u=ansible |  PLAY RECAP *******************************************************************************************************************************************
+2018-05-31 11:09:54,841 p=11579 u=ansible |  10.19.109.225              : ok=6    changed=1    unreachable=0    failed=1   
+2018-05-31 11:11:29,323 p=11680 u=ansible |  PLAY [snmptrapper_hosts] *****************************************************************************************************************************
+2018-05-31 11:11:29,337 p=11680 u=ansible |  TASK [Gathering Facts] *******************************************************************************************************************************
+2018-05-31 11:11:30,406 p=11680 u=ansible |  ok: [10.19.109.225]
+2018-05-31 11:11:30,418 p=11680 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Find prometheus_snmptrapper systemd service] ************************************************************
+2018-05-31 11:11:30,726 p=11680 u=ansible |  ok: [10.19.109.225]
+2018-05-31 11:11:30,740 p=11680 u=ansible |  TASK [server/prometheus-snmptrapper-remove : debug] **************************************************************************************************
+2018-05-31 11:11:30,786 p=11680 u=ansible |  ok: [10.19.109.225] => {
+    "service_filename.files[0].path": "VARIABLE IS NOT DEFINED!"
+}
+2018-05-31 11:11:30,800 p=11680 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Stop prometheus snmptrapper service] ********************************************************************
+2018-05-31 11:11:31,183 p=11680 u=ansible |  ok: [10.19.109.225]
+2018-05-31 11:11:31,197 p=11680 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Find the name of the prometheus snmptrapper unarchived directory] ***************************************
+2018-05-31 11:11:31,401 p=11680 u=ansible |  ok: [10.19.109.225]
+2018-05-31 11:11:31,415 p=11680 u=ansible |  TASK [server/prometheus-snmptrapper-remove : debug] **************************************************************************************************
+2018-05-31 11:11:31,472 p=11680 u=ansible |  ok: [10.19.109.225] => {
+    "dir_name.files[0].path": "VARIABLE IS NOT DEFINED!"
+}
+2018-05-31 11:11:31,485 p=11680 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Delete /opt/prometheus-snmptrapper directory] ***********************************************************
+2018-05-31 11:11:31,847 p=11680 u=ansible |  changed: [10.19.109.225]
+2018-05-31 11:11:31,860 p=11680 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Delete /etc/systemd/system/prometheus_snmptrapper.service] **********************************************
+2018-05-31 11:11:32,064 p=11680 u=ansible |  changed: [10.19.109.225]
+2018-05-31 11:11:32,065 p=11680 u=ansible |  PLAY RECAP *******************************************************************************************************************************************
+2018-05-31 11:11:32,066 p=11680 u=ansible |  10.19.109.225              : ok=8    changed=2    unreachable=0    failed=0   
+2018-05-31 11:12:07,110 p=11740 u=ansible |  PLAY [snmptrapper_hosts] *****************************************************************************************************************************
+2018-05-31 11:12:07,123 p=11740 u=ansible |  TASK [Gathering Facts] *******************************************************************************************************************************
+2018-05-31 11:12:07,827 p=11740 u=ansible |  ok: [10.19.109.225]
+2018-05-31 11:12:07,839 p=11740 u=ansible |  TASK [server/prometheus-snmptrapper-install : Copy prometheus snmptrapper files to target] ***********************************************************
+2018-05-31 11:12:09,317 p=11740 u=ansible |  changed: [10.19.109.225]
+2018-05-31 11:12:09,329 p=11740 u=ansible |  TASK [server/prometheus-snmptrapper-install : Find the name of the prometheus snmptrapper directory] *************************************************
+2018-05-31 11:12:09,685 p=11740 u=ansible |  ok: [10.19.109.225]
+2018-05-31 11:12:09,698 p=11740 u=ansible |  TASK [server/prometheus-snmptrapper-install : debug] *************************************************************************************************
+2018-05-31 11:12:09,746 p=11740 u=ansible |  ok: [10.19.109.225] => {
+    "dir_name.files[0].path": "/opt/prometheus-snmptrapper"
+}
+2018-05-31 11:12:09,759 p=11740 u=ansible |  TASK [server/prometheus-snmptrapper-install : set_fact] **********************************************************************************************
+2018-05-31 11:12:09,805 p=11740 u=ansible |  ok: [10.19.109.225]
+2018-05-31 11:12:09,818 p=11740 u=ansible |  TASK [server/prometheus-snmptrapper-install : Set prometheus_snmptrapper to be executable] ***********************************************************
+2018-05-31 11:12:10,180 p=11740 u=ansible |  changed: [10.19.109.225]
+2018-05-31 11:12:10,193 p=11740 u=ansible |  TASK [server/prometheus-snmptrapper-install : Create systemd service for prometheus snmptrapper] *****************************************************
+2018-05-31 11:12:10,646 p=11740 u=ansible |  changed: [10.19.109.225]
+2018-05-31 11:12:10,659 p=11740 u=ansible |  TASK [server/prometheus-snmptrapper-install : Start prometheus snmptrapper service] ******************************************************************
+2018-05-31 11:12:11,098 p=11740 u=ansible |  changed: [10.19.109.225]
+2018-05-31 11:12:11,099 p=11740 u=ansible |  PLAY RECAP *******************************************************************************************************************************************
+2018-05-31 11:12:11,100 p=11740 u=ansible |  10.19.109.225              : ok=8    changed=4    unreachable=0    failed=0   
+2018-05-31 11:13:59,058 p=11897 u=ansible |  PLAY [snmptrapper_hosts] *****************************************************************************************************************************
+2018-05-31 11:13:59,072 p=11897 u=ansible |  TASK [Gathering Facts] *******************************************************************************************************************************
+2018-05-31 11:14:00,131 p=11897 u=ansible |  ok: [10.19.109.225]
+2018-05-31 11:14:00,144 p=11897 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Find prometheus_snmptrapper systemd service] ************************************************************
+2018-05-31 11:14:00,455 p=11897 u=ansible |  ok: [10.19.109.225]
+2018-05-31 11:14:00,468 p=11897 u=ansible |  TASK [server/prometheus-snmptrapper-remove : debug] **************************************************************************************************
+2018-05-31 11:14:00,516 p=11897 u=ansible |  ok: [10.19.109.225] => {
+    "service_filename": {
+        "changed": false, 
+        "failed": false, 
+        "stat": {
+            "atime": 1527779380.675257, 
+            "attr_flags": "", 
+            "attributes": [], 
+            "block_size": 4096, 
+            "blocks": 8, 
+            "charset": "us-ascii", 
+            "checksum": "6144ecad44c7cd046c8f65257806d68bbb4f456a", 
+            "ctime": 1527779380.212257, 
+            "dev": 64769, 
+            "device_type": 0, 
+            "executable": false, 
+            "exists": true, 
+            "gid": 0, 
+            "gr_name": "root", 
+            "inode": 37758750, 
+            "isblk": false, 
+            "ischr": false, 
+            "isdir": false, 
+            "isfifo": false, 
+            "isgid": false, 
+            "islnk": false, 
+            "isreg": true, 
+            "issock": false, 
+            "isuid": false, 
+            "mimetype": "text/plain", 
+            "mode": "0644", 
+            "mtime": 1527779380.060257, 
+            "nlink": 1, 
+            "path": "/etc/systemd/system/prometheus_snmptrapper.service", 
+            "pw_name": "root", 
+            "readable": true, 
+            "rgrp": true, 
+            "roth": true, 
+            "rusr": true, 
+            "size": 228, 
+            "uid": 0, 
+            "version": "1395077831", 
+            "wgrp": false, 
+            "woth": false, 
+            "writeable": true, 
+            "wusr": true, 
+            "xgrp": false, 
+            "xoth": false, 
+            "xusr": false
+        }
+    }
+}
+2018-05-31 11:14:00,529 p=11897 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Stop prometheus snmptrapper service] ********************************************************************
+2018-05-31 11:14:00,921 p=11897 u=ansible |  changed: [10.19.109.225]
+2018-05-31 11:14:00,934 p=11897 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Find the name of the prometheus snmptrapper unarchived directory] ***************************************
+2018-05-31 11:14:01,129 p=11897 u=ansible |  ok: [10.19.109.225]
+2018-05-31 11:14:01,143 p=11897 u=ansible |  TASK [server/prometheus-snmptrapper-remove : debug] **************************************************************************************************
+2018-05-31 11:14:01,192 p=11897 u=ansible |  ok: [10.19.109.225] => {
+    "dir_name.files": "VARIABLE IS NOT DEFINED!"
+}
+2018-05-31 11:14:01,205 p=11897 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Delete /opt/prometheus-snmptrapper directory] ***********************************************************
+2018-05-31 11:14:01,562 p=11897 u=ansible |  changed: [10.19.109.225]
+2018-05-31 11:14:01,575 p=11897 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Delete /etc/systemd/system/prometheus_snmptrapper.service] **********************************************
+2018-05-31 11:14:01,776 p=11897 u=ansible |  changed: [10.19.109.225]
+2018-05-31 11:14:01,778 p=11897 u=ansible |  PLAY RECAP *******************************************************************************************************************************************
+2018-05-31 11:14:01,778 p=11897 u=ansible |  10.19.109.225              : ok=8    changed=3    unreachable=0    failed=0   
+2018-05-31 11:15:12,689 p=11986 u=ansible |  PLAY [snmptrapper_hosts] *****************************************************************************************************************************
+2018-05-31 11:15:12,702 p=11986 u=ansible |  TASK [Gathering Facts] *******************************************************************************************************************************
+2018-05-31 11:15:13,752 p=11986 u=ansible |  ok: [10.19.109.225]
+2018-05-31 11:15:13,764 p=11986 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Find prometheus_snmptrapper systemd service] ************************************************************
+2018-05-31 11:15:14,056 p=11986 u=ansible |  ok: [10.19.109.225]
+2018-05-31 11:15:14,069 p=11986 u=ansible |  TASK [server/prometheus-snmptrapper-remove : debug] **************************************************************************************************
+2018-05-31 11:15:14,115 p=11986 u=ansible |  ok: [10.19.109.225] => {
+    "service_filename": {
+        "changed": false, 
+        "failed": false, 
+        "stat": {
+            "exists": false
+        }
+    }
+}
+2018-05-31 11:15:14,130 p=11986 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Stop prometheus snmptrapper service] ********************************************************************
+2018-05-31 11:15:14,145 p=11986 u=ansible |  skipping: [10.19.109.225]
+2018-05-31 11:15:14,158 p=11986 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Find the name of the prometheus snmptrapper unarchived directory] ***************************************
+2018-05-31 11:15:14,338 p=11986 u=ansible |  ok: [10.19.109.225]
+2018-05-31 11:15:14,350 p=11986 u=ansible |  TASK [server/prometheus-snmptrapper-remove : debug] **************************************************************************************************
+2018-05-31 11:15:14,396 p=11986 u=ansible |  ok: [10.19.109.225] => {
+    "dir_name.files": "VARIABLE IS NOT DEFINED!"
+}
+2018-05-31 11:15:14,409 p=11986 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Delete /opt/prometheus-snmptrapper directory] ***********************************************************
+2018-05-31 11:15:14,424 p=11986 u=ansible |  skipping: [10.19.109.225]
+2018-05-31 11:15:14,436 p=11986 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Delete /etc/systemd/system/prometheus_snmptrapper.service] **********************************************
+2018-05-31 11:15:14,450 p=11986 u=ansible |  skipping: [10.19.109.225]
+2018-05-31 11:15:14,451 p=11986 u=ansible |  PLAY RECAP *******************************************************************************************************************************************
+2018-05-31 11:15:14,451 p=11986 u=ansible |  10.19.109.225              : ok=5    changed=0    unreachable=0    failed=0   
+2018-05-31 11:15:46,145 p=12043 u=ansible |  PLAY [snmptrapper_hosts] *****************************************************************************************************************************
+2018-05-31 11:15:46,158 p=12043 u=ansible |  TASK [Gathering Facts] *******************************************************************************************************************************
+2018-05-31 11:15:46,868 p=12043 u=ansible |  ok: [10.19.109.225]
+2018-05-31 11:15:46,880 p=12043 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Find prometheus_snmptrapper systemd service] ************************************************************
+2018-05-31 11:15:47,162 p=12043 u=ansible |  ok: [10.19.109.225]
+2018-05-31 11:15:47,175 p=12043 u=ansible |  TASK [server/prometheus-snmptrapper-remove : debug] **************************************************************************************************
+2018-05-31 11:15:47,219 p=12043 u=ansible |  ok: [10.19.109.225] => {
+    "service_filename.stat.path": "VARIABLE IS NOT DEFINED!"
+}
+2018-05-31 11:15:47,232 p=12043 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Stop prometheus snmptrapper service] ********************************************************************
+2018-05-31 11:15:47,246 p=12043 u=ansible |  skipping: [10.19.109.225]
+2018-05-31 11:15:47,258 p=12043 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Find the name of the prometheus snmptrapper unarchived directory] ***************************************
+2018-05-31 11:15:47,429 p=12043 u=ansible |  ok: [10.19.109.225]
+2018-05-31 11:15:47,441 p=12043 u=ansible |  TASK [server/prometheus-snmptrapper-remove : debug] **************************************************************************************************
+2018-05-31 11:15:47,486 p=12043 u=ansible |  ok: [10.19.109.225] => {
+    "dir_name.stat.path": "VARIABLE IS NOT DEFINED!"
+}
+2018-05-31 11:15:47,498 p=12043 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Delete /opt/prometheus-snmptrapper directory] ***********************************************************
+2018-05-31 11:15:47,512 p=12043 u=ansible |  skipping: [10.19.109.225]
+2018-05-31 11:15:47,524 p=12043 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Delete /etc/systemd/system/prometheus_snmptrapper.service] **********************************************
+2018-05-31 11:15:47,537 p=12043 u=ansible |  skipping: [10.19.109.225]
+2018-05-31 11:15:47,539 p=12043 u=ansible |  PLAY RECAP *******************************************************************************************************************************************
+2018-05-31 11:15:47,539 p=12043 u=ansible |  10.19.109.225              : ok=5    changed=0    unreachable=0    failed=0   
+2018-05-31 11:16:02,207 p=12083 u=ansible |  PLAY [snmptrapper_hosts] *****************************************************************************************************************************
+2018-05-31 11:16:02,221 p=12083 u=ansible |  TASK [Gathering Facts] *******************************************************************************************************************************
+2018-05-31 11:16:02,924 p=12083 u=ansible |  ok: [10.19.109.225]
+2018-05-31 11:16:02,937 p=12083 u=ansible |  TASK [server/prometheus-snmptrapper-install : Copy prometheus snmptrapper files to target] ***********************************************************
+2018-05-31 11:16:04,442 p=12083 u=ansible |  changed: [10.19.109.225]
+2018-05-31 11:16:04,455 p=12083 u=ansible |  TASK [server/prometheus-snmptrapper-install : Find the name of the prometheus snmptrapper directory] *************************************************
+2018-05-31 11:16:04,829 p=12083 u=ansible |  ok: [10.19.109.225]
+2018-05-31 11:16:04,843 p=12083 u=ansible |  TASK [server/prometheus-snmptrapper-install : debug] *************************************************************************************************
+2018-05-31 11:16:04,894 p=12083 u=ansible |  ok: [10.19.109.225] => {
+    "dir_name.files[0].path": "/opt/prometheus-snmptrapper"
+}
+2018-05-31 11:16:04,907 p=12083 u=ansible |  TASK [server/prometheus-snmptrapper-install : set_fact] **********************************************************************************************
+2018-05-31 11:16:04,955 p=12083 u=ansible |  ok: [10.19.109.225]
+2018-05-31 11:16:04,967 p=12083 u=ansible |  TASK [server/prometheus-snmptrapper-install : Set prometheus_snmptrapper to be executable] ***********************************************************
+2018-05-31 11:16:05,328 p=12083 u=ansible |  changed: [10.19.109.225]
+2018-05-31 11:16:05,341 p=12083 u=ansible |  TASK [server/prometheus-snmptrapper-install : Create systemd service for prometheus snmptrapper] *****************************************************
+2018-05-31 11:16:05,799 p=12083 u=ansible |  changed: [10.19.109.225]
+2018-05-31 11:16:05,812 p=12083 u=ansible |  TASK [server/prometheus-snmptrapper-install : Start prometheus snmptrapper service] ******************************************************************
+2018-05-31 11:16:06,320 p=12083 u=ansible |  changed: [10.19.109.225]
+2018-05-31 11:16:06,322 p=12083 u=ansible |  PLAY RECAP *******************************************************************************************************************************************
+2018-05-31 11:16:06,323 p=12083 u=ansible |  10.19.109.225              : ok=8    changed=4    unreachable=0    failed=0   
+2018-05-31 11:16:21,976 p=12144 u=ansible |  PLAY [snmptrapper_hosts] *****************************************************************************************************************************
+2018-05-31 11:16:21,991 p=12144 u=ansible |  TASK [Gathering Facts] *******************************************************************************************************************************
+2018-05-31 11:16:22,721 p=12144 u=ansible |  ok: [10.19.109.225]
+2018-05-31 11:16:22,733 p=12144 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Find prometheus_snmptrapper systemd service] ************************************************************
+2018-05-31 11:16:23,061 p=12144 u=ansible |  ok: [10.19.109.225]
+2018-05-31 11:16:23,075 p=12144 u=ansible |  TASK [server/prometheus-snmptrapper-remove : debug] **************************************************************************************************
+2018-05-31 11:16:23,125 p=12144 u=ansible |  ok: [10.19.109.225] => {
+    "service_filename.stat.path": "/etc/systemd/system/prometheus_snmptrapper.service"
+}
+2018-05-31 11:16:23,139 p=12144 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Stop prometheus snmptrapper service] ********************************************************************
+2018-05-31 11:16:23,502 p=12144 u=ansible |  changed: [10.19.109.225]
+2018-05-31 11:16:23,515 p=12144 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Find the name of the prometheus snmptrapper unarchived directory] ***************************************
+2018-05-31 11:16:23,706 p=12144 u=ansible |  ok: [10.19.109.225]
+2018-05-31 11:16:23,719 p=12144 u=ansible |  TASK [server/prometheus-snmptrapper-remove : debug] **************************************************************************************************
+2018-05-31 11:16:23,766 p=12144 u=ansible |  ok: [10.19.109.225] => {
+    "dir_name.stat.path": "/opt/prometheus-snmptrapper"
+}
+2018-05-31 11:16:23,779 p=12144 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Delete /opt/prometheus-snmptrapper directory] ***********************************************************
+2018-05-31 11:16:24,134 p=12144 u=ansible |  changed: [10.19.109.225]
+2018-05-31 11:16:24,148 p=12144 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Delete /etc/systemd/system/prometheus_snmptrapper.service] **********************************************
+2018-05-31 11:16:24,342 p=12144 u=ansible |  changed: [10.19.109.225]
+2018-05-31 11:16:24,344 p=12144 u=ansible |  PLAY RECAP *******************************************************************************************************************************************
+2018-05-31 11:16:24,344 p=12144 u=ansible |  10.19.109.225              : ok=8    changed=3    unreachable=0    failed=0   
+2018-05-31 11:16:40,675 p=12200 u=ansible |  PLAY [snmptrapper_hosts] *****************************************************************************************************************************
+2018-05-31 11:16:40,690 p=12200 u=ansible |  TASK [Gathering Facts] *******************************************************************************************************************************
+2018-05-31 11:16:41,413 p=12200 u=ansible |  ok: [10.19.109.225]
+2018-05-31 11:16:41,426 p=12200 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Find prometheus_snmptrapper systemd service] ************************************************************
+2018-05-31 11:16:41,716 p=12200 u=ansible |  ok: [10.19.109.225]
+2018-05-31 11:16:41,729 p=12200 u=ansible |  TASK [server/prometheus-snmptrapper-remove : debug] **************************************************************************************************
+2018-05-31 11:16:41,775 p=12200 u=ansible |  ok: [10.19.109.225] => {
+    "service_filename.stat.path": "VARIABLE IS NOT DEFINED!"
+}
+2018-05-31 11:16:41,788 p=12200 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Stop prometheus snmptrapper service] ********************************************************************
+2018-05-31 11:16:41,804 p=12200 u=ansible |  skipping: [10.19.109.225]
+2018-05-31 11:16:41,817 p=12200 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Find the name of the prometheus snmptrapper unarchived directory] ***************************************
+2018-05-31 11:16:42,005 p=12200 u=ansible |  ok: [10.19.109.225]
+2018-05-31 11:16:42,018 p=12200 u=ansible |  TASK [server/prometheus-snmptrapper-remove : debug] **************************************************************************************************
+2018-05-31 11:16:42,065 p=12200 u=ansible |  ok: [10.19.109.225] => {
+    "dir_name.stat.path": "VARIABLE IS NOT DEFINED!"
+}
+2018-05-31 11:16:42,078 p=12200 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Delete /opt/prometheus-snmptrapper directory] ***********************************************************
+2018-05-31 11:16:42,092 p=12200 u=ansible |  skipping: [10.19.109.225]
+2018-05-31 11:16:42,105 p=12200 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Delete /etc/systemd/system/prometheus_snmptrapper.service] **********************************************
+2018-05-31 11:16:42,121 p=12200 u=ansible |  skipping: [10.19.109.225]
+2018-05-31 11:16:42,123 p=12200 u=ansible |  PLAY RECAP *******************************************************************************************************************************************
+2018-05-31 11:16:42,123 p=12200 u=ansible |  10.19.109.225              : ok=5    changed=0    unreachable=0    failed=0   
+2018-05-31 11:16:49,555 p=12235 u=ansible |  PLAY [snmptrapper_hosts] *****************************************************************************************************************************
+2018-05-31 11:16:49,570 p=12235 u=ansible |  TASK [Gathering Facts] *******************************************************************************************************************************
+2018-05-31 11:16:50,273 p=12235 u=ansible |  ok: [10.19.109.225]
+2018-05-31 11:16:50,286 p=12235 u=ansible |  TASK [server/prometheus-snmptrapper-install : Copy prometheus snmptrapper files to target] ***********************************************************
+2018-05-31 11:16:51,796 p=12235 u=ansible |  changed: [10.19.109.225]
+2018-05-31 11:16:51,809 p=12235 u=ansible |  TASK [server/prometheus-snmptrapper-install : Find the name of the prometheus snmptrapper directory] *************************************************
+2018-05-31 11:16:52,156 p=12235 u=ansible |  ok: [10.19.109.225]
+2018-05-31 11:16:52,169 p=12235 u=ansible |  TASK [server/prometheus-snmptrapper-install : debug] *************************************************************************************************
+2018-05-31 11:16:52,214 p=12235 u=ansible |  ok: [10.19.109.225] => {
+    "dir_name.files[0].path": "/opt/prometheus-snmptrapper"
+}
+2018-05-31 11:16:52,227 p=12235 u=ansible |  TASK [server/prometheus-snmptrapper-install : set_fact] **********************************************************************************************
+2018-05-31 11:16:52,274 p=12235 u=ansible |  ok: [10.19.109.225]
+2018-05-31 11:16:52,287 p=12235 u=ansible |  TASK [server/prometheus-snmptrapper-install : Set prometheus_snmptrapper to be executable] ***********************************************************
+2018-05-31 11:16:52,648 p=12235 u=ansible |  changed: [10.19.109.225]
+2018-05-31 11:16:52,662 p=12235 u=ansible |  TASK [server/prometheus-snmptrapper-install : Create systemd service for prometheus snmptrapper] *****************************************************
+2018-05-31 11:16:53,124 p=12235 u=ansible |  changed: [10.19.109.225]
+2018-05-31 11:16:53,140 p=12235 u=ansible |  TASK [server/prometheus-snmptrapper-install : Start prometheus snmptrapper service] ******************************************************************
+2018-05-31 11:16:53,578 p=12235 u=ansible |  changed: [10.19.109.225]
+2018-05-31 11:16:53,580 p=12235 u=ansible |  PLAY RECAP *******************************************************************************************************************************************
+2018-05-31 11:16:53,581 p=12235 u=ansible |  10.19.109.225              : ok=8    changed=4    unreachable=0    failed=0   
+2018-05-31 11:36:58,913 p=12876 u=ansible |  playbook: playbooks/remove_prometheus_snmptrapper.yaml
+2018-05-31 11:37:06,706 p=12895 u=ansible |  PLAY [snmptrapper_hosts] *****************************************************************************************************************************
+2018-05-31 11:37:06,721 p=12895 u=ansible |  TASK [Gathering Facts] *******************************************************************************************************************************
+2018-05-31 11:37:07,774 p=12895 u=ansible |  ok: [10.19.109.225]
+2018-05-31 11:37:07,786 p=12895 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Find prometheus_snmptrapper systemd service] ************************************************************
+2018-05-31 11:37:08,084 p=12895 u=ansible |  ok: [10.19.109.225]
+2018-05-31 11:37:08,097 p=12895 u=ansible |  TASK [server/prometheus-snmptrapper-remove : debug] **************************************************************************************************
+2018-05-31 11:37:08,146 p=12895 u=ansible |  ok: [10.19.109.225] => {
+    "service_filename.files[0].path": "/etc/systemd/system/prometheus_snmptrapper.service"
+}
+2018-05-31 11:37:08,159 p=12895 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Stop prometheus snmptrapper service] ********************************************************************
+2018-05-31 11:37:08,543 p=12895 u=ansible |  changed: [10.19.109.225]
+2018-05-31 11:37:08,557 p=12895 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Find the name of the prometheus snmptrapper unarchived directory] ***************************************
+2018-05-31 11:37:08,743 p=12895 u=ansible |  ok: [10.19.109.225]
+2018-05-31 11:37:08,756 p=12895 u=ansible |  TASK [server/prometheus-snmptrapper-remove : debug] **************************************************************************************************
+2018-05-31 11:37:08,809 p=12895 u=ansible |  ok: [10.19.109.225] => {
+    "dir_name.files[0].path": "/opt/prometheus-snmptrapper"
+}
+2018-05-31 11:37:08,822 p=12895 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Delete /opt/prometheus-snmptrapper directory] ***********************************************************
+2018-05-31 11:37:09,189 p=12895 u=ansible |  changed: [10.19.109.225]
+2018-05-31 11:37:09,202 p=12895 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Delete /etc/systemd/system/prometheus_snmptrapper.service] **********************************************
+2018-05-31 11:37:09,407 p=12895 u=ansible |  changed: [10.19.109.225]
+2018-05-31 11:37:09,409 p=12895 u=ansible |  PLAY RECAP *******************************************************************************************************************************************
+2018-05-31 11:37:09,409 p=12895 u=ansible |  10.19.109.225              : ok=8    changed=3    unreachable=0    failed=0   
+2018-05-31 11:37:15,924 p=12945 u=ansible |  PLAY [snmptrapper_hosts] *****************************************************************************************************************************
+2018-05-31 11:37:15,939 p=12945 u=ansible |  TASK [Gathering Facts] *******************************************************************************************************************************
+2018-05-31 11:37:16,656 p=12945 u=ansible |  ok: [10.19.109.225]
+2018-05-31 11:37:16,669 p=12945 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Find prometheus_snmptrapper systemd service] ************************************************************
+2018-05-31 11:37:16,981 p=12945 u=ansible |  ok: [10.19.109.225]
+2018-05-31 11:37:16,994 p=12945 u=ansible |  TASK [server/prometheus-snmptrapper-remove : debug] **************************************************************************************************
+2018-05-31 11:37:17,012 p=12945 u=ansible |  skipping: [10.19.109.225]
+2018-05-31 11:37:17,025 p=12945 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Stop prometheus snmptrapper service] ********************************************************************
+2018-05-31 11:37:17,039 p=12945 u=ansible |  skipping: [10.19.109.225]
+2018-05-31 11:37:17,052 p=12945 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Find the name of the prometheus snmptrapper unarchived directory] ***************************************
+2018-05-31 11:37:17,231 p=12945 u=ansible |  ok: [10.19.109.225]
+2018-05-31 11:37:17,244 p=12945 u=ansible |  TASK [server/prometheus-snmptrapper-remove : debug] **************************************************************************************************
+2018-05-31 11:37:17,260 p=12945 u=ansible |  skipping: [10.19.109.225]
+2018-05-31 11:37:17,273 p=12945 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Delete /opt/prometheus-snmptrapper directory] ***********************************************************
+2018-05-31 11:37:17,287 p=12945 u=ansible |  skipping: [10.19.109.225]
+2018-05-31 11:37:17,300 p=12945 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Delete /etc/systemd/system/prometheus_snmptrapper.service] **********************************************
+2018-05-31 11:37:17,314 p=12945 u=ansible |  skipping: [10.19.109.225]
+2018-05-31 11:37:17,704 p=12945 u=ansible |  PLAY RECAP *******************************************************************************************************************************************
+2018-05-31 11:37:17,704 p=12945 u=ansible |  10.19.109.225              : ok=3    changed=0    unreachable=0    failed=0   
+2018-05-31 11:37:36,415 p=12984 u=ansible |  PLAY [snmptrapper_hosts] *****************************************************************************************************************************
+2018-05-31 11:37:36,429 p=12984 u=ansible |  TASK [Gathering Facts] *******************************************************************************************************************************
+2018-05-31 11:37:37,134 p=12984 u=ansible |  ok: [10.19.109.225]
+2018-05-31 11:37:37,146 p=12984 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Find prometheus_snmptrapper systemd service] ************************************************************
+2018-05-31 11:37:37,449 p=12984 u=ansible |  ok: [10.19.109.225]
+2018-05-31 11:37:37,462 p=12984 u=ansible |  TASK [server/prometheus-snmptrapper-remove : debug] **************************************************************************************************
+2018-05-31 11:37:37,478 p=12984 u=ansible |  skipping: [10.19.109.225]
+2018-05-31 11:37:37,491 p=12984 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Stop prometheus snmptrapper service] ********************************************************************
+2018-05-31 11:37:37,507 p=12984 u=ansible |  skipping: [10.19.109.225]
+2018-05-31 11:37:37,521 p=12984 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Find the name of the prometheus snmptrapper unarchived directory] ***************************************
+2018-05-31 11:37:37,714 p=12984 u=ansible |  ok: [10.19.109.225]
+2018-05-31 11:37:37,727 p=12984 u=ansible |  TASK [server/prometheus-snmptrapper-remove : debug] **************************************************************************************************
+2018-05-31 11:37:37,743 p=12984 u=ansible |  skipping: [10.19.109.225]
+2018-05-31 11:37:37,755 p=12984 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Delete /opt/prometheus-snmptrapper directory] ***********************************************************
+2018-05-31 11:37:37,771 p=12984 u=ansible |  skipping: [10.19.109.225]
+2018-05-31 11:37:37,783 p=12984 u=ansible |  TASK [server/prometheus-snmptrapper-remove : Delete /etc/systemd/system/prometheus_snmptrapper.service] **********************************************
+2018-05-31 11:37:37,799 p=12984 u=ansible |  skipping: [10.19.109.225]
+2018-05-31 11:37:37,800 p=12984 u=ansible |  PLAY RECAP *******************************************************************************************************************************************
+2018-05-31 11:37:37,800 p=12984 u=ansible |  10.19.109.225              : ok=3    changed=0    unreachable=0    failed=0   
+2018-05-31 11:37:50,072 p=13025 u=ansible |  PLAY [snmptrapper_hosts] *****************************************************************************************************************************
+2018-05-31 11:37:50,086 p=13025 u=ansible |  TASK [Gathering Facts] *******************************************************************************************************************************
+2018-05-31 11:37:50,803 p=13025 u=ansible |  ok: [10.19.109.225]
+2018-05-31 11:37:50,816 p=13025 u=ansible |  TASK [server/prometheus-snmptrapper-install : Copy prometheus snmptrapper files to target] ***********************************************************
+2018-05-31 11:37:52,336 p=13025 u=ansible |  changed: [10.19.109.225]
+2018-05-31 11:37:52,349 p=13025 u=ansible |  TASK [server/prometheus-snmptrapper-install : Find the name of the prometheus snmptrapper directory] *************************************************
+2018-05-31 11:37:52,708 p=13025 u=ansible |  ok: [10.19.109.225]
+2018-05-31 11:37:52,722 p=13025 u=ansible |  TASK [server/prometheus-snmptrapper-install : debug] *************************************************************************************************
+2018-05-31 11:37:52,767 p=13025 u=ansible |  ok: [10.19.109.225] => {
+    "dir_name.files[0].path": "/opt/prometheus-snmptrapper"
+}
+2018-05-31 11:37:52,780 p=13025 u=ansible |  TASK [server/prometheus-snmptrapper-install : set_fact] **********************************************************************************************
+2018-05-31 11:37:52,827 p=13025 u=ansible |  ok: [10.19.109.225]
+2018-05-31 11:37:52,840 p=13025 u=ansible |  TASK [server/prometheus-snmptrapper-install : Set prometheus_snmptrapper to be executable] ***********************************************************
+2018-05-31 11:37:53,202 p=13025 u=ansible |  changed: [10.19.109.225]
+2018-05-31 11:37:53,215 p=13025 u=ansible |  TASK [server/prometheus-snmptrapper-install : Create systemd service for prometheus snmptrapper] *****************************************************
+2018-05-31 11:37:53,682 p=13025 u=ansible |  changed: [10.19.109.225]
+2018-05-31 11:37:53,697 p=13025 u=ansible |  TASK [server/prometheus-snmptrapper-install : Start prometheus snmptrapper service] ******************************************************************
+2018-05-31 11:37:54,175 p=13025 u=ansible |  changed: [10.19.109.225]
+2018-05-31 11:37:54,178 p=13025 u=ansible |  PLAY RECAP *******************************************************************************************************************************************
+2018-05-31 11:37:54,178 p=13025 u=ansible |  10.19.109.225              : ok=8    changed=4    unreachable=0    failed=0   
+2018-05-31 14:55:58,215 p=19235 u=ansible |  PLAY [prometheus] ************************************************************************************************************************************
+2018-05-31 14:55:58,231 p=19235 u=ansible |  TASK [Gathering Facts] *******************************************************************************************************************************
+2018-05-31 14:55:59,301 p=19235 u=ansible |  ok: [10.19.109.225]
+2018-05-31 14:55:59,322 p=19235 u=ansible |  ok: [10.19.109.229]
+2018-05-31 14:55:59,335 p=19235 u=ansible |  TASK [server/prometheus-install : Install prometheus tarball] ****************************************************************************************
+2018-05-31 14:56:02,984 p=19235 u=ansible |  changed: [10.19.109.225]
+2018-05-31 14:56:03,050 p=19235 u=ansible |  changed: [10.19.109.229]
+2018-05-31 14:56:03,064 p=19235 u=ansible |  TASK [server/prometheus-install : Find the name of the prometheus unarchived directory] **************************************************************
+2018-05-31 14:56:03,423 p=19235 u=ansible |  ok: [10.19.109.225]
+2018-05-31 14:56:03,424 p=19235 u=ansible |  ok: [10.19.109.229]
+2018-05-31 14:56:03,437 p=19235 u=ansible |  TASK [server/prometheus-install : set_fact] **********************************************************************************************************
+2018-05-31 14:56:03,490 p=19235 u=ansible |  ok: [10.19.109.225]
+2018-05-31 14:56:03,510 p=19235 u=ansible |  ok: [10.19.109.229]
+2018-05-31 14:56:03,524 p=19235 u=ansible |  TASK [server/prometheus-install : Create systemd service for prometheus] *****************************************************************************
+2018-05-31 14:56:04,125 p=19235 u=ansible |  ok: [10.19.109.225]
+2018-05-31 14:56:04,127 p=19235 u=ansible |  ok: [10.19.109.229]
+2018-05-31 14:56:04,140 p=19235 u=ansible |  TASK [server/prometheus-install : Create prometheus.yml] *********************************************************************************************
+2018-05-31 14:56:04,880 p=19235 u=ansible |  changed: [10.19.109.229]
+2018-05-31 14:56:04,881 p=19235 u=ansible |  changed: [10.19.109.225]
+2018-05-31 14:56:04,909 p=19235 u=ansible |  TASK [server/prometheus-install : Create prometheus_rules.yml] ***************************************************************************************
+2018-05-31 14:56:05,413 p=19235 u=ansible |  changed: [10.19.109.225]
+2018-05-31 14:56:05,418 p=19235 u=ansible |  changed: [10.19.109.229]
+2018-05-31 14:56:05,432 p=19235 u=ansible |  TASK [server/prometheus-install : just force systemd to reread configs (2.4 and above)] **************************************************************
+2018-05-31 14:56:05,866 p=19235 u=ansible |  ok: [10.19.109.229]
+2018-05-31 14:56:05,906 p=19235 u=ansible |  ok: [10.19.109.225]
+2018-05-31 14:56:05,919 p=19235 u=ansible |  TASK [server/prometheus-install : Start prometheus service] ******************************************************************************************
+2018-05-31 14:56:06,178 p=19235 u=ansible |  changed: [10.19.109.225]
+2018-05-31 14:56:06,183 p=19235 u=ansible |  changed: [10.19.109.229]
+2018-05-31 14:56:06,195 p=19235 u=ansible |  TASK [server/prometheus-install : Check if firewalld is installed] ***********************************************************************************
+2018-05-31 14:56:15,831 p=19235 u=ansible |  ok: [10.19.109.225]
+2018-05-31 14:56:15,962 p=19235 u=ansible |  ok: [10.19.109.229]
+2018-05-31 14:56:15,977 p=19235 u=ansible |  TASK [server/prometheus-install : Open tcp port 9090] ************************************************************************************************
+2018-05-31 14:56:15,997 p=19235 u=ansible |  skipping: [10.19.109.225]
+2018-05-31 14:56:16,008 p=19235 u=ansible |  skipping: [10.19.109.229]
+2018-05-31 14:56:16,024 p=19235 u=ansible |  TASK [server/prometheus-install : Verify if Prometheus is listening on TCP port {{ prometheus_port }}] ***********************************************
+2018-05-31 14:56:16,499 p=19235 u=ansible |  fatal: [10.19.109.225]: FAILED! => {
+    "changed": false, 
+    "dest": "/tmp", 
+    "gid": 0, 
+    "group": "root", 
+    "mode": "01777", 
+    "owner": "root", 
+    "secontext": "system_u:object_r:tmp_t:s0", 
+    "size": 4096, 
+    "state": "directory", 
+    "uid": 0, 
+    "url": "http://10.19.109.225:9090/graph"
+}
+
+MSG:
+
+Request failed: <urlopen error [Errno 111] Connection refused>
+
+2018-05-31 14:56:16,500 p=19235 u=ansible |  fatal: [10.19.109.229]: FAILED! => {
+    "changed": false, 
+    "dest": "/tmp", 
+    "gid": 0, 
+    "group": "root", 
+    "mode": "01777", 
+    "owner": "root", 
+    "secontext": "system_u:object_r:tmp_t:s0", 
+    "size": 4096, 
+    "state": "directory", 
+    "uid": 0, 
+    "url": "http://10.19.109.229:9090/graph"
+}
+
+MSG:
+
+Request failed: <urlopen error [Errno 111] Connection refused>
+
+2018-05-31 14:56:16,502 p=19235 u=ansible |  PLAY RECAP *******************************************************************************************************************************************
+2018-05-31 14:56:16,502 p=19235 u=ansible |  10.19.109.225              : ok=10   changed=4    unreachable=0    failed=1   
+2018-05-31 14:56:16,502 p=19235 u=ansible |  10.19.109.229              : ok=10   changed=4    unreachable=0    failed=1   
+2018-05-31 14:58:40,020 p=19640 u=ansible |  PLAY [prometheus] ************************************************************************************************************************************
+2018-05-31 14:58:40,035 p=19640 u=ansible |  TASK [Gathering Facts] *******************************************************************************************************************************
+2018-05-31 14:58:41,078 p=19640 u=ansible |  ok: [10.19.109.229]
+2018-05-31 14:58:41,084 p=19640 u=ansible |  ok: [10.19.109.225]
+2018-05-31 14:58:41,097 p=19640 u=ansible |  TASK [server/prometheus-install : Install prometheus tarball] ****************************************************************************************
+2018-05-31 14:58:44,750 p=19640 u=ansible |  changed: [10.19.109.225]
+2018-05-31 14:58:44,757 p=19640 u=ansible |  changed: [10.19.109.229]
+2018-05-31 14:58:44,770 p=19640 u=ansible |  TASK [server/prometheus-install : Find the name of the prometheus unarchived directory] **************************************************************
+2018-05-31 14:58:45,109 p=19640 u=ansible |  ok: [10.19.109.229]
+2018-05-31 14:58:45,113 p=19640 u=ansible |  ok: [10.19.109.225]
+2018-05-31 14:58:45,127 p=19640 u=ansible |  TASK [server/prometheus-install : set_fact] **********************************************************************************************************
+2018-05-31 14:58:45,177 p=19640 u=ansible |  ok: [10.19.109.225]
+2018-05-31 14:58:45,194 p=19640 u=ansible |  ok: [10.19.109.229]
+2018-05-31 14:58:45,211 p=19640 u=ansible |  TASK [server/prometheus-install : Create systemd service for prometheus] *****************************************************************************
+2018-05-31 14:58:45,803 p=19640 u=ansible |  ok: [10.19.109.225]
+2018-05-31 14:58:45,803 p=19640 u=ansible |  ok: [10.19.109.229]
+2018-05-31 14:58:45,816 p=19640 u=ansible |  TASK [server/prometheus-install : Create prometheus.yml] *********************************************************************************************
+2018-05-31 14:58:46,528 p=19640 u=ansible |  changed: [10.19.109.229]
+2018-05-31 14:58:46,528 p=19640 u=ansible |  changed: [10.19.109.225]
+2018-05-31 14:58:46,541 p=19640 u=ansible |  TASK [server/prometheus-install : Create prometheus_rules.yml] ***************************************************************************************
+2018-05-31 14:58:47,005 p=19640 u=ansible |  changed: [10.19.109.225]
+2018-05-31 14:58:47,010 p=19640 u=ansible |  changed: [10.19.109.229]
+2018-05-31 14:58:47,023 p=19640 u=ansible |  TASK [server/prometheus-install : just force systemd to reread configs (2.4 and above)] **************************************************************
+2018-05-31 14:58:47,437 p=19640 u=ansible |  ok: [10.19.109.229]
+2018-05-31 14:58:47,437 p=19640 u=ansible |  ok: [10.19.109.225]
+2018-05-31 14:58:47,450 p=19640 u=ansible |  TASK [server/prometheus-install : Start prometheus service] ******************************************************************************************
+2018-05-31 14:58:47,659 p=19640 u=ansible |  changed: [10.19.109.225]
+2018-05-31 14:58:47,670 p=19640 u=ansible |  changed: [10.19.109.229]
+2018-05-31 14:58:47,683 p=19640 u=ansible |  TASK [server/prometheus-install : Check if firewalld is installed] ***********************************************************************************
+2018-05-31 14:58:51,884 p=19640 u=ansible |  ok: [10.19.109.229]
+2018-05-31 14:58:51,885 p=19640 u=ansible |  ok: [10.19.109.225]
+2018-05-31 14:58:51,899 p=19640 u=ansible |  TASK [server/prometheus-install : Open tcp port 9090] ************************************************************************************************
+2018-05-31 14:58:51,918 p=19640 u=ansible |  skipping: [10.19.109.225]
+2018-05-31 14:58:51,931 p=19640 u=ansible |  skipping: [10.19.109.229]
+2018-05-31 14:58:51,945 p=19640 u=ansible |  TASK [server/prometheus-install : Verify if Prometheus is listening on TCP port {{ prometheus_port }}] ***********************************************
+2018-05-31 14:58:52,459 p=19640 u=ansible |  fatal: [10.19.109.225]: FAILED! => {
+    "changed": false, 
+    "dest": "/tmp", 
+    "gid": 0, 
+    "group": "root", 
+    "mode": "01777", 
+    "owner": "root", 
+    "secontext": "system_u:object_r:tmp_t:s0", 
+    "size": 4096, 
+    "state": "directory", 
+    "uid": 0, 
+    "url": "http://10.19.109.225:9090/graph"
+}
+
+MSG:
+
+Request failed: <urlopen error [Errno 111] Connection refused>
+
+2018-05-31 14:58:52,462 p=19640 u=ansible |  fatal: [10.19.109.229]: FAILED! => {
+    "changed": false, 
+    "dest": "/tmp", 
+    "gid": 0, 
+    "group": "root", 
+    "mode": "01777", 
+    "owner": "root", 
+    "secontext": "system_u:object_r:tmp_t:s0", 
+    "size": 4096, 
+    "state": "directory", 
+    "uid": 0, 
+    "url": "http://10.19.109.229:9090/graph"
+}
+
+MSG:
+
+Request failed: <urlopen error [Errno 111] Connection refused>
+
+2018-05-31 14:58:52,463 p=19640 u=ansible |  PLAY RECAP *******************************************************************************************************************************************
+2018-05-31 14:58:52,463 p=19640 u=ansible |  10.19.109.225              : ok=10   changed=4    unreachable=0    failed=1   
+2018-05-31 14:58:52,463 p=19640 u=ansible |  10.19.109.229              : ok=10   changed=4    unreachable=0    failed=1   
+2018-05-31 15:00:07,976 p=19991 u=ansible |  PLAY [prometheus] ************************************************************************************************************************************
+2018-05-31 15:00:07,991 p=19991 u=ansible |  TASK [Gathering Facts] *******************************************************************************************************************************
+2018-05-31 15:00:09,050 p=19991 u=ansible |  ok: [10.19.109.225]
+2018-05-31 15:00:09,057 p=19991 u=ansible |  ok: [10.19.109.229]
+2018-05-31 15:00:09,070 p=19991 u=ansible |  TASK [server/prometheus-install : Install prometheus tarball] ****************************************************************************************
+2018-05-31 15:00:12,732 p=19991 u=ansible |  changed: [10.19.109.225]
+2018-05-31 15:00:12,759 p=19991 u=ansible |  changed: [10.19.109.229]
+2018-05-31 15:00:12,772 p=19991 u=ansible |  TASK [server/prometheus-install : Find the name of the prometheus unarchived directory] **************************************************************
+2018-05-31 15:00:13,110 p=19991 u=ansible |  ok: [10.19.109.229]
+2018-05-31 15:00:13,111 p=19991 u=ansible |  ok: [10.19.109.225]
+2018-05-31 15:00:13,124 p=19991 u=ansible |  TASK [server/prometheus-install : set_fact] **********************************************************************************************************
+2018-05-31 15:00:13,172 p=19991 u=ansible |  ok: [10.19.109.225]
+2018-05-31 15:00:13,189 p=19991 u=ansible |  ok: [10.19.109.229]
+2018-05-31 15:00:13,202 p=19991 u=ansible |  TASK [server/prometheus-install : Create systemd service for prometheus] *****************************************************************************
+2018-05-31 15:00:13,768 p=19991 u=ansible |  ok: [10.19.109.225]
+2018-05-31 15:00:13,769 p=19991 u=ansible |  ok: [10.19.109.229]
+2018-05-31 15:00:13,782 p=19991 u=ansible |  TASK [server/prometheus-install : Create prometheus.yml] *********************************************************************************************
+2018-05-31 15:00:14,484 p=19991 u=ansible |  changed: [10.19.109.229]
+2018-05-31 15:00:14,487 p=19991 u=ansible |  changed: [10.19.109.225]
+2018-05-31 15:00:14,499 p=19991 u=ansible |  TASK [server/prometheus-install : Create prometheus_rules.yml] ***************************************************************************************
+2018-05-31 15:00:14,975 p=19991 u=ansible |  changed: [10.19.109.229]
+2018-05-31 15:00:14,976 p=19991 u=ansible |  changed: [10.19.109.225]
+2018-05-31 15:00:14,988 p=19991 u=ansible |  TASK [server/prometheus-install : just force systemd to reread configs (2.4 and above)] **************************************************************
+2018-05-31 15:00:15,396 p=19991 u=ansible |  ok: [10.19.109.229]
+2018-05-31 15:00:15,403 p=19991 u=ansible |  ok: [10.19.109.225]
+2018-05-31 15:00:15,416 p=19991 u=ansible |  TASK [server/prometheus-install : Start prometheus service] ******************************************************************************************
+2018-05-31 15:00:15,623 p=19991 u=ansible |  changed: [10.19.109.225]
+2018-05-31 15:00:15,633 p=19991 u=ansible |  changed: [10.19.109.229]
+2018-05-31 15:00:15,646 p=19991 u=ansible |  TASK [server/prometheus-install : Check if firewalld is installed] ***********************************************************************************
+2018-05-31 15:00:16,961 p=19991 u=ansible |  ok: [10.19.109.225]
+2018-05-31 15:00:17,033 p=19991 u=ansible |  ok: [10.19.109.229]
+2018-05-31 15:00:17,047 p=19991 u=ansible |  TASK [server/prometheus-install : Open tcp port 9090] ************************************************************************************************
+2018-05-31 15:00:17,066 p=19991 u=ansible |  skipping: [10.19.109.225]
+2018-05-31 15:00:17,078 p=19991 u=ansible |  skipping: [10.19.109.229]
+2018-05-31 15:00:17,091 p=19991 u=ansible |  TASK [server/prometheus-install : Verify if Prometheus is listening on TCP port {{ prometheus_port }}] ***********************************************
+2018-05-31 15:00:17,635 p=19991 u=ansible |  ok: [10.19.109.225]
+2018-05-31 15:00:17,689 p=19991 u=ansible |  fatal: [10.19.109.229]: FAILED! => {
+    "changed": false, 
+    "dest": "/tmp", 
+    "gid": 0, 
+    "group": "root", 
+    "mode": "01777", 
+    "owner": "root", 
+    "response": "HTTP Error 503: Service Unavailable", 
+    "secontext": "system_u:object_r:tmp_t:s0", 
+    "size": 4096, 
+    "state": "directory", 
+    "status_code": 503, 
+    "uid": 0, 
+    "url": "http://10.19.109.229:9090/graph"
+}
+
+MSG:
+
+Request failed
+
+2018-05-31 15:00:17,703 p=19991 u=ansible |  TASK [server/prometheus-install : fail] **************************************************************************************************************
+2018-05-31 15:00:17,719 p=19991 u=ansible |  skipping: [10.19.109.225]
+2018-05-31 15:00:17,721 p=19991 u=ansible |  PLAY RECAP *******************************************************************************************************************************************
+2018-05-31 15:00:17,721 p=19991 u=ansible |  10.19.109.225              : ok=11   changed=4    unreachable=0    failed=0   
+2018-05-31 15:00:17,721 p=19991 u=ansible |  10.19.109.229              : ok=10   changed=4    unreachable=0    failed=1   
+2018-05-31 15:03:00,142 p=20378 u=ansible |  PLAY [prometheus] ************************************************************************************************************************************
+2018-05-31 15:03:00,157 p=20378 u=ansible |  TASK [Gathering Facts] *******************************************************************************************************************************
+2018-05-31 15:03:01,250 p=20378 u=ansible |  ok: [10.19.109.229]
+2018-05-31 15:03:01,256 p=20378 u=ansible |  ok: [10.19.109.225]
+2018-05-31 15:03:01,268 p=20378 u=ansible |  TASK [server/prometheus-install : Install prometheus tarball] ****************************************************************************************
+2018-05-31 15:03:04,933 p=20378 u=ansible |  changed: [10.19.109.229]
+2018-05-31 15:03:04,961 p=20378 u=ansible |  changed: [10.19.109.225]
+2018-05-31 15:03:04,976 p=20378 u=ansible |  TASK [server/prometheus-install : Find the name of the prometheus unarchived directory] **************************************************************
+2018-05-31 15:03:05,350 p=20378 u=ansible |  ok: [10.19.109.229]
+2018-05-31 15:03:05,351 p=20378 u=ansible |  ok: [10.19.109.225]
+2018-05-31 15:03:05,364 p=20378 u=ansible |  TASK [server/prometheus-install : set_fact] **********************************************************************************************************
+2018-05-31 15:03:05,412 p=20378 u=ansible |  ok: [10.19.109.225]
+2018-05-31 15:03:05,428 p=20378 u=ansible |  ok: [10.19.109.229]
+2018-05-31 15:03:05,440 p=20378 u=ansible |  TASK [server/prometheus-install : Create systemd service for prometheus] *****************************************************************************
+2018-05-31 15:03:06,038 p=20378 u=ansible |  ok: [10.19.109.229]
+2018-05-31 15:03:06,039 p=20378 u=ansible |  ok: [10.19.109.225]
+2018-05-31 15:03:06,052 p=20378 u=ansible |  TASK [server/prometheus-install : Create prometheus.yml] *********************************************************************************************
+2018-05-31 15:03:06,777 p=20378 u=ansible |  changed: [10.19.109.229]
+2018-05-31 15:03:06,809 p=20378 u=ansible |  changed: [10.19.109.225]
+2018-05-31 15:03:06,821 p=20378 u=ansible |  TASK [server/prometheus-install : Create prometheus_rules.yml] ***************************************************************************************
+2018-05-31 15:03:07,252 p=20378 u=ansible |  ok: [10.19.109.225]
+2018-05-31 15:03:07,258 p=20378 u=ansible |  ok: [10.19.109.229]
+2018-05-31 15:03:07,270 p=20378 u=ansible |  TASK [server/prometheus-install : just force systemd to reread configs (2.4 and above)] **************************************************************
+2018-05-31 15:03:07,705 p=20378 u=ansible |  ok: [10.19.109.229]
+2018-05-31 15:03:07,708 p=20378 u=ansible |  ok: [10.19.109.225]
+2018-05-31 15:03:07,721 p=20378 u=ansible |  TASK [server/prometheus-install : Start prometheus service] ******************************************************************************************
+2018-05-31 15:03:07,953 p=20378 u=ansible |  changed: [10.19.109.225]
+2018-05-31 15:03:07,981 p=20378 u=ansible |  changed: [10.19.109.229]
+2018-05-31 15:03:07,994 p=20378 u=ansible |  TASK [server/prometheus-install : Check if firewalld is installed] ***********************************************************************************
+2018-05-31 15:03:10,164 p=20378 u=ansible |  ok: [10.19.109.225]
+2018-05-31 15:03:12,066 p=20378 u=ansible |  ok: [10.19.109.229]
+2018-05-31 15:03:12,079 p=20378 u=ansible |  TASK [server/prometheus-install : Open tcp port 9090] ************************************************************************************************
+2018-05-31 15:03:12,098 p=20378 u=ansible |  skipping: [10.19.109.225]
+2018-05-31 15:03:12,110 p=20378 u=ansible |  skipping: [10.19.109.229]
+2018-05-31 15:03:12,124 p=20378 u=ansible |  TASK [server/prometheus-install : Verify if Prometheus is listening on TCP port {{ prometheus_port }}] ***********************************************
+2018-05-31 15:03:12,648 p=20378 u=ansible |  ok: [10.19.109.229]
+2018-05-31 15:03:12,652 p=20378 u=ansible |  ok: [10.19.109.225]
+2018-05-31 15:03:12,664 p=20378 u=ansible |  TASK [server/prometheus-install : fail] **************************************************************************************************************
+2018-05-31 15:03:12,684 p=20378 u=ansible |  skipping: [10.19.109.225]
+2018-05-31 15:03:12,694 p=20378 u=ansible |  skipping: [10.19.109.229]
+2018-05-31 15:03:12,696 p=20378 u=ansible |  PLAY RECAP *******************************************************************************************************************************************
+2018-05-31 15:03:12,696 p=20378 u=ansible |  10.19.109.225              : ok=11   changed=3    unreachable=0    failed=0   
+2018-05-31 15:03:12,696 p=20378 u=ansible |  10.19.109.229              : ok=11   changed=3    unreachable=0    failed=0   
+2018-05-31 15:05:46,629 p=20693 u=ansible |  PLAY [osp_exporters] ***********************************************************************************************************************************
+2018-05-31 15:05:46,643 p=20693 u=ansible |  TASK [Gathering Facts] *********************************************************************************************************************************
+2018-05-31 15:05:47,685 p=20693 u=ansible |  ok: [10.19.109.225]
+2018-05-31 15:05:47,694 p=20693 u=ansible |  ok: [10.19.109.229]
+2018-05-31 15:05:47,707 p=20693 u=ansible |  TASK [server/osp-exporter-remove : Stop prometheus exporter service] ***********************************************************************************
+2018-05-31 15:05:48,094 p=20693 u=ansible |  changed: [10.19.109.229]
+2018-05-31 15:05:48,098 p=20693 u=ansible |  changed: [10.19.109.225]
+2018-05-31 15:05:48,111 p=20693 u=ansible |  TASK [server/osp-exporter-remove : Find the name of the prometheus exporter unarchived directory] ******************************************************
+2018-05-31 15:05:48,465 p=20693 u=ansible |  ok: [10.19.109.229]
+2018-05-31 15:05:48,468 p=20693 u=ansible |  ok: [10.19.109.225]
+2018-05-31 15:05:48,481 p=20693 u=ansible |  TASK [server/osp-exporter-remove : debug] **************************************************************************************************************
+2018-05-31 15:05:48,530 p=20693 u=ansible |  ok: [10.19.109.225] => {
+    "dir_name.files[0].path": "/opt/osp-exporter"
+}
+2018-05-31 15:05:48,545 p=20693 u=ansible |  ok: [10.19.109.229] => {
+    "dir_name.files[0].path": "/opt/osp-exporter"
+}
+2018-05-31 15:05:48,559 p=20693 u=ansible |  TASK [server/osp-exporter-remove : Delete /opt/osp-exporter directory] *********************************************************************************
+2018-05-31 15:05:48,924 p=20693 u=ansible |  changed: [10.19.109.229]
+2018-05-31 15:05:48,930 p=20693 u=ansible |  changed: [10.19.109.225]
+2018-05-31 15:05:48,946 p=20693 u=ansible |  TASK [server/osp-exporter-remove : Delete /etc/systemd/system/osp_exporter.service] ********************************************************************
+2018-05-31 15:05:49,137 p=20693 u=ansible |  changed: [10.19.109.225]
+2018-05-31 15:05:49,148 p=20693 u=ansible |  changed: [10.19.109.229]
+2018-05-31 15:05:49,151 p=20693 u=ansible |  PLAY RECAP *********************************************************************************************************************************************
+2018-05-31 15:05:49,151 p=20693 u=ansible |  10.19.109.225              : ok=6    changed=3    unreachable=0    failed=0   
+2018-05-31 15:05:49,151 p=20693 u=ansible |  10.19.109.229              : ok=6    changed=3    unreachable=0    failed=0   
+2018-05-31 15:09:34,970 p=20843 u=ansible |  PLAY [osp_exporters] ***********************************************************************************************************************************
+2018-05-31 15:09:34,985 p=20843 u=ansible |  TASK [Gathering Facts] *********************************************************************************************************************************
+2018-05-31 15:09:36,036 p=20843 u=ansible |  ok: [10.19.109.229]
+2018-05-31 15:09:36,047 p=20843 u=ansible |  ok: [10.19.109.225]
+2018-05-31 15:09:36,059 p=20843 u=ansible |  TASK [server/osp-exporter-install : Copy packages required for osp-exporter /tmp] **********************************************************************
+2018-05-31 15:09:36,876 p=20843 u=ansible |  ok: [10.19.109.225] => (item=prometheus_client-0.2.0.tar.gz)
+2018-05-31 15:09:36,878 p=20843 u=ansible |  ok: [10.19.109.229] => (item=prometheus_client-0.2.0.tar.gz)
+2018-05-31 15:09:36,891 p=20843 u=ansible |  TASK [server/osp-exporter-install : Install python2 package] *******************************************************************************************
+2018-05-31 15:09:37,749 p=20843 u=ansible |  ok: [10.19.109.229]
+2018-05-31 15:09:37,757 p=20843 u=ansible |  ok: [10.19.109.225]
+2018-05-31 15:09:37,770 p=20843 u=ansible |  TASK [server/osp-exporter-install : Install Python required packages] **********************************************************************************
+2018-05-31 15:09:38,489 p=20843 u=ansible |  failed: [10.19.109.229] (item=python2-pip-8.1.2-6.el7.noarch.rpm) => {
+    "changed": false, 
+    "cmd": "/usr/bin/pip2 install -U --force-reinstall /tmp/python2-pip-8.1.2-6.el7.noarch.rpm", 
+    "item": "python2-pip-8.1.2-6.el7.noarch.rpm"
+}
+
+MSG:
+
+
+:stderr: Invalid requirement: '/tmp/python2-pip-8.1.2-6.el7.noarch.rpm'
+It looks like a path. Does it exist ?
+You are using pip version 8.1.2, however version 10.0.1 is available.
+You should consider upgrading via the 'pip install --upgrade pip' command.
+
+
+2018-05-31 15:09:38,717 p=20843 u=ansible |  failed: [10.19.109.225] (item=python2-pip-8.1.2-6.el7.noarch.rpm) => {
+    "changed": false, 
+    "cmd": "/usr/bin/pip2 install -U --force-reinstall /tmp/python2-pip-8.1.2-6.el7.noarch.rpm", 
+    "item": "python2-pip-8.1.2-6.el7.noarch.rpm"
+}
+
+MSG:
+
+
+:stderr: Invalid requirement: '/tmp/python2-pip-8.1.2-6.el7.noarch.rpm'
+It looks like a path. It does exist.
+
+
+2018-05-31 15:09:38,719 p=20843 u=ansible |  PLAY RECAP *********************************************************************************************************************************************
+2018-05-31 15:09:38,719 p=20843 u=ansible |  10.19.109.225              : ok=3    changed=0    unreachable=0    failed=1   
+2018-05-31 15:09:38,719 p=20843 u=ansible |  10.19.109.229              : ok=3    changed=0    unreachable=0    failed=1   
+2018-05-31 15:43:15,319 p=21682 u=ansible |  playbook: playbooks/remove_prometheus.yaml
+2018-05-31 15:53:06,325 p=21901 u=ansible |  PLAY [osp_exporters] ***********************************************************************************************************************************
+2018-05-31 15:53:06,339 p=21901 u=ansible |  TASK [Gathering Facts] *********************************************************************************************************************************
+2018-05-31 15:53:07,411 p=21901 u=ansible |  ok: [10.19.109.229]
+2018-05-31 15:53:07,419 p=21901 u=ansible |  ok: [10.19.109.225]
+2018-05-31 15:53:07,431 p=21901 u=ansible |  TASK [server/osp-exporter-remove : Stop prometheus exporter service] ***********************************************************************************
+2018-05-31 15:53:07,789 p=21901 u=ansible |  fatal: [10.19.109.229]: FAILED! => {
+    "changed": false
+}
+
+MSG:
+
+Could not find the requested service osp_exporter: host
+
+2018-05-31 15:53:07,794 p=21901 u=ansible |  fatal: [10.19.109.225]: FAILED! => {
+    "changed": false
+}
+
+MSG:
+
+Could not find the requested service osp_exporter: host
+
+2018-05-31 15:53:07,795 p=21901 u=ansible |  PLAY RECAP *********************************************************************************************************************************************
+2018-05-31 15:53:07,795 p=21901 u=ansible |  10.19.109.225              : ok=1    changed=0    unreachable=0    failed=1   
+2018-05-31 15:53:07,795 p=21901 u=ansible |  10.19.109.229              : ok=1    changed=0    unreachable=0    failed=1   
+2018-05-31 15:53:13,356 p=21937 u=ansible |  PLAY [osp_exporters] ***********************************************************************************************************************************
+2018-05-31 15:53:13,370 p=21937 u=ansible |  TASK [Gathering Facts] *********************************************************************************************************************************
+2018-05-31 15:53:14,072 p=21937 u=ansible |  ok: [10.19.109.225]
+2018-05-31 15:53:14,079 p=21937 u=ansible |  ok: [10.19.109.229]
+2018-05-31 15:53:14,091 p=21937 u=ansible |  TASK [server/osp-exporter-install : Copy packages required for osp-exporter /tmp] **********************************************************************
+2018-05-31 15:53:14,919 p=21937 u=ansible |  ok: [10.19.109.225] => (item=prometheus_client-0.2.0.tar.gz)
+2018-05-31 15:53:14,920 p=21937 u=ansible |  ok: [10.19.109.229] => (item=prometheus_client-0.2.0.tar.gz)
+2018-05-31 15:53:14,932 p=21937 u=ansible |  TASK [server/osp-exporter-install : Install python2 package] *******************************************************************************************
+2018-05-31 15:53:34,640 p=21937 u=ansible |  fatal: [10.19.109.225]: FAILED! => {
+    "changed": false, 
+    "rc": 126, 
+    "results": [
+        "No package matching '/tmp/prometheus_client-0.2.0.tar.gz' found available, installed or updated"
+    ]
+}
+
+MSG:
+
+No package matching '/tmp/prometheus_client-0.2.0.tar.gz' found available, installed or updated
+
+2018-05-31 15:53:38,336 p=21937 u=ansible |  fatal: [10.19.109.229]: FAILED! => {
+    "changed": false, 
+    "rc": 126, 
+    "results": [
+        "No package matching '/tmp/prometheus_client-0.2.0.tar.gz' found available, installed or updated"
+    ]
+}
+
+MSG:
+
+No package matching '/tmp/prometheus_client-0.2.0.tar.gz' found available, installed or updated
+
+2018-05-31 15:53:38,338 p=21937 u=ansible |  PLAY RECAP *********************************************************************************************************************************************
+2018-05-31 15:53:38,338 p=21937 u=ansible |  10.19.109.225              : ok=2    changed=0    unreachable=0    failed=1   
+2018-05-31 15:53:38,338 p=21937 u=ansible |  10.19.109.229              : ok=2    changed=0    unreachable=0    failed=1   
+2018-05-31 15:57:14,787 p=22267 u=ansible |  PLAY [prometheus] ************************************************************************************************************************************
+2018-05-31 15:57:14,802 p=22267 u=ansible |  TASK [Gathering Facts] *******************************************************************************************************************************
+2018-05-31 15:57:15,850 p=22267 u=ansible |  ok: [10.19.109.229]
+2018-05-31 15:57:15,857 p=22267 u=ansible |  ok: [10.19.109.225]
+2018-05-31 15:57:15,869 p=22267 u=ansible |  TASK [server/prometheus-remove : Check if prometheus systemd service exists] *************************************************************************
+2018-05-31 15:57:16,212 p=22267 u=ansible |  ok: [10.19.109.229]
+2018-05-31 15:57:16,219 p=22267 u=ansible |  ok: [10.19.109.225]
+2018-05-31 15:57:16,233 p=22267 u=ansible |  TASK [server/prometheus-remove : Stop prometheus service] ********************************************************************************************
+2018-05-31 15:57:16,631 p=22267 u=ansible |  changed: [10.19.109.229]
+2018-05-31 15:57:16,632 p=22267 u=ansible |  changed: [10.19.109.225]
+2018-05-31 15:57:16,646 p=22267 u=ansible |  TASK [server/prometheus-remove : Find the name of the prometheus unarchived directory] ***************************************************************
+2018-05-31 15:57:16,837 p=22267 u=ansible |  ok: [10.19.109.225]
+2018-05-31 15:57:16,858 p=22267 u=ansible |  ok: [10.19.109.229]
+2018-05-31 15:57:16,870 p=22267 u=ansible |  TASK [server/prometheus-remove : Delete prometheus directory] ****************************************************************************************
+2018-05-31 15:57:17,272 p=22267 u=ansible |  changed: [10.19.109.225]
+2018-05-31 15:57:17,325 p=22267 u=ansible |  changed: [10.19.109.229]
+2018-05-31 15:57:17,341 p=22267 u=ansible |  TASK [server/prometheus-remove : Delete /etc/systemd/system/prometheus.service] **********************************************************************
+2018-05-31 15:57:17,567 p=22267 u=ansible |  changed: [10.19.109.225]
+2018-05-31 15:57:17,568 p=22267 u=ansible |  changed: [10.19.109.229]
+2018-05-31 15:57:17,581 p=22267 u=ansible |  TASK [server/prometheus-remove : Check if firewalld is installed] ************************************************************************************
+2018-05-31 15:57:18,830 p=22267 u=ansible |  ok: [10.19.109.225]
+2018-05-31 15:57:19,726 p=22267 u=ansible |  ok: [10.19.109.229]
+2018-05-31 15:57:19,740 p=22267 u=ansible |  TASK [server/prometheus-remove : Clode tcp port 9090] ************************************************************************************************
+2018-05-31 15:57:19,760 p=22267 u=ansible |  skipping: [10.19.109.225]
+2018-05-31 15:57:19,772 p=22267 u=ansible |  skipping: [10.19.109.229]
+2018-05-31 15:57:19,774 p=22267 u=ansible |  PLAY RECAP *******************************************************************************************************************************************
+2018-05-31 15:57:19,774 p=22267 u=ansible |  10.19.109.225              : ok=7    changed=3    unreachable=0    failed=0   
+2018-05-31 15:57:19,774 p=22267 u=ansible |  10.19.109.229              : ok=7    changed=3    unreachable=0    failed=0   
+2018-05-31 15:57:23,578 p=22344 u=ansible |  PLAY [prometheus] ************************************************************************************************************************************
+2018-05-31 15:57:23,593 p=22344 u=ansible |  TASK [Gathering Facts] *******************************************************************************************************************************
+2018-05-31 15:57:24,277 p=22344 u=ansible |  ok: [10.19.109.225]
+2018-05-31 15:57:24,284 p=22344 u=ansible |  ok: [10.19.109.229]
+2018-05-31 15:57:24,297 p=22344 u=ansible |  TASK [server/prometheus-remove : Check if prometheus systemd service exists] *************************************************************************
+2018-05-31 15:57:24,596 p=22344 u=ansible |  ok: [10.19.109.225]
+2018-05-31 15:57:24,597 p=22344 u=ansible |  ok: [10.19.109.229]
+2018-05-31 15:57:24,610 p=22344 u=ansible |  TASK [server/prometheus-remove : Stop prometheus service] ********************************************************************************************
+2018-05-31 15:57:24,631 p=22344 u=ansible |  skipping: [10.19.109.225]
+2018-05-31 15:57:24,642 p=22344 u=ansible |  skipping: [10.19.109.229]
+2018-05-31 15:57:24,654 p=22344 u=ansible |  TASK [server/prometheus-remove : Find the name of the prometheus unarchived directory] ***************************************************************
+2018-05-31 15:57:24,840 p=22344 u=ansible |  ok: [10.19.109.225]
+2018-05-31 15:57:24,854 p=22344 u=ansible |  ok: [10.19.109.229]
+2018-05-31 15:57:24,867 p=22344 u=ansible |  TASK [server/prometheus-remove : Delete prometheus directory] ****************************************************************************************
+2018-05-31 15:57:24,900 p=22344 u=ansible |  skipping: [10.19.109.229]
+2018-05-31 15:57:25,218 p=22344 u=ansible |  changed: [10.19.109.225]
+2018-05-31 15:57:25,233 p=22344 u=ansible |  TASK [server/prometheus-remove : Delete /etc/systemd/system/prometheus.service] **********************************************************************
+2018-05-31 15:57:25,254 p=22344 u=ansible |  skipping: [10.19.109.225]
+2018-05-31 15:57:25,264 p=22344 u=ansible |  skipping: [10.19.109.229]
+2018-05-31 15:57:25,278 p=22344 u=ansible |  TASK [server/prometheus-remove : Check if firewalld is installed] ************************************************************************************
+2018-05-31 15:57:26,507 p=22344 u=ansible |  ok: [10.19.109.229]
+2018-05-31 15:57:26,508 p=22344 u=ansible |  ok: [10.19.109.225]
+2018-05-31 15:57:26,523 p=22344 u=ansible |  TASK [server/prometheus-remove : Clode tcp port 9090] ************************************************************************************************
+2018-05-31 15:57:26,545 p=22344 u=ansible |  skipping: [10.19.109.225]
+2018-05-31 15:57:26,558 p=22344 u=ansible |  skipping: [10.19.109.229]
+2018-05-31 15:57:26,560 p=22344 u=ansible |  PLAY RECAP *******************************************************************************************************************************************
+2018-05-31 15:57:26,560 p=22344 u=ansible |  10.19.109.225              : ok=5    changed=1    unreachable=0    failed=0   
+2018-05-31 15:57:26,560 p=22344 u=ansible |  10.19.109.229              : ok=4    changed=0    unreachable=0    failed=0   
+2018-05-31 15:57:37,592 p=22402 u=ansible |  PLAY [prometheus] ************************************************************************************************************************************
+2018-05-31 15:57:37,607 p=22402 u=ansible |  TASK [Gathering Facts] *******************************************************************************************************************************
+2018-05-31 15:57:38,293 p=22402 u=ansible |  ok: [10.19.109.225]
+2018-05-31 15:57:38,301 p=22402 u=ansible |  ok: [10.19.109.229]
+2018-05-31 15:57:38,314 p=22402 u=ansible |  TASK [server/prometheus-install : Install prometheus tarball] ****************************************************************************************
+2018-05-31 15:57:41,938 p=22402 u=ansible |  changed: [10.19.109.225]
+2018-05-31 15:57:41,946 p=22402 u=ansible |  changed: [10.19.109.229]
+2018-05-31 15:57:41,959 p=22402 u=ansible |  TASK [server/prometheus-install : Find the name of the prometheus unarchived directory] **************************************************************
+2018-05-31 15:57:42,301 p=22402 u=ansible |  ok: [10.19.109.229]
+2018-05-31 15:57:42,310 p=22402 u=ansible |  ok: [10.19.109.225]
+2018-05-31 15:57:42,326 p=22402 u=ansible |  TASK [server/prometheus-install : set_fact] **********************************************************************************************************
+2018-05-31 15:57:42,374 p=22402 u=ansible |  ok: [10.19.109.225]
+2018-05-31 15:57:42,387 p=22402 u=ansible |  ok: [10.19.109.229]
+2018-05-31 15:57:42,400 p=22402 u=ansible |  TASK [server/prometheus-install : Create systemd service for prometheus] *****************************************************************************
+2018-05-31 15:57:43,000 p=22402 u=ansible |  changed: [10.19.109.229]
+2018-05-31 15:57:43,002 p=22402 u=ansible |  changed: [10.19.109.225]
+2018-05-31 15:57:43,015 p=22402 u=ansible |  TASK [server/prometheus-install : Create prometheus.yml] *********************************************************************************************
+2018-05-31 15:57:43,461 p=22468 u=ansible |  PLAY [osp_exporters] ***********************************************************************************************************************************
+2018-05-31 15:57:43,476 p=22468 u=ansible |  TASK [Gathering Facts] *********************************************************************************************************************************
+2018-05-31 15:57:43,568 p=22402 u=ansible |  changed: [10.19.109.225]
+2018-05-31 15:57:43,569 p=22402 u=ansible |  changed: [10.19.109.229]
+2018-05-31 15:57:43,582 p=22402 u=ansible |  TASK [server/prometheus-install : Create prometheus_rules.yml] ***************************************************************************************
+2018-05-31 15:57:44,053 p=22402 u=ansible |  changed: [10.19.109.225]
+2018-05-31 15:57:44,072 p=22402 u=ansible |  changed: [10.19.109.229]
+2018-05-31 15:57:44,085 p=22402 u=ansible |  TASK [server/prometheus-install : just force systemd to reread configs (2.4 and above)] **************************************************************
+2018-05-31 15:57:44,175 p=22468 u=ansible |  ok: [10.19.109.225]
+2018-05-31 15:57:44,182 p=22468 u=ansible |  ok: [10.19.109.229]
+2018-05-31 15:57:44,195 p=22468 u=ansible |  TASK [server/osp-exporter-install : Copy packages required for osp-exporter /tmp] **********************************************************************
+2018-05-31 15:57:44,515 p=22402 u=ansible |  ok: [10.19.109.225]
+2018-05-31 15:57:44,517 p=22402 u=ansible |  ok: [10.19.109.229]
+2018-05-31 15:57:44,531 p=22402 u=ansible |  TASK [server/prometheus-install : Start prometheus service] ******************************************************************************************
+2018-05-31 15:57:44,743 p=22402 u=ansible |  changed: [10.19.109.225]
+2018-05-31 15:57:44,767 p=22402 u=ansible |  changed: [10.19.109.229]
+2018-05-31 15:57:44,779 p=22402 u=ansible |  TASK [server/prometheus-install : Check if firewalld is installed] ***********************************************************************************
+2018-05-31 15:57:45,032 p=22468 u=ansible |  ok: [10.19.109.225]
+2018-05-31 15:57:45,036 p=22468 u=ansible |  ok: [10.19.109.229]
+2018-05-31 15:57:45,050 p=22468 u=ansible |  TASK [server/osp-exporter-install : Install prometheus_client-0.2.0.tar.gz package] ********************************************************************
+2018-05-31 15:57:46,040 p=22402 u=ansible |  ok: [10.19.109.229]
+2018-05-31 15:57:46,065 p=22402 u=ansible |  ok: [10.19.109.225]
+2018-05-31 15:57:46,082 p=22402 u=ansible |  TASK [server/prometheus-install : Open tcp port 9090] ************************************************************************************************
+2018-05-31 15:57:46,107 p=22402 u=ansible |  skipping: [10.19.109.225]
+2018-05-31 15:57:46,120 p=22402 u=ansible |  skipping: [10.19.109.229]
+2018-05-31 15:57:46,134 p=22402 u=ansible |  TASK [server/prometheus-install : Verify if Prometheus is listening on TCP port {{ prometheus_port }}] ***********************************************
+2018-05-31 15:57:46,506 p=22468 u=ansible |  fatal: [10.19.109.229]: FAILED! => {
+    "changed": false, 
+    "rc": 126, 
+    "results": [
+        "No package matching '/tmp/prometheus_client-0.2.0.tar.gz' found available, installed or updated"
+    ]
+}
+
+MSG:
+
+No package matching '/tmp/prometheus_client-0.2.0.tar.gz' found available, installed or updated
+
+2018-05-31 15:57:46,711 p=22402 u=ansible |  ok: [10.19.109.225]
+2018-05-31 15:57:46,716 p=22402 u=ansible |  ok: [10.19.109.229]
+2018-05-31 15:57:46,730 p=22402 u=ansible |  TASK [server/prometheus-install : fail] **************************************************************************************************************
+2018-05-31 15:57:46,750 p=22402 u=ansible |  skipping: [10.19.109.225]
+2018-05-31 15:57:46,762 p=22402 u=ansible |  skipping: [10.19.109.229]
+2018-05-31 15:57:46,764 p=22402 u=ansible |  PLAY RECAP *******************************************************************************************************************************************
+2018-05-31 15:57:46,764 p=22402 u=ansible |  10.19.109.225              : ok=11   changed=5    unreachable=0    failed=0   
+2018-05-31 15:57:46,764 p=22402 u=ansible |  10.19.109.229              : ok=11   changed=5    unreachable=0    failed=0   
+2018-05-31 15:57:47,302 p=22468 u=ansible |  fatal: [10.19.109.225]: FAILED! => {
+    "changed": false, 
+    "rc": 126, 
+    "results": [
+        "No package matching '/tmp/prometheus_client-0.2.0.tar.gz' found available, installed or updated"
+    ]
+}
+
+MSG:
+
+No package matching '/tmp/prometheus_client-0.2.0.tar.gz' found available, installed or updated
+
+2018-05-31 15:57:47,304 p=22468 u=ansible |  PLAY RECAP *********************************************************************************************************************************************
+2018-05-31 15:57:47,304 p=22468 u=ansible |  10.19.109.225              : ok=2    changed=0    unreachable=0    failed=1   
+2018-05-31 15:57:47,304 p=22468 u=ansible |  10.19.109.229              : ok=2    changed=0    unreachable=0    failed=1   
+2018-06-01 09:09:15,268 p=1975 u=ansible |   [WARNING]: Could not match supplied host pattern, ignoring: 10.19.209.232
+
+2018-06-01 09:09:15,268 p=1975 u=ansible |   [WARNING]: No hosts matched, nothing to do
+
+2018-06-01 09:09:31,828 p=1988 u=ansible |   [WARNING]: Could not match supplied host pattern, ignoring: 10.19.209.232
+
+2018-06-01 09:09:31,829 p=1988 u=ansible |   [WARNING]: No hosts matched, nothing to do
+
+2018-06-01 09:10:07,102 p=2028 u=ansible |  10.19.109.232 | SUCCESS | rc=0 >>
+ceph-osd.0.asok
+ceph-osd.1.asok
+ceph-osd.2.asok
+ceph-osd.3.asok
+ceph-osd.4.asok
+ceph-osd.5.asok
+
+2018-06-01 09:11:01,214 p=2067 u=ansible |  10.19.109.232 | SUCCESS | rc=0 >>
+90-ceph-plugin.conf
+90-default-plugins-cpu.conf
+90-default-plugins-interface.conf
+90-default-plugins-load.conf
+90-default-plugins-memory.conf
+90-default-plugins-syslog.conf
+
+2018-06-01 09:11:19,376 p=2086 u=ansible |  10.19.109.232 | SUCCESS | rc=0 >>
+<Plugin ceph>
+  LongRunAvgLatency false
+  ConvertSpecialMetricTypes true
+  <Daemon "osd.0">
+    SocketPath "/var/run/ceph/ceph-osd.0.asok"
+  </Daemon>
+  <Daemon "osd.1">
+    SocketPath "/var/run/ceph/ceph-osd.1.asok"
+  </Daemon>
+  <Daemon "osd.2">
+    SocketPath "/var/run/ceph/ceph-osd.2.asok"
+  </Daemon>
+  <Daemon "osd.3">
+    SocketPath "/var/run/ceph/ceph-osd.3.asok"
+  </Daemon>
+  <Daemon "osd.4">
+    SocketPath "/var/run/ceph/ceph-osd.4.asok"
+  </Daemon>
+  <Daemon "osd.5">
+    SocketPath "/var/run/ceph/ceph-osd.5.asok"
+  </Daemon>
+</Plugin>
+
+2018-06-01 09:13:28,744 p=2465 u=ansible |  10.19.109.232 | SUCCESS | rc=0 >>
+<Plugin ceph>
+  LongRunAvgLatency false
+  ConvertSpecialMetricTypes true
+  <Daemon "osd.0">
+    SocketPath "/var/run/ceph/ceph-osd.0.asok"
+  </Daemon>
+  <Daemon "osd.1">
+    SocketPath "/var/run/ceph/ceph-osd.1.asok"
+  </Daemon>
+  <Daemon "osd.2">
+    SocketPath "/var/run/ceph/ceph-osd.2.asok"
+  </Daemon>
+  <Daemon "osd.3">
+    SocketPath "/var/run/ceph/ceph-osd.3.asok"
+  </Daemon>
+  <Daemon "osd.4">
+    SocketPath "/var/run/ceph/ceph-osd.4.asok"
+  </Daemon>
+  <Daemon "osd.5">
+    SocketPath "/var/run/ceph/ceph-osd.5.asok"
+  </Daemon>
+</Plugin>
+
+2018-06-01 09:27:18,170 p=3263 u=ansible |  PLAY [Trying out the find command] ******************************************************************************************************
+2018-06-01 09:27:18,183 p=3263 u=ansible |  TASK [Gathering Facts] ******************************************************************************************************************
+2018-06-01 09:27:20,701 p=3263 u=ansible |  ok: [10.19.109.232]
+2018-06-01 09:27:20,739 p=3263 u=ansible |  TASK [Find all *asok files of OSDs] *****************************************************************************************************
+2018-06-01 09:27:21,090 p=3263 u=ansible |  ok: [10.19.109.232]
+2018-06-01 09:27:21,132 p=3263 u=ansible |  TASK [print the output] *****************************************************************************************************************
+2018-06-01 09:27:21,182 p=3263 u=ansible |  ok: [10.19.109.232] => {
+    "daemon": {
+        "changed": false, 
+        "examined": 6, 
+        "failed": false, 
+        "files": [], 
+        "matched": 0, 
+        "msg": ""
+    }
+}
+2018-06-01 09:27:21,183 p=3263 u=ansible |  PLAY RECAP ******************************************************************************************************************************
+2018-06-01 09:27:21,183 p=3263 u=ansible |  10.19.109.232              : ok=3    changed=0    unreachable=0    failed=0   
+2018-06-01 09:27:55,930 p=3300 u=ansible |  PLAY [Trying out the find command] ******************************************************************************************************
+2018-06-01 09:27:55,943 p=3300 u=ansible |  TASK [Gathering Facts] ******************************************************************************************************************
+2018-06-01 09:27:58,135 p=3300 u=ansible |  ok: [10.19.109.232]
+2018-06-01 09:27:58,174 p=3300 u=ansible |  TASK [Find all *asok files of OSDs] *****************************************************************************************************
+2018-06-01 09:27:58,538 p=3300 u=ansible |  ok: [10.19.109.232]
+2018-06-01 09:27:58,580 p=3300 u=ansible |  TASK [print the output] *****************************************************************************************************************
+2018-06-01 09:27:58,629 p=3300 u=ansible |  ok: [10.19.109.232] => {
+    "daemon": {
+        "changed": false, 
+        "examined": 6, 
+        "failed": false, 
+        "files": [], 
+        "matched": 0, 
+        "msg": ""
+    }
+}
+2018-06-01 09:27:58,631 p=3300 u=ansible |  PLAY RECAP ******************************************************************************************************************************
+2018-06-01 09:27:58,631 p=3300 u=ansible |  10.19.109.232              : ok=3    changed=0    unreachable=0    failed=0   
+2018-06-01 09:29:03,007 p=3396 u=ansible |  10.19.109.232 | SUCCESS | rc=0 >>
+ceph-osd.0.asok
+ceph-osd.1.asok
+ceph-osd.2.asok
+ceph-osd.3.asok
+ceph-osd.4.asok
+ceph-osd.5.asok
+
+2018-06-01 09:29:07,958 p=3416 u=ansible |  10.19.109.232 | SUCCESS | rc=0 >>
+total 0
+srwxr-xr-x. 1 ceph ceph 0 Oct 20  2017 ceph-osd.0.asok
+srwxr-xr-x. 1 ceph ceph 0 Oct 20  2017 ceph-osd.1.asok
+srwxr-xr-x. 1 ceph ceph 0 Oct 20  2017 ceph-osd.2.asok
+srwxr-xr-x. 1 ceph ceph 0 Oct 20  2017 ceph-osd.3.asok
+srwxr-xr-x. 1 ceph ceph 0 Oct 20  2017 ceph-osd.4.asok
+srwxr-xr-x. 1 ceph ceph 0 Oct 20  2017 ceph-osd.5.asok
+
+2018-06-01 09:29:40,910 p=3439 u=ansible |  10.19.109.232 | FAILED | rc=1 >>
+cat: /var/run/ceph/ceph-osd.0.asok: No such device or addressnon-zero return code
+
+2018-06-01 09:30:37,135 p=3492 u=ansible |  PLAY [Trying out the find command] ******************************************************************************************************
+2018-06-01 09:30:37,147 p=3492 u=ansible |  TASK [Gathering Facts] ******************************************************************************************************************
+2018-06-01 09:30:40,377 p=3492 u=ansible |  ok: [10.19.109.232]
+2018-06-01 09:30:40,415 p=3492 u=ansible |  TASK [Find all *asok files of OSDs] *****************************************************************************************************
+2018-06-01 09:30:40,761 p=3492 u=ansible |  ok: [10.19.109.232]
+2018-06-01 09:30:40,800 p=3492 u=ansible |  TASK [print the output] *****************************************************************************************************************
+2018-06-01 09:30:40,850 p=3492 u=ansible |  ok: [10.19.109.232] => {
+    "daemon": {
+        "changed": false, 
+        "examined": 6, 
+        "failed": false, 
+        "files": [], 
+        "matched": 0, 
+        "msg": ""
+    }
+}
+2018-06-01 09:30:40,852 p=3492 u=ansible |  PLAY RECAP ******************************************************************************************************************************
+2018-06-01 09:30:40,852 p=3492 u=ansible |  10.19.109.232              : ok=3    changed=0    unreachable=0    failed=0   
+2018-06-01 09:31:41,342 p=3546 u=ansible |  PLAY [Trying out the find command] ******************************************************************************************************
+2018-06-01 09:31:41,355 p=3546 u=ansible |  TASK [Gathering Facts] ******************************************************************************************************************
+2018-06-01 09:31:43,792 p=3546 u=ansible |  ok: [10.19.109.232]
+2018-06-01 09:31:43,829 p=3546 u=ansible |  TASK [Find all *asok files of OSDs] *****************************************************************************************************
+2018-06-01 09:31:44,165 p=3546 u=ansible |  ok: [10.19.109.232]
+2018-06-01 09:31:44,207 p=3546 u=ansible |  TASK [print the output] *****************************************************************************************************************
+2018-06-01 09:31:44,261 p=3546 u=ansible |  ok: [10.19.109.232] => {
+    "daemon": {
+        "changed": false, 
+        "examined": 6, 
+        "failed": false, 
+        "files": [
+            {
+                "atime": 1527859875.3195245, 
+                "ctime": 1508515161.121114, 
+                "dev": 19, 
+                "gid": 167, 
+                "gr_name": "ceph", 
+                "inode": 70366, 
+                "isblk": false, 
+                "ischr": false, 
+                "isdir": false, 
+                "isfifo": false, 
+                "isgid": false, 
+                "islnk": false, 
+                "isreg": false, 
+                "issock": true, 
+                "isuid": false, 
+                "mode": "0755", 
+                "mtime": 1508515161.121114, 
+                "nlink": 1, 
+                "path": "/var/run/ceph/ceph-osd.1.asok", 
+                "pw_name": "ceph", 
+                "rgrp": true, 
+                "roth": true, 
+                "rusr": true, 
+                "size": 0, 
+                "uid": 167, 
+                "wgrp": false, 
+                "woth": false, 
+                "wusr": true, 
+                "xgrp": true, 
+                "xoth": true, 
+                "xusr": true
+            }, 
+            {
+                "atime": 1527859875.3195245, 
+                "ctime": 1508515140.0998614, 
+                "dev": 19, 
+                "gid": 167, 
+                "gr_name": "ceph", 
+                "inode": 70226, 
+                "isblk": false, 
+                "ischr": false, 
+                "isdir": false, 
+                "isfifo": false, 
+                "isgid": false, 
+                "islnk": false, 
+                "isreg": false, 
+                "issock": true, 
+                "isuid": false, 
+                "mode": "0755", 
+                "mtime": 1508515140.0998614, 
+                "nlink": 1, 
+                "path": "/var/run/ceph/ceph-osd.4.asok", 
+                "pw_name": "ceph", 
+                "rgrp": true, 
+                "roth": true, 
+                "rusr": true, 
+                "size": 0, 
+                "uid": 167, 
+                "wgrp": false, 
+                "woth": false, 
+                "wusr": true, 
+                "xgrp": true, 
+                "xoth": true, 
+                "xusr": true
+            }, 
+            {
+                "atime": 1527859875.3195245, 
+                "ctime": 1508515119.1336124, 
+                "dev": 19, 
+                "gid": 167, 
+                "gr_name": "ceph", 
+                "inode": 66900, 
+                "isblk": false, 
+                "ischr": false, 
+                "isdir": false, 
+                "isfifo": false, 
+                "isgid": false, 
+                "islnk": false, 
+                "isreg": false, 
+                "issock": true, 
+                "isuid": false, 
+                "mode": "0755", 
+                "mtime": 1508515119.1336124, 
+                "nlink": 1, 
+                "path": "/var/run/ceph/ceph-osd.0.asok", 
+                "pw_name": "ceph", 
+                "rgrp": true, 
+                "roth": true, 
+                "rusr": true, 
+                "size": 0, 
+                "uid": 167, 
+                "wgrp": false, 
+                "woth": false, 
+                "wusr": true, 
+                "xgrp": true, 
+                "xoth": true, 
+                "xusr": true
+            }, 
+            {
+                "atime": 1527859875.3195245, 
+                "ctime": 1508515097.363315, 
+                "dev": 19, 
+                "gid": 167, 
+                "gr_name": "ceph", 
+                "inode": 70153, 
+                "isblk": false, 
+                "ischr": false, 
+                "isdir": false, 
+                "isfifo": false, 
+                "isgid": false, 
+                "islnk": false, 
+                "isreg": false, 
+                "issock": true, 
+                "isuid": false, 
+                "mode": "0755", 
+                "mtime": 1508515097.363315, 
+                "nlink": 1, 
+                "path": "/var/run/ceph/ceph-osd.2.asok", 
+                "pw_name": "ceph", 
+                "rgrp": true, 
+                "roth": true, 
+                "rusr": true, 
+                "size": 0, 
+                "uid": 167, 
+                "wgrp": false, 
+                "woth": false, 
+                "wusr": true, 
+                "xgrp": true, 
+                "xoth": true, 
+                "xusr": true
+            }, 
+            {
+                "atime": 1527859875.3195245, 
+                "ctime": 1508515076.3900657, 
+                "dev": 19, 
+                "gid": 167, 
+                "gr_name": "ceph", 
+                "inode": 48577, 
+                "isblk": false, 
+                "ischr": false, 
+                "isdir": false, 
+                "isfifo": false, 
+                "isgid": false, 
+                "islnk": false, 
+                "isreg": false, 
+                "issock": true, 
+                "isuid": false, 
+                "mode": "0755", 
+                "mtime": 1508515076.3900657, 
+                "nlink": 1, 
+                "path": "/var/run/ceph/ceph-osd.5.asok", 
+                "pw_name": "ceph", 
+                "rgrp": true, 
+                "roth": true, 
+                "rusr": true, 
+                "size": 0, 
+                "uid": 167, 
+                "wgrp": false, 
+                "woth": false, 
+                "wusr": true, 
+                "xgrp": true, 
+                "xoth": true, 
+                "xusr": true
+            }, 
+            {
+                "atime": 1527859875.3195245, 
+                "ctime": 1508515054.7827783, 
+                "dev": 19, 
+                "gid": 167, 
+                "gr_name": "ceph", 
+                "inode": 19964, 
+                "isblk": false, 
+                "ischr": false, 
+                "isdir": false, 
+                "isfifo": false, 
+                "isgid": false, 
+                "islnk": false, 
+                "isreg": false, 
+                "issock": true, 
+                "isuid": false, 
+                "mode": "0755", 
+                "mtime": 1508515054.7827783, 
+                "nlink": 1, 
+                "path": "/var/run/ceph/ceph-osd.3.asok", 
+                "pw_name": "ceph", 
+                "rgrp": true, 
+                "roth": true, 
+                "rusr": true, 
+                "size": 0, 
+                "uid": 167, 
+                "wgrp": false, 
+                "woth": false, 
+                "wusr": true, 
+                "xgrp": true, 
+                "xoth": true, 
+                "xusr": true
+            }
+        ], 
+        "matched": 6, 
+        "msg": ""
+    }
+}
+2018-06-01 09:31:44,263 p=3546 u=ansible |  PLAY RECAP ******************************************************************************************************************************
+2018-06-01 09:31:44,263 p=3546 u=ansible |  10.19.109.232              : ok=3    changed=0    unreachable=0    failed=0   
+2018-06-01 09:32:29,467 p=3586 u=ansible |  10.19.109.232 | FAILED | rc=2 >>
+ls: cannot access /var/run/ceph/*.asok: No such file or directorynon-zero return code
+
+2018-06-01 09:32:44,556 p=3605 u=ansible |  10.19.109.232 | FAILED | rc=2 >>
+ls: cannot access /var/run/ceph/*: No such file or directorynon-zero return code
+
+2018-06-01 09:32:48,655 p=3622 u=ansible |  10.19.109.232 | SUCCESS | rc=0 >>
+total 0
+srwxr-xr-x. 1 ceph ceph 0 Oct 20  2017 ceph-osd.0.asok
+srwxr-xr-x. 1 ceph ceph 0 Oct 20  2017 ceph-osd.1.asok
+srwxr-xr-x. 1 ceph ceph 0 Oct 20  2017 ceph-osd.2.asok
+srwxr-xr-x. 1 ceph ceph 0 Oct 20  2017 ceph-osd.3.asok
+srwxr-xr-x. 1 ceph ceph 0 Oct 20  2017 ceph-osd.4.asok
+srwxr-xr-x. 1 ceph ceph 0 Oct 20  2017 ceph-osd.5.asok
+
+2018-06-01 09:33:01,449 p=3641 u=ansible |  10.19.109.232 | FAILED | rc=2 >>
+ls: cannot access /var/run/ceph/*: No such file or directorynon-zero return code
+
+2018-06-01 09:33:20,888 p=3669 u=ansible |  10.19.109.232 | SUCCESS | rc=0 >>
+ceph-osd.0.asok
+ceph-osd.1.asok
+ceph-osd.2.asok
+ceph-osd.3.asok
+ceph-osd.4.asok
+ceph-osd.5.asok
+
+2018-06-01 09:33:25,804 p=3686 u=ansible |  10.19.109.232 | FAILED | rc=2 >>
+ls: cannot access /var/run/ceph/*: No such file or directorynon-zero return code
+
+2018-06-01 09:35:38,870 p=3746 u=ansible |  PLAY [Trying out the find command] ******************************************************************************************************
+2018-06-01 09:35:38,882 p=3746 u=ansible |  TASK [Gathering Facts] ******************************************************************************************************************
+2018-06-01 09:35:42,347 p=3746 u=ansible |  ok: [10.19.109.232]
+2018-06-01 09:35:42,386 p=3746 u=ansible |  TASK [Find all *asok files of OSDs] *****************************************************************************************************
+2018-06-01 09:35:42,730 p=3746 u=ansible |  ok: [10.19.109.232]
+2018-06-01 09:35:42,773 p=3746 u=ansible |  TASK [print the output] *****************************************************************************************************************
+2018-06-01 09:35:42,829 p=3746 u=ansible |  ok: [10.19.109.232] => {
+    "daemon": {
+        "changed": false, 
+        "examined": 6, 
+        "failed": false, 
+        "files": [
+            {
+                "atime": 1527860115.3198802, 
+                "ctime": 1508515119.1336124, 
+                "dev": 19, 
+                "gid": 167, 
+                "gr_name": "ceph", 
+                "inode": 66900, 
+                "isblk": false, 
+                "ischr": false, 
+                "isdir": false, 
+                "isfifo": false, 
+                "isgid": false, 
+                "islnk": false, 
+                "isreg": false, 
+                "issock": true, 
+                "isuid": false, 
+                "mode": "0755", 
+                "mtime": 1508515119.1336124, 
+                "nlink": 1, 
+                "path": "/var/run/ceph/ceph-osd.0.asok", 
+                "pw_name": "ceph", 
+                "rgrp": true, 
+                "roth": true, 
+                "rusr": true, 
+                "size": 0, 
+                "uid": 167, 
+                "wgrp": false, 
+                "woth": false, 
+                "wusr": true, 
+                "xgrp": true, 
+                "xoth": true, 
+                "xusr": true
+            }
+        ], 
+        "matched": 1, 
+        "msg": ""
+    }
+}
+2018-06-01 09:35:42,830 p=3746 u=ansible |  PLAY RECAP ******************************************************************************************************************************
+2018-06-01 09:35:42,831 p=3746 u=ansible |  10.19.109.232              : ok=3    changed=0    unreachable=0    failed=0   
+2018-06-01 09:36:23,151 p=3789 u=ansible |  ERROR! Syntax Error while loading YAML.
+  did not find expected alphabetic or numeric character
+
+The error appears to have been in '/home/ansible/telemetry-local-pkgs/delme.yml': line 8, column 19, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+        path: /var/run/ceph/
+        pattern: *.asok
+                  ^ here
+
+2018-06-01 09:36:35,634 p=3806 u=ansible |  PLAY [Trying out the find command] ******************************************************************************************************
+2018-06-01 09:36:35,647 p=3806 u=ansible |  TASK [Gathering Facts] ******************************************************************************************************************
+2018-06-01 09:36:37,840 p=3806 u=ansible |  ok: [10.19.109.232]
+2018-06-01 09:36:37,879 p=3806 u=ansible |  TASK [Find all *asok files of OSDs] *****************************************************************************************************
+2018-06-01 09:36:38,225 p=3806 u=ansible |  ok: [10.19.109.232]
+2018-06-01 09:36:38,267 p=3806 u=ansible |  TASK [print the output] *****************************************************************************************************************
+2018-06-01 09:36:38,325 p=3806 u=ansible |  ok: [10.19.109.232] => {
+    "daemon": {
+        "changed": false, 
+        "examined": 6, 
+        "failed": false, 
+        "files": [
+            {
+                "atime": 1527860115.3198802, 
+                "ctime": 1508515161.121114, 
+                "dev": 19, 
+                "gid": 167, 
+                "gr_name": "ceph", 
+                "inode": 70366, 
+                "isblk": false, 
+                "ischr": false, 
+                "isdir": false, 
+                "isfifo": false, 
+                "isgid": false, 
+                "islnk": false, 
+                "isreg": false, 
+                "issock": true, 
+                "isuid": false, 
+                "mode": "0755", 
+                "mtime": 1508515161.121114, 
+                "nlink": 1, 
+                "path": "/var/run/ceph/ceph-osd.1.asok", 
+                "pw_name": "ceph", 
+                "rgrp": true, 
+                "roth": true, 
+                "rusr": true, 
+                "size": 0, 
+                "uid": 167, 
+                "wgrp": false, 
+                "woth": false, 
+                "wusr": true, 
+                "xgrp": true, 
+                "xoth": true, 
+                "xusr": true
+            }, 
+            {
+                "atime": 1527860115.3198802, 
+                "ctime": 1508515140.0998614, 
+                "dev": 19, 
+                "gid": 167, 
+                "gr_name": "ceph", 
+                "inode": 70226, 
+                "isblk": false, 
+                "ischr": false, 
+                "isdir": false, 
+                "isfifo": false, 
+                "isgid": false, 
+                "islnk": false, 
+                "isreg": false, 
+                "issock": true, 
+                "isuid": false, 
+                "mode": "0755", 
+                "mtime": 1508515140.0998614, 
+                "nlink": 1, 
+                "path": "/var/run/ceph/ceph-osd.4.asok", 
+                "pw_name": "ceph", 
+                "rgrp": true, 
+                "roth": true, 
+                "rusr": true, 
+                "size": 0, 
+                "uid": 167, 
+                "wgrp": false, 
+                "woth": false, 
+                "wusr": true, 
+                "xgrp": true, 
+                "xoth": true, 
+                "xusr": true
+            }, 
+            {
+                "atime": 1527860115.3198802, 
+                "ctime": 1508515119.1336124, 
+                "dev": 19, 
+                "gid": 167, 
+                "gr_name": "ceph", 
+                "inode": 66900, 
+                "isblk": false, 
+                "ischr": false, 
+                "isdir": false, 
+                "isfifo": false, 
+                "isgid": false, 
+                "islnk": false, 
+                "isreg": false, 
+                "issock": true, 
+                "isuid": false, 
+                "mode": "0755", 
+                "mtime": 1508515119.1336124, 
+                "nlink": 1, 
+                "path": "/var/run/ceph/ceph-osd.0.asok", 
+                "pw_name": "ceph", 
+                "rgrp": true, 
+                "roth": true, 
+                "rusr": true, 
+                "size": 0, 
+                "uid": 167, 
+                "wgrp": false, 
+                "woth": false, 
+                "wusr": true, 
+                "xgrp": true, 
+                "xoth": true, 
+                "xusr": true
+            }, 
+            {
+                "atime": 1527860115.3198802, 
+                "ctime": 1508515097.363315, 
+                "dev": 19, 
+                "gid": 167, 
+                "gr_name": "ceph", 
+                "inode": 70153, 
+                "isblk": false, 
+                "ischr": false, 
+                "isdir": false, 
+                "isfifo": false, 
+                "isgid": false, 
+                "islnk": false, 
+                "isreg": false, 
+                "issock": true, 
+                "isuid": false, 
+                "mode": "0755", 
+                "mtime": 1508515097.363315, 
+                "nlink": 1, 
+                "path": "/var/run/ceph/ceph-osd.2.asok", 
+                "pw_name": "ceph", 
+                "rgrp": true, 
+                "roth": true, 
+                "rusr": true, 
+                "size": 0, 
+                "uid": 167, 
+                "wgrp": false, 
+                "woth": false, 
+                "wusr": true, 
+                "xgrp": true, 
+                "xoth": true, 
+                "xusr": true
+            }, 
+            {
+                "atime": 1527860115.3198802, 
+                "ctime": 1508515076.3900657, 
+                "dev": 19, 
+                "gid": 167, 
+                "gr_name": "ceph", 
+                "inode": 48577, 
+                "isblk": false, 
+                "ischr": false, 
+                "isdir": false, 
+                "isfifo": false, 
+                "isgid": false, 
+                "islnk": false, 
+                "isreg": false, 
+                "issock": true, 
+                "isuid": false, 
+                "mode": "0755", 
+                "mtime": 1508515076.3900657, 
+                "nlink": 1, 
+                "path": "/var/run/ceph/ceph-osd.5.asok", 
+                "pw_name": "ceph", 
+                "rgrp": true, 
+                "roth": true, 
+                "rusr": true, 
+                "size": 0, 
+                "uid": 167, 
+                "wgrp": false, 
+                "woth": false, 
+                "wusr": true, 
+                "xgrp": true, 
+                "xoth": true, 
+                "xusr": true
+            }, 
+            {
+                "atime": 1527860115.3198802, 
+                "ctime": 1508515054.7827783, 
+                "dev": 19, 
+                "gid": 167, 
+                "gr_name": "ceph", 
+                "inode": 19964, 
+                "isblk": false, 
+                "ischr": false, 
+                "isdir": false, 
+                "isfifo": false, 
+                "isgid": false, 
+                "islnk": false, 
+                "isreg": false, 
+                "issock": true, 
+                "isuid": false, 
+                "mode": "0755", 
+                "mtime": 1508515054.7827783, 
+                "nlink": 1, 
+                "path": "/var/run/ceph/ceph-osd.3.asok", 
+                "pw_name": "ceph", 
+                "rgrp": true, 
+                "roth": true, 
+                "rusr": true, 
+                "size": 0, 
+                "uid": 167, 
+                "wgrp": false, 
+                "woth": false, 
+                "wusr": true, 
+                "xgrp": true, 
+                "xoth": true, 
+                "xusr": true
+            }
+        ], 
+        "matched": 6, 
+        "msg": ""
+    }
+}
+2018-06-01 09:36:38,327 p=3806 u=ansible |  PLAY RECAP ******************************************************************************************************************************
+2018-06-01 09:36:38,327 p=3806 u=ansible |  10.19.109.232              : ok=3    changed=0    unreachable=0    failed=0   
+2018-06-01 09:38:55,156 p=3937 u=ansible |  PLAY [Trying out the find command] ******************************************************************************************************
+2018-06-01 09:38:55,168 p=3937 u=ansible |  TASK [Gathering Facts] ******************************************************************************************************************
+2018-06-01 09:38:57,633 p=3937 u=ansible |  ok: [10.19.109.232]
+2018-06-01 09:38:57,671 p=3937 u=ansible |  TASK [Find all *asok files of OSDs] *****************************************************************************************************
+2018-06-01 09:38:58,020 p=3937 u=ansible |  ok: [10.19.109.232]
+2018-06-01 09:38:58,059 p=3937 u=ansible |  TASK [print the output] *****************************************************************************************************************
+2018-06-01 09:38:58,108 p=3937 u=ansible |  ok: [10.19.109.232] => {
+    "daemon": {
+        "changed": false, 
+        "examined": 6, 
+        "failed": false, 
+        "files": [], 
+        "matched": 0, 
+        "msg": ""
+    }
+}
+2018-06-01 09:38:58,110 p=3937 u=ansible |  PLAY RECAP ******************************************************************************************************************************
+2018-06-01 09:38:58,110 p=3937 u=ansible |  10.19.109.232              : ok=3    changed=0    unreachable=0    failed=0   
+2018-06-01 09:39:13,799 p=3984 u=ansible |  PLAY [Trying out the find command] ******************************************************************************************************
+2018-06-01 09:39:13,812 p=3984 u=ansible |  TASK [Gathering Facts] ******************************************************************************************************************
+2018-06-01 09:39:15,994 p=3984 u=ansible |  ok: [10.19.109.232]
+2018-06-01 09:39:16,033 p=3984 u=ansible |  TASK [Find all *asok files of OSDs] *****************************************************************************************************
+2018-06-01 09:39:16,370 p=3984 u=ansible |  ok: [10.19.109.232]
+2018-06-01 09:39:16,411 p=3984 u=ansible |  TASK [print the output] *****************************************************************************************************************
+2018-06-01 09:39:16,464 p=3984 u=ansible |  ok: [10.19.109.232] => {
+    "daemon": {
+        "changed": false, 
+        "examined": 6, 
+        "failed": false, 
+        "files": [], 
+        "matched": 0, 
+        "msg": ""
+    }
+}
+2018-06-01 09:39:16,465 p=3984 u=ansible |  PLAY RECAP ******************************************************************************************************************************
+2018-06-01 09:39:16,466 p=3984 u=ansible |  10.19.109.232              : ok=3    changed=0    unreachable=0    failed=0   
+2018-06-01 09:39:29,060 p=4011 u=ansible |  PLAY [Trying out the find command] ******************************************************************************************************
+2018-06-01 09:39:29,072 p=4011 u=ansible |  TASK [Gathering Facts] ******************************************************************************************************************
+2018-06-01 09:39:31,218 p=4011 u=ansible |  ok: [10.19.109.232]
+2018-06-01 09:39:31,257 p=4011 u=ansible |  TASK [Find all *asok files of OSDs] *****************************************************************************************************
+2018-06-01 09:39:31,591 p=4011 u=ansible |  ok: [10.19.109.232]
+2018-06-01 09:39:31,633 p=4011 u=ansible |  TASK [print the output] *****************************************************************************************************************
+2018-06-01 09:39:31,684 p=4011 u=ansible |  ok: [10.19.109.232] => {
+    "daemon": {
+        "changed": false, 
+        "examined": 6, 
+        "failed": false, 
+        "files": [], 
+        "matched": 0, 
+        "msg": ""
+    }
+}
+2018-06-01 09:39:31,685 p=4011 u=ansible |  PLAY RECAP ******************************************************************************************************************************
+2018-06-01 09:39:31,686 p=4011 u=ansible |  10.19.109.232              : ok=3    changed=0    unreachable=0    failed=0   
+2018-06-01 09:39:58,680 p=4039 u=ansible |  PLAY [Trying out the find command] ******************************************************************************************************
+2018-06-01 09:39:58,693 p=4039 u=ansible |  TASK [Gathering Facts] ******************************************************************************************************************
+2018-06-01 09:40:00,850 p=4039 u=ansible |  ok: [10.19.109.232]
+2018-06-01 09:40:00,889 p=4039 u=ansible |  TASK [Find all *asok files of OSDs] *****************************************************************************************************
+2018-06-01 09:40:01,264 p=4039 u=ansible |  ok: [10.19.109.232]
+2018-06-01 09:40:01,307 p=4039 u=ansible |  TASK [print the output] *****************************************************************************************************************
+2018-06-01 09:40:01,361 p=4039 u=ansible |  ok: [10.19.109.232] => {
+    "daemon": {
+        "changed": false, 
+        "examined": 6, 
+        "failed": false, 
+        "files": [
+            {
+                "atime": 1527860355.3192284, 
+                "ctime": 1508515161.121114, 
+                "dev": 19, 
+                "gid": 167, 
+                "gr_name": "ceph", 
+                "inode": 70366, 
+                "isblk": false, 
+                "ischr": false, 
+                "isdir": false, 
+                "isfifo": false, 
+                "isgid": false, 
+                "islnk": false, 
+                "isreg": false, 
+                "issock": true, 
+                "isuid": false, 
+                "mode": "0755", 
+                "mtime": 1508515161.121114, 
+                "nlink": 1, 
+                "path": "/var/run/ceph/ceph-osd.1.asok", 
+                "pw_name": "ceph", 
+                "rgrp": true, 
+                "roth": true, 
+                "rusr": true, 
+                "size": 0, 
+                "uid": 167, 
+                "wgrp": false, 
+                "woth": false, 
+                "wusr": true, 
+                "xgrp": true, 
+                "xoth": true, 
+                "xusr": true
+            }, 
+            {
+                "atime": 1527860355.3192284, 
+                "ctime": 1508515140.0998614, 
+                "dev": 19, 
+                "gid": 167, 
+                "gr_name": "ceph", 
+                "inode": 70226, 
+                "isblk": false, 
+                "ischr": false, 
+                "isdir": false, 
+                "isfifo": false, 
+                "isgid": false, 
+                "islnk": false, 
+                "isreg": false, 
+                "issock": true, 
+                "isuid": false, 
+                "mode": "0755", 
+                "mtime": 1508515140.0998614, 
+                "nlink": 1, 
+                "path": "/var/run/ceph/ceph-osd.4.asok", 
+                "pw_name": "ceph", 
+                "rgrp": true, 
+                "roth": true, 
+                "rusr": true, 
+                "size": 0, 
+                "uid": 167, 
+                "wgrp": false, 
+                "woth": false, 
+                "wusr": true, 
+                "xgrp": true, 
+                "xoth": true, 
+                "xusr": true
+            }, 
+            {
+                "atime": 1527860355.3192284, 
+                "ctime": 1508515119.1336124, 
+                "dev": 19, 
+                "gid": 167, 
+                "gr_name": "ceph", 
+                "inode": 66900, 
+                "isblk": false, 
+                "ischr": false, 
+                "isdir": false, 
+                "isfifo": false, 
+                "isgid": false, 
+                "islnk": false, 
+                "isreg": false, 
+                "issock": true, 
+                "isuid": false, 
+                "mode": "0755", 
+                "mtime": 1508515119.1336124, 
+                "nlink": 1, 
+                "path": "/var/run/ceph/ceph-osd.0.asok", 
+                "pw_name": "ceph", 
+                "rgrp": true, 
+                "roth": true, 
+                "rusr": true, 
+                "size": 0, 
+                "uid": 167, 
+                "wgrp": false, 
+                "woth": false, 
+                "wusr": true, 
+                "xgrp": true, 
+                "xoth": true, 
+                "xusr": true
+            }, 
+            {
+                "atime": 1527860355.3192284, 
+                "ctime": 1508515097.363315, 
+                "dev": 19, 
+                "gid": 167, 
+                "gr_name": "ceph", 
+                "inode": 70153, 
+                "isblk": false, 
+                "ischr": false, 
+                "isdir": false, 
+                "isfifo": false, 
+                "isgid": false, 
+                "islnk": false, 
+                "isreg": false, 
+                "issock": true, 
+                "isuid": false, 
+                "mode": "0755", 
+                "mtime": 1508515097.363315, 
+                "nlink": 1, 
+                "path": "/var/run/ceph/ceph-osd.2.asok", 
+                "pw_name": "ceph", 
+                "rgrp": true, 
+                "roth": true, 
+                "rusr": true, 
+                "size": 0, 
+                "uid": 167, 
+                "wgrp": false, 
+                "woth": false, 
+                "wusr": true, 
+                "xgrp": true, 
+                "xoth": true, 
+                "xusr": true
+            }, 
+            {
+                "atime": 1527860355.3192284, 
+                "ctime": 1508515076.3900657, 
+                "dev": 19, 
+                "gid": 167, 
+                "gr_name": "ceph", 
+                "inode": 48577, 
+                "isblk": false, 
+                "ischr": false, 
+                "isdir": false, 
+                "isfifo": false, 
+                "isgid": false, 
+                "islnk": false, 
+                "isreg": false, 
+                "issock": true, 
+                "isuid": false, 
+                "mode": "0755", 
+                "mtime": 1508515076.3900657, 
+                "nlink": 1, 
+                "path": "/var/run/ceph/ceph-osd.5.asok", 
+                "pw_name": "ceph", 
+                "rgrp": true, 
+                "roth": true, 
+                "rusr": true, 
+                "size": 0, 
+                "uid": 167, 
+                "wgrp": false, 
+                "woth": false, 
+                "wusr": true, 
+                "xgrp": true, 
+                "xoth": true, 
+                "xusr": true
+            }, 
+            {
+                "atime": 1527860355.3192284, 
+                "ctime": 1508515054.7827783, 
+                "dev": 19, 
+                "gid": 167, 
+                "gr_name": "ceph", 
+                "inode": 19964, 
+                "isblk": false, 
+                "ischr": false, 
+                "isdir": false, 
+                "isfifo": false, 
+                "isgid": false, 
+                "islnk": false, 
+                "isreg": false, 
+                "issock": true, 
+                "isuid": false, 
+                "mode": "0755", 
+                "mtime": 1508515054.7827783, 
+                "nlink": 1, 
+                "path": "/var/run/ceph/ceph-osd.3.asok", 
+                "pw_name": "ceph", 
+                "rgrp": true, 
+                "roth": true, 
+                "rusr": true, 
+                "size": 0, 
+                "uid": 167, 
+                "wgrp": false, 
+                "woth": false, 
+                "wusr": true, 
+                "xgrp": true, 
+                "xoth": true, 
+                "xusr": true
+            }
+        ], 
+        "matched": 6, 
+        "msg": ""
+    }
+}
+2018-06-01 09:40:01,362 p=4039 u=ansible |  PLAY RECAP ******************************************************************************************************************************
+2018-06-01 09:40:01,362 p=4039 u=ansible |  10.19.109.232              : ok=3    changed=0    unreachable=0    failed=0   
+2018-06-01 09:43:40,830 p=4509 u=ansible |  PLAY [osp_exporters] ***********************************************************************************************************************************
+2018-06-01 09:43:40,845 p=4509 u=ansible |  TASK [Gathering Facts] *********************************************************************************************************************************
+2018-06-01 09:43:41,944 p=4509 u=ansible |  ok: [10.19.109.225]
+2018-06-01 09:43:41,951 p=4509 u=ansible |  ok: [10.19.109.229]
+2018-06-01 09:43:41,964 p=4509 u=ansible |  TASK [server/osp-exporter-install : Copy packages required for osp-exporter /tmp] **********************************************************************
+2018-06-01 09:43:42,825 p=4509 u=ansible |  changed: [10.19.109.225]
+2018-06-01 09:43:42,826 p=4509 u=ansible |  changed: [10.19.109.229]
+2018-06-01 09:43:42,839 p=4509 u=ansible |  TASK [server/osp-exporter-install : Install Python Prometheus Client] **********************************************************************************
+2018-06-01 09:43:44,019 p=4509 u=ansible |  changed: [10.19.109.229]
+2018-06-01 09:43:44,541 p=4509 u=ansible |  changed: [10.19.109.225]
+2018-06-01 09:43:44,557 p=4509 u=ansible |  TASK [server/osp-exporter-install : Copy OSP exporter python files to target] **************************************************************************
+2018-06-01 09:43:48,311 p=4509 u=ansible |  changed: [10.19.109.225]
+2018-06-01 09:43:48,315 p=4509 u=ansible |  changed: [10.19.109.229]
+2018-06-01 09:43:48,329 p=4509 u=ansible |  TASK [server/osp-exporter-install : Find the name of the prometheus exporter directory] ****************************************************************
+2018-06-01 09:43:48,696 p=4509 u=ansible |  ok: [10.19.109.225]
+2018-06-01 09:43:48,698 p=4509 u=ansible |  ok: [10.19.109.229]
+2018-06-01 09:43:48,713 p=4509 u=ansible |  TASK [server/osp-exporter-install : debug] *************************************************************************************************************
+2018-06-01 09:43:48,765 p=4509 u=ansible |  ok: [10.19.109.225] => {
+    "dir_name.files[0].path": "/opt/osp-exporter"
+}
+2018-06-01 09:43:48,784 p=4509 u=ansible |  ok: [10.19.109.229] => {
+    "dir_name.files[0].path": "/opt/osp-exporter"
+}
+2018-06-01 09:43:48,797 p=4509 u=ansible |  TASK [server/osp-exporter-install : set_fact] **********************************************************************************************************
+2018-06-01 09:43:48,848 p=4509 u=ansible |  ok: [10.19.109.225]
+2018-06-01 09:43:48,861 p=4509 u=ansible |  ok: [10.19.109.229]
+2018-06-01 09:43:48,874 p=4509 u=ansible |  TASK [server/osp-exporter-install : Set main.py to be executable] **************************************************************************************
+2018-06-01 09:43:49,230 p=4509 u=ansible |  changed: [10.19.109.225]
+2018-06-01 09:43:49,230 p=4509 u=ansible |  changed: [10.19.109.229]
+2018-06-01 09:43:49,245 p=4509 u=ansible |  TASK [server/osp-exporter-install : Create config file env.yaml] ***************************************************************************************
+2018-06-01 09:43:49,716 p=4509 u=ansible |  changed: [10.19.109.225]
+2018-06-01 09:43:49,729 p=4509 u=ansible |  changed: [10.19.109.229]
+2018-06-01 09:43:49,742 p=4509 u=ansible |  TASK [server/osp-exporter-install : Create systemd service for prometheus exporter] ********************************************************************
+2018-06-01 09:43:50,236 p=4509 u=ansible |  changed: [10.19.109.225]
+2018-06-01 09:43:50,249 p=4509 u=ansible |  changed: [10.19.109.229]
+2018-06-01 09:43:50,262 p=4509 u=ansible |  TASK [server/osp-exporter-install : Start prometheus exporter service] *********************************************************************************
+2018-06-01 09:43:50,690 p=4509 u=ansible |  changed: [10.19.109.229]
+2018-06-01 09:43:50,694 p=4509 u=ansible |  changed: [10.19.109.225]
+2018-06-01 09:43:50,696 p=4509 u=ansible |  PLAY RECAP *********************************************************************************************************************************************
+2018-06-01 09:43:50,696 p=4509 u=ansible |  10.19.109.225              : ok=11   changed=7    unreachable=0    failed=0   
+2018-06-01 09:43:50,696 p=4509 u=ansible |  10.19.109.229              : ok=11   changed=7    unreachable=0    failed=0   

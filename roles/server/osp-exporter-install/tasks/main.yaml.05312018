@@ -1,12 +1,45 @@
+#- name: Install Python PIP 
+#  package:
+#    name: python2-pip
+#    state: present
+
 
 - name: Copy packages required for osp-exporter /tmp
   copy:
-    src: "{{ telemetry_home }}/packages/{{ prometheus_client }}"
+    src: "{{ telemetry_home }}/packages/{{ item }}"
     dest: /tmp
+  with_items:
+    - "{{ prometheus_client }}"
+#    - "{{ osp_exporter_packages }}"
 
-- name: Install Python Prometheus Client
-  pip:
+- name: Install python2 package
+  yum:
     name: "/tmp/{{ prometheus_client }}"
+#    name: "/tmp/{{ python2_pip_pkg }}"
+    state: present
+
+#- name: Install required python modules using PIP
+#  action: "{{ ansible_pkg_mgr }} name={{ item }} state=present"
+#  with_items:
+#    - python-nose
+#    - python-sphinx
+#    - python-dateutil
+#    - python-simplejson
+#    - python-yaml
+
+- name: Install Python required packages 
+  pip:
+    name: "/tmp/{{ item }}"
+    state: forcereinstall
+  with_items:
+    - "{{ python2_pip_pkg }}"
+#    - "{{ osp_exporter_python_packages }}"
+
+#- name: Install requests version 2.14.2
+#  pip:
+#    name: requests
+#    state: present
+#    version: 2.14.2
 
 - name: Copy OSP exporter python files to target 
   copy:

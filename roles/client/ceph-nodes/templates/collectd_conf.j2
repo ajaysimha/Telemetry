@@ -37,9 +37,8 @@ ValuesPercentage true
 reportInodes true
 </Plugin>
 
-Include "/etc/collectd.d"
 <Plugin "exec">
-Exec  "nobody" "/etc/collectd.d/nfvi-services.sh"
+Exec  "nobody" "/usr/share/collectd/exec/nfvi-services.sh"
 </Plugin>
 
 LoadPlugin network
