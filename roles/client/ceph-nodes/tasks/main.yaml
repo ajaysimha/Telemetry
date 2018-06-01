@@ -92,7 +92,7 @@
 
 - name: Create sudoers file for nobody
   copy:
-    src: nobody
+    src: nobody.sudoers
     dest: /etc/sudoers.d/nobody
 
 - name: Start collectd client
