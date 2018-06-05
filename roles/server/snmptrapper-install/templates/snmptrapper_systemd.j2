@@ -1,0 +1,9 @@
+[Unit]
+Description=SNMP trapper
+After=network.target
+
+[Service]
+ExecStart={{ snmptrapper_path }}/snmptrapper -snmpcommunity {{ snmp_community }} -snmptrapaddress {{ snmp_trap_receiver }}:{{ snmp_trap_receiver_port }}
+
+[Install]
+WantedBy=default.target
