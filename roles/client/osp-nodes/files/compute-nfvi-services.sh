@@ -10,19 +10,19 @@ while sleep "$INTERVAL" ; do
   #An Identifier is of the form " host / plugin - instance / type - instance "
   #Refer for all typesdb to use like links-cinder  https://github-com/collectd/collectd/blob/master/src/types.db
 
-  val=$(systemctl list-units |grep -i openstack-ceilometer-compute |grep -ic running)
+  val=$(sudo systemctl list-units |grep -i openstack-ceilometer-compute |grep -ic running)
   echo "PUTVAL \"$HOSTNAME/nfvi-services/service-openstack-ceilometer-compute\"  interval=$INTERVAL N:$val"
 
-  val=$(systemctl list-units |grep -i openstack-nova-compute |grep -ic running)
+  val=$(sudo systemctl list-units |grep -i openstack-nova-compute |grep -ic running)
   echo "PUTVAL \"$HOSTNAME/nfvi-services/service-openstack-nova-compute\" interval=$INTERVAL N:$val"
 
-   val=$(systemctl list-units |grep -i ntpd |grep -ic running)
+   val=$(sudo systemctl list-units |grep -i ntpd |grep -ic running)
   echo "PUTVAL \"$HOSTNAME/nfvi-services/service-ntpd-service\" interval=$INTERVAL N:$val"
 
-  val=$(systemctl list-units |grep -i sshd |grep -ic running)
+  val=$(sudo systemctl list-units |grep -i sshd |grep -ic running)
   echo "PUTVAL \"$HOSTNAME/nfvi-services/service-sshd-service\" interval=$INTERVAL N:$val"
 
-  val=$(systemctl list-units |grep -i libvirtd |grep -ic running)
+  val=$(sudo systemctl list-units |grep -i libvirtd |grep -ic running)
   echo "PUTVAL \"$HOSTNAME/nfvi-services/service-libvirtd-service\" interval=$INTERVAL N:$val"
 
   val=$(ps aux | awk '{ print $8 " " $2 }' | grep -w Z | wc -l)
