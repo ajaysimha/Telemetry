@@ -15,7 +15,7 @@
 - name: Configure collectd client to send metrics to collectd exporter
   template:
     src: collectd_conf.j2
-    dest: /etc/collectd.conf
+    dest: /tmp/collectd.conf
 
 - name: Create /usr/share/collectd/exec directory
   file:
@@ -28,14 +28,14 @@
     src: compute-nfvi-services.sh
     dest: /usr/share/collectd/exec/nfvi-services.sh
     mode: 0755
-  when: "'osp-computes' in group_names"
+  when: "'computes' in group_names | join(' ')"
 
 - name: Copy nfvi-services.sh to /etc/collectd.d directory
   copy:
     src: controller-nfvi-services.sh
     dest: /usr/share/collectd/exec/nfvi-services.sh
     mode: 0755
-  when: "'osp-controllers' in group_names"
+  when: "'controllers' in group_names | join(' ')"
 
 - name: Copy discover-disks.sh to /usr/local/sbin directory
   copy:
@@ -72,6 +72,16 @@
   copy:
     src: types.db.custom
     dest: /usr/share/collectd/
+
+- name: Set selinux permissive for collectd
+  selinux_permissive:
+    name: collectd_t
+    permissive: true
+
+- name: Create sudoers file for nobody
+  copy:
+    src: nobody.sudoers
+    dest: /etc/sudoers.d/nobody
 
 - name: Start collectd client
   service:
