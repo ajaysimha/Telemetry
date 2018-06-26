@@ -10,11 +10,11 @@ while sleep "$INTERVAL" ; do
   #An Identifier is of the form " host / plugin - instance / type - instance "
   #Refer for all typesdb to use like links-cinder  https://github-com/collectd/collectd/blob/master/src/types.db
 
-  #val=$(sudo systemctl list-units |grep -i openstack-ceilometer-central |grep -ic running)
-  #echo "PUTVAL \"$HOSTNAME/nfvi-services/service-openstack-ceilometer-central\"  interval=$INTERVAL N:$val"  
+  val=$(sudo systemctl list-units |grep -i openstack-ceilometer-central |grep -ic running)
+  echo "PUTVAL \"$HOSTNAME/nfvi-services/service-openstack-ceilometer-central\"  interval=$INTERVAL N:$val"  
   
-  #val=$(sudo systemctl list-units |grep -i openstack-ceilometer-collector |grep -ic running)
-  #echo "PUTVAL \"$HOSTNAME/nfvi-services/service-openstack-ceilometer-collector\"  interval=$INTERVAL N:$val"
+  val=$(sudo systemctl list-units |grep -i openstack-ceilometer-collector |grep -ic running)
+  echo "PUTVAL \"$HOSTNAME/nfvi-services/service-openstack-ceilometer-collector\"  interval=$INTERVAL N:$val"
 
   val=$(sudo systemctl list-units |grep -i openstack-aodh-notifier |grep -ic running)
   echo "PUTVAL \"$HOSTNAME/nfvi-services/service-openstack-aodh-notifier\"  interval=$INTERVAL N:$val"
