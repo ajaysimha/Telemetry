@@ -12,10 +12,15 @@
   with_items:
     - "{{ collectd_packages_all }}"
     
-- name: Configure collectd client to send metrics to collectd exporter
+- name: Extract pod numbers and set collectd_ports
+  set_fact:
+    collectd_ports: "{{ group_names | flatten | select('match', 'pod[0-9]') | map('regex_replace', '-.+$', '') | list | unique | map('regex_replace', '$', '_port') | map('extract', vars) | list }}"
+
+- name: Configure collectd client to send metrics to collectd exporters
   template:
     src: collectd_conf.j2
-    dest: /tmp/collectd.conf
+    dest: /etc/collectd.conf
+  with_items: "{{ collectd_ports }}"
 
 - name: Create /usr/share/collectd/exec directory
   file:
@@ -37,37 +42,6 @@
     mode: 0755
   when: "'controllers' in group_names | join(' ')"
 
-- name: Copy discover-disks.sh to /usr/local/sbin directory
-  copy:
-    src: discover_disk.sh
-    dest: /usr/local/sbin/
-    mode: 0755
-
-- name: Copy netif_discovery.sh to /usr/local/sbin directory
-  copy:
-    src: netif_discovery.sh
-    dest: /usr/local/sbin/
-    mode: 0755
-
-- name: Ensure netif_discovery.sh.log file is owned by nobody
-  file: 
-    path: /var/log/netif_discovery.sh.log
-    owner: nobody
-    group: nobody
-    state: touch
-
-- name: Copy smart-health.sh to /usr/local/sbin directory
-  copy:
-    src: smart-health.sh
-    dest: /usr/local/sbin/
-    mode: 0755
-
-- name: Copy smart-temp.sh to /usr/local/sbin directory
-  copy:
-    src: smart-temp.sh
-    dest: /usr/local/sbin/
-    mode: 0755
-
 - name: Copy types.db.custom to /usr/share/collectd directory
   copy:
     src: types.db.custom
@@ -87,3 +61,4 @@
   service:
     name: collectd
     state: restarted
+    enabled: yes

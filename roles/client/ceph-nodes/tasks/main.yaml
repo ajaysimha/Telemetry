@@ -1,4 +1,4 @@
-- name: Copy collectd rpm /tmp
+- name: Copy collectd and ceph plugin rpm to /tmp
   copy:
     src: "{{ telemetry_home }}/packages/{{ item }}"
     dest: /tmp
@@ -6,18 +6,23 @@
     - "{{ collectd_packages_all }}"
     - "{{ collectd_packages_ceph }}"
 
-- name: Install collectd package
+- name: Install collectd and ceph plugin packages
   yum:
     name: "/tmp/{{ item }}"
     state: present
   with_items:
     - "{{ collectd_packages_all }}"
     - "{{ collectd_packages_ceph }}"
-    
+
+- name: Extract pod numbers and set collectd_ports
+  set_fact:
+    collectd_ports: "{{ group_names | flatten | select('match', 'pod[0-9]') | map('regex_replace', '-.+$', '') | list | unique | map('regex_replace', '$', '_port') | map('extract', vars) | list }}"
+
 - name: Configure collectd client to send metrics to collectd exporter
   template:
     src: collectd_conf.j2
     dest: /etc/collectd.conf
+  with_items: "{{ collectd_ports }}"
 
 - name: Create /usr/share/collectd/exec directory
   file:
@@ -27,44 +32,17 @@
 
 - name: Copy nfvi-services.sh to /usr/share/collectd/exec directory
   copy:
-    src: ceph-nfvi-services.sh
+    src: ceph-osd-nfvi-services.sh
     dest: /usr/share/collectd/exec/nfvi-services.sh
     mode: 0755
+  when: "'ceph-osd' in group_names | join(' ')"
 
-- name: Copy discover-disks.sh to /usr/local/sbin directory
+- name: Copy nfvi-services.sh to /usr/share/collectd/exec directory
   copy:
-    src: discover_disk.sh
-    dest: /usr/local/sbin/
-    force: no
+    src: ceph-mon-nfvi-services.sh
+    dest: /usr/share/collectd/exec/nfvi-services.sh
     mode: 0755
-
-- name: Copy netif_discovery.sh to /usr/local/sbin directory
-  copy:
-    src: netif_discovery.sh
-    dest: /usr/local/sbin/
-    force: no
-    mode: 0755
-
-- name: Ensure netif_discovery.sh.log file is owned by nobody
-  file: 
-    path: /var/log/netif_discovery.sh.log
-    owner: nobody
-    group: nobody
-    state: touch
-
-- name: Copy smart-health.sh to /usr/local/sbin directory
-  copy:
-    src: smart-health.sh
-    dest: /usr/local/sbin/
-    force: no
-    mode: 0755
-
-- name: Copy smart-temp.sh to /usr/local/sbin directory
-  copy:
-    src: smart-temp.sh
-    dest: /usr/local/sbin/
-    force: no
-    mode: 0755
+  when: "'ceph-mon' in group_names | join(' ')"
 
 - name: Copy ceph-status.sh to /usr/local/sbin directory
   copy:
@@ -99,3 +77,4 @@
   service:
     name: collectd
     state: restarted
+    enabled: yes

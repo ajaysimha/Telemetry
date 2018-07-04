@@ -24,7 +24,6 @@ snmptrapper_hosts
 
 [snmptrapper_hosts]
 10.19.109.225
-10.19.109.229
 
 [clients:children]
 pods
@@ -35,6 +34,7 @@ pod2
 pod3
 
 [pod1:vars]
+collectd_exporter_port_offset=101
 
 [pod1:children]
 pod1-controllers
@@ -43,6 +43,7 @@ pod1-ceph-mons
 pod1-ceph-osds
 
 [pod2:vars]
+collectd_exporter_port_offset=102
 
 [pod2:children]
 pod2-controllers
@@ -51,6 +52,7 @@ pod2-ceph-mons
 pod2-ceph-osds
 
 [pod3:vars]
+collectd_exporter_port_offset=103
 
 [pod3:children]
 pod3-controllers
@@ -79,6 +81,7 @@ pod1-ceph-mons
 [pod2-controllers]
 
 [pod2-computes]
+dell-r730-048.dsal.lab.eng.rdu2.redhat.com
 
 [pod2-ceph-mons]
 
@@ -88,7 +91,6 @@ pod1-ceph-mons
 
 [pod3-computes]
 10.19.109.231
-10.19.109.216
 
 [pod3-ceph-osds]
 

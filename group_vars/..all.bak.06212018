@@ -1,0 +1,54 @@
+collectd_exporter_download_url: https://github.com/prometheus/collectd_exporter/releases/download/0.3.1/collectd_exporter-0.3.1.linux-386.tar.gz
+collectd_exporter_port_base: 25000
+collectd_exporter_http_port: 9103
+collectd_exporter_pkg: collectd_exporter-0.3.1.linux-386.tar.gz
+prometheus_download_url: https://github.com/prometheus/prometheus/releases/download/v2.0.0/prometheus-2.0.0.linux-amd64.tar.gz
+prometheus_web_port: 9090
+prometheus_pkg: prometheus-2.0.0.linux-amd64.tar.gz
+alert_manager_download_url: https://github.com/prometheus/alertmanager/releases/download/v0.12.0/alertmanager-0.12.0.linux-amd64.tar.gz
+alert_manager_mesh_port: 6783
+alert_manager_port: 9093
+alert_manager_pkg: alertmanager-0.12.0.linux-amd64.tar.gz
+grafana_download_url: https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana-4.6.3-1.x86_64.rpm
+grafana_port: 3000
+grafana_pkg: grafana-4.6.3-1.x86_64.rpm
+telemetry_home: /home/ansible/telemetry-local-pkgs
+snmp_trap_receiver: 10.19.109.216
+snmp_trap_receiver_port: 162
+snmp_community: public
+prometheus_client: prometheus_client-0.2.0.tar.gz
+python2_pip_pkg: python2-pip-8.1.2-6.el7.noarch.rpm 
+requests_pkg: requests-2.18.4.tar.gz
+osp_exporter_http_port: 19103
+
+osp_exporter_packages:
+  - python2-pip-8.1.2-6.el7.noarch.rpm
+  - prometheus_client-0.2.0.tar.gz
+  - chardet-3.0.4.tar.gz
+  - idna-2.6.tar.gz
+  - urllib3-1.22.tar.gz
+  - certifi-2018.4.16.tar.gz
+  - requests-2.18.4.tar.gz
+
+osp_exporter_python_packages:
+  - prometheus_client-0.2.0.tar.gz
+  - chardet-3.0.4.tar.gz
+  - idna-2.6.tar.gz
+  - urllib3-1.22.tar.gz
+  - certifi-2018.4.16.tar.gz
+  - requests-2.18.4.tar.gz
+
+# Client vars
+
+
+collect_plugins:
+  - collectd
+  - disk
+
+
+collectd_packages_all:
+  - collectd-5.8.0-5.el7ost.x86_64.rpm
+  - collectd-disk-5.8.0-5.el7ost.x86_64.rpm
+
+collectd_packages_ceph:
+  - collectd-ceph-5.8.0-5.el7ost.x86_64.rpm

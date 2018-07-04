@@ -1,4 +1,4 @@
-- hosts: osp-controllers,osp-computes
+- hosts: pods
   become: true
   roles:
     - client/osp-nodes

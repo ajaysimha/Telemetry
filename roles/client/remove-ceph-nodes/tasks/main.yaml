@@ -1,0 +1,73 @@
+- name: Find collectd systemd service
+  find:
+    path: /usr/lib/systemd/system/
+    pattern: '*collectd.service*'
+    file_type: file
+  register: service_filename
+
+- name: Stop collectd client
+  service:
+    name: collectd
+    state: stopped
+    enabled: no
+  when: service_filename.path is defined
+
+- name: Remove sudoers file for nobody
+  file:
+    path: /etc/sudoers.d/nobody
+    state: absent
+
+- name: Remove 90-ceph-plugin configuration
+  file:
+    path: /etc/collectd.d/90-ceph-plugin.conf
+    state: absent
+
+- name: Remove types.db.custom from /usr/share/collectd directory
+  file:
+    path: /usr/share/collectd/types.db.custom
+    state: absent
+
+- name: Remove ceph-status.sh from /usr/local/sbin directory
+  file:
+    dest: /usr/local/sbin/ceph-status.sh
+    state: absent
+
+- name: Remove collectd config file
+  file:
+    path: /etc/collectd.conf
+    state: absent
+
+- name: Remove /usr/share/collectd/exec directory
+  file:
+    path: /usr/share/collectd/exec
+    state: absent
+
+- name: Copy nfvi-services.sh to /usr/share/collectd/exec directory
+  file:
+    path: /usr/share/collectd/exec/nfvi-services.sh
+    state: absent
+
+- name: Copy discover-disks.sh to /usr/local/sbin directory
+  file:
+    path: /usr/local/sbin/discover_disk.sh
+    state: absent
+
+- name: Remove netif_discovery.sh from /usr/local/sbin directory
+  file:
+    path: /usr/local/sbin/netif_discovery.sh
+    state: absent
+
+- name: Remove smart-health.sh from /usr/local/sbin directory
+  file:
+    path: /usr/local/sbin/smart-health.sh
+    state: absent
+
+- name: Remove smart-temp.sh from /usr/local/sbin directory
+  file:
+    path: /usr/local/sbin/smart-temp.sh
+    state: absent
+
+- name: Remove collectd package
+  yum:
+    name: collectd*
+    state: absent

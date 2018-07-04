@@ -28,6 +28,7 @@
   service:
     name: prometheus
     state: restarted
+    enabled: yes
 - name: Check if firewalld is installed
   yum:
     list: firewalld

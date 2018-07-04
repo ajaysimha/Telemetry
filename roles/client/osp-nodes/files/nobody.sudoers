@@ -1,0 +1,1 @@
+nobody ALL = NOPASSWD: /usr/bin/systemctl, /usr/bin/systemctl list-units, /usr/bin/ps

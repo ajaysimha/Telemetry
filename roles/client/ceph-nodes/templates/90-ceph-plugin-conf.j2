@@ -2,8 +2,15 @@
   LongRunAvgLatency false
   ConvertSpecialMetricTypes true
 {% for filename in daemons.files %}
+{% if 'osd' in filename.path.split('/')[-1] %}
   <Daemon "osd.{{ filename.path.split('.')[-2] }}">
     SocketPath "{{ filename.path }}"
   </Daemon>
+{% endif %}
+{% if 'mon' in filename.path.split('/')[-1] %}
+  <Daemon "mon.{{ filename.path.split('.')[-2].split('-')[-1] | regex_replace('[A-Z,a-z]*','') }}
+    SocketPath "{{ filename.path }}"
+  </Daemon>
+{% endif %}
 {% endfor %}
 </Plugin>

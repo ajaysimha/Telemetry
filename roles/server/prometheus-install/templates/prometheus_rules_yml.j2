@@ -44,4 +44,12 @@ groups:
      annotations:
        summary: "{{ $value }} zombie process(es) found"
        description: "{{ $value }} zombie process(es) for more than 30 secs."
+   - alert: System Rebooted
+     expr: collectd_uptime{job="collectd"}<300
+     for: 30s
+     labels:
+       severity: critical
+     annotations:
+       summary: "{{ $labels.instance }} rebooted"
+       description: "{{ $labels.instance }} rebooted."
 {% endraw %}

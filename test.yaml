@@ -1,0 +1,9 @@
+---
+- hosts: all
+  gather_facts: no
+  tasks:
+    - name: print pod number
+      debug:
+        msg: "{{ group_names }} {{ collectd_exporter_port }}"
+      when: "'pod1' in group_names | join(' ')"
+

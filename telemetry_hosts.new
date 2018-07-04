@@ -24,7 +24,6 @@ snmptrapper_hosts
 
 [snmptrapper_hosts]
 10.19.109.225
-10.19.109.229
 
 [clients:children]
 pods
@@ -35,6 +34,7 @@ pod2
 pod3
 
 [pod1:vars]
+collectd_exporter_port=25001
 
 [pod1:children]
 pod1-controllers
@@ -43,6 +43,7 @@ pod1-ceph-mons
 pod1-ceph-osds
 
 [pod2:vars]
+collectd_exporter_port=25002
 
 [pod2:children]
 pod2-controllers
@@ -51,6 +52,7 @@ pod2-ceph-mons
 pod2-ceph-osds
 
 [pod3:vars]
+collectd_exporter_port=25003
 
 [pod3:children]
 pod3-controllers
@@ -63,6 +65,7 @@ pod3-ceph-osds
 
 [pod1-computes]
 10.19.109.230
+10.19.109.231
 
 [ceph-nodes:children]
 pod1-ceph-nodes
@@ -75,22 +78,40 @@ pod1-ceph-mons
 10.19.109.232
 
 [pod1-ceph-mons]
+1.1.1.1
+1.1.1.2
 
 [pod2-controllers]
+2.1.2.1
+2.1.2.2
+2.1.2.3
 
 [pod2-computes]
+2.1.3.1
+2.1.3.2
+2.1.3.3
 
 [pod2-ceph-mons]
 
 [pod2-ceph-osds]
+2.1.1.1
+2.1.1.2
 
 [pod3-controllers]
+3.1.2.1
+3.1.2.2
+3.1.2.3
 
 [pod3-computes]
-10.19.109.231
-10.19.109.216
+3.1.3.1
+3.1.3.2
+3.1.3.3
 
 [pod3-ceph-osds]
+3.1.1.1
+3.1.1.2
 
 [pod3-ceph-mons]
+3.3.1.1
+3.3.1.2
 

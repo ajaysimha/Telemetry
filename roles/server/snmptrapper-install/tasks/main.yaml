@@ -28,5 +28,6 @@
 - name: Start snmptrapper service
   systemd:
     name: snmptrapper
-    state: started
+    state: restarted
     daemon_reload: yes
+    enabled: yes
