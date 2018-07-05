@@ -9,7 +9,7 @@
     patterns: '*collectd_exporter*'
     file_type: directory
   register: dir_name
-- debug: var=dir_name.files[0].path 
+
 - set_fact: 
     collectd_exporter_path: "{{ dir_name.files[0].path }}"
 
