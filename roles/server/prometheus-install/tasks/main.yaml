@@ -21,15 +21,11 @@
 - name: Set port numbers for collectd exporters
   set_fact:
     collectd_ports: "{{ groups | flatten | select('match', 'pod[0-9]') | map('regex_replace', '-.+$', '') | list | unique | map('regex_replace', '$', '_port') | map('extract', vars)| list }}"
-  tags:
-    - test1
 
 - name: Create prometheus.yml
   template:
     src: prometheus_yml.j2
     dest: "{{ prometheus_path }}/prometheus.yml"
-  tags:
-    - test1
 
 - name: Create prometheus_rules.yml
   template:
