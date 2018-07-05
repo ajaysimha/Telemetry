@@ -85,7 +85,6 @@ collect_plugins:
   - collectd
   - disk
 
-
 collectd_packages_all:
   - collectd-5.8.0-5.el7ost.x86_64.rpm
   - collectd-disk-5.8.0-5.el7ost.x86_64.rpm

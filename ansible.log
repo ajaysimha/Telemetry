@@ -55315,3 +55315,944 @@ AttributeError: 'AnsibleModule' object has no attribute 'fail'
 2018-07-03 15:19:59,555 p=30031 u=ansible |  changed: [10.19.109.229] => (item=25103)
 2018-07-03 15:19:59,557 p=30031 u=ansible |  PLAY RECAP **************************************************************************************************************************************************************************
 2018-07-03 15:19:59,558 p=30031 u=ansible |  10.19.109.229              : ok=11   changed=3    unreachable=0    failed=0   
+2018-07-04 18:01:18,240 p=18320 u=ansible |  PLAY [prometheus] ************************************************************************************************
+2018-07-04 18:01:18,255 p=18320 u=ansible |  TASK [Gathering Facts] *******************************************************************************************
+2018-07-04 18:01:19,378 p=18320 u=ansible |  ok: [10.19.109.229]
+2018-07-04 18:01:19,390 p=18320 u=ansible |  TASK [server/prometheus-install : Create prometheus.yml] *********************************************************
+2018-07-04 18:01:19,586 p=18320 u=ansible |  fatal: [10.19.109.229]: FAILED! => {
+    "changed": false
+}
+
+MSG:
+
+AnsibleUndefinedVariable: 'collectd_exporter_http_port' is undefined
+
+2018-07-04 18:01:19,587 p=18320 u=ansible |  PLAY RECAP *******************************************************************************************************
+2018-07-04 18:01:19,588 p=18320 u=ansible |  10.19.109.229              : ok=1    changed=0    unreachable=0    failed=1   
+2018-07-04 18:12:11,920 p=18671 u=ansible |  PLAY [prometheus] ************************************************************************************************
+2018-07-04 18:12:11,935 p=18671 u=ansible |  TASK [Gathering Facts] *******************************************************************************************
+2018-07-04 18:12:12,949 p=18671 u=ansible |  ok: [10.19.109.229]
+2018-07-04 18:12:12,962 p=18671 u=ansible |  TASK [server/prometheus-install : Create prometheus.yml] *********************************************************
+2018-07-04 18:12:13,787 p=18671 u=ansible |  changed: [10.19.109.229]
+2018-07-04 18:12:13,789 p=18671 u=ansible |  PLAY RECAP *******************************************************************************************************
+2018-07-04 18:12:13,789 p=18671 u=ansible |  10.19.109.229              : ok=2    changed=1    unreachable=0    failed=0   
+2018-07-04 19:46:51,866 p=21373 u=ansible |  PLAY [prometheus] ************************************************************************************************
+2018-07-04 19:46:51,881 p=21373 u=ansible |  TASK [Gathering Facts] *******************************************************************************************
+2018-07-04 19:46:52,944 p=21373 u=ansible |  ok: [10.19.109.229]
+2018-07-04 19:46:52,957 p=21373 u=ansible |  TASK [server/prometheus-install : Set port numbers for collectd exporters] ***************************************
+2018-07-04 19:46:53,012 p=21373 u=ansible |  ok: [10.19.109.229]
+2018-07-04 19:46:53,025 p=21373 u=ansible |  TASK [server/prometheus-install : Create prometheus.yml] *********************************************************
+2018-07-04 19:46:53,827 p=21373 u=ansible |  changed: [10.19.109.229] => (item=25101)
+2018-07-04 19:46:54,348 p=21373 u=ansible |  changed: [10.19.109.229] => (item=25102)
+2018-07-04 19:46:54,846 p=21373 u=ansible |  changed: [10.19.109.229] => (item=25103)
+2018-07-04 19:46:54,848 p=21373 u=ansible |  PLAY RECAP *******************************************************************************************************
+2018-07-04 19:46:54,848 p=21373 u=ansible |  10.19.109.229              : ok=3    changed=1    unreachable=0    failed=0   
+2018-07-05 10:43:01,500 p=41326 u=ansible |  PLAY [prometheus] *******************************************************************************************************************************************************************
+2018-07-05 10:43:01,516 p=41326 u=ansible |  TASK [Gathering Facts] **************************************************************************************************************************************************************
+2018-07-05 10:43:02,586 p=41326 u=ansible |  ok: [10.19.109.229]
+2018-07-05 10:43:02,598 p=41326 u=ansible |  TASK [server/prometheus-install : Set port numbers for collectd exporters] **********************************************************************************************************
+2018-07-05 10:43:02,652 p=41326 u=ansible |  ok: [10.19.109.229]
+2018-07-05 10:43:02,665 p=41326 u=ansible |  TASK [server/prometheus-install : Create prometheus.yml] ****************************************************************************************************************************
+2018-07-05 10:43:02,788 p=41326 u=ansible |  fatal: [10.19.109.229]: FAILED! => {
+    "changed": false
+}
+
+MSG:
+
+AnsibleError: template error while templating string: expected token ':', got '}'. String: # my global config
+global:
+  scrape_interval: "{{ prometheus_global_srape_interval }}"
+  evaluation_interval: "{{ prometheus_global_srape_timeout }}"
+
+  external_labels: 
+    exporter_node: prometheus-{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}
+
+# Alertmanager configuration
+alerting:
+  
+  alert_relabel_configs:
+  - source_labels: [exporter_node]
+    regex: (prometheus).+
+    target_label: exporter_node
+
+  alertmanagers:
+  - static_configs:
+    - targets:
+    {% for r in groups["alert_managers"] %}
+       - {{ hostvars[r].inventory_hostname }}:{{ alert_manager_port }}
+    {% endfor %}
+
+# Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
+rule_files:
+   - "prometheus_rules.yml"
+  # - "second_rules.yml"
+
+# A scrape configuration containing exactly one endpoint to scrape:
+# Here it's Prometheus itself.
+scrape_configs:
+  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
+  # 
+  # Collectd Exporters
+  - job_name: 'collectd'
+    honor_labels: true
+    scape_interval "{{ prometheus_collectd_exporter_srape_timeout }}"
+#    relabel_configs:
+#      - source_labels: [exported_instance]
+#        target_label: instance
+#
+#      - source_labels: [__address__]
+#        target_label: exported_instance
+
+    metric_relabel_configs:
+      - source_labels: [type]
+        target_label: service
+
+      - regex: 'type'
+        action: labeldrop
+
+    # metrics_path defaults to '/metrics'
+    # scheme defaults to 'http'.
+
+    static_configs:
+{% for port in {{ collectd_ports }} %}
+      - targets: ['localhost:port']
+
+  - job_name: 'openstack'
+    honor_labels: true
+    metric_relabel_configs:
+    - source_labels: [url]
+      target_label: instance
+      regex: https?://(.+):.+
+      replacement: $1
+
+    # metrics_path defaults to '/metrics'
+    # scheme defaults to 'http'.
+
+    static_configs:
+{% for i in groups["prometheus"] %}
+{% if hostvars[inventory_hostname]['ansible_default_ipv4']['address'] == groups["prometheus"][loop.index - 1] %}
+{% for j in groups["osp_exporters"] %}
+      - targets: ['{{ groups["osp_exporters"][loop.index - 1] }}:{{ osp_exporter_http_port }}']
+{% endfor %}
+{% endif %}
+{% endfor %}
+
+
+2018-07-05 10:43:02,789 p=41326 u=ansible |  PLAY RECAP **************************************************************************************************************************************************************************
+2018-07-05 10:43:02,789 p=41326 u=ansible |  10.19.109.229              : ok=2    changed=0    unreachable=0    failed=1   
+2018-07-05 10:43:43,184 p=41378 u=ansible |  PLAY [prometheus] *******************************************************************************************************************************************************************
+2018-07-05 10:43:43,199 p=41378 u=ansible |  TASK [Gathering Facts] **************************************************************************************************************************************************************
+2018-07-05 10:43:43,880 p=41378 u=ansible |  ok: [10.19.109.229]
+2018-07-05 10:43:43,893 p=41378 u=ansible |  TASK [server/prometheus-install : Set port numbers for collectd exporters] **********************************************************************************************************
+2018-07-05 10:43:43,949 p=41378 u=ansible |  ok: [10.19.109.229]
+2018-07-05 10:43:43,961 p=41378 u=ansible |  TASK [server/prometheus-install : Create prometheus.yml] ****************************************************************************************************************************
+2018-07-05 10:43:44,084 p=41378 u=ansible |  fatal: [10.19.109.229]: FAILED! => {
+    "changed": false
+}
+
+MSG:
+
+AnsibleError: template error while templating string: expected token ':', got '}'. String: # my global config
+global:
+  scrape_interval: "{{ prometheus_global_srape_interval }}"
+  evaluation_interval: "{{ prometheus_global_srape_timeout }}"
+
+  external_labels: 
+    exporter_node: prometheus-{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}
+
+# Alertmanager configuration
+alerting:
+  
+  alert_relabel_configs:
+  - source_labels: [exporter_node]
+    regex: (prometheus).+
+    target_label: exporter_node
+
+  alertmanagers:
+  - static_configs:
+    - targets:
+    {% for r in groups["alert_managers"] %}
+       - {{ hostvars[r].inventory_hostname }}:{{ alert_manager_port }}
+    {% endfor %}
+
+# Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
+rule_files:
+   - "prometheus_rules.yml"
+  # - "second_rules.yml"
+
+# A scrape configuration containing exactly one endpoint to scrape:
+# Here it's Prometheus itself.
+scrape_configs:
+  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
+  # 
+  # Collectd Exporters
+  - job_name: 'collectd'
+    honor_labels: true
+    scape_interval "{{ prometheus_collectd_exporter_srape_timeout }}"
+#    relabel_configs:
+#      - source_labels: [exported_instance]
+#        target_label: instance
+#
+#      - source_labels: [__address__]
+#        target_label: exported_instance
+
+    metric_relabel_configs:
+      - source_labels: [type]
+        target_label: service
+
+      - regex: 'type'
+        action: labeldrop
+
+    # metrics_path defaults to '/metrics'
+    # scheme defaults to 'http'.
+
+    static_configs:
+{% for port in {{ collectd_ports }} %}
+      - targets: ['localhost:port']
+{% endfor %}
+
+  - job_name: 'openstack'
+    honor_labels: true
+    metric_relabel_configs:
+    - source_labels: [url]
+      target_label: instance
+      regex: https?://(.+):.+
+      replacement: $1
+
+    # metrics_path defaults to '/metrics'
+    # scheme defaults to 'http'.
+
+    static_configs:
+{% for i in groups["prometheus"] %}
+{% if hostvars[inventory_hostname]['ansible_default_ipv4']['address'] == groups["prometheus"][loop.index - 1] %}
+{% for j in groups["osp_exporters"] %}
+      - targets: ['{{ groups["osp_exporters"][loop.index - 1] }}:{{ osp_exporter_http_port }}']
+{% endfor %}
+{% endif %}
+{% endfor %}
+
+
+2018-07-05 10:43:44,085 p=41378 u=ansible |  PLAY RECAP **************************************************************************************************************************************************************************
+2018-07-05 10:43:44,085 p=41378 u=ansible |  10.19.109.229              : ok=2    changed=0    unreachable=0    failed=1   
+2018-07-05 10:44:42,463 p=41430 u=ansible |  PLAY [prometheus] *******************************************************************************************************************************************************************
+2018-07-05 10:44:42,478 p=41430 u=ansible |  TASK [Gathering Facts] **************************************************************************************************************************************************************
+2018-07-05 10:44:43,207 p=41430 u=ansible |  ok: [10.19.109.229]
+2018-07-05 10:44:43,220 p=41430 u=ansible |  TASK [server/prometheus-install : Set port numbers for collectd exporters] **********************************************************************************************************
+2018-07-05 10:44:43,274 p=41430 u=ansible |  ok: [10.19.109.229]
+2018-07-05 10:44:43,287 p=41430 u=ansible |  TASK [server/prometheus-install : Create prometheus.yml] ****************************************************************************************************************************
+2018-07-05 10:44:43,405 p=41430 u=ansible |  fatal: [10.19.109.229]: FAILED! => {
+    "changed": false
+}
+
+MSG:
+
+AnsibleError: template error while templating string: expected token ':', got '}'. String: # my global config
+global:
+  scrape_interval: "{{ prometheus_global_srape_interval }}"
+  evaluation_interval: "{{ prometheus_global_srape_timeout }}"
+
+  external_labels: 
+    exporter_node: prometheus-{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}
+
+# Alertmanager configuration
+alerting:
+  
+  alert_relabel_configs:
+  - source_labels: [exporter_node]
+    regex: (prometheus).+
+    target_label: exporter_node
+
+  alertmanagers:
+  - static_configs:
+    - targets:
+    {% for r in groups["alert_managers"] %}
+       - {{ hostvars[r].inventory_hostname }}:{{ alert_manager_port }}
+    {% endfor %}
+
+# Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
+rule_files:
+   - "prometheus_rules.yml"
+  # - "second_rules.yml"
+
+# A scrape configuration containing exactly one endpoint to scrape:
+# Here it's Prometheus itself.
+scrape_configs:
+  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
+  # 
+  # Collectd Exporters
+  - job_name: 'collectd'
+    honor_labels: true
+    scape_interval "{{ prometheus_collectd_exporter_srape_timeout }}"
+#    relabel_configs:
+#      - source_labels: [exported_instance]
+#        target_label: instance
+#
+#      - source_labels: [__address__]
+#        target_label: exported_instance
+
+    metric_relabel_configs:
+      - source_labels: [type]
+        target_label: service
+
+      - regex: 'type'
+        action: labeldrop
+
+    # metrics_path defaults to '/metrics'
+    # scheme defaults to 'http'.
+
+    static_configs:
+{% for port in {{ collectd_ports }} %}
+      - targets: ['localhost:{{ port }}']
+{% endfor %}
+
+  - job_name: 'openstack'
+    honor_labels: true
+    metric_relabel_configs:
+    - source_labels: [url]
+      target_label: instance
+      regex: https?://(.+):.+
+      replacement: $1
+
+    # metrics_path defaults to '/metrics'
+    # scheme defaults to 'http'.
+
+    static_configs:
+{% for i in groups["prometheus"] %}
+{% if hostvars[inventory_hostname]['ansible_default_ipv4']['address'] == groups["prometheus"][loop.index - 1] %}
+{% for j in groups["osp_exporters"] %}
+      - targets: ['{{ groups["osp_exporters"][loop.index - 1] }}:{{ osp_exporter_http_port }}']
+{% endfor %}
+{% endif %}
+{% endfor %}
+
+
+2018-07-05 10:44:43,406 p=41430 u=ansible |  PLAY RECAP **************************************************************************************************************************************************************************
+2018-07-05 10:44:43,406 p=41430 u=ansible |  10.19.109.229              : ok=2    changed=0    unreachable=0    failed=1   
+2018-07-05 10:46:38,471 p=41485 u=ansible |  PLAY [prometheus] *******************************************************************************************************************************************************************
+2018-07-05 10:46:38,486 p=41485 u=ansible |  TASK [Gathering Facts] **************************************************************************************************************************************************************
+2018-07-05 10:46:39,540 p=41485 u=ansible |  ok: [10.19.109.229]
+2018-07-05 10:46:39,552 p=41485 u=ansible |  TASK [server/prometheus-install : Set port numbers for collectd exporters] **********************************************************************************************************
+2018-07-05 10:46:39,605 p=41485 u=ansible |  ok: [10.19.109.229]
+2018-07-05 10:46:39,618 p=41485 u=ansible |  TASK [server/prometheus-install : Create prometheus.yml] ****************************************************************************************************************************
+2018-07-05 10:46:39,741 p=41485 u=ansible |  fatal: [10.19.109.229]: FAILED! => {
+    "changed": false
+}
+
+MSG:
+
+AnsibleError: template error while templating string: expected token ':', got '}'. String: # my global config
+global:
+  scrape_interval: "{{ prometheus_global_srape_interval }}"
+  evaluation_interval: "{{ prometheus_global_srape_timeout }}"
+
+  external_labels: 
+    exporter_node: prometheus-{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}
+
+# Alertmanager configuration
+alerting:
+  
+  alert_relabel_configs:
+  - source_labels: [exporter_node]
+    regex: (prometheus).+
+    target_label: exporter_node
+
+  alertmanagers:
+  - static_configs:
+    - targets:
+    {% for r in groups["alert_managers"] %}
+       - {{ hostvars[r].inventory_hostname }}:{{ alert_manager_port }}
+    {% endfor %}
+
+# Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
+rule_files:
+   - "prometheus_rules.yml"
+  # - "second_rules.yml"
+
+# A scrape configuration containing exactly one endpoint to scrape:
+# Here it's Prometheus itself.
+scrape_configs:
+  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
+  # 
+  # Collectd Exporters
+  - job_name: 'collectd'
+    honor_labels: true
+    scape_interval "{{ prometheus_collectd_exporter_srape_timeout }}"
+#    relabel_configs:
+#      - source_labels: [exported_instance]
+#        target_label: instance
+#
+#      - source_labels: [__address__]
+#        target_label: exported_instance
+
+    metric_relabel_configs:
+      - source_labels: [type]
+        target_label: service
+
+      - regex: 'type'
+        action: labeldrop
+
+    # metrics_path defaults to '/metrics'
+    # scheme defaults to 'http'.
+
+    static_configs:
+{% for port in {{ "collectd_ports" }} %}
+      - targets: ['localhost:port']
+{% endfor %}
+
+  - job_name: 'openstack'
+    honor_labels: true
+    metric_relabel_configs:
+    - source_labels: [url]
+      target_label: instance
+      regex: https?://(.+):.+
+      replacement: $1
+
+    # metrics_path defaults to '/metrics'
+    # scheme defaults to 'http'.
+
+    static_configs:
+{% for i in groups["prometheus"] %}
+{% if hostvars[inventory_hostname]['ansible_default_ipv4']['address'] == groups["prometheus"][loop.index - 1] %}
+{% for j in groups["osp_exporters"] %}
+      - targets: ['{{ groups["osp_exporters"][loop.index - 1] }}:{{ osp_exporter_http_port }}']
+{% endfor %}
+{% endif %}
+{% endfor %}
+
+
+2018-07-05 10:46:39,742 p=41485 u=ansible |  PLAY RECAP **************************************************************************************************************************************************************************
+2018-07-05 10:46:39,742 p=41485 u=ansible |  10.19.109.229              : ok=2    changed=0    unreachable=0    failed=1   
+2018-07-05 10:48:16,948 p=41559 u=ansible |  PLAY [prometheus] *******************************************************************************************************************************************************************
+2018-07-05 10:48:16,963 p=41559 u=ansible |  TASK [Gathering Facts] **************************************************************************************************************************************************************
+2018-07-05 10:48:18,032 p=41559 u=ansible |  ok: [10.19.109.229]
+2018-07-05 10:48:18,044 p=41559 u=ansible |  TASK [server/prometheus-install : Set port numbers for collectd exporters] **********************************************************************************************************
+2018-07-05 10:48:18,096 p=41559 u=ansible |  ok: [10.19.109.229]
+2018-07-05 10:48:18,109 p=41559 u=ansible |  TASK [server/prometheus-install : Create prometheus.yml] ****************************************************************************************************************************
+2018-07-05 10:48:18,886 p=41559 u=ansible |  changed: [10.19.109.229]
+2018-07-05 10:48:18,888 p=41559 u=ansible |  PLAY RECAP **************************************************************************************************************************************************************************
+2018-07-05 10:48:18,888 p=41559 u=ansible |  10.19.109.229              : ok=3    changed=1    unreachable=0    failed=0   
+2018-07-05 10:49:42,875 p=41625 u=ansible |  PLAY [prometheus] *******************************************************************************************************************************************************************
+2018-07-05 10:49:42,890 p=41625 u=ansible |  TASK [Gathering Facts] **************************************************************************************************************************************************************
+2018-07-05 10:49:43,929 p=41625 u=ansible |  ok: [10.19.109.229]
+2018-07-05 10:49:43,944 p=41625 u=ansible |  TASK [server/prometheus-install : Set port numbers for collectd exporters] **********************************************************************************************************
+2018-07-05 10:49:43,998 p=41625 u=ansible |  ok: [10.19.109.229]
+2018-07-05 10:49:44,011 p=41625 u=ansible |  TASK [server/prometheus-install : Create prometheus.yml] ****************************************************************************************************************************
+2018-07-05 10:49:44,814 p=41625 u=ansible |  changed: [10.19.109.229]
+2018-07-05 10:49:44,816 p=41625 u=ansible |  PLAY RECAP **************************************************************************************************************************************************************************
+2018-07-05 10:49:44,816 p=41625 u=ansible |  10.19.109.229              : ok=3    changed=1    unreachable=0    failed=0   
+2018-07-05 10:50:52,524 p=41697 u=ansible |  PLAY [prometheus] *******************************************************************************************************************************************************************
+2018-07-05 10:50:52,539 p=41697 u=ansible |  TASK [Gathering Facts] **************************************************************************************************************************************************************
+2018-07-05 10:50:53,578 p=41697 u=ansible |  ok: [10.19.109.229]
+2018-07-05 10:50:53,591 p=41697 u=ansible |  TASK [server/prometheus-install : Set port numbers for collectd exporters] **********************************************************************************************************
+2018-07-05 10:50:53,645 p=41697 u=ansible |  ok: [10.19.109.229]
+2018-07-05 10:50:53,658 p=41697 u=ansible |  TASK [server/prometheus-install : Create prometheus.yml] ****************************************************************************************************************************
+2018-07-05 10:50:54,462 p=41697 u=ansible |  changed: [10.19.109.229]
+2018-07-05 10:50:54,464 p=41697 u=ansible |  PLAY RECAP **************************************************************************************************************************************************************************
+2018-07-05 10:50:54,464 p=41697 u=ansible |  10.19.109.229              : ok=3    changed=1    unreachable=0    failed=0   
+2018-07-05 10:53:20,699 p=41784 u=ansible |  PLAY [prometheus] *******************************************************************************************************************************************************************
+2018-07-05 10:53:20,714 p=41784 u=ansible |  TASK [Gathering Facts] **************************************************************************************************************************************************************
+2018-07-05 10:53:21,743 p=41784 u=ansible |  ok: [10.19.109.229]
+2018-07-05 10:53:21,756 p=41784 u=ansible |  TASK [server/prometheus-install : Set port numbers for collectd exporters] **********************************************************************************************************
+2018-07-05 10:53:21,813 p=41784 u=ansible |  ok: [10.19.109.229]
+2018-07-05 10:53:21,826 p=41784 u=ansible |  TASK [server/prometheus-install : Create prometheus.yml] ****************************************************************************************************************************
+2018-07-05 10:53:22,611 p=41784 u=ansible |  changed: [10.19.109.229]
+2018-07-05 10:53:22,613 p=41784 u=ansible |  PLAY RECAP **************************************************************************************************************************************************************************
+2018-07-05 10:53:22,613 p=41784 u=ansible |  10.19.109.229              : ok=3    changed=1    unreachable=0    failed=0   
+2018-07-05 10:53:58,397 p=41829 u=ansible |  PLAY [prometheus] *******************************************************************************************************************************************************************
+2018-07-05 10:53:58,411 p=41829 u=ansible |  TASK [Gathering Facts] **************************************************************************************************************************************************************
+2018-07-05 10:53:59,092 p=41829 u=ansible |  ok: [10.19.109.229]
+2018-07-05 10:53:59,105 p=41829 u=ansible |  TASK [server/prometheus-install : Set port numbers for collectd exporters] **********************************************************************************************************
+2018-07-05 10:53:59,156 p=41829 u=ansible |  ok: [10.19.109.229]
+2018-07-05 10:53:59,170 p=41829 u=ansible |  TASK [server/prometheus-install : Create prometheus.yml] ****************************************************************************************************************************
+2018-07-05 10:53:59,983 p=41829 u=ansible |  changed: [10.19.109.229]
+2018-07-05 10:53:59,985 p=41829 u=ansible |  PLAY RECAP **************************************************************************************************************************************************************************
+2018-07-05 10:53:59,985 p=41829 u=ansible |  10.19.109.229              : ok=3    changed=1    unreachable=0    failed=0   
+2018-07-05 10:54:32,832 p=41864 u=ansible |  PLAY [prometheus] *******************************************************************************************************************************************************************
+2018-07-05 10:54:32,847 p=41864 u=ansible |  TASK [Gathering Facts] **************************************************************************************************************************************************************
+2018-07-05 10:54:33,568 p=41864 u=ansible |  ok: [10.19.109.229]
+2018-07-05 10:54:33,582 p=41864 u=ansible |  TASK [server/prometheus-install : Set port numbers for collectd exporters] **********************************************************************************************************
+2018-07-05 10:54:33,633 p=41864 u=ansible |  ok: [10.19.109.229]
+2018-07-05 10:54:33,646 p=41864 u=ansible |  TASK [server/prometheus-install : Create prometheus.yml] ****************************************************************************************************************************
+2018-07-05 10:54:33,768 p=41864 u=ansible |  fatal: [10.19.109.229]: FAILED! => {
+    "changed": false
+}
+
+MSG:
+
+AnsibleError: template error while templating string: expected token ':', got '}'. String: # my global config
+global:
+  scrape_interval: "{{ prometheus_global_srape_interval }}"
+  evaluation_interval: "{{ prometheus_global_srape_timeout }}"
+
+  external_labels: 
+    exporter_node: prometheus-{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}
+
+# Alertmanager configuration
+alerting:
+  
+  alert_relabel_configs:
+  - source_labels: [exporter_node]
+    regex: (prometheus).+
+    target_label: exporter_node
+
+  alertmanagers:
+  - static_configs:
+    - targets:
+    {% for r in groups["alert_managers"] %}
+       - {{ hostvars[r].inventory_hostname }}:{{ alert_manager_port }}
+    {% endfor %}
+
+# Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
+rule_files:
+   - "prometheus_rules.yml"
+  # - "second_rules.yml"
+
+# A scrape configuration containing exactly one endpoint to scrape:
+# Here it's Prometheus itself.
+scrape_configs:
+  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
+  # 
+  # Collectd Exporters
+  - job_name: 'collectd'
+    honor_labels: true
+    scape_interval "{{ prometheus_collectd_exporter_srape_timeout }}"
+#    relabel_configs:
+#      - source_labels: [exported_instance]
+#        target_label: instance
+#
+#      - source_labels: [__address__]
+#        target_label: exported_instance
+
+    metric_relabel_configs:
+      - source_labels: [type]
+        target_label: service
+
+      - regex: 'type'
+        action: labeldrop
+
+    # metrics_path defaults to '/metrics'
+    # scheme defaults to 'http'.
+
+    static_configs:
+{% for port in {{ collectd_ports }} %}
+   {{ port }}
+{% endfor %}
+
+
+  - job_name: 'openstack'
+    honor_labels: true
+    metric_relabel_configs:
+    - source_labels: [url]
+      target_label: instance
+      regex: https?://(.+):.+
+      replacement: $1
+
+    # metrics_path defaults to '/metrics'
+    # scheme defaults to 'http'.
+
+    static_configs:
+{% for i in groups["prometheus"] %}
+{% if hostvars[inventory_hostname]['ansible_default_ipv4']['address'] == groups["prometheus"][loop.index - 1] %}
+{% for j in groups["osp_exporters"] %}
+      - targets: ['{{ groups["osp_exporters"][loop.index - 1] }}:{{ osp_exporter_http_port }}']
+{% endfor %}
+{% endif %}
+{% endfor %}
+
+
+2018-07-05 10:54:33,769 p=41864 u=ansible |  PLAY RECAP **************************************************************************************************************************************************************************
+2018-07-05 10:54:33,770 p=41864 u=ansible |  10.19.109.229              : ok=2    changed=0    unreachable=0    failed=1   
+2018-07-05 10:55:19,845 p=41964 u=ansible |  PLAY [prometheus] *******************************************************************************************************************************************************************
+2018-07-05 10:55:19,861 p=41964 u=ansible |  TASK [Gathering Facts] **************************************************************************************************************************************************************
+2018-07-05 10:55:20,578 p=41964 u=ansible |  ok: [10.19.109.229]
+2018-07-05 10:55:20,593 p=41964 u=ansible |  TASK [server/prometheus-install : Set port numbers for collectd exporters] **********************************************************************************************************
+2018-07-05 10:55:20,647 p=41964 u=ansible |  ok: [10.19.109.229]
+2018-07-05 10:55:20,660 p=41964 u=ansible |  TASK [server/prometheus-install : Create prometheus.yml] ****************************************************************************************************************************
+2018-07-05 10:55:21,488 p=41964 u=ansible |  changed: [10.19.109.229]
+2018-07-05 10:55:21,489 p=41964 u=ansible |  PLAY RECAP **************************************************************************************************************************************************************************
+2018-07-05 10:55:21,490 p=41964 u=ansible |  10.19.109.229              : ok=3    changed=1    unreachable=0    failed=0   
+2018-07-05 10:56:20,564 p=42019 u=ansible |  PLAY [prometheus] *******************************************************************************************************************************************************************
+2018-07-05 10:56:20,580 p=42019 u=ansible |  TASK [Gathering Facts] **************************************************************************************************************************************************************
+2018-07-05 10:56:21,611 p=42019 u=ansible |  ok: [10.19.109.229]
+2018-07-05 10:56:21,624 p=42019 u=ansible |  TASK [server/prometheus-install : Set port numbers for collectd exporters] **********************************************************************************************************
+2018-07-05 10:56:21,687 p=42019 u=ansible |  ok: [10.19.109.229]
+2018-07-05 10:56:21,701 p=42019 u=ansible |  TASK [server/prometheus-install : Create prometheus.yml] ****************************************************************************************************************************
+2018-07-05 10:56:22,512 p=42019 u=ansible |  changed: [10.19.109.229]
+2018-07-05 10:56:22,514 p=42019 u=ansible |  PLAY RECAP **************************************************************************************************************************************************************************
+2018-07-05 10:56:22,514 p=42019 u=ansible |  10.19.109.229              : ok=3    changed=1    unreachable=0    failed=0   
+2018-07-05 11:17:25,974 p=42640 u=ansible |  PLAY [prometheus] *******************************************************************************************************************************************************************
+2018-07-05 11:17:25,990 p=42640 u=ansible |  TASK [Gathering Facts] **************************************************************************************************************************************************************
+2018-07-05 11:17:27,111 p=42640 u=ansible |  ok: [10.19.109.229]
+2018-07-05 11:17:27,124 p=42640 u=ansible |  TASK [server/prometheus-install : Install prometheus tarball] ***********************************************************************************************************************
+2018-07-05 11:17:31,078 p=42640 u=ansible |  changed: [10.19.109.229]
+2018-07-05 11:17:31,093 p=42640 u=ansible |  TASK [server/prometheus-install : Find the name of the prometheus unarchived directory] *********************************************************************************************
+2018-07-05 11:17:31,575 p=42640 u=ansible |  ok: [10.19.109.229]
+2018-07-05 11:17:31,590 p=42640 u=ansible |  TASK [server/prometheus-install : set_fact] *****************************************************************************************************************************************
+2018-07-05 11:17:31,642 p=42640 u=ansible |  ok: [10.19.109.229]
+2018-07-05 11:17:31,655 p=42640 u=ansible |  TASK [server/prometheus-install : Create systemd service for prometheus] ************************************************************************************************************
+2018-07-05 11:17:32,237 p=42640 u=ansible |  ok: [10.19.109.229]
+2018-07-05 11:17:32,251 p=42640 u=ansible |  TASK [server/prometheus-install : Set port numbers for collectd exporters] **********************************************************************************************************
+2018-07-05 11:17:32,309 p=42640 u=ansible |  ok: [10.19.109.229]
+2018-07-05 11:17:32,323 p=42640 u=ansible |  TASK [server/prometheus-install : Create prometheus.yml] ****************************************************************************************************************************
+2018-07-05 11:17:32,990 p=42640 u=ansible |  changed: [10.19.109.229]
+2018-07-05 11:17:33,003 p=42640 u=ansible |  TASK [server/prometheus-install : Create prometheus_rules.yml] **********************************************************************************************************************
+2018-07-05 11:17:33,466 p=42640 u=ansible |  changed: [10.19.109.229]
+2018-07-05 11:17:33,479 p=42640 u=ansible |  TASK [server/prometheus-install : just force systemd to reread configs (2.4 and above)] *********************************************************************************************
+2018-07-05 11:17:33,900 p=42640 u=ansible |  ok: [10.19.109.229]
+2018-07-05 11:17:33,914 p=42640 u=ansible |  TASK [server/prometheus-install : Start and enable prometheus service] **************************************************************************************************************
+2018-07-05 11:17:34,193 p=42640 u=ansible |  changed: [10.19.109.229]
+2018-07-05 11:17:34,205 p=42640 u=ansible |  TASK [server/prometheus-install : Check if firewalld is installed] ******************************************************************************************************************
+2018-07-05 11:17:43,350 p=42640 u=ansible |  ok: [10.19.109.229]
+2018-07-05 11:17:43,364 p=42640 u=ansible |  TASK [server/prometheus-install : Open tcp port 9090] *******************************************************************************************************************************
+2018-07-05 11:17:44,012 p=42640 u=ansible |  changed: [10.19.109.229]
+2018-07-05 11:17:44,027 p=42640 u=ansible |  TASK [server/prometheus-install : Verify if Prometheus is listening on TCP port {{ prometheus_port }}] ******************************************************************************
+2018-07-05 11:17:44,506 p=42640 u=ansible |  fatal: [10.19.109.229]: FAILED! => {
+    "changed": false, 
+    "dest": "/tmp", 
+    "gid": 0, 
+    "group": "root", 
+    "mode": "01777", 
+    "owner": "root", 
+    "secontext": "system_u:object_r:tmp_t:s0", 
+    "size": 4096, 
+    "state": "directory", 
+    "uid": 0, 
+    "url": "http://10.19.109.229:9090/graph"
+}
+
+MSG:
+
+Request failed: <urlopen error [Errno 111] Connection refused>
+
+2018-07-05 11:17:44,508 p=42640 u=ansible |  PLAY RECAP **************************************************************************************************************************************************************************
+2018-07-05 11:17:44,508 p=42640 u=ansible |  10.19.109.229              : ok=12   changed=5    unreachable=0    failed=1   
+2018-07-05 11:20:46,062 p=42915 u=ansible |  PLAY [prometheus] *******************************************************************************************************************************************************************
+2018-07-05 11:20:46,077 p=42915 u=ansible |  TASK [Gathering Facts] **************************************************************************************************************************************************************
+2018-07-05 11:20:47,137 p=42915 u=ansible |  ok: [10.19.109.229]
+2018-07-05 11:20:47,150 p=42915 u=ansible |  TASK [server/prometheus-install : Install prometheus tarball] ***********************************************************************************************************************
+2018-07-05 11:20:50,991 p=42915 u=ansible |  changed: [10.19.109.229]
+2018-07-05 11:20:51,005 p=42915 u=ansible |  TASK [server/prometheus-install : Find the name of the prometheus unarchived directory] *********************************************************************************************
+2018-07-05 11:20:51,397 p=42915 u=ansible |  ok: [10.19.109.229]
+2018-07-05 11:20:51,410 p=42915 u=ansible |  TASK [server/prometheus-install : set_fact] *****************************************************************************************************************************************
+2018-07-05 11:20:51,464 p=42915 u=ansible |  ok: [10.19.109.229]
+2018-07-05 11:20:51,477 p=42915 u=ansible |  TASK [server/prometheus-install : Create systemd service for prometheus] ************************************************************************************************************
+2018-07-05 11:20:52,062 p=42915 u=ansible |  ok: [10.19.109.229]
+2018-07-05 11:20:52,075 p=42915 u=ansible |  TASK [server/prometheus-install : Set port numbers for collectd exporters] **********************************************************************************************************
+2018-07-05 11:20:52,127 p=42915 u=ansible |  ok: [10.19.109.229]
+2018-07-05 11:20:52,140 p=42915 u=ansible |  TASK [server/prometheus-install : Create prometheus.yml] ****************************************************************************************************************************
+2018-07-05 11:20:52,813 p=42915 u=ansible |  changed: [10.19.109.229]
+2018-07-05 11:20:52,825 p=42915 u=ansible |  TASK [server/prometheus-install : Create prometheus_rules.yml] **********************************************************************************************************************
+2018-07-05 11:20:53,219 p=42915 u=ansible |  ok: [10.19.109.229]
+2018-07-05 11:20:53,232 p=42915 u=ansible |  TASK [server/prometheus-install : just force systemd to reread configs (2.4 and above)] *********************************************************************************************
+2018-07-05 11:20:53,647 p=42915 u=ansible |  ok: [10.19.109.229]
+2018-07-05 11:20:53,660 p=42915 u=ansible |  TASK [server/prometheus-install : Start and enable prometheus service] **************************************************************************************************************
+2018-07-05 11:20:53,868 p=42915 u=ansible |  changed: [10.19.109.229]
+2018-07-05 11:20:53,881 p=42915 u=ansible |  TASK [server/prometheus-install : Check if firewalld is installed] ******************************************************************************************************************
+2018-07-05 11:20:55,056 p=42915 u=ansible |  ok: [10.19.109.229]
+2018-07-05 11:20:55,072 p=42915 u=ansible |  TASK [server/prometheus-install : Open tcp port 9090] *******************************************************************************************************************************
+2018-07-05 11:20:55,794 p=42915 u=ansible |  ok: [10.19.109.229]
+2018-07-05 11:20:55,809 p=42915 u=ansible |  TASK [server/prometheus-install : Verify if Prometheus is listening on TCP port {{ prometheus_port }}] ******************************************************************************
+2018-07-05 11:20:56,330 p=42915 u=ansible |  changed: [10.19.109.229]
+2018-07-05 11:20:56,349 p=42915 u=ansible |  TASK [server/prometheus-install : fail] *********************************************************************************************************************************************
+2018-07-05 11:20:56,365 p=42915 u=ansible |  skipping: [10.19.109.229]
+2018-07-05 11:20:56,367 p=42915 u=ansible |  PLAY RECAP **************************************************************************************************************************************************************************
+2018-07-05 11:20:56,367 p=42915 u=ansible |  10.19.109.229              : ok=13   changed=4    unreachable=0    failed=0   
+2018-07-05 13:26:46,677 p=45847 u=ansible |  PLAY [prometheus] *******************************************************************************************************************************************************************
+2018-07-05 13:26:46,692 p=45847 u=ansible |  TASK [Gathering Facts] **************************************************************************************************************************************************************
+2018-07-05 13:26:47,733 p=45847 u=ansible |  ok: [10.19.109.229]
+2018-07-05 13:26:47,747 p=45847 u=ansible |  TASK [server/prometheus-install : Install prometheus tarball] ***********************************************************************************************************************
+2018-07-05 13:26:51,507 p=45847 u=ansible |  changed: [10.19.109.229]
+2018-07-05 13:26:51,520 p=45847 u=ansible |  TASK [server/prometheus-install : Find the name of the prometheus unarchived directory] *********************************************************************************************
+2018-07-05 13:26:51,871 p=45847 u=ansible |  ok: [10.19.109.229]
+2018-07-05 13:26:51,885 p=45847 u=ansible |  TASK [server/prometheus-install : set_fact] *****************************************************************************************************************************************
+2018-07-05 13:26:51,938 p=45847 u=ansible |  ok: [10.19.109.229]
+2018-07-05 13:26:51,951 p=45847 u=ansible |  TASK [server/prometheus-install : Create systemd service for prometheus] ************************************************************************************************************
+2018-07-05 13:26:52,554 p=45847 u=ansible |  ok: [10.19.109.229]
+2018-07-05 13:26:52,568 p=45847 u=ansible |  TASK [server/prometheus-install : Set port numbers for collectd exporters] **********************************************************************************************************
+2018-07-05 13:26:52,629 p=45847 u=ansible |  ok: [10.19.109.229]
+2018-07-05 13:26:52,642 p=45847 u=ansible |  TASK [server/prometheus-install : Create prometheus.yml] ****************************************************************************************************************************
+2018-07-05 13:26:53,353 p=45847 u=ansible |  changed: [10.19.109.229]
+2018-07-05 13:26:53,366 p=45847 u=ansible |  TASK [server/prometheus-install : Create prometheus_rules.yml] **********************************************************************************************************************
+2018-07-05 13:26:53,786 p=45847 u=ansible |  ok: [10.19.109.229]
+2018-07-05 13:26:53,800 p=45847 u=ansible |  TASK [server/prometheus-install : just force systemd to reread configs (2.4 and above)] *********************************************************************************************
+2018-07-05 13:26:54,225 p=45847 u=ansible |  ok: [10.19.109.229]
+2018-07-05 13:26:54,239 p=45847 u=ansible |  TASK [server/prometheus-install : Start and enable prometheus service] **************************************************************************************************************
+2018-07-05 13:26:54,481 p=45847 u=ansible |  changed: [10.19.109.229]
+2018-07-05 13:26:54,495 p=45847 u=ansible |  TASK [server/prometheus-install : Check if firewalld is installed] ******************************************************************************************************************
+2018-07-05 13:26:55,652 p=45847 u=ansible |  ok: [10.19.109.229]
+2018-07-05 13:26:55,666 p=45847 u=ansible |  TASK [server/prometheus-install : Open tcp port 9090] *******************************************************************************************************************************
+2018-07-05 13:26:56,318 p=45847 u=ansible |  ok: [10.19.109.229]
+2018-07-05 13:26:56,332 p=45847 u=ansible |  TASK [server/prometheus-install : Verify if Prometheus is listening on TCP port {{ prometheus_port }}] ******************************************************************************
+2018-07-05 13:26:56,865 p=45847 u=ansible |  ok: [10.19.109.229]
+2018-07-05 13:26:56,877 p=45847 u=ansible |  TASK [server/prometheus-install : fail] *********************************************************************************************************************************************
+2018-07-05 13:26:56,893 p=45847 u=ansible |  skipping: [10.19.109.229]
+2018-07-05 13:26:56,894 p=45847 u=ansible |  PLAY RECAP **************************************************************************************************************************************************************************
+2018-07-05 13:26:56,894 p=45847 u=ansible |  10.19.109.229              : ok=13   changed=3    unreachable=0    failed=0   
+2018-07-05 13:28:20,956 p=46017 u=ansible |  PLAY [prometheus] *******************************************************************************************************************************************************************
+2018-07-05 13:28:20,971 p=46017 u=ansible |  TASK [Gathering Facts] **************************************************************************************************************************************************************
+2018-07-05 13:28:22,022 p=46017 u=ansible |  ok: [10.19.109.229]
+2018-07-05 13:28:22,035 p=46017 u=ansible |  TASK [server/prometheus-install : Install prometheus tarball] ***********************************************************************************************************************
+2018-07-05 13:28:25,719 p=46017 u=ansible |  changed: [10.19.109.229]
+2018-07-05 13:28:25,732 p=46017 u=ansible |  TASK [server/prometheus-install : Find the name of the prometheus unarchived directory] *********************************************************************************************
+2018-07-05 13:28:26,063 p=46017 u=ansible |  ok: [10.19.109.229]
+2018-07-05 13:28:26,076 p=46017 u=ansible |  TASK [server/prometheus-install : set_fact] *****************************************************************************************************************************************
+2018-07-05 13:28:26,124 p=46017 u=ansible |  ok: [10.19.109.229]
+2018-07-05 13:28:26,140 p=46017 u=ansible |  TASK [server/prometheus-install : Create systemd service for prometheus] ************************************************************************************************************
+2018-07-05 13:28:26,794 p=46017 u=ansible |  ok: [10.19.109.229]
+2018-07-05 13:28:26,808 p=46017 u=ansible |  TASK [server/prometheus-install : Set port numbers for collectd exporters] **********************************************************************************************************
+2018-07-05 13:28:26,863 p=46017 u=ansible |  ok: [10.19.109.229]
+2018-07-05 13:28:26,876 p=46017 u=ansible |  TASK [server/prometheus-install : Create prometheus.yml] ****************************************************************************************************************************
+2018-07-05 13:28:27,579 p=46017 u=ansible |  changed: [10.19.109.229]
+2018-07-05 13:28:27,592 p=46017 u=ansible |  TASK [server/prometheus-install : Create prometheus_rules.yml] **********************************************************************************************************************
+2018-07-05 13:28:28,004 p=46017 u=ansible |  ok: [10.19.109.229]
+2018-07-05 13:28:28,018 p=46017 u=ansible |  TASK [server/prometheus-install : just force systemd to reread configs (2.4 and above)] *********************************************************************************************
+2018-07-05 13:28:28,432 p=46017 u=ansible |  ok: [10.19.109.229]
+2018-07-05 13:28:28,446 p=46017 u=ansible |  TASK [server/prometheus-install : Start and enable prometheus service] **************************************************************************************************************
+2018-07-05 13:28:28,682 p=46017 u=ansible |  changed: [10.19.109.229]
+2018-07-05 13:28:28,696 p=46017 u=ansible |  TASK [server/prometheus-install : Check if firewalld is installed] ******************************************************************************************************************
+2018-07-05 13:28:29,808 p=46017 u=ansible |  ok: [10.19.109.229]
+2018-07-05 13:28:29,822 p=46017 u=ansible |  TASK [server/prometheus-install : Open tcp port 9090] *******************************************************************************************************************************
+2018-07-05 13:28:30,499 p=46017 u=ansible |  ok: [10.19.109.229]
+2018-07-05 13:28:30,528 p=46017 u=ansible |  TASK [server/prometheus-install : Verify if Prometheus is listening on TCP port {{ prometheus_port }}] ******************************************************************************
+2018-07-05 13:28:31,056 p=46017 u=ansible |  ok: [10.19.109.229]
+2018-07-05 13:28:31,083 p=46017 u=ansible |  TASK [server/prometheus-install : fail] *********************************************************************************************************************************************
+2018-07-05 13:28:31,101 p=46017 u=ansible |  skipping: [10.19.109.229]
+2018-07-05 13:28:31,103 p=46017 u=ansible |  PLAY RECAP **************************************************************************************************************************************************************************
+2018-07-05 13:28:31,103 p=46017 u=ansible |  10.19.109.229              : ok=13   changed=3    unreachable=0    failed=0   
+2018-07-05 13:29:30,763 p=46134 u=ansible |  PLAY [prometheus] *******************************************************************************************************************************************************************
+2018-07-05 13:29:30,778 p=46134 u=ansible |  TASK [Gathering Facts] **************************************************************************************************************************************************************
+2018-07-05 13:29:31,835 p=46134 u=ansible |  ok: [10.19.109.229]
+2018-07-05 13:29:31,848 p=46134 u=ansible |  TASK [server/prometheus-install : Install prometheus tarball] ***********************************************************************************************************************
+2018-07-05 13:29:35,636 p=46134 u=ansible |  changed: [10.19.109.229]
+2018-07-05 13:29:35,649 p=46134 u=ansible |  TASK [server/prometheus-install : Find the name of the prometheus unarchived directory] *********************************************************************************************
+2018-07-05 13:29:35,984 p=46134 u=ansible |  ok: [10.19.109.229]
+2018-07-05 13:29:36,002 p=46134 u=ansible |  TASK [server/prometheus-install : set_fact] *****************************************************************************************************************************************
+2018-07-05 13:29:36,058 p=46134 u=ansible |  ok: [10.19.109.229]
+2018-07-05 13:29:36,070 p=46134 u=ansible |  TASK [server/prometheus-install : Create systemd service for prometheus] ************************************************************************************************************
+2018-07-05 13:29:36,683 p=46134 u=ansible |  ok: [10.19.109.229]
+2018-07-05 13:29:36,697 p=46134 u=ansible |  TASK [server/prometheus-install : Set port numbers for collectd exporters] **********************************************************************************************************
+2018-07-05 13:29:36,751 p=46134 u=ansible |  ok: [10.19.109.229]
+2018-07-05 13:29:36,764 p=46134 u=ansible |  TASK [server/prometheus-install : Create prometheus.yml] ****************************************************************************************************************************
+2018-07-05 13:29:36,886 p=46134 u=ansible |  fatal: [10.19.109.229]: FAILED! => {
+    "changed": false
+}
+
+MSG:
+
+AnsibleError: template error while templating string: expected token 'end of print statement', got ':'. String: # my global config
+global:
+  scrape_interval: "{{ prometheus_global_srape_interval }}"
+  evaluation_interval: "{{ prometheus_global_srape_timeout }}"
+
+  external_labels: 
+    exporter_node: prometheus-{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}
+
+# Alertmanager configuration
+alerting:
+  
+  alert_relabel_configs:
+  - source_labels: [exporter_node]
+    regex: (prometheus).+
+    target_label: exporter_node
+
+  alertmanagers:
+  - static_configs:
+    - targets:
+    {% for r in groups["alert_managers"] %}
+       - {{ hostvars[r].inventory_hostname }}:{{ alert_manager_port }}
+    {% endfor %}
+
+# Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
+rule_files:
+   - "prometheus_rules.yml"
+  # - "second_rules.yml"
+
+# A scrape configuration containing exactly one endpoint to scrape:
+# Here it's Prometheus itself.
+scrape_configs:
+  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
+  # 
+  # Collectd Exporters
+  - job_name: 'collectd'
+    honor_labels: true
+    scrape_interval: "{{ prometheus_collectd_exporter_srape_timeout }}"
+#    relabel_configs:
+#      - source_labels: [exported_instance]
+#        target_label: instance
+#
+#      - source_labels: [__address__]
+#        target_label: exported_instance
+
+    metric_relabel_configs:
+      - source_labels: [type]
+        target_label: service
+
+      - regex: 'type'
+        action: labeldrop
+
+    # metrics_path defaults to '/metrics'
+    # scheme defaults to 'http'.
+
+    static_configs:
+{% for port in collectd_ports %}
+      - targets: ['{{ ansible_default_ipv4.address : port }}']
+{% endfor %}
+
+
+  - job_name: 'openstack'
+    honor_labels: true
+    metric_relabel_configs:
+    - source_labels: [url]
+      target_label: instance
+      regex: https?://(.+):.+
+      replacement: $1
+
+    # metrics_path defaults to '/metrics'
+    # scheme defaults to 'http'.
+
+    static_configs:
+{% for i in groups["prometheus"] %}
+{% if hostvars[inventory_hostname]['ansible_default_ipv4']['address'] == groups["prometheus"][loop.index - 1] %}
+{% for j in groups["osp_exporters"] %}
+      - targets: ['{{ groups["osp_exporters"][loop.index - 1] }}:{{ osp_exporter_http_port }}']
+{% endfor %}
+{% endif %}
+{% endfor %}
+
+
+2018-07-05 13:29:36,888 p=46134 u=ansible |  PLAY RECAP **************************************************************************************************************************************************************************
+2018-07-05 13:29:36,888 p=46134 u=ansible |  10.19.109.229              : ok=6    changed=1    unreachable=0    failed=1   
+2018-07-05 13:30:56,538 p=46291 u=ansible |  PLAY [prometheus] *******************************************************************************************************************************************************************
+2018-07-05 13:30:56,553 p=46291 u=ansible |  TASK [Gathering Facts] **************************************************************************************************************************************************************
+2018-07-05 13:30:57,609 p=46291 u=ansible |  ok: [10.19.109.229]
+2018-07-05 13:30:57,622 p=46291 u=ansible |  TASK [server/prometheus-install : Install prometheus tarball] ***********************************************************************************************************************
+2018-07-05 13:31:00,705 p=46291 u=ansible |  ok: [10.19.109.229]
+2018-07-05 13:31:00,718 p=46291 u=ansible |  TASK [server/prometheus-install : Find the name of the prometheus unarchived directory] *********************************************************************************************
+2018-07-05 13:31:01,069 p=46291 u=ansible |  ok: [10.19.109.229]
+2018-07-05 13:31:01,082 p=46291 u=ansible |  TASK [server/prometheus-install : set_fact] *****************************************************************************************************************************************
+2018-07-05 13:31:01,134 p=46291 u=ansible |  ok: [10.19.109.229]
+2018-07-05 13:31:01,151 p=46291 u=ansible |  TASK [server/prometheus-install : Create systemd service for prometheus] ************************************************************************************************************
+2018-07-05 13:31:01,735 p=46291 u=ansible |  ok: [10.19.109.229]
+2018-07-05 13:31:01,750 p=46291 u=ansible |  TASK [server/prometheus-install : Set port numbers for collectd exporters] **********************************************************************************************************
+2018-07-05 13:31:01,812 p=46291 u=ansible |  ok: [10.19.109.229]
+2018-07-05 13:31:01,826 p=46291 u=ansible |  TASK [server/prometheus-install : Create prometheus.yml] ****************************************************************************************************************************
+2018-07-05 13:31:01,948 p=46291 u=ansible |  fatal: [10.19.109.229]: FAILED! => {
+    "changed": false
+}
+
+MSG:
+
+AnsibleError: template error while templating string: expected token 'end of print statement', got ':'. String: # my global config
+global:
+  scrape_interval: "{{ prometheus_global_srape_interval }}"
+  evaluation_interval: "{{ prometheus_global_srape_timeout }}"
+
+  external_labels: 
+    exporter_node: prometheus-{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}
+
+# Alertmanager configuration
+alerting:
+  
+  alert_relabel_configs:
+  - source_labels: [exporter_node]
+    regex: (prometheus).+
+    target_label: exporter_node
+
+  alertmanagers:
+  - static_configs:
+    - targets:
+    {% for r in groups["alert_managers"] %}
+       - {{ hostvars[r].inventory_hostname }}:{{ alert_manager_port }}
+    {% endfor %}
+
+# Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
+rule_files:
+   - "prometheus_rules.yml"
+  # - "second_rules.yml"
+
+# A scrape configuration containing exactly one endpoint to scrape:
+# Here it's Prometheus itself.
+scrape_configs:
+  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
+  # 
+  # Collectd Exporters
+  - job_name: 'collectd'
+    honor_labels: true
+    scrape_interval: "{{ prometheus_collectd_exporter_srape_timeout }}"
+#    relabel_configs:
+#      - source_labels: [exported_instance]
+#        target_label: instance
+#
+#      - source_labels: [__address__]
+#        target_label: exported_instance
+
+    metric_relabel_configs:
+      - source_labels: [type]
+        target_label: service
+
+      - regex: 'type'
+        action: labeldrop
+
+    # metrics_path defaults to '/metrics'
+    # scheme defaults to 'http'.
+
+    static_configs:
+{% for port in collectd_ports %}
+      - targets: ['{{ ansible_default_ipv4.address:port }}']
+{% endfor %}
+
+
+  - job_name: 'openstack'
+    honor_labels: true
+    metric_relabel_configs:
+    - source_labels: [url]
+      target_label: instance
+      regex: https?://(.+):.+
+      replacement: $1
+
+    # metrics_path defaults to '/metrics'
+    # scheme defaults to 'http'.
+
+    static_configs:
+{% for i in groups["prometheus"] %}
+{% if hostvars[inventory_hostname]['ansible_default_ipv4']['address'] == groups["prometheus"][loop.index - 1] %}
+{% for j in groups["osp_exporters"] %}
+      - targets: ['{{ groups["osp_exporters"][loop.index - 1] }}:{{ osp_exporter_http_port }}']
+{% endfor %}
+{% endif %}
+{% endfor %}
+
+
+2018-07-05 13:31:01,949 p=46291 u=ansible |  PLAY RECAP **************************************************************************************************************************************************************************
+2018-07-05 13:31:01,950 p=46291 u=ansible |  10.19.109.229              : ok=6    changed=0    unreachable=0    failed=1   
+2018-07-05 13:31:29,180 p=46351 u=ansible |  PLAY [prometheus] *******************************************************************************************************************************************************************
+2018-07-05 13:31:29,196 p=46351 u=ansible |  TASK [Gathering Facts] **************************************************************************************************************************************************************
+2018-07-05 13:31:29,890 p=46351 u=ansible |  ok: [10.19.109.229]
+2018-07-05 13:31:29,903 p=46351 u=ansible |  TASK [server/prometheus-install : Install prometheus tarball] ***********************************************************************************************************************
+2018-07-05 13:31:32,940 p=46351 u=ansible |  ok: [10.19.109.229]
+2018-07-05 13:31:32,953 p=46351 u=ansible |  TASK [server/prometheus-install : Find the name of the prometheus unarchived directory] *********************************************************************************************
+2018-07-05 13:31:33,309 p=46351 u=ansible |  ok: [10.19.109.229]
+2018-07-05 13:31:33,323 p=46351 u=ansible |  TASK [server/prometheus-install : set_fact] *****************************************************************************************************************************************
+2018-07-05 13:31:33,386 p=46351 u=ansible |  ok: [10.19.109.229]
+2018-07-05 13:31:33,403 p=46351 u=ansible |  TASK [server/prometheus-install : Create systemd service for prometheus] ************************************************************************************************************
+2018-07-05 13:31:34,019 p=46351 u=ansible |  ok: [10.19.109.229]
+2018-07-05 13:31:34,032 p=46351 u=ansible |  TASK [server/prometheus-install : Set port numbers for collectd exporters] **********************************************************************************************************
+2018-07-05 13:31:34,084 p=46351 u=ansible |  ok: [10.19.109.229]
+2018-07-05 13:31:34,097 p=46351 u=ansible |  TASK [server/prometheus-install : Create prometheus.yml] ****************************************************************************************************************************
+2018-07-05 13:31:34,816 p=46351 u=ansible |  changed: [10.19.109.229]
+2018-07-05 13:31:34,829 p=46351 u=ansible |  TASK [server/prometheus-install : Create prometheus_rules.yml] **********************************************************************************************************************
+2018-07-05 13:31:35,264 p=46351 u=ansible |  ok: [10.19.109.229]
+2018-07-05 13:31:35,278 p=46351 u=ansible |  TASK [server/prometheus-install : just force systemd to reread configs (2.4 and above)] *********************************************************************************************
+2018-07-05 13:31:35,717 p=46351 u=ansible |  ok: [10.19.109.229]
+2018-07-05 13:31:35,730 p=46351 u=ansible |  TASK [server/prometheus-install : Start and enable prometheus service] **************************************************************************************************************
+2018-07-05 13:31:35,956 p=46351 u=ansible |  changed: [10.19.109.229]
+2018-07-05 13:31:35,968 p=46351 u=ansible |  TASK [server/prometheus-install : Check if firewalld is installed] ******************************************************************************************************************
+2018-07-05 13:31:37,114 p=46351 u=ansible |  ok: [10.19.109.229]
+2018-07-05 13:31:37,129 p=46351 u=ansible |  TASK [server/prometheus-install : Open tcp port 9090] *******************************************************************************************************************************
+2018-07-05 13:31:37,831 p=46351 u=ansible |  ok: [10.19.109.229]
+2018-07-05 13:31:37,846 p=46351 u=ansible |  TASK [server/prometheus-install : Verify if Prometheus is listening on TCP port {{ prometheus_port }}] ******************************************************************************
+2018-07-05 13:31:38,390 p=46351 u=ansible |  ok: [10.19.109.229]
+2018-07-05 13:31:38,404 p=46351 u=ansible |  TASK [server/prometheus-install : fail] *********************************************************************************************************************************************
+2018-07-05 13:31:38,421 p=46351 u=ansible |  skipping: [10.19.109.229]
+2018-07-05 13:31:38,423 p=46351 u=ansible |  PLAY RECAP **************************************************************************************************************************************************************************
+2018-07-05 13:31:38,423 p=46351 u=ansible |  10.19.109.229              : ok=13   changed=2    unreachable=0    failed=0   
