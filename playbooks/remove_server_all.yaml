@@ -1,0 +1,5 @@
+- include: remove_collectd_exporter.yaml
+- include: remove_osp_exporter.yaml
+- include: remove_prometheus.yaml
+- include: remove_alert_manager.yaml
+- include: remove_snmptrapper.yaml

@@ -1,4 +1,5 @@
 - include: install_collectd_exporter.yaml
+- include: install_osp_exporter.yaml
 - include: install_prometheus.yaml
 - include: install_alert_manager.yaml
-- include: install_grafana.yaml
+- include: install_snmptrapper.yaml
