@@ -17,9 +17,7 @@ alerting:
   alertmanagers:
   - static_configs:
     - targets:
-    {% for r in groups["alert_managers"] %}
-       - {{ hostvars[r].inventory_hostname }}:{{ alert_manager_port }}
-    {% endfor %}
+       - localhost:{{ alert_manager_port }}
 
 # Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
 rule_files:
@@ -60,6 +58,7 @@ scrape_configs:
 
   - job_name: 'openstack'
     honor_labels: true
+    scrape_interval: "{{ prometheus_osp_exporter_srape_timeout }}"
     metric_relabel_configs:
     - source_labels: [url]
       target_label: instance

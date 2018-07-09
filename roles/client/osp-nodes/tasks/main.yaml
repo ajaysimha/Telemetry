@@ -14,7 +14,8 @@
     
 - name: Extract pod numbers and set collectd_ports
   set_fact:
-    collectd_ports: "{{ group_names | flatten | select('match', 'pod[0-9]') | map('regex_replace', '-.+$', '') | list | unique | map('regex_replace', '$', '_port') | map('extract', vars) | list }}"
+    collectd_ports: "{{ group_names | flatten | select('match', 'pod[0-9]') | map('regex_replace', '_.+$', '') | list | unique | map('regex_replace', '$', '_port') | map('extract', vars) | list }}"
+
 
 - name: Configure collectd client to send metrics to collectd exporters
   template:
@@ -28,14 +29,14 @@
     state: directory
     mode: 0755
 
-- name: Copy nfvi-services.sh to /etc/collectd.d directory
+- name: Copy nfvi-services.sh to /etc/collectd.d directory for compute nodes
   copy:
     src: compute-nfvi-services.sh
     dest: /usr/share/collectd/exec/nfvi-services.sh
     mode: 0755
   when: "'computes' in group_names | join(' ')"
 
-- name: Copy nfvi-services.sh to /etc/collectd.d directory
+- name: Copy nfvi-services.sh to /etc/collectd.d directory for controller nodes
   copy:
     src: controller-nfvi-services.sh
     dest: /usr/share/collectd/exec/nfvi-services.sh

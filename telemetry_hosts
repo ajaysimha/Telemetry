@@ -5,6 +5,15 @@ alert_managers
 osp_exporters
 snmptrapper_hosts
 
+[consulting_servers]
+10.12.32.30
+10.12.32.31
+10.12.32.32
+10.12.32.33
+10.12.32.34
+10.12.32.35
+10.12.32.36
+
 
 [collectd_exporters]
 10.19.109.225
@@ -27,70 +36,112 @@ snmptrapper_hosts
 10.19.109.229
 
 [clients:children]
-pods
+osp_nodes
+ceph_nodes
 
 [pods:children]
 pod1
 pod2
 pod3
+pod4
 
-[pod1:vars]
+
+[osp_nodes:children]
+controllers
+computes
+
+[controllers:children]
+pod1_controllers
+pod2_controllers
+pod3_controllers
+pod4_controllers
+
+[computes:children]
+pod1_computes
+pod2_computes
+pod3_computes
+pod4_computes
+
+[ceph_nodes:children]
+mons
+osds
+
+[mons:children]
+pod1_mons
+pod2_mons
+pod3_mons
+pod4_mons
+
+[osds:children]
+pod1_osds
+pod2_osds
+pod3_osds
+pod4_osds
 
 [pod1:children]
-pod1-controllers
-pod1-computes
-pod1-ceph-mons
-pod1-ceph-osds
-
-[pod2:vars]
+pod1_controllers
+pod1_computes
+pod1_mons
+pod1_osds
 
 [pod2:children]
-pod2-controllers
-pod2-computes
-pod2-ceph-mons
-pod2-ceph-osds
-
-[pod3:vars]
+pod2_controllers
+pod2_computes
+pod2_mons
+pod2_osds
 
 [pod3:children]
-pod3-controllers
-pod3-computes
-pod3-ceph-mons
-pod3-ceph-osds
+pod3_controllers
+pod3_computes
+pod3_mons
+pod3_osds
 
-[pod1-controllers]
+[pod4:children]
+pod4_controllers
+pod4_computes
+pod4_mons
+pod4_osds
+
+[pod1_controllers]
 10.19.109.12
 
-[pod1-computes]
+[pod1_computes]
 10.19.109.230
+10.19.109.231
 
-[ceph-nodes:children]
-pod1-ceph-nodes
+[pod1_mons]
 
-[pod1-ceph-nodes:children]
-pod1-ceph-osds
-pod1-ceph-mons
-
-[pod1-ceph-osds]
+[pod1_osds]
 10.19.109.232
 
-[pod1-ceph-mons]
+[pod2_controllers]
 
-[pod2-controllers]
+[pod2_computes]
+10.12.32.30
+10.12.32.31
 
-[pod2-computes]
+[pod2_mons]
 
-[pod2-ceph-mons]
+[pod2_osds]
 
-[pod2-ceph-osds]
+[pod3_controllers]
 
-[pod3-controllers]
+[pod3_computes]
+10.12.32.32
+10.12.32.33
 
-[pod3-computes]
-10.19.109.231
-10.19.109.216
+[pod3_osds]
 
-[pod3-ceph-osds]
+[pod3_mons]
 
-[pod3-ceph-mons]
+[pod4_controllers]
+
+[pod4_computes]
+10.12.32.34
+10.12.32.35
+10.12.32.36
+
+[pod4_osds]
+
+[pod4_mons]
 

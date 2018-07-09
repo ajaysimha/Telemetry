@@ -62,6 +62,8 @@ prometheus_global_srape_interval: 30s
 prometheus_global_srape_timeout: 5s
 # Set the scrape timeout for collectd_exporters to every XX seconds.
 prometheus_collectd_exporter_srape_timeout: 300s
+# Set the scrape timeout for osp_exporters to every XX seconds.
+prometheus_osp_exporter_srape_timeout: 60s
 
 
 ###############################
@@ -79,11 +81,14 @@ collectd_interval: 600
 pod1_port: 25101
 pod2_port: 25102
 pod3_port: 25103
+pod4_port: 25104
 
 
-collect_plugins:
+collectd_plugins:
   - collectd
-  - disk
+  - collectd-disk
+  - collectd-ceph
+
 
 collectd_packages_all:
   - collectd-5.8.0-5.el7ost.x86_64.rpm

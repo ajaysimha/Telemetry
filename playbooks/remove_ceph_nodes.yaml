@@ -1,4 +1,0 @@
-- hosts: ceph-nodes
-  become: true
-  roles:
-    - client/remove-ceph-nodes
