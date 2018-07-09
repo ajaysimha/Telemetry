@@ -35,14 +35,14 @@
     src: ceph-osd-nfvi-services.sh
     dest: /usr/share/collectd/exec/nfvi-services.sh
     mode: 0755
-  when: "'ceph-osd' in group_names | join(' ')"
+  when: "'osd' in group_names | join(' ')"
 
 - name: Copy nfvi-services.sh to /usr/share/collectd/exec directory
   copy:
     src: ceph-mon-nfvi-services.sh
     dest: /usr/share/collectd/exec/nfvi-services.sh
     mode: 0755
-  when: "'ceph-mon' in group_names | join(' ')"
+  when: "'mon' in group_names | join(' ')"
 
 - name: Copy ceph-status.sh to /usr/local/sbin directory
   copy:
