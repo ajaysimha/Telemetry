@@ -16,6 +16,26 @@ alert_manager_download_url: https://github.com/prometheus/alertmanager/releases/
 alert_manager_mesh_port: 6783
 alert_manager_port: 9093
 alert_manager_pkg: alertmanager-0.12.0.linux-amd64.tar.gz
+snmp_webhook_http_port: 9099
+
+# When a new group of alerts is created by an incoming alert, wait at 
+# least 'group_wait' to send the initial notification.
+# This way ensures that you get multiple alerts for the same group that start
+# firing shortly after another are batched together on the first
+# notification.
+group_wait_time: 5s
+
+# When the first notification was sent, wait 'group_interval' to send a batch
+# of new alerts that started firing for that group.
+group_interval: 5m
+
+ # If an alert has successfully been sent, wait 'repeat_interval' to
+ #   # resend them.
+repeat_interval: 30m
+
+# ResolveTimeout is the time after which an alert is declared resolved
+# if it has not been updated. default = 5m
+resolve_timeout: 60s
 
 ###############################
 # SNMP Trap Webhook vars
@@ -56,14 +76,32 @@ prometheus_client: prometheus_client-0.2.0.tar.gz
 python2_pip_pkg: python2-pip-8.1.2-6.el7.noarch.rpm 
 requests_pkg: requests-2.18.4.tar.gz
 
+###############################
+## prometheus.yml vars
+################################
+
 # Set the scrape interval to every XX seconds. Default is every 1 minute.
-prometheus_global_srape_interval: 30s
+prometheus_global_scrape_interval: 30s
 # Set the scrape timeout to every XX seconds. Default is every 10 seconds.
-prometheus_global_srape_timeout: 5s
+prometheus_global_scrape_timeout: 5s
 # Set the scrape timeout for collectd_exporters to every XX seconds.
-prometheus_collectd_exporter_srape_timeout: 300s
+prometheus_collectd_exporter_scrape_timeout: 300s
 # Set the scrape timeout for osp_exporters to every XX seconds.
-prometheus_osp_exporter_srape_timeout: 60s
+prometheus_osp_exporter_scrape_timeout: 60s
+
+###############################
+# prometheus_rules.yml vars
+###############################
+
+instance_down_interval: 5s
+instance_down_for_time: 5m
+api_status_interval: 30s
+api_status_for_time: 30s
+nfvi_services_interval: 30s
+nfvi_services_for_time: 30s
+zombie_process_for_time: 30s
+system_rebooted_interval: 300
+system_rebooted_for_time: 30s
 
 
 ###############################
@@ -78,10 +116,10 @@ collectd_interval: 600
 
 # used in collectd.conf as transmit udp port number 
 # also used by collectd_exporter for listening for collectd messages as well as http port numbers for prometheus to scrape
-pod1_port: 25101
-pod2_port: 25102
-pod3_port: 25103
-pod4_port: 25104
+pod1_collectd_port: 25101
+pod2_collectd_port: 25102
+pod3_collectd_port: 25103
+pod4_collectd_port: 25104
 
 
 collectd_plugins:
@@ -96,3 +134,5 @@ collectd_packages_all:
 
 collectd_packages_ceph:
   - collectd-ceph-5.8.0-5.el7ost.x86_64.rpm
+
+collectd_exec_sleep_interval: 30

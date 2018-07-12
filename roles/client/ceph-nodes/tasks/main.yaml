@@ -16,7 +16,7 @@
 
 - name: Extract pod numbers and set collectd_ports
   set_fact:
-    collectd_ports: "{{ group_names | flatten | select('match', 'pod[0-9]') | map('regex_replace', '_.+$', '') | list | unique | map('regex_replace', '$', '_port') | map('extract', vars) | list }}"
+    collectd_ports: "{{ group_names | flatten | select('match', 'pod[0-9]') | map('regex_replace', '_.+$', '') | list | unique | map('regex_replace', '$', '_collectd_port') | map('extract', vars) | list }}"
 
 - name: Configure collectd client to send metrics to collectd exporter
   template:

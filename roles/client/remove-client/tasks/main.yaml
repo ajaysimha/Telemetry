@@ -3,9 +3,6 @@
     path: /usr/lib/systemd/system/collectd.service
   register: service_filename
 
-- debug:
-    var: service_filename.stat.path
-
 - name: Stop collectd client
   service:
     name: collectd

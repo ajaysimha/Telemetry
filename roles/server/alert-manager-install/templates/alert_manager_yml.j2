@@ -1,6 +1,7 @@
 global:
   smtp_smarthost: 'localhost:25'
   smtp_from: 'alertmanager@example.org'
+  resolve_timeout: {{ resolve_timeout }}
 
 #templates: 
 #- '/etc/alertmanager/template/*.tmpl'
@@ -17,15 +18,15 @@ route:
   # This way ensures that you get multiple alerts for the same group that start
   # firing shortly after another are batched together on the first
   # notification. 
-  group_wait: 1s
+  group_wait: {{ group_wait_time }}
 
   # When the first notification was sent, wait 'group_interval' to send a batch
   # of new alerts that started firing for that group.
-  group_interval: 1s
+  group_interval: {{ group_interval }}
 
   # If an alert has successfully been sent, wait 'repeat_interval' to
   # resend them. 
-  repeat_interval: 10000000m 
+  repeat_interval: {{ repeat_interval }} 
 
   # A default receiver
 #  receiver: SNMP_WH
@@ -68,4 +69,5 @@ inhibit_rules:
 receivers:
 - name: 'SNMP_WH'
   webhook_configs:
-    - url: 'http://0.0.0.0:9099'
+    - url: 'http://0.0.0.0:{{ snmp_webhook_http_port }}'
+      send_resolved: true

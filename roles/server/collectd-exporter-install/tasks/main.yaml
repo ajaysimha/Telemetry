@@ -16,7 +16,7 @@
 # The port numbers will be gathered from the group_vars/all file
 - name: Set port numbers for collectd exporters
   set_fact:
-    collectd_ports: "{{ groups | flatten | select('match', 'pod[0-9]') | map('regex_replace', '_.+$', '') | list | unique | map('regex_replace', '$', '_port') | map('extract', vars)| list }}"
+    collectd_ports: "{{ groups | flatten | select('match', 'pod[0-9]') | map('regex_replace', '_.+$', '') | list | unique | map('regex_replace', '$', '_collectd_port') | map('extract', vars)| list }}"
 
 - name: Create systemd service for collectd exporter
   template:

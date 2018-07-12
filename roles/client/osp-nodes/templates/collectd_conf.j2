@@ -44,10 +44,9 @@ Exec  "nobody" "/usr/share/collectd/exec/nfvi-services.sh"
 </Plugin>
 
 LoadPlugin network
+{% for i in groups["collectd_exporters"] %}
 <Plugin network>
-Server "{{ groups["collectd_exporters"][0] }}" "{{ item }}"
+Server "{{ groups["collectd_exporters"][loop.index - 1] }}" "{{ item }}"
 </Plugin>
-<Plugin network>
-Server "{{ groups["collectd_exporters"][1] }}" "{{ item }}"
-</Plugin>
+{% endfor %}
 
