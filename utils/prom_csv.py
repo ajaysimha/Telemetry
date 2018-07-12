@@ -42,4 +42,4 @@ for metrixResult in metrixResults:
             l = [result['metric'].get('__name__', '')] + result['values']
             for label in labelnames:
                 l.append(result['metric'].get(label, ''))
-                writer.writerow(l)
+            writer.writerow(l)
