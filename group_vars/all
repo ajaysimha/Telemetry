@@ -48,6 +48,8 @@ snmp_community: public
 # OSP Exporter vars
 ###############################
 osp_exporter_http_port: 19103
+osp_exporter_config:
+  - { url: 'http://10.19.109.24:5000/v3', password: 'redhat', port: '19103' }
 
 osp_exporter_packages:
   - python2-pip-8.1.2-6.el7.noarch.rpm
@@ -83,9 +85,11 @@ requests_pkg: requests-2.18.4.tar.gz
 # Set the scrape interval to every XX seconds. Default is every 1 minute.
 prometheus_global_scrape_interval: 30s
 # Set the scrape timeout to every XX seconds. Default is every 10 seconds.
-prometheus_global_scrape_timeout: 5s
+prometheus_global_scrape_timeout: 30s
+# Set the scrape interval for collectd_exporters to every XX seconds.
+prometheus_collectd_exporter_scrape_interval: 300s
 # Set the scrape timeout for collectd_exporters to every XX seconds.
-prometheus_collectd_exporter_scrape_timeout: 300s
+prometheus_collectd_exporter_scrape_timeout: 30s
 # Set the scrape timeout for osp_exporters to every XX seconds.
 prometheus_osp_exporter_scrape_timeout: 60s
 
@@ -107,9 +111,11 @@ system_rebooted_for_time: 30s
 ###############################
 # collectd vars
 ###############################
-collectd_exporter_download_url: https://github.com/prometheus/collectd_exporter/releases/download/0.3.1/collectd_exporter-0.3.1.linux-386.tar.gz
+#collectd_exporter_download_url: https://github.com/prometheus/collectd_exporter/releases/download/0.3.1/collectd_exporter-0.3.1.linux-386.tar.gz
+collectd_exporter_download_url: https://github.com/prometheus/collectd_exporter/releases/download/v0.4.0/collectd_exporter-0.4.0.linux-386.tar.gz
 collectd_exporter_port_base: 25000
-collectd_exporter_pkg: collectd_exporter-0.3.1.linux-386.tar.gz
+collectd_exporter_pkg: collectd_exporter-0.4.0.linux-386.tar.gz
+system_receive_socket_memory: 100000000
 
 # Interval in seconds for sending performance metrics set in collectd.conf
 collectd_interval: 600

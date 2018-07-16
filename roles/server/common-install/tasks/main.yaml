@@ -1,0 +1,31 @@
+- name: Install latest version firewalld
+  yum:
+    name: firewalld
+    state: latest
+
+- name: Start firewalld service
+  service:
+    name: firewalld
+    state: started
+
+- name: Check if firewalld is installed
+  yum:
+    list: firewalld
+  register: firewalld_op
+
+- name: Open tcp port {{ prometheus_web_port }}
+  firewalld:
+    port: "{{ prometheus_web_port }}/tcp"
+    permanent: true
+    state: enabled
+    immediate: true
+  when: firewalld_op.results|selectattr("yumstate", "match", "installed")|list|length != 0
+
+- name: Verify if Prometheus is listening on TCP port {{ prometheus_port }}
+  get_url:
+    url: "http://{{ ansible_default_ipv4.address }}:{{ prometheus_web_port }}/graph"
+    dest: /tmp
+  register: dashboard_access
+- fail:
+    msg: "Prometheus expression browser is not listening on port {{ prometheus_web_port }} on server {{ ansible_default_ipv4.address }}"
+  when: dashboard_access.status_code != 200

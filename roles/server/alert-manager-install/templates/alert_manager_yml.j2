@@ -69,5 +69,5 @@ inhibit_rules:
 receivers:
 - name: 'SNMP_WH'
   webhook_configs:
-    - url: 'http://0.0.0.0:{{ snmp_webhook_http_port }}'
-      send_resolved: true
+    - send_resolved: true
+      url: 'http://0.0.0.0:{{ snmp_webhook_http_port }}'

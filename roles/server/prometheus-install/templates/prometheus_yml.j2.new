@@ -1,0 +1,82 @@
+# my global config
+global:
+  scrape_interval: "{{ prometheus_global_scrape_interval }}"
+  scrape_timeout: "{{ prometheus_global_scrape_timeout }}"
+  evaluation_interval: "{{ prometheus_global_scrape_timeout }}"
+
+  external_labels: 
+    exporter_node: prometheus-{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}
+
+# Alertmanager configuration
+alerting:
+  
+  alert_relabel_configs:
+  - source_labels: [exporter_node]
+    regex: (prometheus).+
+    target_label: exporter_node
+
+  alertmanagers:
+  - static_configs:
+    - targets:
+       - localhost:{{ alert_manager_port }}
+
+# Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
+rule_files:
+   - "prometheus_rules.yml"
+  # - "second_rules.yml"
+
+# A scrape configuration containing exactly one endpoint to scrape:
+# Here it's Prometheus itself.
+scrape_configs:
+  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
+  # 
+  # Collectd Exporters
+  - job_name: 'collectd'
+    honor_labels: true
+    scrape_interval: "{{ prometheus_collectd_exporter_scrape_interval }}"
+    scrape_timeout: "{{ prometheus_collectd_exporter_scrape_timeout }}"
+#    relabel_configs:
+#      - source_labels: [exported_instance]
+#        target_label: instance
+#
+#      - source_labels: [__address__]
+#        target_label: exported_instance
+
+    metric_relabel_configs:
+      - source_labels: [type]
+        target_label: service
+
+      - regex: 'type'
+        action: labeldrop
+
+    # metrics_path defaults to '/metrics'
+    # scheme defaults to 'http'.
+
+    static_configs:
+{% for port in collectd_ports %}
+      - targets: ['{{ ansible_default_ipv4.address }}:{{ port }}']
+{% endfor %}
+
+
+  - job_name: 'openstack'
+    honor_labels: true
+    scrape_interval: "{{ prometheus_osp_exporter_scrape_timeout }}"
+    metric_relabel_configs:
+    - source_labels: [url]
+      target_label: instance
+      regex: https?://(.+):.+
+      replacement: $1
+
+    # metrics_path defaults to '/metrics'
+    # scheme defaults to 'http'.
+
+    static_configs:
+{% for i in groups["prometheus"] %}
+{% if hostvars[inventory_hostname]['ansible_default_ipv4']['address'] == groups["prometheus"][loop.index - 1] %}
+{% for j in groups["osp_exporters"] %}
+{% for config in osp_exporter_config %}
+      - targets: ['{{ groups["osp_exporters"][loop.parent.index - 1] }}:{{ config.port }}']
+{% endfor %}
+{% endfor %}
+{% endif %}
+{% endfor %}

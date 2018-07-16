@@ -3,10 +3,7 @@ Description=collectd exporter
 After=network.target
 
 [Service]
-
-
-
-ExecStart={{ collectd_exporter_path }}/collectd_exporter -collectd.listen-address=0.0.0.0:{{ item }} -web.listen-address=0.0.0.0:{{ item }}
+ExecStart={{ collectd_exporter_path }}/collectd_exporter --collectd.udp-buffer=100000000 --collectd.listen-address=0.0.0.0:{{ item }} --web.listen-address=0.0.0.0:{{ item }}
 
 [Install]
 WantedBy=default.target

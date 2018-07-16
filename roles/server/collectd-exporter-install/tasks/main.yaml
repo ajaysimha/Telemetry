@@ -24,9 +24,17 @@
     dest: "/etc/systemd/system/collectd_exporter_{{ item }}.service"
   with_items: "{{ collectd_ports }}"
 
-#- name: just force systemd to reread configs (2.4 and above)
-#  systemd: daemon_reload=yes
-#
+- name: Set the system receive socket memory a larger value than default
+  sysctl:
+    name: net.core.rmem_max
+    value: "{{ system_receive_socket_memory }}"
+    sysctl_set: yes
+    state: present
+    reload: yes
+
+- name: just force systemd to reread configs (2.4 and above)
+  systemd: daemon_reload=yes
+
 - name: Start collectd exporter service
   service:
     name: "collectd_exporter_{{ item }}"
