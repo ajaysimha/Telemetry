@@ -1,7 +1,10 @@
 - name: Stop prometheus exporter service
   service:
-    name: osp_exporter
+    name: "osp_exporter_{{ portnum }}"
     state: stopped
+  with_items: "{{ osp_exporter_config }}"
+  vars: 
+    portnum: "{{ item.port }}"
 - name: Find the name of the prometheus exporter unarchived directory
   find:
     path: /opt
@@ -17,5 +20,9 @@
     state: absent
 - name: Delete /etc/systemd/system/osp_exporter.service
   file:
-    path: /etc/systemd/system/osp_exporter.service
+    path: "/etc/systemd/system/osp_exporter_{{ portnum }}.service"
     state: absent
+  with_items: "{{ osp_exporter_config }}"
+  vars:
+    portnum: "{{ item.port }}"
+

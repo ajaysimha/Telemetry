@@ -20,7 +20,7 @@
 # The collectd_export port numbers will be gathered from the group_vars/all file
 - name: Set port numbers for collectd exporters
   set_fact:
-    collectd_ports: "{{ groups | flatten | select('match', 'pod[0-9]') | map('regex_replace', '_.+$', '') | list | unique | map('regex_replace', '$', '_collectd_port') | map('extract', vars)| list }}"
+    collectd_ports: "{{ groups | flatten | select('match', 'pod[0-9]') | map('regex_replace', '_.+$', '') | list | unique | map('regex_replace', '$', '_collectd_port') | map('extract', vars)| list | sort }}"
 
 - name: Create prometheus.yml
   template:
@@ -62,6 +62,15 @@
     permanent: true
     state: enabled
     immediate: true
+  when: firewalld_op.results|selectattr("yumstate", "match", "installed")|list|length != 0
+
+- name: Open tcp port for OSP exporters
+  firewalld:
+    port: "{{ item.port }}/tcp"
+    permanent: true
+    state: enabled
+    immediate: true
+  with_items: "{{ osp_exporter_config }}"
   when: firewalld_op.results|selectattr("yumstate", "match", "installed")|list|length != 0
 
 - name: Verify if Prometheus is listening on TCP port {{ prometheus_port }}

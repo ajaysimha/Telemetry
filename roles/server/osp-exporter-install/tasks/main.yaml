@@ -33,14 +33,20 @@
 - name: Create config file env.yaml
   template:
     src: env.yaml.j2
-    dest: "{{ osp_exporter_path }}/env_{{ item.port }}.yaml"
+    dest: "{{ osp_exporter_path }}/env_{{ portnum }}.yaml"
   with_items: "{{ osp_exporter_config }}"
+  vars:
+    portnum: "{{ item.port }}"
+    password: "{{ item.password }}"
+    url: "{{ item.url }}"
 
 - name: Create systemd service for prometheus exporter
   template:
     src: osp_exporter_systemd.j2
-    dest: "/etc/systemd/system/osp_exporter_{{ item.port }}.service"
+    dest: "/etc/systemd/system/osp_exporter_{{ portnum }}.service"
   with_items: "{{ osp_exporter_config }}"
+  vars:
+    portnum: "{{ item.port }}"
 
 - name: Start prometheus exporter service
   systemd:
