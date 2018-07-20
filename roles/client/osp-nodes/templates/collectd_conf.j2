@@ -29,6 +29,12 @@ Include "/etc/collectd.d"
   ValuesPercentage true
 </Plugin>
 
+<Plugin "memory">
+  ValuesAbsolute "false"
+  ValuesPercentage "true"
+</Plugin>
+
+
 <LoadPlugin "network">
    FlushInterval 5
 </LoadPlugin>
@@ -49,4 +55,3 @@ LoadPlugin network
 Server "{{ groups["collectd_exporters"][loop.index - 1] }}" "{{ item }}"
 </Plugin>
 {% endfor %}
-
