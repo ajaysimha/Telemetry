@@ -48,10 +48,38 @@
   vars:
     portnum: "{{ item.port }}"
 
+- name: Install latest version firewalld
+  yum:
+    name: firewalld
+    state: latest
+
+- name: Start firewalld service
+  service:
+    name: firewalld
+    state: started
+
+- name: Check if firewalld is installed
+  yum:
+    list: firewalld
+  register: firewalld_op
+
+- name: Open tcp port for OSP exporters
+  firewalld:
+    port: "{{ portnum }}/tcp"
+    permanent: true
+    state: enabled
+    immediate: true
+  with_items: "{{ osp_exporter_config }}"
+  vars:
+    portnum: "{{ item.port }}"
+  when: firewalld_op.results|selectattr("yumstate", "match", "installed")|list|length != 0
+
 - name: Start prometheus exporter service
   systemd:
-    name: "osp_exporter_{{ item.port }}"
+    name: "osp_exporter_{{ portnum }}"
     state: restarted
     daemon_reload: yes
     enabled: yes
+  vars: 
+    portnum: "{{ item.port }}"
   with_items: "{{ osp_exporter_config }}"

@@ -20,6 +20,7 @@ LoadPlugin load
 LoadPlugin memory
 LoadPlugin uptime
 LoadPlugin ceph
+LoadPlugin network
 LoadPlugin exec
 Include "/etc/collectd.d"
 
@@ -44,11 +45,8 @@ reportInodes true
 Exec  "nobody" "/usr/share/collectd/exec/nfvi-services.sh"
 </Plugin>
 {% endif %}
-LoadPlugin network
 <Plugin network>
-Server "{{ groups["collectd_exporters"][0] }}" "{{ item }}"
+{% for collectd_exporter in groups["collectd_exporters"] %}
+Server "{{ collectd_exporter }}" "{{ portnum }}"
+{% endfor %}
 </Plugin>
-<Plugin network>
-Server "{{ groups["collectd_exporters"][1] }}" "{{ item }}"
-</Plugin>
-

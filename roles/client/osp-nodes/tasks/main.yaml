@@ -12,16 +12,14 @@
   with_items:
     - "{{ collectd_packages_all }}"
     
-- name: Extract pod numbers and set collectd_ports
-  set_fact:
-    collectd_ports: "{{ group_names | flatten | select('match', 'pod[0-9]') | map('regex_replace', '_.+$', '') | list | unique | map('regex_replace', '$', '_collectd_port') | map('extract', vars) | list }}"
-
-
 - name: Configure collectd client to send metrics to collectd exporters
   template:
     src: collectd_conf.j2
     dest: /etc/collectd.conf
-  with_items: "{{ collectd_ports }}"
+  vars:
+    portnum: "{{ item.port }}"
+  with_items: "{{ collectd_exporter_config }}"
+  when: item.name in group_names
 
 - name: Create /usr/share/collectd/exec directory
   file:

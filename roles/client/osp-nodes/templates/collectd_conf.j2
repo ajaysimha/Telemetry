@@ -19,6 +19,7 @@ LoadPlugin interface
 LoadPlugin load
 LoadPlugin memory
 LoadPlugin uptime
+LoadPlugin network
 LoadPlugin exec
 Include "/etc/collectd.d"
 
@@ -30,8 +31,8 @@ Include "/etc/collectd.d"
 </Plugin>
 
 <Plugin "memory">
-  ValuesAbsolute "false"
-  ValuesPercentage "true"
+  ValuesAbsolute false
+  ValuesPercentage true
 </Plugin>
 
 
@@ -49,9 +50,8 @@ reportInodes true
 Exec  "nobody" "/usr/share/collectd/exec/nfvi-services.sh"
 </Plugin>
 
-LoadPlugin network
-{% for i in groups["collectd_exporters"] %}
 <Plugin network>
-Server "{{ groups["collectd_exporters"][loop.index - 1] }}" "{{ item }}"
-</Plugin>
+{% for collectd_exporter in groups["collectd_exporters"] %}
+Server "{{ collectd_exporter }}" "{{ portnum }}"
 {% endfor %}
+</Plugin>

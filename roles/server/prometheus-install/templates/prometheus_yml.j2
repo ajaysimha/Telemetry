@@ -53,8 +53,8 @@ scrape_configs:
     # scheme defaults to 'http'.
 
     static_configs:
-{% for port in collectd_ports %}
-      - targets: ['{{ ansible_default_ipv4.address }}:{{ port }}']
+{% for pod in collectd_exporter_config %}
+      - targets: ['{{ ansible_default_ipv4.address }}:{{ pod.port }}']
 {% endfor %}
 
 

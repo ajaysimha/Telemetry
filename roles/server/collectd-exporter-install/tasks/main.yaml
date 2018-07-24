@@ -14,15 +14,13 @@
     collectd_exporter_path: "{{ dir_name.files[0].path }}"
 
 # The port numbers will be gathered from the group_vars/all file
-- name: Set port numbers for collectd exporters
-  set_fact:
-    collectd_ports: "{{ groups | flatten | select('match', 'pod[0-9]') | map('regex_replace', '_.+$', '') | list | unique | map('regex_replace', '$', '_collectd_port') | map('extract', vars)| list }}"
-
 - name: Create systemd service for collectd exporter
   template:
     src: collectd_exporter_systemd.j2
-    dest: "/etc/systemd/system/collectd_exporter_{{ item }}.service"
-  with_items: "{{ collectd_ports }}"
+    dest: "/etc/systemd/system/collectd_exporter_{{ portnum }}.service"
+  vars:
+    portnum: "{{ item.port }}"
+  with_items: "{{ collectd_exporter_config }}"
 
 - name: Set the system receive socket memory a larger value than default
   sysctl:
@@ -37,11 +35,13 @@
 
 - name: Start collectd exporter service
   service:
-    name: "collectd_exporter_{{ item }}"
+    name: "collectd_exporter_{{ portnum }}"
     state: restarted
     daemon_reload: yes
     enabled: yes
-  with_items: "{{ collectd_ports }}"
+  vars: 
+    portnum: "{{ item.port }}"
+  with_items: "{{ collectd_exporter_config }}"
 
 - name: Install latest version firewalld
   yum:
@@ -60,18 +60,22 @@
 
 - name: Open udp port 
   firewalld:
-    port: "{{ item }}/udp"
+    port: "{{ portnum }}/udp"
     permanent: true
     state: enabled
     immediate: true
-  with_items: "{{ collectd_ports }}"
+  vars: 
+    portnum: "{{ item.port }}"
+  with_items: "{{ collectd_exporter_config }}"
   when: firewalld_op.results|selectattr("yumstate", "match", "installed")|list|length != 0
 
 - name: Open tcp port 
   firewalld:
-    port: "{{ item }}/tcp"
+    port: "{{ portnum }}/tcp"
     permanent: true
     state: enabled
     immediate: true
-  with_items: "{{ collectd_ports }}"
+  vars: 
+    portnum: "{{ item.port }}"
+  with_items: "{{ collectd_exporter_config }}"
   when: firewalld_op.results|selectattr("yumstate", "match", "installed")|list|length != 0

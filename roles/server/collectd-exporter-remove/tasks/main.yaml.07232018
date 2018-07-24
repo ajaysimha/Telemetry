@@ -1,4 +1,8 @@
 # The port numbers will be gathered from the group_vars/all file
+- name: Set port numbers for collectd exporters
+  set_fact:
+    collectd_ports: "{{ groups | flatten | select('match', 'pod[0-9]') | map('regex_replace', '_.+$', '') | list | unique | map('regex_replace', '$', '_collectd_port') | map('extract', vars)| list }}"
+
 - name: Find collectd systemd service
   find:
     path: /etc/systemd/system
@@ -7,12 +11,10 @@
 
 - name: Stop collectd exporter services
   service:
-    name: "collectd_exporter_{{ portnum }}"
+    name: "collectd_exporter_{{ item }}"
     state: stopped
     enabled: no
-  vars:
-    portnum: "{{ item.port }}"
-  with_items: "{{ collectd_exporter_config }}"
+  with_items: "{{ collectd_ports }}"
   when: service_filenames.files[0] is defined
 
 - name: Find the name of the collectd exporter unarchived directory
@@ -31,11 +33,9 @@
 
 - name: Delete collectd systemd service files
   file:
-    path: /etc/systemd/system/collectd_exporter_{{ portnum }}.service
+    path: /etc/systemd/system/collectd_exporter_{{ item }}.service
     state: absent
-  vars:
-    portnum: "{{ item.port }}"
-  with_items: "{{ collectd_exporter_config }}"
+  with_items: "{{ collectd_ports }}"
 
 - name: Check if firewalld is installed
   yum:
@@ -44,22 +44,18 @@
 
 - name: Close tcp ports for collectd exporter
   firewalld:
-    port: "{{ portnum }}/tcp"
+    port: "{{ item }}/tcp"
     permanent: true
     state: disabled
     immediate: true
-  vars:
-    portnum: "{{ item.port }}"
-  with_items: "{{ collectd_exporter_config }}"
+  with_items: "{{ collectd_ports }}"
   when: firewalld_op.results|selectattr("yumstate", "match", "installed")|list|length != 0
 
 - name: Close udp ports for collectd exporter
   firewalld:
-    port: "{{ portnum }}/udp"
+    port: "{{ item }}/udp"
     permanent: true
     state: disabled
     immediate: true
-  vars:
-    portnum: "{{ item.port }}"
-  with_items: "{{ collectd_exporter_config }}"
+  with_items: "{{ collectd_ports }}"
   when: firewalld_op.results|selectattr("yumstate", "match", "installed")|list|length != 0

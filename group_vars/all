@@ -3,7 +3,6 @@
 # This file contains variables # common to all components
 ################################################################
 
-
 ###############################
 # Common  vars
 ###############################
@@ -30,7 +29,7 @@ group_wait_time: 5s
 group_interval: 5m
 
  # If an alert has successfully been sent, wait 'repeat_interval' to
- #   # resend them.
+ # resend them.
 repeat_interval: 30m
 
 # ResolveTimeout is the time after which an alert is declared resolved
@@ -47,7 +46,6 @@ snmp_community: public
 ###############################
 # OSP Exporter vars
 ###############################
-osp_exporter_http_port: 19103
 osp_exporter_config:
   - { url: 'http://10.19.109.24:5000/v3', password: 'redhat', port: '19103' }
 
@@ -111,7 +109,6 @@ system_rebooted_for_time: 30s
 ###############################
 # collectd vars
 ###############################
-#collectd_exporter_download_url: https://github.com/prometheus/collectd_exporter/releases/download/0.3.1/collectd_exporter-0.3.1.linux-386.tar.gz
 collectd_exporter_download_url: https://github.com/prometheus/collectd_exporter/releases/download/v0.4.0/collectd_exporter-0.4.0.linux-386.tar.gz
 collectd_exporter_port_base: 25000
 collectd_exporter_pkg: collectd_exporter-0.4.0.linux-386.tar.gz
@@ -122,17 +119,18 @@ collectd_interval: 600
 
 # used in collectd.conf as transmit udp port number 
 # also used by collectd_exporter for listening for collectd messages as well as http port numbers for prometheus to scrape
-pod1_collectd_port: 25101
-pod2_collectd_port: 25102
-pod3_collectd_port: 25103
-pod4_collectd_port: 25104
+# Note: the name of the pod defined here has to match exactly with group names and it's childrent it refers to in the telemetry-hosts (inventory) file.
+collectd_exporter_config:
+  - { name: pod1, port: 25101 }
+  - { name: pod2, port: 25102 }
+  - { name: pod3, port: 25103 }
+  - { name: pod4, port: 25104 }
 
-
+# List of plugin names that systemctl uses
 collectd_plugins:
   - collectd
   - collectd-disk
   - collectd-ceph
-
 
 collectd_packages_all:
   - collectd-5.8.0-5.el7ost.x86_64.rpm
@@ -141,4 +139,5 @@ collectd_packages_all:
 collectd_packages_ceph:
   - collectd-ceph-5.8.0-5.el7ost.x86_64.rpm
 
+# Exec plugin sleep time. Exec script - nfvi-services.sh runs in an infinite loop. Wakes up every interval time and checks status of processes.
 collectd_exec_sleep_interval: 30

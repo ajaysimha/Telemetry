@@ -11,10 +11,10 @@ See above list for Sensu
 |-------------------------|-------------|--------------------------------------------|
 |Prometheus               |2.0.0        |TCP 9090                                    |
 |Collectd                 |5.8.0.1      |                                            |
-|Collectd exporter        |0.3.1        |TCP 25826, 9103                             |
-|Keepalived               |1.3.9        |                                            |
-|Grafana                  |4.6.3.1      |TCP 3000                                    |
+|Collectd exporter        |0.4.0        |UDP/TCP defined in group_vars/all file      |
+|OpenStack exporter       |0.2.0        |TCP defined in group_vars/all file          |
 |Prometheus Alert Manager |0.12.0       |TCP 6783                                    |
+|SNMP Trapper Webhook     |             |TCP 9099                                    |
 
 ## How to run
 To run playbooks first update the group_vars/all with environment specific parameters.
@@ -31,7 +31,7 @@ To install all the components one at a time,
 ansible-playbook playbooks/install_collectd_exporter.yaml
 ansible-playbook playbooks/install_prometheus.yaml
 ansible-playbook playbooks/install_alert_manager.yaml
-ansible-playbook playbooks/install_grafana.yaml
+ansible-playbook playbooks/install_snmptrapper.yaml
 ```
 To install all components and configure sensu checks and alerts
 ```
