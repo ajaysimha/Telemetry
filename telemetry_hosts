@@ -33,7 +33,7 @@ ceph_nodes
 [pods:children]
 pod1
 pod2
-pod3
+TTIMSP02
 pod4
 
 
@@ -44,13 +44,13 @@ computes
 [controllers:children]
 pod1_controllers
 pod2_controllers
-pod3_controllers
+TTIMSP02_controllers
 pod4_controllers
 
 [computes:children]
 pod1_computes
 pod2_computes
-pod3_computes
+TTIMSP02_computes
 pod4_computes
 
 [ceph_nodes:children]
@@ -60,13 +60,13 @@ osds
 [mons:children]
 pod1_mons
 pod2_mons
-pod3_mons
+TTIMSP02_mons
 pod4_mons
 
 [osds:children]
 pod1_osds
 pod2_osds
-pod3_osds
+TTIMSP02_osds
 pod4_osds
 
 [pod1:children]
@@ -81,11 +81,11 @@ pod2_computes
 pod2_mons
 pod2_osds
 
-[pod3:children]
-pod3_controllers
-pod3_computes
-pod3_mons
-pod3_osds
+[TTIMSP02:children]
+TTIMSP02_controllers
+TTIMSP02_computes
+TTIMSP02_mons
+TTIMSP02_osds
 
 [pod4:children]
 pod4_controllers
@@ -116,17 +116,17 @@ pod4_osds
 
 [pod2_osds]
 
-[pod3_controllers]
+[TTIMSP02_controllers]
 
-[pod3_computes]
+[TTIMSP02_computes]
 10.12.32.32
 10.12.32.33
 10.19.110.5
 [dsal_servers]
 
-[pod3_osds]
+[TTIMSP02_osds]
 
-[pod3_mons]
+[TTIMSP02_mons]
 
 [pod4_controllers]
 

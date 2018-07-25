@@ -19,7 +19,7 @@
   vars:
     portnum: "{{ item.port }}"
   with_items: "{{ collectd_exporter_config }}"
-  when: item.name in group_names
+  when: item.name|lower in group_names|lower
 
 - name: Create /usr/share/collectd/exec directory
   file:
