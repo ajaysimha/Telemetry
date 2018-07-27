@@ -1,0 +1,10 @@
+---
+- hosts: osp_nodes
+  become: true
+  roles:
+    - client/osp-nodes
+
+- hosts: ceph_nodes
+  become: true
+  roles:
+    - client/ceph-nodes

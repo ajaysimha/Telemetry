@@ -1,0 +1,4 @@
+- hosts: osp_exporters
+  become: true
+  roles:
+    - server/osp-exporter-install

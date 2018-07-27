@@ -1,0 +1,65 @@
+# The port numbers will be gathered from the group_vars/all file
+- name: Find collectd systemd service
+  find:
+    path: /etc/systemd/system
+    pattern: 'collectd_exporter_*'
+  register: service_filenames
+
+- name: Stop collectd exporter services
+  service:
+    name: "collectd_exporter_{{ portnum }}"
+    state: stopped
+    enabled: no
+  vars:
+    portnum: "{{ item.port }}"
+  with_items: "{{ collectd_exporter_config }}"
+  when: service_filenames.files[0] is defined
+
+- name: Find the name of the collectd exporter unarchived directory
+  find:
+    path: /opt
+    patterns: '*collectd_exporter*'
+    file_type: directory
+  register: dir_name
+
+- name: Delete /opt/collectd-exporter directory
+  file:
+    path: "{{ dir_name.files[0].path }}"
+    state: absent
+  when: dir_name.files[0] is defined
+  
+
+- name: Delete collectd systemd service files
+  file:
+    path: /etc/systemd/system/collectd_exporter_{{ portnum }}.service
+    state: absent
+  vars:
+    portnum: "{{ item.port }}"
+  with_items: "{{ collectd_exporter_config }}"
+
+- name: Check if firewalld is installed
+  yum:
+    list: firewalld
+  register: firewalld_op
+
+- name: Close tcp ports for collectd exporter
+  firewalld:
+    port: "{{ portnum }}/tcp"
+    permanent: true
+    state: disabled
+    immediate: true
+  vars:
+    portnum: "{{ item.port }}"
+  with_items: "{{ collectd_exporter_config }}"
+  when: firewalld_op.results|selectattr("yumstate", "match", "installed")|list|length != 0
+
+- name: Close udp ports for collectd exporter
+  firewalld:
+    port: "{{ portnum }}/udp"
+    permanent: true
+    state: disabled
+    immediate: true
+  vars:
+    portnum: "{{ item.port }}"
+  with_items: "{{ collectd_exporter_config }}"
+  when: firewalld_op.results|selectattr("yumstate", "match", "installed")|list|length != 0

@@ -1,0 +1,5 @@
+- import_playbook: remove_prometheus.yml
+- import_playbook: remove_alert_manager.yml
+- import_playbook: remove_snmptrapper.yml
+- import_playbook: remove_collectd_exporter.yml
+- import_playbook: remove_osp_exporter.yml

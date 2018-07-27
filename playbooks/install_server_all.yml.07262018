@@ -1,0 +1,5 @@
+- include: install_prometheus.yml
+- include: install_alert_manager.yml
+- include: install_snmptrapper.yml
+- include: install_collectd_exporter.yml
+- include: install_osp_exporter.yml

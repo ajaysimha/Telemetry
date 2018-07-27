@@ -1,0 +1,55 @@
+- name: Copy snmptrapper files to target 
+  copy:
+    src: snmptrapper
+    dest: /opt/
+
+- name: Find the name of the snmptrapper directory
+  find:
+    path: /opt
+    patterns: '*snmptrapper*'
+    file_type: directory
+  register: dir_name
+
+- debug: var=dir_name.files[0].path
+
+- set_fact:
+    snmptrapper_path: "{{ dir_name.files[0].path }}"
+
+- name: Set snmptrapper to be executable
+  file:
+    path: "{{ snmptrapper_path }}/snmptrapper"
+    mode: 0755
+
+- name: Create systemd service for snmptrapper
+  template:
+    src: snmptrapper_systemd.j2
+    dest: /etc/systemd/system/snmptrapper.service
+
+- name: Start snmptrapper service
+  systemd:
+    name: snmptrapper
+    state: restarted
+    daemon_reload: yes
+    enabled: yes
+- name: Install latest version firewalld
+  yum:
+    name: firewalld
+    state: latest
+
+- name: Start firewalld service
+  service:
+    name: firewalld
+    state: started
+
+- name: Check if firewalld is installed
+  yum:
+    list: firewalld
+  register: firewalld_op
+
+- name: Open tcp port
+  firewalld:
+    port: "{{ snmp_webhook_http_port }}/tcp"
+    permanent: true
+    state: enabled
+    immediate: true
+  when: firewalld_op.results|selectattr("yumstate", "match", "installed")|list|length != 0

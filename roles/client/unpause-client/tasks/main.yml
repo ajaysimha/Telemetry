@@ -1,0 +1,11 @@
+- name: Find collectd systemd service
+  stat:
+    path: /usr/lib/systemd/system/collectd.service
+  register: service_filename
+
+- name: Restart collectd client
+  service:
+    name: collectd
+    state: restarted
+  when: service_filename.stat.path is defined
+

@@ -1,4 +1,0 @@
-- hosts: snmptrapper_hosts
-  become: true
-  roles:
-    - server/snmptrapper-install

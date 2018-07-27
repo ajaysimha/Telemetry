@@ -1,0 +1,4 @@
+- hosts: alert_managers
+  become: true
+  roles:
+    - server/alert-manager-install

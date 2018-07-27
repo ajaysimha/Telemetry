@@ -123,7 +123,7 @@ collectd_interval: 600
 collectd_exporter_config:
   - { name: pod1, port: 25101 }
   - { name: pod2, port: 25102 }
-  - { name: ttimsp02, port: 25103 }
+  - { name: TTIMSP02, port: 25103 }
   - { name: pod4, port: 25104 }
 
 # List of plugin names that systemctl uses

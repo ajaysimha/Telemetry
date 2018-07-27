@@ -1,0 +1,2 @@
+- import_playbook: install_osp_nodes.yml
+- import_playbook: install_ceph_nodes.yml

@@ -1,0 +1,49 @@
+- name: Download prometheus alert manager tarball
+  unarchive:
+    src: "{{ telemetry_home }}/packages/{{ alert_manager_pkg }}"
+    dest: /opt/
+
+- name: Find the name of the alert manager unarchived directory
+  find:
+    path: /opt
+    patterns: '*alertmanager*'
+    file_type: directory
+  register: dir_name
+
+- set_fact: 
+    alert_manager_path: "{{ dir_name.files[0].path }}"
+
+- name: Create systemd service for Alert manager
+  template:
+    src: alert_manager_systemd.j2
+    dest: /etc/systemd/system/alert_manager.service
+
+- name: Create alert_manager.yml
+  template:
+    src: alert_manager_yml.j2
+    dest: "{{ alert_manager_path }}/alert_manager.yml"
+
+- name: just force systemd to reread configs (2.4 and above)
+  systemd: daemon_reload=yes
+
+- name: Start alert manager service
+  service:
+    name: alert_manager
+    state: restarted
+    enabled: yes
+
+- name: Check if firewalld is installed
+  yum:
+    list: firewalld
+  register: firewalld_op
+
+- name: Open tcp port {{ alert_manager_port }} and {{ alert_manager_mesh_port }}
+  firewalld:
+    port: "{{ item }}/tcp"
+    permanent: true
+    state: enabled
+    immediate: true
+  with_items:
+    - "{{ alert_manager_port }}"
+    - "{{ alert_manager_mesh_port }}"
+  when: firewalld_op.results|selectattr("yumstate", "match", "installed")|list|length != 0

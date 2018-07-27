@@ -3,7 +3,7 @@ Description=OSP exporter
 After=network.target
 
 [Service]
-ExecStart={{ osp_exporter_path }}/main.py --config-file {{ osp_exporter_path }}/env_{{ portnum }}.yaml
+ExecStart={{ osp_exporter_path }}/main.py --config-file {{ osp_exporter_path }}/env_{{ portnum }}.yml
 
 [Install]
 WantedBy=default.target

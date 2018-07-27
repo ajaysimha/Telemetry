@@ -1,4 +1,0 @@
-- hosts: ceph_nodes
-  become: true
-  roles:
-    - client/ceph-nodes

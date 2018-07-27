@@ -1,0 +1,4 @@
+- hosts: osp_nodes
+  become: true
+  roles:
+    - client/osp-nodes

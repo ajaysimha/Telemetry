@@ -1,0 +1,5 @@
+- import_playbook: install_prometheus.yml
+- import_playbook: install_alert_manager.yml
+- import_playbook: install_snmptrapper.yml
+- import_playbook: install_collectd_exporter.yml
+- import_playbook: install_osp_exporter.yml
