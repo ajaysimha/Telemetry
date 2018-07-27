@@ -1,4 +1,0 @@
-- hosts: clients
-  become: true
-  roles:
-    - client/remove-client

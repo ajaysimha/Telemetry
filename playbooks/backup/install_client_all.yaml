@@ -1,2 +1,0 @@
-- include: install_osp_nodes.yml
-- include: install_ceph_nodes.yml
