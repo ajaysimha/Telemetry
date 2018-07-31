@@ -28,6 +28,11 @@
     src: prometheus_rules_yml.j2
     dest: "{{ prometheus_path }}/prometheus_rules.yml"
 
+- name: Create recording_rules.yml
+  template:
+    src: recording_rules_yml.j2
+    dest: "{{ prometheus_path }}/recording_rules.yml"
+
 - name: just force systemd to reread configs (2.4 and above)
   systemd: daemon_reload=yes
 

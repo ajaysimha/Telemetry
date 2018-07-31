@@ -1,0 +1,146 @@
+groups:
+ - name: recording_rules
+   rules:
+
+   # cpu system
+   - record: perf_cpu_system_util:min1h
+     expr: min without(job)(min_over_time(collectd_cpu_percent{service="system"}[1h]))
+
+   - record: perf_cpu_system_util:avg1h
+     expr: avg without(job)(avg_over_time(collectd_cpu_percent{service="system"}[1h]))
+
+   - record: perf_cpu_system_util:max1h
+     expr: max without(job)(max_over_time(collectd_cpu_percent{service ="system"}[1h]))
+
+   # cpu user 
+   - record: perf_cpu_user_util:min1h
+     expr: min without(job)(min_over_time(collectd_cpu_percent{service="user"}[1h]))
+
+   - record: perf_cpu_user_util:avg1h
+     expr: avg without(job)(avg_over_time(collectd_cpu_percent{service="user"}[1h]))
+
+   - record: perf_cpu_user_util:max1h
+     expr: max without(job)(max_over_time(collectd_cpu_percent{service ="user"}[1h]))
+
+   # memory 
+   - record: perf_memory_util:min1h
+     expr: min without(job)(min_over_time(collectd_memory_percent{memory="used"}[1h]))
+
+   - record: perf_memory_util:avg1h
+     expr: avg without(job)(avg_over_time(collectd_memory_percent{memory="used"}[1h]))
+
+   - record: perf_memory_util:max1h
+     expr: max without(job)(max_over_time(collectd_memory_percent{memory="used"}[1h]))
+
+   # disk utilization
+   - record: perf_disk_util:min1h
+     expr: min without(job)(min_over_time(collectd_df_percent_bytes{service="used"}[1h]))
+
+   - record: perf_disk_util:avg1h
+     expr: avg without(job)(avg_over_time(collectd_df_percent_bytes{service="used"}[1h]))
+
+   - record: perf_disk_util:max1h
+     expr: max without(job)(avg_over_time(collectd_df_percent_bytes{service="used"}[1h]))
+
+   # disk read time
+   - record: perf_disk_read:min1h
+     expr: min without(job)(min_over_time(collectd_disk_disk_time_0_total{}[1h]))
+
+   - record: perf_disk_read:avg1h
+     expr: avg without(job)(avg_over_time(collectd_disk_disk_time_0_total{}[1h]))
+
+   - record: perf_disk_read:max1h
+     expr: max without(job)(max_over_time(collectd_disk_disk_time_0_total{}[1h]))
+
+   # disk write time
+   - record: perf_disk_write:min1h
+     expr: min without(job)(min_over_time(collectd_disk_disk_time_1_total{}[1h]))
+
+   - record: perf_disk_write:avg1h
+     expr: avg without(job)(avg_over_time(collectd_disk_disk_time_1_total{}[1h]))
+
+   - record: perf_disk_write:max1h
+     expr: max without(job)(max_over_time(collectd_disk_disk_time_1_total{}[1h]))
+
+  
+   # Interface packets in
+   - record: perf_packets_in:min1h
+     expr: min without(job)(min_over_time(collectd_interface_if_packets_0_total{}[1h]))
+
+   - record: perf_packets_in:avg1h
+     expr: avg without(job)(avg_over_time(collectd_interface_if_packets_0_total{}[1h]))
+
+   - record: perf_packets_in:max1h
+     expr: max without(job)(max_over_time(collectd_interface_if_packets_0_total{}[1h]))
+
+   # Interface packets out
+   - record: perf_packets_out:min1h
+     expr: min without(job)(min_over_time(collectd_interface_if_packets_1_total{}[1h]))
+
+   - record: perf_packets_out:avg1h
+     expr: avg without(job)(avg_over_time(collectd_interface_if_packets_1_total{}[1h]))
+
+   - record: perf_packets_out:max1h
+     expr: max without(job)(max_over_time(collectd_interface_if_packets_1_total{}[1h]))
+
+
+   # Interface drops in
+   - record: perf_packet_drops_in:min1h
+     expr: min without(job)(min_over_time(collectd_interface_if_dropped_0_total{}[1h]))
+
+   - record: perf_packet_drops_in:avg1h
+     expr: avg without(job)(avg_over_time(collectd_interface_if_dropped_0_total{}[1h]))
+
+   - record: perf_packet_drops_in:max1h
+     expr: max without(job)(max_over_time(collectd_interface_if_dropped_0_total{}[1h]))
+
+   # Interface drops out
+   - record: perf_packet_drops_out:min1h
+     expr: min without(job)(min_over_time(collectd_interface_if_dropped_1_total{}[1h]))
+
+   - record: perf_packet_drops_out:avg1h
+     expr: avg without(job)(avg_over_time(collectd_interface_if_dropped_1_total{}[1h]))
+
+   - record: perf_packet_drops_out:max1h
+     expr: max without(job)(max_over_time(collectd_interface_if_dropped_1_total{}[1h]))
+
+
+   # Interface errs in
+   - record: perf_packet_errs_in:min1h
+     expr: min without(job)(min_over_time(collectd_interface_if_errors_0_total{}[1h]))
+
+   - record: perf_packet_errs_in:avg1h
+     expr: avg without(job)(avg_over_time(collectd_interface_if_errors_0_total{}[1h]))
+
+   - record: perf_packet_errs_in:max1h
+     expr: max without(job)(max_over_time(collectd_interface_if_errors_0_total{}[1h]))
+
+   # Interface errs out
+   - record: perf_packet_errs_out:min1h
+     expr: min without(job)(min_over_time(collectd_interface_if_errors_1_total{}[1h]))
+
+   - record: perf_packet_errs_out:avg1h
+     expr: avg without(job)(avg_over_time(collectd_interface_if_errors_1_total{}[1h]))
+
+   - record: perf_packet_errs_out:max1h
+     expr: max without(job)(max_over_time(collectd_interface_if_errors_1_total{}[1h]))
+
+   # system load
+   - record: perf_system_load:min1h
+     expr: min without(job)(min_over_time(collectd_load_1{}[1h]))
+
+   - record: perf_system_load:avg1h
+     expr: avg without(job)(avg_over_time(collectd_load_1{}[1h]))
+
+   - record: perf_system_load:max1h
+     expr: max without(job)(max_over_time(collectd_load_1{}[1h]))
+
+   # system uptime
+   - record: perf_system_uptime:min1h
+     expr: min without(job)(min_over_time(collectd_uptime{}[1h]))
+
+   - record: perf_system_uptime:avg1h
+     expr: avg without(job)(avg_over_time(collectd_uptime{}[1h]))
+
+   - record: perf_system_uptime:max1h
+     expr: max without(job)(max_over_time(collectd_uptime{}[1h]))

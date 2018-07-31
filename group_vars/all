@@ -79,7 +79,6 @@ requests_pkg: requests-2.18.4.tar.gz
 ###############################
 ## prometheus.yml vars
 ################################
-
 # Set the scrape interval to every XX seconds. Default is every 1 minute.
 prometheus_global_scrape_interval: 30s
 # Set the scrape timeout to every XX seconds. Default is every 10 seconds.
@@ -94,10 +93,9 @@ prometheus_osp_exporter_scrape_timeout: 60s
 ###############################
 # prometheus_rules.yml vars
 ###############################
-
 instance_down_interval: 5s
 instance_down_for_time: 5m
-api_status_interval: 30s
+api_status_interval: 1m
 api_status_for_time: 30s
 nfvi_services_interval: 30s
 nfvi_services_for_time: 30s
@@ -110,7 +108,6 @@ system_rebooted_for_time: 30s
 # collectd vars
 ###############################
 collectd_exporter_download_url: https://github.com/prometheus/collectd_exporter/releases/download/v0.4.0/collectd_exporter-0.4.0.linux-386.tar.gz
-collectd_exporter_port_base: 25000
 collectd_exporter_pkg: collectd_exporter-0.4.0.linux-386.tar.gz
 system_receive_socket_memory: 100000000
 

@@ -18,11 +18,12 @@ alerting:
   alertmanagers:
   - static_configs:
     - targets:
-       - localhost:{{ alert_manager_port }}
+       - {{ ansible_default_ipv4.address }}:{{ alert_manager_port }}
 
 # Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
 rule_files:
    - "prometheus_rules.yml"
+   - "recording_rules.yml"
   # - "second_rules.yml"
 
 # A scrape configuration containing exactly one endpoint to scrape:

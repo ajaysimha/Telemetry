@@ -11,6 +11,7 @@ groups:
      annotations:
        summary: "Instance {% raw %}{{ $labels.instance }}{% endraw %} down"
        description: "{% raw %}{{ $labels.instance }} of job {{ $labels.job }}{% endraw %} has been down for more than {{ instance_down_for_time }}."
+
  - name: API_status
    interval: {{ api_status_interval }}
    rules:
@@ -23,9 +24,10 @@ groups:
        summary: openstack service {% raw %}{{$labels.service}}{% endraw %} is down
        description: "openstack  {% raw %}{{$labels.service}} api service {{ $labels.url }} of job {{ $labels.job }}{% endraw %} has been DOWN for more than {{ api_status_for_time }}."
 
-# - name: NFVi_services_status
-#   interval: {{ nfvi_services_interval }}
-#   rules:
+ - name: NFVi_services_status
+   interval: {{ nfvi_services_interval }}
+   rules:
+
 #   - alert: NFVi service is down
 #     expr: avg_over_time(collectd_nfvi_service{job="collectd",service!~"zombieprocess-process",service!~"ceph-.*"}[{{ nfvi_services_interval }}])==0
 #     for: {{ nfvi_services_for_time }}
@@ -42,9 +44,10 @@ groups:
 #     annotations:
 #       summary: "{% raw %}{{ $value }}{% endraw %} zombie process(es) found"
 #       description: "{% raw %}{{ $value }}{% endraw %} zombie process(es) for more than {{ zombie_process_for_time }}."
+
    - alert: System Rebooted
      expr: collectd_uptime{job="collectd"}<{{ system_rebooted_interval }}
-     for: {{ system_rebooted_for_time }}
+#    for: {{ system_rebooted_for_time }}
      labels:
        severity: critical
      annotations:
