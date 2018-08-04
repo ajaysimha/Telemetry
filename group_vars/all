@@ -69,9 +69,12 @@ osp_exporter_python_packages:
 ###############################
 # prometheus vars
 ###############################
-prometheus_download_url: https://github.com/prometheus/prometheus/releases/download/v2.0.0/prometheus-2.0.0.linux-amd64.tar.gz
+#prometheus_download_url: https://github.com/prometheus/prometheus/releases/download/v2.0.0/prometheus-2.0.0.linux-amd64.tar.gz
+prometheus_download_url: https://github.com/prometheus/prometheus/releases/download/v2.3.2/prometheus-2.3.2.linux-amd64.tar.gz
+
 prometheus_web_port: 9090
-prometheus_pkg: prometheus-2.0.0.linux-amd64.tar.gz
+# prometheus_pkg: prometheus-2.0.0.linux-amd64.tar.gz
+prometheus_pkg: prometheus-2.3.2.linux-amd64.tar.gz
 prometheus_client: prometheus_client-0.2.0.tar.gz
 python2_pip_pkg: python2-pip-8.1.2-6.el7.noarch.rpm 
 requests_pkg: requests-2.18.4.tar.gz
@@ -112,7 +115,7 @@ collectd_exporter_pkg: collectd_exporter-0.4.0.linux-386.tar.gz
 system_receive_socket_memory: 100000000
 
 # Interval in seconds for sending performance metrics set in collectd.conf
-collectd_interval: 600
+collectd_interval: 300
 
 # used in collectd.conf as transmit udp port number 
 # also used by collectd_exporter for listening for collectd messages as well as http port numbers for prometheus to scrape
