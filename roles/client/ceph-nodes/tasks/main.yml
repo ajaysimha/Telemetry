@@ -67,6 +67,11 @@
     src: 90-ceph-plugin-conf.j2
     dest: /etc/collectd.d/90-ceph-plugin.conf
 
+- name: Set selinux permissive for collectd
+  selinux_permissive:
+    name: collectd_t
+    permissive: true
+
 - name: Create sudoers file for nobody
   copy:
     src: nobody.sudoers
