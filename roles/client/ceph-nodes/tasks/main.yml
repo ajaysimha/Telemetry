@@ -14,6 +14,11 @@
     - "{{ collectd_packages_all }}"
     - "{{ collectd_packages_ceph }}"
 
+- name: Install policycoreutils-python package from available repo
+  yum:
+    name: policycoreutils-python
+    state: present
+
 - name: Configure collectd client to send metrics to collectd exporter
   template:
     src: collectd_conf.j2
