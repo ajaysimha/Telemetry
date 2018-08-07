@@ -1,3 +1,5 @@
+{{ ansible_managed | comment }}
+
 #!/usr/bin/env python
 # Copyright 2017 The Openstack-Helm Authors.
 #

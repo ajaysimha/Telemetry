@@ -1,2 +1,4 @@
+{{ ansible_managed | comment }}
+
 # Custom type for NFVI services
 service	value:GAUGE:0:U

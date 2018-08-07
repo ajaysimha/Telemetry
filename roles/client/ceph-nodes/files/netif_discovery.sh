@@ -1,3 +1,5 @@
+{{ ansible_managed | comment }}
+
 #!/bin/bash
 
 exec > /var/log/`basename $0`.log 2>&1

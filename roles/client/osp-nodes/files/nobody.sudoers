@@ -1,1 +1,3 @@
+{{ ansible_managed | comment }}
+
 nobody ALL = NOPASSWD: /usr/bin/systemctl, /usr/bin/systemctl list-units, /usr/bin/ps

@@ -1,3 +1,5 @@
+{{ ansible_managed | comment }}
+
 HOSTNAME="${COLLECTD_HOSTNAME:-`hostname -f`}"
 #INTERVAL="${COLLECTD_INTERVAL:-10}"
 INTERVAL=30

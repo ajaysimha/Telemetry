@@ -1,3 +1,5 @@
+{{ ansible_managed | comment }}
+
 #!/bin/bash
 
 #set -x
