@@ -1,3 +1,2 @@
-{{ ansible_managed | comment }}
 
 nobody ALL = NOPASSWD: /usr/local/sbin/ceph-status.sh, /usr/bin/ceph, /usr/bin/systemctl, /usr/bin/ps

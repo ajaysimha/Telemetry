@@ -9,7 +9,6 @@ snmptrapper_hosts
 [collectd_exporters]
 10.19.109.225
 10.19.109.229
-10.19.110.5
 
 [prometheus]
 10.19.109.225
@@ -122,7 +121,6 @@ pod4_osds
 [TTIMSP02_computes]
 10.12.32.32
 10.12.32.33
-10.19.110.5
 [dsal_servers]
 
 [TTIMSP02_osds]

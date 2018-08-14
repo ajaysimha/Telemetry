@@ -2,16 +2,19 @@
   find:
     path: /etc/systemd/system
     patterns: 'osp_exporter_*'
-  register: service_file 
-- debug: var=service_file
+  register: service_filenames 
+
 - name: Stop prometheus exporter service
   service:
-    name: "osp_exporter_{{ portnum }}"
+    name: "{{ service_name }}"
     state: stopped
-  with_items: "{{ osp_exporter_config }}"
-  vars: 
-    portnum: "{{ item.port }}"
-  when: service_file.matched > 0
+    enabled: no
+  vars:
+    service_name : "{{ item.path | basename }}"
+  with_items:
+    - "{{ service_filenames.files }}"
+  when: service_filenames.matched > 0
+
 - name: Find the name of the prometheus exporter unarchived directory
   find:
     path: /opt
@@ -23,15 +26,18 @@
   file:
     path: "{{ dir_name.files[0].path }}"
     state: absent
-  when: dir_name.files[0] is defined
+  when: dir_name.matched > 0
 
 - name: Delete /etc/systemd/system/osp_exporter.service
   file:
-    path: "/etc/systemd/system/osp_exporter_{{ portnum }}.service"
+    path: "{{ service_file_path }}"
     state: absent
-  with_items: "{{ osp_exporter_config }}"
   vars:
-    portnum: "{{ item.port }}"
+    service_file_path: "{{ item.path }}"
+  with_items:
+    - "{{ service_filenames.files }}"
+  when: service_filenames.matched > 0
+
 - name: Check if firewalld is installed
   yum:
     list: firewalld
@@ -43,7 +49,8 @@
     permanent: true
     state: disabled
     immediate: true
-  with_items: "{{ osp_exporter_config }}"
   vars:
-    portnum: "{{ item.port }}"
-  when: firewalld_op.results|selectattr("yumstate", "match", "installed")|list|length != 0
+    portnum: "{{ item.path.split('_')[2].split('.')[0] }}"
+  with_items:
+    - "{{ service_filenames.files }}"
+  when: firewalld_op.results|selectattr("yumstate", "match", "installed")|list|length != 0 and service_filenames.matched > 0
