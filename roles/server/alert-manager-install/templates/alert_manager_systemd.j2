@@ -8,7 +8,7 @@ After=network.target
 {% if groups["alert_managers"]|length == 2 %}
 {% for host in groups["alert_managers"] %}
 {% if hostvars[inventory_hostname]['ansible_default_ipv4']['address'] == hostvars[host]['ansible_default_ipv4']['address'] %}
-ExecStart={{ alert_manager_path }}/alertmanager -config.file alert_manager.yml -web.listen-address={{ groups["alert_managers"][loop.index - 1]  }}:{{ alert_manager_port }} -mesh.peer={{ groups["alert_managers"][loop.length - loop.index] }}:{{ alert_manager_mesh_port }}
+ExecStart={{ alert_manager_path }}/alertmanager -config.file alert_manager.yml -web.listen-address=0.0.0.0:{{ alert_manager_port }} -mesh.peer={{ groups["alert_managers"][loop.length - loop.index] }}:{{ alert_manager_mesh_port }}
 {% endif %}
 {% endfor %}
 {% else %}

@@ -66,6 +66,7 @@ osp_exporter_python_packages:
   - certifi-2018.4.16.tar.gz
   - requests-2.18.4.tar.gz
 
+
 ###############################
 # prometheus vars
 ###############################
@@ -78,6 +79,7 @@ prometheus_pkg: prometheus-2.3.2.linux-amd64.tar.gz
 prometheus_client: prometheus_client-0.2.0.tar.gz
 python2_pip_pkg: python2-pip-8.1.2-6.el7.noarch.rpm 
 requests_pkg: requests-2.18.4.tar.gz
+storage_tsdb_retention_duration: 15d
 
 ###############################
 ## prometheus.yml vars
@@ -106,6 +108,23 @@ zombie_process_for_time: 30s
 system_rebooted_interval: 300
 system_rebooted_for_time: 30s
 
+###############################
+# openstack_api_rules.yml vars
+###############################
+osp_monitored_services:
+  - aodh
+  - ceilometer
+  - cinder
+  - cinderv2
+  - cinderv3
+  - glance
+  - gnocchi
+  - heat
+  - heat-cfn
+  - keystone
+  - neutron
+  - nova
+  - swift
 
 ###############################
 # collectd vars

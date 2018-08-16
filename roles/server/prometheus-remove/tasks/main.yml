@@ -29,7 +29,7 @@
   yum:
     list: firewalld
   register: firewalld_op
-- name: Clode tcp port {{ prometheus_web_port}}
+- name: Close tcp port {{ prometheus_web_port }}
   firewalld:
     port: "{{ prometheus_web_port }}/tcp"
     permanent: true

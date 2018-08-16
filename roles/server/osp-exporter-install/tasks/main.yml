@@ -1,5 +1,4 @@
-
-- name: Copy packages required for osp-exporter /tmp
+- name: Copy packages required for osp-exporter to /tmp
   copy:
     src: "{{ telemetry_home }}/packages/{{ prometheus_client }}"
     dest: /tmp
@@ -13,14 +12,12 @@
     src: osp-exporter
     dest: /opt
 
-- name: Find the name of the prometheus exporter directory
+- name: Find the name of the osp-exporter directory
   find:
     path: /opt
     patterns: '*osp-exporter*'
     file_type: directory
   register: dir_name
-
-- debug: var=dir_name.files[0].path
 
 - set_fact:
     osp_exporter_path: "{{ dir_name.files[0].path }}"

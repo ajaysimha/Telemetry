@@ -33,6 +33,11 @@
     src: recording_rules_yml.j2
     dest: "{{ prometheus_path }}/recording_rules.yml"
 
+- name: Create openstack_api_rules.yml
+  template:
+    src: openstack_api_rules_yml.j2
+    dest: "{{ prometheus_path }}/openstack_api_rules.yml"
+
 - name: just force systemd to reread configs (2.4 and above)
   systemd: daemon_reload=yes
 

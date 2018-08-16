@@ -5,7 +5,7 @@ Description=prometheus
 After=network.target
 [Service]
 WorkingDirectory={{ prometheus_path }}/
-ExecStart={{ prometheus_path }}/prometheus
+ExecStart={{ prometheus_path }}/prometheus --storage.tsdb.retention={{ storage_tsdb_retention_duration }} --web.listen-address=0.0.0.0:{{ prometheus_web_port }}
 [Install]
 WantedBy=default.target
 
