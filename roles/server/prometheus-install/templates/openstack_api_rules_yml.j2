@@ -5,7 +5,7 @@ groups:
    rules:
 {% for service in osp_monitored_services %}
    - alert: Openstack Service ({{ service }}) is down
-     expr: avg_over_time({__name__=~"openstack_check_{{ service }}_api" ,job="openstack"}[1m])==0
+     expr: avg_over_time({service=~"{{ service }}" ,job="openstack"}[1m])==0
      for: 30s
      labels:
        severity: critical
