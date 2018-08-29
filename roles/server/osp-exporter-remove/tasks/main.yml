@@ -1,10 +1,20 @@
+- name: Set fact
+  set_fact:
+    pattern_str: 'osp_exporter_*'
+
+- name: Set fact
+  set_fact:
+    pattern_str: 'osp_exporter_{{ podport }}*'
+  when: 
+    - podport is defined
+
 - name: Find Service files
   find:
     path: /etc/systemd/system
-    patterns: 'osp_exporter_*'
+    patterns: "{{ pattern_str }}"
   register: service_filenames 
 
-- name: Stop prometheus exporter service
+- name: Stop OSP exporter service
   service:
     name: "{{ service_name }}"
     state: stopped
@@ -26,7 +36,9 @@
   file:
     path: "{{ dir_name.files[0].path }}"
     state: absent
-  when: dir_name.matched > 0
+  when: 
+   - dir_name.matched > 0
+   - podport is not defined
 
 - name: Delete /etc/systemd/system/osp_exporter.service
   file:

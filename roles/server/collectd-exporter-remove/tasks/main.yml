@@ -1,8 +1,18 @@
+- name: Set fact
+  set_fact:
+    pattern_str: 'collectd_exporter_*'
+
+- name: Set fact
+  set_fact:
+    pattern_str: 'collectd_exporter_{{ podport }}*'
+  when: 
+    - podport is defined
+
 # The port numbers will be gathered from the group_vars/all file
 - name: Find collectd systemd service
   find:
     path: /etc/systemd/system
-    pattern: 'collectd_exporter_*'
+    pattern: "{{ pattern_str }}"
   register: service_filenames
 
 - name: Stop collectd exporter services
@@ -27,9 +37,10 @@
   file:
     path: "{{ dir_name.files[0].path }}"
     state: absent
-  when: dir_name.files[0] is defined
+  when: 
+    - dir_name.files[0] is defined
+    - podport is not defined
   
-
 - name: Delete collectd systemd service files
   file:
     path: "{{ service_file_path }}"
@@ -38,7 +49,8 @@
     service_file_path: "{{ item.path }}"
   with_items: 
     - "{{ service_filenames.files }}"
-  when: service_filenames.files[0] is defined
+  when: 
+    - service_filenames.files[0] is defined
 
 - name: Check if firewalld is installed
   yum:

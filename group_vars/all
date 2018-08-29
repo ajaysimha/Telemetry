@@ -48,6 +48,9 @@ snmp_community: public
 ###############################
 osp_exporter_config:
   - { url: 'http://10.19.109.24:5000/v3', password: 'redhat', port: '19103' }
+  - { url: 'http://10.19.109.25:5000/v3', password: 'redhat', port: '19104' }
+  - { url: 'http://10.19.109.26:5000/v3', password: 'redhat', port: '19105' }
+  - { url: 'http://10.19.109.27:5000/v3', password: 'redhat', port: '19106' }
 
 osp_exporter_packages:
   - python2-pip-8.1.2-6.el7.noarch.rpm

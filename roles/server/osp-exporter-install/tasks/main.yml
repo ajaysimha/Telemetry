@@ -37,7 +37,7 @@
     password: "{{ item.password }}"
     url: "{{ item.url }}"
 
-- name: Create systemd service for prometheus exporter
+- name: Create systemd service for osp exporter
   template:
     src: osp_exporter_systemd.j2
     dest: "/etc/systemd/system/osp_exporter_{{ portnum }}.service"
@@ -71,7 +71,7 @@
     portnum: "{{ item.port }}"
   when: firewalld_op.results|selectattr("yumstate", "match", "installed")|list|length != 0
 
-- name: Start prometheus exporter service
+- name: Start osp exporter service
   systemd:
     name: "osp_exporter_{{ portnum }}"
     state: restarted
