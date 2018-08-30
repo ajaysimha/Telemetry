@@ -35,15 +35,15 @@
     mode: 0755
 
 - name: Copy nfvi-services.sh to /usr/share/collectd/exec directory
-  copy:
-    src: ceph-osd-nfvi-services.sh
+  template:
+    src: ceph-osd-nfvi-services-sh.j2
     dest: /usr/share/collectd/exec/nfvi-services.sh
     mode: 0755
   when: "'osd' in group_names | join(' ')"
 
 - name: Copy nfvi-services.sh to /usr/share/collectd/exec directory
-  copy:
-    src: ceph-mon-nfvi-services.sh
+  template:
+    src: ceph-mon-nfvi-services-sh.j2
     dest: /usr/share/collectd/exec/nfvi-services.sh
     mode: 0755
   when: "'mon' in group_names | join(' ')"

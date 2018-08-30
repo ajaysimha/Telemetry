@@ -1,7 +1,35 @@
+{{ ansible_managed | comment }}
 
 HOSTNAME="${COLLECTD_HOSTNAME:-`hostname -f`}"
 #INTERVAL="${COLLECTD_INTERVAL:-10}"
-INTERVAL=30
+INTERVAL={{ collectd_exec_sleep_interval }}
+
+send_alert() {
+alerts='[
+  {
+    "labels": {
+       "alertname": "NFVi_Service_Alert",
+       "instance": "'${HOSTNAME}'",
+       "service": "'$1'",
+       "severity": "Critical"
+
+     },
+     "annotations": {
+        "info": "The instance '${HOSTNAME}' is down",
+        "summary": "instance '${HOSTNAME}' is down",
+        "description": "'$2' on '${HOSTNAME}'"
+      }
+  }
+]'
+
+{% for server in groups["alert_managers"] %}
+URL{{ loop.index }}="http://{{ server }}:{{ alert_manager_port }}"
+{% endfor %}
+curl -XPOST -d"$alerts" $URL1/api/v1/alerts >/dev/null 2>&1
+curl -XPOST -d"$alerts" $URL2/api/v1/alerts >/dev/null 2>&1
+
+}
+
 # For all the following commands HOME should be set to the directory that has -my.cnf file with password information.
 
 # Flexible parameter to grab global variables- On the frontend side, use keys like mysql.status[Com_insert].
@@ -11,14 +39,17 @@ while sleep "$INTERVAL" ; do
   #An Identifier is of the form " host / plugin - instance / type - instance "
   #Refer for all typesdb to use like links-cinder  https://github-com/collectd/collectd/blob/master/src/types.db
 
-  val=$(sudo systemctl list-units |grep -i ntpd |grep -ic running)
+  val=$(sudo systemctl is-active ntpd >/dev/null 2>&1 && echo 1 || echo 0)
   echo "PUTVAL \"$HOSTNAME/nfvi-services/service-ntpd-service\" interval=$INTERVAL N:$val"
+  [ $val -eq 0 ] && send_alert 'ntpd' 'NTP Daemon is down'
 
-  val=$(sudo systemctl list-units |grep -i sshd |grep -ic running)
+  val=$(sudo systemctl is-active sshd >/dev/null 2>&1 && echo 1 || echo 0)
   echo "PUTVAL \"$HOSTNAME/nfvi-services/service-sshd-service\" interval=$INTERVAL N:$val"
+  [ $val -eq 0 ] && send_alert 'sshd-service' 'SSH Daemon is down'
 
   val=$(sudo ps aux | awk '{ print $8 " " $2 }' | grep -w Z | wc -l)
   echo "PUTVAL \"$HOSTNAME/nfvi-services/service-zombieprocess-process\" interval=$INTERVAL N:$val"
+  [ $val -gt 0 ] && send_alert 'zombie-processes' $val' Zombie process(es) found'
 
   #val=$(/usr/local/sbin/netif_discovery.sh)
   #val=$(if [ -z $val ]; then echo 0; else echo $val; fi)

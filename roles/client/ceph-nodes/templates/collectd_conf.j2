@@ -43,11 +43,9 @@ ValuesPercentage true
 reportInodes true
 </Plugin>
 
-{% if 'ceph-osd' in group_names | join(" ") %}
 <Plugin "exec">
 Exec  "nobody" "/usr/share/collectd/exec/nfvi-services.sh"
 </Plugin>
-{% endif %}
 <Plugin network>
 {% for collectd_exporter in groups["collectd_exporters"] %}
 Server "{{ collectd_exporter }}" "{{ portnum }}"

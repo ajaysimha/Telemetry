@@ -1,0 +1,6 @@
+---
+- name: Start alert manager service
+  service:
+    name: alert_manager
+    state: restarted
+    enabled: yes
