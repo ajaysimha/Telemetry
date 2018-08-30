@@ -78,6 +78,7 @@ prometheus_download_url: https://github.com/prometheus/prometheus/releases/downl
 
 prometheus_web_port: 9090
 # prometheus_pkg: prometheus-2.0.0.linux-amd64.tar.gz
+pip_pkg: python2-pip-8.1.2-6.el7.noarch.rpm
 prometheus_pkg: prometheus-2.3.2.linux-amd64.tar.gz
 prometheus_client: prometheus_client-0.2.0.tar.gz
 python2_pip_pkg: python2-pip-8.1.2-6.el7.noarch.rpm 

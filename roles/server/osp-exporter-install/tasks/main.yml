@@ -1,11 +1,27 @@
 - name: Copy packages required for osp-exporter to /tmp
   copy:
-    src: "{{ telemetry_home }}/packages/{{ prometheus_client }}"
+    src: "{{ item }}"
     dest: /tmp
+  with_items:
+    - "{{ telemetry_home }}/packages/{{ prometheus_client }}"
+    - "{{ telemetry_home }}/packages/{{ pip_pkg }}"
+
+- name: Check if PIP is installed
+  yum:
+    list: python2-pip
+    state: installed
+  register: pip_pkg_status
+
+- name: Install PIP package if absent
+  yum:
+    name: "/tmp/{{ pip_pkg }}"
+    state: present
+  when: pip_pkg_status.results|selectattr("yumstate", "match", "absent")|list|length != 0
 
 - name: Install Python Prometheus Client
   pip:
     name: "/tmp/{{ prometheus_client }}"
+  when: pip_pkg_status.results|selectattr("yumstate", "match", "installed")|list|length != 0
 
 - name: Copy OSP exporter python files to target 
   copy:
