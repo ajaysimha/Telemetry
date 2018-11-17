@@ -3,3 +3,4 @@
 - import_playbook: remove_snmptrapper.yml
 - import_playbook: remove_collectd_exporter.yml
 - import_playbook: remove_osp_exporter.yml
+- import_playbook: remove_grafana.yaml

@@ -3,3 +3,4 @@
 - import_playbook: install_snmptrapper.yml
 - import_playbook: install_collectd_exporter.yml
 - import_playbook: install_osp_exporter.yml
+- import_playbook: install_grafana.yaml
